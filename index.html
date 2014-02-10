@@ -9,7 +9,9 @@
 
 <meta name="author" content="Dacer"> 
 
-<meta name="description" content=" 折腾了半天终于从Wordpress转到了Octopress，要说为什么要换成这个的话，这个本来就没什么流量的blog如果在VPS一直跑着Wordpress有点浪费，正好就来折腾一下这个还是挺方便的XD Feb 10th, 2014 octopress "> <meta name="keywords" content="">
+<meta name="description" content=" Windows真是害人不浅- &ndash;#
+在Mac下可以 1
+iconv -f gbk -t utf-8 a.txt &gt; b.txt a.txt是要转换的文件，gbk是简体系统下txt默认保存编码(大概。。) Feb 10th, 2014 "> <meta name="keywords" content="">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -93,6 +95,49 @@ $(document).ready(
 </header>
 
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2014/02/10/zen-yao-ba-windowsxia-de-txtwen-jian-zhuan-wei-utf-8/">
+		
+			怎么把windows下的txt文件转为utf-8</a>
+	</h2>
+	<div class="entry-content">
+		<p>Windows真是害人不浅- &ndash;#
+在Mac下可以</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>iconv -f gbk -t utf-8 a.txt  &gt; b.txt </span></code></pre></td></tr></table></div></figure>
+
+
+<p>a.txt是要转换的文件，gbk是简体系统下txt默认保存编码(大概。。)</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-02-10T19:15:11+08:00" pubdate data-updated="true">Feb 10<span>th</span>, 2014</time></div>
+	
+
+
+	
+</div></article>
 
 
     <article class="post">
@@ -603,81 +648,6 @@ ps:第一个的那个说到我心坎里了啊！我之前一直想表述出这�
 
 <time datetime="2013-11-01T10:40:00+08:00" pubdate data-updated="true">Nov 1<span>st</span>, 2013</time></div>
 	
-
-
-	
-</div></article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2013/11/01/e8aebee8aea1e4b880e4b8aae4b8a4e6a08fe58887e79a86e58fafe6bb91e58aa8e79a84e697a5e69c9fe98089e68ba9e599a8/">
-		
-			设计一个两栏切皆可滑动的日期选择器</a>
-	</h2>
-	<div class="entry-content">
-		<p>发现不记录一下开发的过程的话一出现问题很难理清楚啊(╯‵□′)╯︵┻━┻</p>
-
-<p>大概就是这样一个东西：</p>
-
-<p><img src="/images/post/screenshot-2013-11-01-10-41-24.png" alt="Screenshot-2013-11-01-10.41.24" /></p>
-
-<p>要实现的功能有：</p>
-
-<ul>
-<li><p>月份选择器可滑动可点击，且月份切换时周视图也随之改变为当月的1号。</p></li>
-<li><p>周选择器可滑动可点击，点击后通过interface将所选择的日期传递出去。</p></li>
-<li><p>周选择器在滑动至其他月份时使月选择器自动调整为当前月份。</p></li>
-<li><p>月份选择器可独立出来</p></li>
-</ul>
-
-
-<p>实现的方法：</p>
-
-<ul>
-<li><p>两个视图都使用viewpager+fragment来实现滑动，且在月份选择器viewpager的两侧加两个button</p></li>
-<li><p>月份选择器总数为100*12+当前的月份，这儿有一个坑就是用Calendar中的month时，它的范围是0-11的，必须要多+1，在初始化视图的时候自动设置为今天（即最后一个）</p></li>
-<li><p>月份选择器在滑动后调用周的setCurrentWeek方法，再由其内部调用setCurrentItem方法。</p></li>
-</ul>
-
-
-<p>这要解决一个问题：</p>
-
-<p>月份在变化之后带动了周的变化，但是周的变化有可能会再次带动月份的变化，就造成了逻辑的混乱。</p>
-
-<p>想到的解决办法就是只有在滑动周选择器时才会改变月份,滑动月选择器时改变的周视图不会再次去改变月份。</p>
-
-<p>但是滑动周视图后改变了月视图之后月视图也会改变周视图。。所以balablabala要反过来再改一次</p>
-
-<p>虽然挺蛋疼了但总归是解决了这个问题，还有若干个小问题就不提了</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-11-01T09:40:02+08:00" pubdate data-updated="true">Nov 1<span>st</span>, 2013</time></div>
-	
-
-<div class="tags">
-
-	<a class='category' href='/blog/categories/android/'>Android</a>
-
-</div>
 
 
 	
