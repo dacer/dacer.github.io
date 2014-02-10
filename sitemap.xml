@@ -2,18 +2,26 @@
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
         <loc>http://dacer.github.io/blog/2014/02/10/hello-world/</loc>
-        <lastmod>2014-02-10T14:31:14+08:00</lastmod>
+        <lastmod>2014-02-10T15:04:22+08:00</lastmod>
+    </url>
+    <url>
+        <loc>http://dacer.github.io/archives/</loc>
+        <lastmod>2014-02-10T15:04:22+08:00</lastmod>
     </url>
     <url>
         <loc>http://dacer.github.io/blog/archives/</loc>
-        <lastmod>2014-02-10T14:31:14+08:00</lastmod>
+        <lastmod>2014-02-10T15:04:22+08:00</lastmod>
+    </url>
+    <url>
+        <loc>http://dacer.github.io/blog/</loc>
+        <lastmod>2014-02-10T15:04:22+08:00</lastmod>
     </url>
     <url>
         <loc>http://dacer.github.io/</loc>
-        <lastmod>2014-02-10T14:31:14+08:00</lastmod>
+        <lastmod>2014-02-10T15:04:22+08:00</lastmod>
     </url>
     <url>
         <loc>http://dacer.github.io/robots.txt</loc>
-        <lastmod>2014-02-10T14:15:37+08:00</lastmod>
+        <lastmod>2014-02-10T15:04:22+08:00</lastmod>
     </url>
 </urlset>

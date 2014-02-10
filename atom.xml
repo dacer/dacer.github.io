@@ -4,7 +4,7 @@
   <title><![CDATA[Dacer Blog]]></title>
   <link href="http://dacer.github.io/atom.xml" rel="self"/>
   <link href="http://dacer.github.io/"/>
-  <updated>2014-02-10T14:55:14+08:00</updated>
+  <updated>2014-02-10T15:06:22+08:00</updated>
   <id>http://dacer.github.io/</id>
   <author>
     <name><![CDATA[Dacer]]></name>
@@ -14,7 +14,7 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Hello World]]></title>
+    <title type="html"><![CDATA[hello world]]></title>
     <link href="http://dacer.github.io/blog/2014/02/10/hello-world/"/>
     <updated>2014-02-10T14:30:46+08:00</updated>
     <id>http://dacer.github.io/blog/2014/02/10/hello-world</id>
