@@ -1,0 +1,62 @@
+---
+author: qqwerrd
+comments: true
+date: 2013-10-03 00:46:30+00:00
+layout: post
+slug: '%e8%ae%be%e8%ae%a1%e4%b8%80%e4%b8%aa%e7%bb%9d%e5%af%b9%e5%87%86%e6%97%b6%e5%8f%88%e7%9b%b8%e5%af%b9%e7%9c%81%e7%94%b5%e7%9a%84android-%e5%80%92%e8%ae%a1%e6%97%b6%e6%96%b9%e6%a1%88'
+title: 设计一个绝对准时又相对省电的Android 倒计时方案
+wordpress_id: 117
+categories:
+- Android
+- 开发笔记
+---
+
+如果没有小米的话就不用写这个文章了。。
+
+本文是[这个](http://idacer.tk/?p=67)和[这个](http://idacer.tk/?p=83)的后续，欲在现今环境下打造一个绝对准时又较省电的倒计时方案。[
+](http://idacer.tk/?p=67)
+
+
+
+	
+  * 目标：在软件的多个界面中都能**一定准确**的显示倒计时，无论手机处于何种界面或状态都能**准时**的提示，在非小米手机中能达到**几乎不耗电量。**
+
+	
+  * 概述方案：记录开始计时的时间和进行状态到本地，针对小米启动一个service进行wakelock防止其休眠，
+
+
+小米准时唤醒验证程序：
+
+简单的搜了下wakelock应该没被小米阉割，所以要测试的内容为：不使用wakelock下的带和不带wakeup alarmmanager 的提示情况，使用wakelock下情况。顺便记录下开机，锁屏时间。
+
+记录内容模拟：
+
+----------Wakeup AlarmManager TEST-----------
+
+[2012/10/02 16:02:02]  System boot completed.
+
+[2012/10/02 16:02:02]  add a alarmManager with wakeup to 16:12:01
+
+[2012/10/02 16:02:02]  <16:12:01>alarmManager with wakeup alarmed at 16:15:01
+
+[2012/10/02 19:32:22]  --Screen off--
+
+[2012/10/02 19:32:02]  add a alarmManager with wakeup to 19:33:01
+
+[2012/10/02 19:32:02]  ---WakelockService started---
+
+好累啊感觉不会再爱了T_T
+
+update：
+
+测试程序搞定
+
+https://github.com/dacer/XiaoMiTest
+
+但是发了email之后都木有人愿意帮忙..是发的姿势不对嘛！！！
+
+
+
+update(Oct 6):
+
+有回复了，确认有效。

@@ -1,0 +1,19 @@
+---
+author: qqwerrd
+comments: true
+date: 2013-10-21 04:00:30+00:00
+layout: post
+slug: '%e6%9d%8e%e5%85%88%e7%94%9f%ef%bc%8c%e9%9d%9e%e5%b8%b8%e7%9a%84%e6%84%9f%e8%b0%a2%e6%82%a8'
+title: 李先生，非常的感谢您
+wordpress_id: 141
+categories:
+- 随笔
+---
+
+![Screenshot-2013-10-21-12.48.32]({{ root_url }}/images/post/screenshot-2013-10-21-12-48-321.png)
+
+这是我做这个软件以来收到的第一笔Donation。
+
+其实我之前是完全不相信，有人在用着免费软件的时候能想着给作者一些支持，特别是我这个并不优异的软件。
+
+今天开始永久删去极简番茄的广告条。

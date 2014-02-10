@@ -1,0 +1,21 @@
+---
+author: qqwerrd
+comments: true
+date: 2013-09-18 07:26:41+00:00
+layout: post
+slug: '%e6%9e%81%e7%ae%80%e7%95%aa%e8%8c%84bug%e8%ae%b0%e5%bd%95'
+title: 极简番茄BUG记录
+wordpress_id: 79
+categories:
+- 开发笔记
+---
+
+硬伤：
+
+切换Google账户BUG：1.正常使用帐号并授权同步2.在网页端撤销授权3.同步后FC
+
+软伤：
+
+切换Google Task同步之后本地task不会重置
+
+极速模式下横屏时开启屏幕会再次被锁屏（因为重新调用了onCreate中的锁屏方法）

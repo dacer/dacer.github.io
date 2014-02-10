@@ -1,0 +1,13 @@
+---
+author: qqwerrd
+comments: true
+date: 2014-01-31 12:47:17+00:00
+layout: post
+slug: '%e5%ad%a6%e4%b9%a0%e7%ac%94%e8%ae%b0-ruby'
+title: 学习笔记- ruby
+wordpress_id: 203
+categories:
+- Code School 学习笔记
+---
+
+yield

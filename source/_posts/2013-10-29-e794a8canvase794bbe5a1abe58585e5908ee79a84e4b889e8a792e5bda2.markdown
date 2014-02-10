@@ -1,0 +1,21 @@
+---
+author: qqwerrd
+comments: true
+date: 2013-10-29 05:36:15+00:00
+layout: post
+slug: '%e7%94%a8canvas%e7%94%bb%e5%a1%ab%e5%85%85%e5%90%8e%e7%9a%84%e4%b8%89%e8%a7%92%e5%bd%a2'
+title: 用canvas画填充后的三角形
+wordpress_id: 145
+categories:
+- Android
+---
+
+花了半天时间研究这个啊！！
+
+
+> http://stackoverflow.com/questions/3501126/how-to-draw-a-filled-triangle-in-android-canvas
+
+
+这个问题中不断的moveTo，lineTo后的path用setStyle(Paint.Style.FILL)的paint是画不了一个被填充的三角的，会直接无法显示，又找了大半天的解决方法才发现这个问题的第二个就是解决方法。。
+
+那就是moveTo之后就一直lineTo就可以了。。。。。

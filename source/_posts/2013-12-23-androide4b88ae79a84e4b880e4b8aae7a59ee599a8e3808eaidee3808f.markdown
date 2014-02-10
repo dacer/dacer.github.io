@@ -1,0 +1,25 @@
+---
+author: qqwerrd
+comments: true
+date: 2013-12-23 13:24:04+00:00
+layout: post
+slug: android%e4%b8%8a%e7%9a%84%e4%b8%80%e4%b8%aa%e7%a5%9e%e5%99%a8%e3%80%8eaide%e3%80%8f
+title: Android上的一个神器『AIDE』
+wordpress_id: 179
+categories:
+- 随笔
+---
+
+能直接在手机上git clone啊有木有！！
+
+clone完了什么都不用改直接就能编译出apk了有木有！！
+
+圣诞节出去旅游用手机就能修修bug 发布apk了有木有！！！
+
+mba的轻便性跟手机比起来弱爆了有木有！！！
+
+--------------正常向的分割线-------------
+
+圣诞节某个软件要发布beta版本但是又要出去旅游怎么办呢，正在纠结带不带mba的时候突然想起来手机上就有一个IDE，下了试了试超级好用而且升级key圣诞节还打折就果断入手了！
+
+此刻真是感动的痛哭流涕啊。。

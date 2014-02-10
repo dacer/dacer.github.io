@@ -1,0 +1,17 @@
+---
+author: qqwerrd
+comments: true
+date: 2013-11-01 02:40:00+00:00
+layout: post
+slug: '%e5%ae%9e%e5%9c%a8%e6%98%af%e5%8f%97%e4%b8%8d%e4%ba%86eclipse%e4%ba%86'
+title: 实在是受不了eclipse了
+wordpress_id: 154
+---
+
+以前用Y450的时候就很卡很崩溃时不时就来点Bug错误什么的我也就忍了
+
+现在换mba了还是时不时出现点问题，现在连导出apk都会崩溃了(╯‵□′)╯︵┻━┻
+
+导出到Android studio也很有问题
+
+如果有一天我放弃了Simple Pomodoro的维护一定是eclipse的错！
