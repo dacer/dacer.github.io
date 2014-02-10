@@ -4,7 +4,7 @@
   <title><![CDATA[Dacer Blog]]></title>
   <link href="http://dacer.github.io/atom.xml" rel="self"/>
   <link href="http://dacer.github.io/"/>
-  <updated>2014-02-10T14:21:27+08:00</updated>
+  <updated>2014-02-10T14:31:54+08:00</updated>
   <id>http://dacer.github.io/</id>
   <author>
     <name><![CDATA[Dacer]]></name>
@@ -12,5 +12,16 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Hello World]]></title>
+    <link href="http://dacer.github.io/blog/2014/02/10/hello-world/"/>
+    <updated>2014-02-10T14:30:46+08:00</updated>
+    <id>http://dacer.github.io/blog/2014/02/10/hello-world</id>
+    <content type="html"><![CDATA[<p>测试
+Test
+습니다</p>
+]]></content>
+  </entry>
   
 </feed>
