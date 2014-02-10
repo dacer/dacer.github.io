@@ -4,7 +4,7 @@
   <title><![CDATA[Dacer Blog]]></title>
   <link href="http://dacer.github.io/atom.xml" rel="self"/>
   <link href="http://dacer.github.io/"/>
-  <updated>2014-02-10T15:30:13+08:00</updated>
+  <updated>2014-02-10T18:52:01+08:00</updated>
   <id>http://dacer.github.io/</id>
   <author>
     <name><![CDATA[Dacer]]></name>
@@ -14,13 +14,11 @@
 
   
   <entry>
-    <title type="html"><![CDATA[hello world]]></title>
-    <link href="http://dacer.github.io/blog/2014/02/10/hello-world/"/>
+    <title type="html"><![CDATA[Hello Octopress]]></title>
+    <link href="http://dacer.github.io/blog/2014/02/10/hello-octopress/"/>
     <updated>2014-02-10T14:30:46+08:00</updated>
-    <id>http://dacer.github.io/blog/2014/02/10/hello-world</id>
-    <content type="html"><![CDATA[<p>测试
-Test
-습니다</p>
+    <id>http://dacer.github.io/blog/2014/02/10/hello-octopress</id>
+    <content type="html"><![CDATA[<p>折腾了半天终于从Wordpress转到了Octopress，要说为什么要换成这个的话，这个本来就没什么流量的blog如果在VPS一直跑着Wordpress有点浪费，正好就来折腾一下这个还是挺方便的XD</p>
 ]]></content>
   </entry>
   
@@ -40,9 +38,9 @@ Test
     <id>http://dacer.github.io/blog/2014/01/06/e59bbde4baa7e58d95e69cbae6b8b8e6888f</id>
     <content type="html"><![CDATA[<p>今天脑中无意间响起了幻想三国志3中游戏开始标题画面中放的“界线”，于是在脑中泛滥的一发不可收拾起来，在虾米中找出1到4代的歌听着，顺便搜了搜幻三的最近动态，发现这个系列最终还是停在了第四代，连防盗版用的服务器都关闭了，发放了官方的“离线破解补丁”。一晃这么多年过去了，这个优秀程度在我心目中不亚于仙剑的国产RPG就此迎来了终结。</p>
 
-<p>说来惭愧，当时偷偷玩着电脑游戏的我是不敢花着父母的钱去买正版游戏的，本来想洋洋洒洒的写出主角们的爱恨情愁，但发现脑海中只余当时的我懵懵懂懂玩的场景，细细想来只记得某代主角刻骨铭心的爱情，为了爱侣不惜走遍千山万水，</p>
+<p>说来惭愧，当时偷偷玩着电脑游戏的我是不敢花着父母的钱去买正版游戏的，本来想洋洋洒洒的写出主角们的爱恨情愁，但发现脑海中只余当时的我懵懵懂懂玩的场景，细细想来只记得某代主角刻骨铭心的爱情，为了爱侣不惜走遍千山万水。</p>
 
-<p>换下话题，其实幻三是有延续的，它出了一个web页游，打开宇峻奥氵丁（幻三开发公司）官网首页已没有了单机游戏的一席之地，</p>
+<p>打开宇峻奧汀科技（幻三开发公司）官网首页已没有了单机游戏的一席之地，</p>
 
 <p>不知道若干年后的00 10后还会不会知道有国产rpg这个东西呢</p>
 ]]></content>
@@ -108,7 +106,7 @@ Test
 <p>但是点击后出现到 popup 会造成两个问题，</p>
 
 <ol>
-<li><p> 怎么样画一个这个出来，而且中间的字还要在正中央：这个的话已经写了个解法在之前的博文中，<a href="http://idacer.tk/2013/11/%e6%80%8e%e6%a0%b7%e5%9c%a8canvas%e4%b8%ad%e7%9a%84%e6%96%b9%e5%bd%a2%e4%b8%ad%e5%a4%ae%e7%94%bbtext/">链接</a></p></li>
+<li><p> 怎么样画一个这个出来，而且中间的字还要在正中央：这个的话已经写了个解法在之前的博文中，</p></li>
 <li><p> 顶部的空间可能会不够显示最上方的点显示出的 popup：我先是在当前列表中的最大值的上方再加上一个格子，但这样有时还是不够，于是。。待续</p></li>
 </ol>
 
@@ -120,7 +118,7 @@ Test
     <link href="http://dacer.github.io/blog/2013/11/13/e7bb88e4ba8ee58d87e588b04-3e4ba86/"/>
     <updated>2013-11-13T20:15:01+08:00</updated>
     <id>http://dacer.github.io/blog/2013/11/13/e7bb88e4ba8ee58d87e588b04-3e4ba86</id>
-    <content type="html"><![CDATA[<p><a href="http://idacer.files.wordpress.com/2013/11/2013-11-13-12-09-08.png"><img src="http://idacer.files.wordpress.com/2013/11/2013-11-13-12-09-08.png?w=168" alt="2013-11-13-12.09.08" /></a></p>
+    <content type="html"><![CDATA[<p><img src="http://dacer.github.io/images/post/2013-11-13-12-09-08.png" alt="2013-11-13-12.09.08" /></p>
 
 <p>我到韩版S3终于也能用上4.3了T_T, 虽然kitkat都出来了。。</p>
 
@@ -135,46 +133,82 @@ Test
     <link href="http://dacer.github.io/blog/2013/11/09/e6808ee6a0b7e59ca8canvase4b8ade79a84e696b9e5bda2e4b8ade5a4aee794bbtext/"/>
     <updated>2013-11-09T13:22:10+08:00</updated>
     <id>http://dacer.github.io/blog/2013/11/09/e6808ee6a0b7e59ca8canvase4b8ade79a84e696b9e5bda2e4b8ade5a4aee794bbtext</id>
-    <content type="html"><![CDATA[<p><code></p>
+    <content type="html"><![CDATA[<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="cm">/**</span>
+</span><span class='line'><span class="cm">*</span>
+</span><span class='line'><span class="cm">* @param canvas The canvas you need to draw on.</span>
+</span><span class='line'><span class="cm">* @param x The X Coordinate from left to right.</span>
+</span><span class='line'><span class="cm">* @param y The Y Coordinate form bottom to top.</span>
+</span><span class='line'><span class="cm">*/</span>
+</span><span class='line'><span class="kd">private</span> <span class="kt">void</span> <span class="nf">drawPopup</span><span class="o">(</span><span class="n">Canvas</span> <span class="n">canvas</span><span class="o">,</span><span class="n">String</span> <span class="n">num</span><span class="o">,</span><span class="kt">int</span> <span class="n">x</span><span class="o">,</span><span class="kt">int</span> <span class="n">y</span><span class="o">){</span>
+</span><span class='line'><span class="kt">int</span> <span class="n">bottomTriangleHeight</span> <span class="o">=</span> <span class="mi">12</span><span class="o">;</span>
+</span><span class='line'><span class="kt">int</span> <span class="n">padding</span> <span class="o">=</span> <span class="n">MyUtils</span><span class="o">.</span><span class="na">dip2px</span><span class="o">(</span><span class="n">mContext</span><span class="o">,</span><span class="mi">2</span><span class="o">);</span>
+</span><span class='line'><span class="kt">int</span> <span class="n">marginBottom</span> <span class="o">=</span> <span class="n">MyUtils</span><span class="o">.</span><span class="na">dip2px</span><span class="o">(</span><span class="n">mContext</span><span class="o">,</span><span class="mi">5</span><span class="o">);</span>
+</span><span class='line'><span class="kt">boolean</span> <span class="n">singularNum</span> <span class="o">=</span> <span class="o">(</span><span class="n">num</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">==</span> <span class="mi">1</span><span class="o">);</span>
+</span><span class='line'><span class="kt">int</span> <span class="n">sidePadding</span> <span class="o">=</span> <span class="n">MyUtils</span><span class="o">.</span><span class="na">dip2px</span><span class="o">(</span><span class="n">mContext</span><span class="o">,</span><span class="n">singularNum</span><span class="o">?</span> <span class="mi">8</span><span class="o">:</span><span class="mi">5</span><span class="o">);</span>
+</span><span class='line'><span class="kt">int</span> <span class="n">xCoor</span> <span class="o">=</span> <span class="n">xCoordinateList</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">x</span><span class="o">);</span>
+</span><span class='line'><span class="kt">int</span> <span class="n">yCoor</span> <span class="o">=</span> <span class="n">yCoordinateList</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">yCoordinateList</span><span class="o">.</span><span class="na">size</span><span class="o">()-</span><span class="n">y</span><span class="o">)-</span><span class="n">MyUtils</span><span class="o">.</span><span class="na">dip2px</span><span class="o">(</span><span class="n">mContext</span><span class="o">,</span><span class="mi">5</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">Paint</span> <span class="n">textPaint</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Paint</span><span class="o">();</span>
+</span><span class='line'><span class="n">textPaint</span><span class="o">.</span><span class="na">setAntiAlias</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+</span><span class='line'><span class="n">textPaint</span><span class="o">.</span><span class="na">setColor</span><span class="o">(</span><span class="n">Color</span><span class="o">.</span><span class="na">BLACK</span><span class="o">);</span>
+</span><span class='line'><span class="n">textPaint</span><span class="o">.</span><span class="na">setTextSize</span><span class="o">(</span><span class="n">MyUtils</span><span class="o">.</span><span class="na">sp2px</span><span class="o">(</span><span class="n">mContext</span><span class="o">,</span> <span class="mi">13</span><span class="o">));</span>
+</span><span class='line'><span class="n">textPaint</span><span class="o">.</span><span class="na">setStrokeWidth</span><span class="o">(</span><span class="mi">5</span><span class="o">);</span>
+</span><span class='line'><span class="n">textPaint</span><span class="o">.</span><span class="na">setTextAlign</span><span class="o">(</span><span class="n">Paint</span><span class="o">.</span><span class="na">Align</span><span class="o">.</span><span class="na">CENTER</span><span class="o">);</span>
+</span><span class='line'><span class="n">Paint</span><span class="o">.</span><span class="na">FontMetrics</span> <span class="n">fm</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Paint</span><span class="o">.</span><span class="na">FontMetrics</span><span class="o">();</span>
+</span><span class='line'><span class="n">textPaint</span><span class="o">.</span><span class="na">getFontMetrics</span><span class="o">(</span><span class="n">fm</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">Rect</span> <span class="n">r</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Rect</span><span class="o">((</span><span class="kt">int</span><span class="o">)(</span><span class="n">xCoor</span><span class="o">-</span><span class="n">textPaint</span><span class="o">.</span><span class="na">measureText</span><span class="o">(</span><span class="n">num</span><span class="o">)/</span><span class="mi">2</span><span class="o">)-</span><span class="n">sidePadding</span><span class="o">,</span>
+</span><span class='line'><span class="o">(</span><span class="kt">int</span><span class="o">)(</span><span class="n">yCoor</span> <span class="o">-</span> <span class="n">textPaint</span><span class="o">.</span><span class="na">getTextSize</span><span class="o">())-</span><span class="n">bottomTriangleHeight</span><span class="o">-</span><span class="n">padding</span><span class="o">-</span><span class="n">marginBottom</span><span class="o">,</span>
+</span><span class='line'><span class="o">(</span><span class="kt">int</span><span class="o">)(</span><span class="n">xCoor</span> <span class="o">+</span> <span class="n">textPaint</span><span class="o">.</span><span class="na">measureText</span><span class="o">(</span><span class="n">num</span><span class="o">)/</span><span class="mi">2</span><span class="o">)+</span><span class="n">sidePadding</span><span class="o">,</span>
+</span><span class='line'><span class="n">yCoor</span><span class="o">+</span><span class="n">padding</span><span class="o">-</span><span class="n">marginBottom</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">NinePatchDrawable</span> <span class="n">popup</span> <span class="o">=</span> <span class="o">(</span><span class="n">NinePatchDrawable</span><span class="o">)</span><span class="n">getResources</span><span class="o">().</span>
+</span><span class='line'><span class="n">getDrawable</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">drawable</span><span class="o">.</span><span class="na">popup_red</span><span class="o">);</span>
+</span><span class='line'><span class="n">popup</span><span class="o">.</span><span class="na">setBounds</span><span class="o">(</span><span class="n">r</span><span class="o">);</span>
+</span><span class='line'><span class="n">popup</span><span class="o">.</span><span class="na">draw</span><span class="o">(</span><span class="n">canvas</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">textPaint</span><span class="o">.</span><span class="na">setColor</span><span class="o">(</span><span class="n">Color</span><span class="o">.</span><span class="na">WHITE</span><span class="o">);</span>
+</span><span class='line'><span class="n">canvas</span><span class="o">.</span><span class="na">drawText</span><span class="o">(</span><span class="n">num</span><span class="o">,</span> <span class="n">xCoor</span><span class="o">,</span> <span class="n">yCoor</span><span class="o">-</span><span class="n">bottomTriangleHeight</span><span class="o">-</span><span class="n">marginBottom</span><span class="o">,</span> <span class="n">textPaint</span><span class="o">);</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<pre><code>/**
-*
-* @param canvas The canvas you need to draw on.
-* @param x The X Coordinate from left to right.
-* @param y The Y Coordinate form bottom to top.
-*/
-private void drawPopup(Canvas canvas,String num,int x,int y){
-int bottomTriangleHeight = 12;
-int padding = MyUtils.dip2px(mContext,2);
-int marginBottom = MyUtils.dip2px(mContext,5);
-boolean singularNum = (num.length() == 1);
-int sidePadding = MyUtils.dip2px(mContext,singularNum? 8:5);
-int xCoor = xCoordinateList.get(x);
-int yCoor = yCoordinateList.get(yCoordinateList.size()-y)-MyUtils.dip2px(mContext,5);&lt;/code&gt;
-
-Paint textPaint = new Paint();
-textPaint.setAntiAlias(true);
-textPaint.setColor(Color.BLACK);
-textPaint.setTextSize(MyUtils.sp2px(mContext, 13));
-textPaint.setStrokeWidth(5);
-textPaint.setTextAlign(Paint.Align.CENTER);
-Paint.FontMetrics fm = new Paint.FontMetrics();
-textPaint.getFontMetrics(fm);
-
-Rect r = new Rect((int)(xCoor-textPaint.measureText(num)/2)-sidePadding,
-(int)(yCoor - textPaint.getTextSize())-bottomTriangleHeight-padding-marginBottom,
-(int)(xCoor + textPaint.measureText(num)/2)+sidePadding,
-yCoor+padding-marginBottom);
-
-NinePatchDrawable popup = (NinePatchDrawable)getResources().
-getDrawable(R.drawable.popup_red);
-popup.setBounds(r);
-popup.draw(canvas);
-
-textPaint.setColor(Color.WHITE);
-canvas.drawText(num, xCoor, yCoor-bottomTriangleHeight-marginBottom, textPaint);
-}
-</code></pre>
 
 <p>被这个折腾死了。。
 详解待续</p>
@@ -188,9 +222,8 @@ canvas.drawText(num, xCoor, yCoor-bottomTriangleHeight-marginBottom, textPaint);
     <id>http://dacer.github.io/blog/2013/11/01/e69c89e697b6e4bc9ae8a789e5be97e8bf99e587a0e4b8aae69c88e79a84e58aaae58a9be79c9fe79a84e5be88e580bce5be97</id>
     <content type="html"><![CDATA[<p>看到这些评价的时候。</p>
 
-<p><a href="http://idacer.files.wordpress.com/2013/11/screenshot_2013-11-01-23-57-421.png"><img src="http://idacer.files.wordpress.com/2013/11/screenshot_2013-11-01-23-57-421.png?w=168" alt="Screenshot_2013-11-01-23-57-42" /></a></p>
-
-<p>ps:第一个的那个说到我心坎里了啊！我之前一直想表述出这个但是就是组织语言不出来。。</p>
+<p><img src="http://dacer.github.io/images/post/screenshot_2013-11-01-23-57-421.png" alt="Screenshot_2013-11-01-23-57-42" />
+ps:第一个的那个说到我心坎里了啊！我之前一直想表述出这个但是就是组织语言不出来。。</p>
 ]]></content>
   </entry>
   
@@ -218,7 +251,7 @@ canvas.drawText(num, xCoor, yCoor-bottomTriangleHeight-marginBottom, textPaint);
 
 <p>大概就是这样一个东西：</p>
 
-<p><a href="http://idacer.files.wordpress.com/2013/11/screenshot-2013-11-01-10-41-24.png"><img src="http://idacer.files.wordpress.com/2013/11/screenshot-2013-11-01-10-41-24.png" alt="Screenshot-2013-11-01-10.41.24" /></a></p>
+<p><img src="http://dacer.github.io/images/post/screenshot-2013-11-01-10-41-24.png" alt="Screenshot-2013-11-01-10.41.24" /></p>
 
 <p>要实现的功能有：</p>
 
@@ -271,7 +304,7 @@ canvas.drawText(num, xCoor, yCoor-bottomTriangleHeight-marginBottom, textPaint);
     <link href="http://dacer.github.io/blog/2013/10/21/e69d8ee58588e7949fefbc8ce99d9ee5b8b8e79a84e6849fe8b0a2e682a8/"/>
     <updated>2013-10-21T12:00:30+08:00</updated>
     <id>http://dacer.github.io/blog/2013/10/21/e69d8ee58588e7949fefbc8ce99d9ee5b8b8e79a84e6849fe8b0a2e682a8</id>
-    <content type="html"><![CDATA[<p><a href="http://idacer.files.wordpress.com/2013/10/screenshot-2013-10-21-12-48-321.png"><img src="http://idacer.files.wordpress.com/2013/10/screenshot-2013-10-21-12-48-321.png" alt="Screenshot-2013-10-21-12.48.32" /></a></p>
+    <content type="html"><![CDATA[<p><img src="http://dacer.github.io/images/post/screenshot-2013-10-21-12-48-321.png" alt="Screenshot-2013-10-21-12.48.32" /></p>
 
 <p>这是我做这个软件以来收到的第一笔Donation。</p>
 
@@ -292,7 +325,7 @@ canvas.drawText(num, xCoor, yCoor-bottomTriangleHeight-marginBottom, textPaint);
 
 <p>最近找到了个remote的工作是支付的bitcoin为每周的工资，每个周日我拿到工资后在当天就会将其卖出，即使bitcoin在不断的上涨，下图为卖出的历史纪录，最上方的为今天的情况，即比上周上涨了约200元。</p>
 
-<p><a href="http://idacer.files.wordpress.com/2013/10/screenshot-2013-10-20-23-59-341.png"><img src="http://idacer.files.wordpress.com/2013/10/screenshot-2013-10-20-23-59-341.png" alt="Screenshot-2013-10-20-23.59.34" /></a></p>
+<p><a href="http://dacer.github.io/images/post/screenshot-2013-10-20-23-59-341.png">Screenshot-2013-10-20-23.59.34</a></p>
 
 <p>看到这个记录有人可能会想，如果把第一周的bitcoin攒到现在来卖的话，不就凭空多出了近600多元吗？</p>
 
@@ -455,7 +488,7 @@ canvas.drawText(num, xCoor, yCoor-bottomTriangleHeight-marginBottom, textPaint);
 
 <p>将Action Bar设置为透明且可和下部分重叠，先简单的放了个button试了下，效果如下：</p>
 
-<p><a href="http://idacer.files.wordpress.com/2013/09/screen-shot-2013-09-30-at-4-49-52-pm1.png"><img src="http://idacer.files.wordpress.com/2013/09/screen-shot-2013-09-30-at-4-49-52-pm1.png" alt="Screen-Shot-2013-09-30-at-4.49.52-PM" /></a></p>
+<p><img src="http://dacer.github.io/images/post/screen-shot-2013-09-30-at-4-49-52-pm1.png" alt="Screen-Shot-2013-09-30-at-4.49.52-PM" /></p>
 
 <p>之后用testin测试了下其他机型的适配情况，除了联想的一个奇葩机型之外都如图显示，于是意外的得出了个结论，<strong>button高度=Action Bar高度</strong>（这是歪打正着吧(╯‵□′)╯︵┻━┻）</p>
 
@@ -465,22 +498,26 @@ canvas.drawText(num, xCoor, yCoor-bottomTriangleHeight-marginBottom, textPaint);
 
 <p>不过发现了这个方法</p>
 
-<p>[code language=&ldquo;java&rdquo;]
-public int getActionBarSize(Context context) {
-  int[] attrs = {android.R.attr.actionBarSize};
-  TypedArray values = context.getTheme().obtainStyledAttributes(attrs);
-  try {</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kt">int</span> <span class="nf">getActionBarSize</span><span class="o">(</span><span class="n">Context</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>  <span class="kt">int</span><span class="o">[]</span> <span class="n">attrs</span> <span class="o">=</span> <span class="o">{</span><span class="n">android</span><span class="o">.</span><span class="na">R</span><span class="o">.</span><span class="na">attr</span><span class="o">.</span><span class="na">actionBarSize</span><span class="o">};</span>
+</span><span class='line'>  <span class="n">TypedArray</span> <span class="n">values</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="na">getTheme</span><span class="o">().</span><span class="na">obtainStyledAttributes</span><span class="o">(</span><span class="n">attrs</span><span class="o">);</span>
+</span><span class='line'>  <span class="k">try</span> <span class="o">{</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">values</span><span class="o">.</span><span class="na">getDimensionPixelSize</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
+</span><span class='line'>  <span class="o">}</span> <span class="k">finally</span> <span class="o">{</span>
+</span><span class='line'>    <span class="n">values</span><span class="o">.</span><span class="na">recycle</span><span class="o">();</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<pre><code>return values.getDimensionPixelSize(0, 0);
-</code></pre>
-
-<p>  } finally {</p>
-
-<pre><code>values.recycle();
-</code></pre>
-
-<p>  }
-}[/code]</p>
 
 <p>最后得出的结论就是：目前看来还是用方法一，然后写个drawable作为自定义粗的进度条</p>
 ]]></content>

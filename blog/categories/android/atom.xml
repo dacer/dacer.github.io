@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Android | Dacer Blog]]></title>
   <link href="http://dacer.github.io/blog/categories/android/atom.xml" rel="self"/>
   <link href="http://dacer.github.io/"/>
-  <updated>2014-02-10T15:30:13+08:00</updated>
+  <updated>2014-02-10T18:52:01+08:00</updated>
   <id>http://dacer.github.io/</id>
   <author>
     <name><![CDATA[Dacer]]></name>
@@ -52,7 +52,7 @@
 <p>但是点击后出现到 popup 会造成两个问题，</p>
 
 <ol>
-<li><p> 怎么样画一个这个出来，而且中间的字还要在正中央：这个的话已经写了个解法在之前的博文中，<a href="http://idacer.tk/2013/11/%e6%80%8e%e6%a0%b7%e5%9c%a8canvas%e4%b8%ad%e7%9a%84%e6%96%b9%e5%bd%a2%e4%b8%ad%e5%a4%ae%e7%94%bbtext/">链接</a></p></li>
+<li><p> 怎么样画一个这个出来，而且中间的字还要在正中央：这个的话已经写了个解法在之前的博文中，</p></li>
 <li><p> 顶部的空间可能会不够显示最上方的点显示出的 popup：我先是在当前列表中的最大值的上方再加上一个格子，但这样有时还是不够，于是。。待续</p></li>
 </ol>
 
@@ -64,7 +64,7 @@
     <link href="http://dacer.github.io/blog/2013/11/09/e6808ee6a0b7e59ca8canvase4b8ade79a84e696b9e5bda2e4b8ade5a4aee794bbtext/"/>
     <updated>2013-11-09T13:22:10+08:00</updated>
     <id>http://dacer.github.io/blog/2013/11/09/e6808ee6a0b7e59ca8canvase4b8ade79a84e696b9e5bda2e4b8ade5a4aee794bbtext</id>
-    <content type="html"><![CDATA[<p><code></p>
+    <content type="html"><![CDATA[<p>```java</p>
 
 <pre><code>/**
 *
@@ -79,7 +79,7 @@ int marginBottom = MyUtils.dip2px(mContext,5);
 boolean singularNum = (num.length() == 1);
 int sidePadding = MyUtils.dip2px(mContext,singularNum? 8:5);
 int xCoor = xCoordinateList.get(x);
-int yCoor = yCoordinateList.get(yCoordinateList.size()-y)-MyUtils.dip2px(mContext,5);&lt;/code&gt;
+int yCoor = yCoordinateList.get(yCoordinateList.size()-y)-MyUtils.dip2px(mContext,5);
 
 Paint textPaint = new Paint();
 textPaint.setAntiAlias(true);
@@ -105,6 +105,8 @@ canvas.drawText(num, xCoor, yCoor-bottomTriangleHeight-marginBottom, textPaint);
 }
 </code></pre>
 
+<p>```</p>
+
 <p>被这个折腾死了。。
 详解待续</p>
 ]]></content>
@@ -119,7 +121,7 @@ canvas.drawText(num, xCoor, yCoor-bottomTriangleHeight-marginBottom, textPaint);
 
 <p>大概就是这样一个东西：</p>
 
-<p><a href="http://idacer.files.wordpress.com/2013/11/screenshot-2013-11-01-10-41-24.png"><img src="http://idacer.files.wordpress.com/2013/11/screenshot-2013-11-01-10-41-24.png" alt="Screenshot-2013-11-01-10.41.24" /></a></p>
+<p><img src="/images/post/screenshot-2013-11-01-10-41-24.png" alt="Screenshot-2013-11-01-10.41.24" /></p>
 
 <p>要实现的功能有：</p>
 

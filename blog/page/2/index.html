@@ -65,7 +65,6 @@ $(document).ready(
 <nav id="main-nav"><ul>
 	<li><a href="/">Blog</a></li>
 	<li><a href="/about">About</a></li>
-	<li><a href="/portfolio">Portfolio</a></li>
 	<li><a href="/archives">Archive</a></li>
 </ul>
 </nav>
@@ -75,7 +74,6 @@ $(document).ready(
 		<div class="container"><ul>
 	<li><a href="/">Blog</a></li>
 	<li><a href="/about">About</a></li>
-	<li><a href="/portfolio">Portfolio</a></li>
 	<li><a href="/archives">Archive</a></li>
 </ul>
 </div>
@@ -153,7 +151,7 @@ $(document).ready(
 			李先生，非常的感谢您</a>
 	</h2>
 	<div class="entry-content">
-		<p><a href="http://idacer.files.wordpress.com/2013/10/screenshot-2013-10-21-12-48-321.png"><img src="http://idacer.files.wordpress.com/2013/10/screenshot-2013-10-21-12-48-321.png" alt="Screenshot-2013-10-21-12.48.32" /></a></p>
+		<p><img src="/images/post/screenshot-2013-10-21-12-48-321.png" alt="Screenshot-2013-10-21-12.48.32" /></p>
 
 <p>这是我做这个软件以来收到的第一笔Donation。</p>
 
@@ -207,7 +205,7 @@ $(document).ready(
 
 <p>最近找到了个remote的工作是支付的bitcoin为每周的工资，每个周日我拿到工资后在当天就会将其卖出，即使bitcoin在不断的上涨，下图为卖出的历史纪录，最上方的为今天的情况，即比上周上涨了约200元。</p>
 
-<p><a href="http://idacer.files.wordpress.com/2013/10/screenshot-2013-10-20-23-59-341.png"><img src="http://idacer.files.wordpress.com/2013/10/screenshot-2013-10-20-23-59-341.png" alt="Screenshot-2013-10-20-23.59.34" /></a></p>
+<p><a href="/images/post/screenshot-2013-10-20-23-59-341.png">Screenshot-2013-10-20-23.59.34</a></p>
 
 <p>看到这个记录有人可能会想，如果把第一周的bitcoin攒到现在来卖的话，不就凭空多出了近600多元吗？</p>
 
@@ -562,7 +560,7 @@ $(document).ready(
 
 <p>将Action Bar设置为透明且可和下部分重叠，先简单的放了个button试了下，效果如下：</p>
 
-<p><a href="http://idacer.files.wordpress.com/2013/09/screen-shot-2013-09-30-at-4-49-52-pm1.png"><img src="http://idacer.files.wordpress.com/2013/09/screen-shot-2013-09-30-at-4-49-52-pm1.png" alt="Screen-Shot-2013-09-30-at-4.49.52-PM" /></a></p>
+<p><img src="/images/post/screen-shot-2013-09-30-at-4-49-52-pm1.png" alt="Screen-Shot-2013-09-30-at-4.49.52-PM" /></p>
 
 <p>之后用testin测试了下其他机型的适配情况，除了联想的一个奇葩机型之外都如图显示，于是意外的得出了个结论，<strong>button高度=Action Bar高度</strong>（这是歪打正着吧(╯‵□′)╯︵┻━┻）</p>
 
@@ -572,22 +570,26 @@ $(document).ready(
 
 <p>不过发现了这个方法</p>
 
-<p>[code language=&ldquo;java&rdquo;]
-public int getActionBarSize(Context context) {
-  int[] attrs = {android.R.attr.actionBarSize};
-  TypedArray values = context.getTheme().obtainStyledAttributes(attrs);
-  try {</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kt">int</span> <span class="nf">getActionBarSize</span><span class="o">(</span><span class="n">Context</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>  <span class="kt">int</span><span class="o">[]</span> <span class="n">attrs</span> <span class="o">=</span> <span class="o">{</span><span class="n">android</span><span class="o">.</span><span class="na">R</span><span class="o">.</span><span class="na">attr</span><span class="o">.</span><span class="na">actionBarSize</span><span class="o">};</span>
+</span><span class='line'>  <span class="n">TypedArray</span> <span class="n">values</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="na">getTheme</span><span class="o">().</span><span class="na">obtainStyledAttributes</span><span class="o">(</span><span class="n">attrs</span><span class="o">);</span>
+</span><span class='line'>  <span class="k">try</span> <span class="o">{</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">values</span><span class="o">.</span><span class="na">getDimensionPixelSize</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
+</span><span class='line'>  <span class="o">}</span> <span class="k">finally</span> <span class="o">{</span>
+</span><span class='line'>    <span class="n">values</span><span class="o">.</span><span class="na">recycle</span><span class="o">();</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<pre><code>return values.getDimensionPixelSize(0, 0);
-</code></pre>
-
-<p>  } finally {</p>
-
-<pre><code>values.recycle();
-</code></pre>
-
-<p>  }
-}[/code]</p>
 
 <p>最后得出的结论就是：目前看来还是用方法一，然后写个drawable作为自定义粗的进度条</p>
 
