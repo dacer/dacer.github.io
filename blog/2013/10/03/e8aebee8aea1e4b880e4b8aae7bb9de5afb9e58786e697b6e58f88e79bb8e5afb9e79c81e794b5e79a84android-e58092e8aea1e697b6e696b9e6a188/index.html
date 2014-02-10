@@ -1,0 +1,206 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<script data-cfasync="false" type="text/javascript" src="//use.typekit.net/axj3cfp.js"></script>
+	<script data-cfasync="false" type="text/javascript">try{Typekit.load();}catch(e){}</script>
+	<meta charset="utf-8">
+	<title>设计一个绝对准时又相对省电的Android 倒计时方案  | Dacer Blog</title>
+
+<meta name="author" content="Dacer"> 
+
+<meta name="description" content="如果没有小米的话就不用写这个文章了。。 本文是这个和这个的后续，欲在现今环境下打造一个绝对准时又较省电的倒计时方案。 目标：在软件的多个界面中都能一定准确的显示倒计时，无论手机处于何种界面或状态都能准时的提示，在非小米手机中能达到几乎不耗电量。
+概述方案：记录开始计时的时间和进行状态到本地， &hellip;"> <meta name="keywords" content="">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="Dacer Blog" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.ico" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script type="text/javascript" src="/javascripts/jquery.fancybox.pack.js"></script>
+
+<script language="Javascript" type="text/javascript">
+$(document).ready(
+  function() {
+    (function($) {
+      $(".fancybox[data-content-id]").each(function() {
+        this.href = $(this).data('content-id');
+      });
+      $(".fancybox").fancybox({
+        beforeLoad: function() {
+          var el, 
+              id = $(this.element).data('title-id');
+
+          if (id) {
+            el = $('#' + id);
+
+            if (el.length) {
+              this.title = el.html();
+            }
+          }
+          if ($(this).data('content')) {
+            this.content = $(this).data('content');
+          }
+        },
+        helpers: {
+          title: {
+            type: 'inside'
+          }
+        }
+      });
+    })(jQuery);
+  }
+);
+</script>
+
+	
+</head>
+
+
+<body>
+	<header id="header" class="inner"><h1><a href="/">Dacer Blog</a></h1>
+<h4></h4>
+<nav id="main-nav"><ul>
+	<li><a href="/">Blog</a></li>
+	<li><a href="/about">About</a></li>
+	<li><a href="/portfolio">Portfolio</a></li>
+	<li><a href="/archives">Archive</a></li>
+</ul>
+</nav>
+<nav id="mobile-nav">
+	<div class="alignleft menu">
+		<a class="button">Menu</a>
+		<div class="container"><ul>
+	<li><a href="/">Blog</a></li>
+	<li><a href="/about">About</a></li>
+	<li><a href="/portfolio">Portfolio</a></li>
+	<li><a href="/archives">Archive</a></li>
+</ul>
+</div>
+	</div>
+	<div class="alignright search">
+		<a class="button"></a>
+		<div class="container">
+			<form action="http://google.com/search" method="get">
+				<input type="text" name="q" results="0">
+				<input type="hidden" name="q" value="site:dacer.github.io">
+			</form>
+		</div>
+	</div>
+</nav>
+
+
+</header>
+
+	<div id="content" class="inner"><article class="post">
+	<h2 class="title">设计一个绝对准时又相对省电的Android 倒计时方案</h2>
+	<div class="entry-content"><p>如果没有小米的话就不用写这个文章了。。</p>
+
+<p>本文是<a href="http://idacer.tk/?p=67">这个</a>和<a href="http://idacer.tk/?p=83">这个</a>的后续，欲在现今环境下打造一个绝对准时又较省电的倒计时方案。<a href="http://idacer.tk/?p=67">
+</a></p>
+
+<ul>
+<li><p>目标：在软件的多个界面中都能<strong>一定准确</strong>的显示倒计时，无论手机处于何种界面或状态都能<strong>准时</strong>的提示，在非小米手机中能达到<strong>几乎不耗电量。</strong></p></li>
+<li><p>概述方案：记录开始计时的时间和进行状态到本地，针对小米启动一个service进行wakelock防止其休眠，</p></li>
+</ul>
+
+
+<p>小米准时唤醒验证程序：</p>
+
+<p>简单的搜了下wakelock应该没被小米阉割，所以要测试的内容为：不使用wakelock下的带和不带wakeup alarmmanager 的提示情况，使用wakelock下情况。顺便记录下开机，锁屏时间。</p>
+
+<p>记录内容模拟：</p>
+
+<p>&mdash;&mdash;&mdash;&mdash;&mdash;Wakeup AlarmManager TEST&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;</p>
+
+<p>[2012/10/02 16:02:02]  System boot completed.</p>
+
+<p>[2012/10/02 16:02:02]  add a alarmManager with wakeup to 16:12:01</p>
+
+<p>[2012/10/02 16:02:02]  &lt;16:12:01>alarmManager with wakeup alarmed at 16:15:01</p>
+
+<p>[2012/10/02 19:32:22]  &mdash;Screen off&mdash;</p>
+
+<p>[2012/10/02 19:32:02]  add a alarmManager with wakeup to 19:33:01</p>
+
+<p>[2012/10/02 19:32:02]  &mdash;-WakelockService started&mdash;&ndash;</p>
+
+<p>好累啊感觉不会再爱了T_T</p>
+
+<p>update：</p>
+
+<p>测试程序搞定</p>
+
+<p><a href="https://github.com/dacer/XiaoMiTest">https://github.com/dacer/XiaoMiTest</a></p>
+
+<p>但是发了email之后都木有人愿意帮忙..是发的姿势不对嘛！！！</p>
+
+<p>update(Oct 6):</p>
+
+<p>有回复了，确认有效。</p>
+</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-03T08:46:30+08:00" pubdate data-updated="true">Oct 3<span>rd</span>, 2013</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/android/'>Android</a>, <a class='category' href='/blog/categories/kai-fa-bi-ji/'>开发笔记</a>
+
+</div>
+
+
+	
+</div></article>
+
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+	
+	
+	
+<!---	<a class="addthis_counter addthis_pill_style"></a> --->
+	</div>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid="></script>
+</div>
+
+
+</div>
+	<footer id="footer" class="inner">Copyright &copy; 2014
+
+    Dacer
+
+<br>
+Powered by Octopress.
+</footer>
+	<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+
+
+
+
+</body>
+</html>

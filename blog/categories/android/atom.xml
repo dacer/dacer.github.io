@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Android | Dacer Blog]]></title>
+  <link href="http://dacer.github.io/blog/categories/android/atom.xml" rel="self"/>
+  <link href="http://dacer.github.io/"/>
+  <updated>2014-02-10T15:30:13+08:00</updated>
+  <id>http://dacer.github.io/</id>
+  <author>
+    <name><![CDATA[Dacer]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[AndroidCharts 开发笔记]]></title>
+    <link href="http://dacer.github.io/blog/2013/11/15/androidcharts-e5bc80e58f91e7ac94e8aeb0/"/>
+    <updated>2013-11-15T21:55:09+08:00</updated>
+    <id>http://dacer.github.io/blog/2013/11/15/androidcharts-e5bc80e58f91e7ac94e8aeb0</id>
+    <content type="html"><![CDATA[<p>最近在为 <a href="http://www.pomotodo.com">www.pomotodo.com</a> 做 Android版的时候其中有三个设计的非常精致的统计视图，费了很大到劲把这三个图做出来之后想了想还是开源分享出来吧，其中 LineView 还是有些繁杂的，故写了本笔记。</p>
+
+<p>虽然 Android 上已经有一个很棒到开源统计图了，但还是自己手写遍更有趣些不是嘛-,&ndash; 于是没怎么看那个就动手自己写了个这个。</p>
+
+<p>Github: <a href="http://https://github.com/dacer/AndroidCharts">https://github.com/dacer/AndroidCharts</a></p>
+
+<h2>LineView:</h2>
+
+<h3>目标：</h3>
+
+<ul>
+<li><p>大部分的可见元素都能任意随时修改</p></li>
+<li><p>可以修改一格所代表的数据大小（默认为1）</p></li>
+<li><p>view 的高度和方格到宽度为固定值，这样便于之后的动画效果和保证在不同大小的设备上的一致性</p></li>
+<li><p>在不同设备上完全的自适应</p></li>
+</ul>
+
+
+<h3>实现方式：</h3>
+
+<p>最重要的为这三个 ArrayList:</p>
+
+<ul>
+<li><p>ArrayList<Integer> xCoordinateList : 背景中点的所有X坐标</p></li>
+<li><p>ArrayList<Integer> yCoordinateList : 背景中点到所有Y坐标</p></li>
+<li><p>ArrayList<Point> drawPointList;      : 数据所表示的点的坐标</p></li>
+</ul>
+
+
+<p>在每次更新数据后刷新这三个 List，然后根据这三个 List 可以很轻易的画出所有的元素。</p>
+
+<p>但是点击后出现到 popup 会造成两个问题，</p>
+
+<ol>
+<li><p> 怎么样画一个这个出来，而且中间的字还要在正中央：这个的话已经写了个解法在之前的博文中，<a href="http://idacer.tk/2013/11/%e6%80%8e%e6%a0%b7%e5%9c%a8canvas%e4%b8%ad%e7%9a%84%e6%96%b9%e5%bd%a2%e4%b8%ad%e5%a4%ae%e7%94%bbtext/">链接</a></p></li>
+<li><p> 顶部的空间可能会不够显示最上方的点显示出的 popup：我先是在当前列表中的最大值的上方再加上一个格子，但这样有时还是不够，于是。。待续</p></li>
+</ol>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[怎样在canvas中的方形中央画Text]]></title>
+    <link href="http://dacer.github.io/blog/2013/11/09/e6808ee6a0b7e59ca8canvase4b8ade79a84e696b9e5bda2e4b8ade5a4aee794bbtext/"/>
+    <updated>2013-11-09T13:22:10+08:00</updated>
+    <id>http://dacer.github.io/blog/2013/11/09/e6808ee6a0b7e59ca8canvase4b8ade79a84e696b9e5bda2e4b8ade5a4aee794bbtext</id>
+    <content type="html"><![CDATA[<p><code></p>
+
+<pre><code>/**
+*
+* @param canvas The canvas you need to draw on.
+* @param x The X Coordinate from left to right.
+* @param y The Y Coordinate form bottom to top.
+*/
+private void drawPopup(Canvas canvas,String num,int x,int y){
+int bottomTriangleHeight = 12;
+int padding = MyUtils.dip2px(mContext,2);
+int marginBottom = MyUtils.dip2px(mContext,5);
+boolean singularNum = (num.length() == 1);
+int sidePadding = MyUtils.dip2px(mContext,singularNum? 8:5);
+int xCoor = xCoordinateList.get(x);
+int yCoor = yCoordinateList.get(yCoordinateList.size()-y)-MyUtils.dip2px(mContext,5);&lt;/code&gt;
+
+Paint textPaint = new Paint();
+textPaint.setAntiAlias(true);
+textPaint.setColor(Color.BLACK);
+textPaint.setTextSize(MyUtils.sp2px(mContext, 13));
+textPaint.setStrokeWidth(5);
+textPaint.setTextAlign(Paint.Align.CENTER);
+Paint.FontMetrics fm = new Paint.FontMetrics();
+textPaint.getFontMetrics(fm);
+
+Rect r = new Rect((int)(xCoor-textPaint.measureText(num)/2)-sidePadding,
+(int)(yCoor - textPaint.getTextSize())-bottomTriangleHeight-padding-marginBottom,
+(int)(xCoor + textPaint.measureText(num)/2)+sidePadding,
+yCoor+padding-marginBottom);
+
+NinePatchDrawable popup = (NinePatchDrawable)getResources().
+getDrawable(R.drawable.popup_red);
+popup.setBounds(r);
+popup.draw(canvas);
+
+textPaint.setColor(Color.WHITE);
+canvas.drawText(num, xCoor, yCoor-bottomTriangleHeight-marginBottom, textPaint);
+}
+</code></pre>
+
+<p>被这个折腾死了。。
+详解待续</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[设计一个两栏切皆可滑动的日期选择器]]></title>
+    <link href="http://dacer.github.io/blog/2013/11/01/e8aebee8aea1e4b880e4b8aae4b8a4e6a08fe58887e79a86e58fafe6bb91e58aa8e79a84e697a5e69c9fe98089e68ba9e599a8/"/>
+    <updated>2013-11-01T09:40:02+08:00</updated>
+    <id>http://dacer.github.io/blog/2013/11/01/e8aebee8aea1e4b880e4b8aae4b8a4e6a08fe58887e79a86e58fafe6bb91e58aa8e79a84e697a5e69c9fe98089e68ba9e599a8</id>
+    <content type="html"><![CDATA[<p>发现不记录一下开发的过程的话一出现问题很难理清楚啊(╯‵□′)╯︵┻━┻</p>
+
+<p>大概就是这样一个东西：</p>
+
+<p><a href="http://idacer.files.wordpress.com/2013/11/screenshot-2013-11-01-10-41-24.png"><img src="http://idacer.files.wordpress.com/2013/11/screenshot-2013-11-01-10-41-24.png" alt="Screenshot-2013-11-01-10.41.24" /></a></p>
+
+<p>要实现的功能有：</p>
+
+<ul>
+<li><p>月份选择器可滑动可点击，且月份切换时周视图也随之改变为当月的1号。</p></li>
+<li><p>周选择器可滑动可点击，点击后通过interface将所选择的日期传递出去。</p></li>
+<li><p>周选择器在滑动至其他月份时使月选择器自动调整为当前月份。</p></li>
+<li><p>月份选择器可独立出来</p></li>
+</ul>
+
+
+<p>实现的方法：</p>
+
+<ul>
+<li><p>两个视图都使用viewpager+fragment来实现滑动，且在月份选择器viewpager的两侧加两个button</p></li>
+<li><p>月份选择器总数为100*12+当前的月份，这儿有一个坑就是用Calendar中的month时，它的范围是0-11的，必须要多+1，在初始化视图的时候自动设置为今天（即最后一个）</p></li>
+<li><p>月份选择器在滑动后调用周的setCurrentWeek方法，再由其内部调用setCurrentItem方法。</p></li>
+</ul>
+
+
+<p>这要解决一个问题：</p>
+
+<p>月份在变化之后带动了周的变化，但是周的变化有可能会再次带动月份的变化，就造成了逻辑的混乱。</p>
+
+<p>想到的解决办法就是只有在滑动周选择器时才会改变月份,滑动月选择器时改变的周视图不会再次去改变月份。</p>
+
+<p>但是滑动周视图后改变了月视图之后月视图也会改变周视图。。所以balablabala要反过来再改一次</p>
+
+<p>虽然挺蛋疼了但总归是解决了这个问题，还有若干个小问题就不提了</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[用canvas画填充后的三角形]]></title>
+    <link href="http://dacer.github.io/blog/2013/10/29/e794a8canvase794bbe5a1abe58585e5908ee79a84e4b889e8a792e5bda2/"/>
+    <updated>2013-10-29T13:36:15+08:00</updated>
+    <id>http://dacer.github.io/blog/2013/10/29/e794a8canvase794bbe5a1abe58585e5908ee79a84e4b889e8a792e5bda2</id>
+    <content type="html"><![CDATA[<p>花了半天时间研究这个啊！！</p>
+
+<blockquote><p><a href="http://stackoverflow.com/questions/3501126/how-to-draw-a-filled-triangle-in-android-canvas">http://stackoverflow.com/questions/3501126/how-to-draw-a-filled-triangle-in-android-canvas</a></p></blockquote>
+
+<p>这个问题中不断的moveTo，lineTo后的path用setStyle(Paint.Style.FILL)的paint是画不了一个被填充的三角的，会直接无法显示，又找了大半天的解决方法才发现这个问题的第二个就是解决方法。。</p>
+
+<p>那就是moveTo之后就一直lineTo就可以了。。。。。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[设计一个绝对准时又相对省电的Android 倒计时方案]]></title>
+    <link href="http://dacer.github.io/blog/2013/10/03/e8aebee8aea1e4b880e4b8aae7bb9de5afb9e58786e697b6e58f88e79bb8e5afb9e79c81e794b5e79a84android-e58092e8aea1e697b6e696b9e6a188/"/>
+    <updated>2013-10-03T08:46:30+08:00</updated>
+    <id>http://dacer.github.io/blog/2013/10/03/e8aebee8aea1e4b880e4b8aae7bb9de5afb9e58786e697b6e58f88e79bb8e5afb9e79c81e794b5e79a84android-e58092e8aea1e697b6e696b9e6a188</id>
+    <content type="html"><![CDATA[<p>如果没有小米的话就不用写这个文章了。。</p>
+
+<p>本文是<a href="http://idacer.tk/?p=67">这个</a>和<a href="http://idacer.tk/?p=83">这个</a>的后续，欲在现今环境下打造一个绝对准时又较省电的倒计时方案。<a href="http://idacer.tk/?p=67">
+</a></p>
+
+<ul>
+<li><p>目标：在软件的多个界面中都能<strong>一定准确</strong>的显示倒计时，无论手机处于何种界面或状态都能<strong>准时</strong>的提示，在非小米手机中能达到<strong>几乎不耗电量。</strong></p></li>
+<li><p>概述方案：记录开始计时的时间和进行状态到本地，针对小米启动一个service进行wakelock防止其休眠，</p></li>
+</ul>
+
+
+<p>小米准时唤醒验证程序：</p>
+
+<p>简单的搜了下wakelock应该没被小米阉割，所以要测试的内容为：不使用wakelock下的带和不带wakeup alarmmanager 的提示情况，使用wakelock下情况。顺便记录下开机，锁屏时间。</p>
+
+<p>记录内容模拟：</p>
+
+<p>&mdash;&mdash;&mdash;&mdash;&mdash;Wakeup AlarmManager TEST&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;</p>
+
+<p>[2012/10/02 16:02:02]  System boot completed.</p>
+
+<p>[2012/10/02 16:02:02]  add a alarmManager with wakeup to 16:12:01</p>
+
+<p>[2012/10/02 16:02:02]  &lt;16:12:01>alarmManager with wakeup alarmed at 16:15:01</p>
+
+<p>[2012/10/02 19:32:22]  &mdash;Screen off&mdash;</p>
+
+<p>[2012/10/02 19:32:02]  add a alarmManager with wakeup to 19:33:01</p>
+
+<p>[2012/10/02 19:32:02]  &mdash;-WakelockService started&mdash;&ndash;</p>
+
+<p>好累啊感觉不会再爱了T_T</p>
+
+<p>update：</p>
+
+<p>测试程序搞定</p>
+
+<p><a href="https://github.com/dacer/XiaoMiTest">https://github.com/dacer/XiaoMiTest</a></p>
+
+<p>但是发了email之后都木有人愿意帮忙..是发的姿势不对嘛！！！</p>
+
+<p>update(Oct 6):</p>
+
+<p>有回复了，确认有效。</p>
+]]></content>
+  </entry>
+  
+</feed>

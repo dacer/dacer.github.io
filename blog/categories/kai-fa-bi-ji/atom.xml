@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: 开发笔记 | Dacer Blog]]></title>
+  <link href="http://dacer.github.io/blog/categories/kai-fa-bi-ji/atom.xml" rel="self"/>
+  <link href="http://dacer.github.io/"/>
+  <updated>2014-02-10T15:30:13+08:00</updated>
+  <id>http://dacer.github.io/</id>
+  <author>
+    <name><![CDATA[Dacer]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[设计一个绝对准时又相对省电的Android 倒计时方案]]></title>
+    <link href="http://dacer.github.io/blog/2013/10/03/e8aebee8aea1e4b880e4b8aae7bb9de5afb9e58786e697b6e58f88e79bb8e5afb9e79c81e794b5e79a84android-e58092e8aea1e697b6e696b9e6a188/"/>
+    <updated>2013-10-03T08:46:30+08:00</updated>
+    <id>http://dacer.github.io/blog/2013/10/03/e8aebee8aea1e4b880e4b8aae7bb9de5afb9e58786e697b6e58f88e79bb8e5afb9e79c81e794b5e79a84android-e58092e8aea1e697b6e696b9e6a188</id>
+    <content type="html"><![CDATA[<p>如果没有小米的话就不用写这个文章了。。</p>
+
+<p>本文是<a href="http://idacer.tk/?p=67">这个</a>和<a href="http://idacer.tk/?p=83">这个</a>的后续，欲在现今环境下打造一个绝对准时又较省电的倒计时方案。<a href="http://idacer.tk/?p=67">
+</a></p>
+
+<ul>
+<li><p>目标：在软件的多个界面中都能<strong>一定准确</strong>的显示倒计时，无论手机处于何种界面或状态都能<strong>准时</strong>的提示，在非小米手机中能达到<strong>几乎不耗电量。</strong></p></li>
+<li><p>概述方案：记录开始计时的时间和进行状态到本地，针对小米启动一个service进行wakelock防止其休眠，</p></li>
+</ul>
+
+
+<p>小米准时唤醒验证程序：</p>
+
+<p>简单的搜了下wakelock应该没被小米阉割，所以要测试的内容为：不使用wakelock下的带和不带wakeup alarmmanager 的提示情况，使用wakelock下情况。顺便记录下开机，锁屏时间。</p>
+
+<p>记录内容模拟：</p>
+
+<p>&mdash;&mdash;&mdash;&mdash;&mdash;Wakeup AlarmManager TEST&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;</p>
+
+<p>[2012/10/02 16:02:02]  System boot completed.</p>
+
+<p>[2012/10/02 16:02:02]  add a alarmManager with wakeup to 16:12:01</p>
+
+<p>[2012/10/02 16:02:02]  &lt;16:12:01>alarmManager with wakeup alarmed at 16:15:01</p>
+
+<p>[2012/10/02 19:32:22]  &mdash;Screen off&mdash;</p>
+
+<p>[2012/10/02 19:32:02]  add a alarmManager with wakeup to 19:33:01</p>
+
+<p>[2012/10/02 19:32:02]  &mdash;-WakelockService started&mdash;&ndash;</p>
+
+<p>好累啊感觉不会再爱了T_T</p>
+
+<p>update：</p>
+
+<p>测试程序搞定</p>
+
+<p><a href="https://github.com/dacer/XiaoMiTest">https://github.com/dacer/XiaoMiTest</a></p>
+
+<p>但是发了email之后都木有人愿意帮忙..是发的姿势不对嘛！！！</p>
+
+<p>update(Oct 6):</p>
+
+<p>有回复了，确认有效。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[开新坑了，基于sinatra的中韩汇率查看网站]]></title>
+    <link href="http://dacer.github.io/blog/2013/09/29/e5bc80e696b0e59d91e4ba86efbc8ce59fbae4ba8esinatrae79a84e4b8ade99fa9e6b187e78e87e69fa5e79c8be7bd91e7ab99/"/>
+    <updated>2013-09-29T23:15:16+08:00</updated>
+    <id>http://dacer.github.io/blog/2013/09/29/e5bc80e696b0e59d91e4ba86efbc8ce59fbae4ba8esinatrae79a84e4b8ade99fa9e6b187e78e87e69fa5e79c8be7bd91e7ab99</id>
+    <content type="html"><![CDATA[<p><a href="http://huilv-idacer.rhcloud.com/">&mdash;-点击查看&mdash;&ndash;</a></p>
+
+<p>大概就是sinatra做后端进行post等行为在银联官网上读取银联汇率，前端直接显示结果。</p>
+
+<p>部署在了openshift上（就剩1个免费份额了好捉急！）</p>
+
+<p>显示效果嘛很明显是抄袭google now。。果然我的设计是硬伤。。</p>
+
+<p>当然这个是开源的，不过没啥意义就是了。。</p>
+
+<p>github: <a href="https://github.com/dacer/RMB2WON">https://github.com/dacer/RMB2WON</a></p>
+
+<p>todos:
+• <del>汇率计算器 触摸和输入型</del></p>
+
+<p>• FAQ</p>
+
+<p>analytic</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[如何在Action Bar中显示一层进度条，如7x7]]></title>
+    <link href="http://dacer.github.io/blog/2013/09/28/e5a682e4bd95e59ca8action-bare4b8ade698bee7a4bae4b880e5b182e8bf9be5baa6e69da1efbc8ce5a6827x7/"/>
+    <updated>2013-09-28T22:39:27+08:00</updated>
+    <id>http://dacer.github.io/blog/2013/09/28/e5a682e4bd95e59ca8action-bare4b8ade698bee7a4bae4b880e5b182e8bf9be5baa6e69da1efbc8ce5a6827x7</id>
+    <content type="html"><![CDATA[<p>看到这个需求第一时间我就想到了之前很沉迷的游戏 7x7, 搜了一下果然有相关的问题，链接如下：</p>
+
+<p><a href="http://stackoverflow.com/questions/17173414/how-to-implement-a-dynamic-background-on-actionbar-like-7x7">http://stackoverflow.com/questions/17173414/how-to-implement-a-dynamic-background-on-actionbar-like-7x7</a></p>
+
+<p>7x7作者亲自现身说道：</p>
+
+<blockquote><p>I actually made a custom Action Bar that was transparent and added the level progress bar underneath it.</p></blockquote>
+
+<p>然后给出了这个<a href="http://developer.android.com/reference/android/R.attr.html#windowActionBarOverlay">windowActionBarOverlay</a>链接，于是开始</p>
+
+<p>尝试1：</p>
+
+<p>将Action Bar设置为透明且可和下部分重叠，先简单的放了个button试了下，效果如下：</p>
+
+<p><a href="http://idacer.files.wordpress.com/2013/09/screen-shot-2013-09-30-at-4-49-52-pm1.png"><img src="http://idacer.files.wordpress.com/2013/09/screen-shot-2013-09-30-at-4-49-52-pm1.png" alt="Screen-Shot-2013-09-30-at-4.49.52-PM" /></a></p>
+
+<p>之后用testin测试了下其他机型的适配情况，除了联想的一个奇葩机型之外都如图显示，于是意外的得出了个结论，<strong>button高度=Action Bar高度</strong>（这是歪打正着吧(╯‵□′)╯︵┻━┻）</p>
+
+<p>尝试2：</p>
+
+<p>但这样还是不太方便，于是兴冲冲的研究了半天这个<a href="https://github.com/chrisbanes/ActionBar-PullToRefresh">pull-to-refresh</a>的源码，发现它的原理是在Action Bar上覆盖了一层，这不是完全没用嘛 (╯‵□′)╯︵┻━┻</p>
+
+<p>不过发现了这个方法</p>
+
+<p>[code language=&ldquo;java&rdquo;]
+public int getActionBarSize(Context context) {
+  int[] attrs = {android.R.attr.actionBarSize};
+  TypedArray values = context.getTheme().obtainStyledAttributes(attrs);
+  try {</p>
+
+<pre><code>return values.getDimensionPixelSize(0, 0);
+</code></pre>
+
+<p>  } finally {</p>
+
+<pre><code>values.recycle();
+</code></pre>
+
+<p>  }
+}[/code]</p>
+
+<p>最后得出的结论就是：目前看来还是用方法一，然后写个drawable作为自定义粗的进度条</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[为什么部分小米用户在使用极简番茄时提醒会延迟]]></title>
+    <link href="http://dacer.github.io/blog/2013/09/18/e68891e8a681ooe5b08fe7b1b3e7b3bbe7bb9fe4b880e4b887e4b8aaxxefbc81efbc81efbc81efbc81/"/>
+    <updated>2013-09-18T21:39:25+08:00</updated>
+    <id>http://dacer.github.io/blog/2013/09/18/e68891e8a681ooe5b08fe7b1b3e7b3bbe7bb9fe4b880e4b887e4b8aaxxefbc81efbc81efbc81efbc81</id>
+    <content type="html"><![CDATA[<p>很多小米用户反馈时间会错乱，之前一直以为是后台的Activity所占用的内存被清空所致，但修改后发现仍未改善，最后终于让我找到了根本原因。</p>
+
+<p>使用AlarmManager定的带有WAKEUP闹钟会被某些版本的MIUI系统推迟。</p>
+
+<p>我下面用浅显的语言说明一下</p>
+
+<p>每个软件都可以设置某个时间点的“闹钟”唤醒本程序，但是小米处于省电的考虑将每5分钟时间段内的“闹钟”集中在一起唤醒，例如启动番茄的25分钟后是12:31，但小米会强行将其改为12:35分，故程序的逻辑被彻底打断。</p>
+
+<p>此问题在将来有可能会通过系统补丁的方式修正，但不知会是何时，身为软件作者对此只能很无奈了，</p>
+
+<p>解决方案如下：</p>
+
+<ol>
+<li><p>(推荐)刷Android官方系统或者优秀的第三方CM系统可彻底解决此问题，但有可能造成使用上的略微不便（MIUI在某些方面还是有其优点的）</p></li>
+<li><p>(不推荐)使用我做的<a href="http://dacer.github.io/myapps/SimplePomodoro(MIUI">小米专用版本</a>.apk)，在未开启快速模式且开启屏幕常亮时理论上可正常使用（但仍不能确定），即不让屏幕锁定，(在番茄进行中点击时间可隐藏它，配合黑色全屏主题效果较佳)</p></li>
+</ol>
+
+
+<p>3.等待小米更新系统修改这个问题。</p>
+
+<p>以上。</p>
+
+<p>更新又一种方式: </p>
+
+<p><a href="http://bbs.zdworks.com/forum.php?mod=viewthread&amp;tid=166869">http://bbs.zdworks.com/forum.php?mod=viewthread&amp;tid=166869</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[极简番茄BUG记录]]></title>
+    <link href="http://dacer.github.io/blog/2013/09/18/e69e81e7ae80e795aae88c84buge8aeb0e5bd95/"/>
+    <updated>2013-09-18T15:26:41+08:00</updated>
+    <id>http://dacer.github.io/blog/2013/09/18/e69e81e7ae80e795aae88c84buge8aeb0e5bd95</id>
+    <content type="html"><![CDATA[<p>硬伤：</p>
+
+<p>切换Google账户BUG：1.正常使用帐号并授权同步2.在网页端撤销授权3.同步后FC</p>
+
+<p>软伤：</p>
+
+<p>切换Google Task同步之后本地task不会重置</p>
+
+<p>极速模式下横屏时开启屏幕会再次被锁屏（因为重新调用了onCreate中的锁屏方法）</p>
+]]></content>
+  </entry>
+  
+</feed>

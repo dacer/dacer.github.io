@@ -1,0 +1,208 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<script data-cfasync="false" type="text/javascript" src="//use.typekit.net/axj3cfp.js"></script>
+	<script data-cfasync="false" type="text/javascript">try{Typekit.load();}catch(e){}</script>
+	<meta charset="utf-8">
+	<title>怎样在canvas中的方形中央画Text  | Dacer Blog</title>
+
+<meta name="author" content="Dacer"> 
+
+<meta name="description" content="/**
+*
+* @param canvas The canvas you need to draw on.
+* @param x The X Coordinate from left to right.
+* @param y The Y Coordinate form bottom to top &hellip;"> <meta name="keywords" content="">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="Dacer Blog" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.ico" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script type="text/javascript" src="/javascripts/jquery.fancybox.pack.js"></script>
+
+<script language="Javascript" type="text/javascript">
+$(document).ready(
+  function() {
+    (function($) {
+      $(".fancybox[data-content-id]").each(function() {
+        this.href = $(this).data('content-id');
+      });
+      $(".fancybox").fancybox({
+        beforeLoad: function() {
+          var el, 
+              id = $(this.element).data('title-id');
+
+          if (id) {
+            el = $('#' + id);
+
+            if (el.length) {
+              this.title = el.html();
+            }
+          }
+          if ($(this).data('content')) {
+            this.content = $(this).data('content');
+          }
+        },
+        helpers: {
+          title: {
+            type: 'inside'
+          }
+        }
+      });
+    })(jQuery);
+  }
+);
+</script>
+
+	
+</head>
+
+
+<body>
+	<header id="header" class="inner"><h1><a href="/">Dacer Blog</a></h1>
+<h4></h4>
+<nav id="main-nav"><ul>
+	<li><a href="/">Blog</a></li>
+	<li><a href="/about">About</a></li>
+	<li><a href="/portfolio">Portfolio</a></li>
+	<li><a href="/archives">Archive</a></li>
+</ul>
+</nav>
+<nav id="mobile-nav">
+	<div class="alignleft menu">
+		<a class="button">Menu</a>
+		<div class="container"><ul>
+	<li><a href="/">Blog</a></li>
+	<li><a href="/about">About</a></li>
+	<li><a href="/portfolio">Portfolio</a></li>
+	<li><a href="/archives">Archive</a></li>
+</ul>
+</div>
+	</div>
+	<div class="alignright search">
+		<a class="button"></a>
+		<div class="container">
+			<form action="http://google.com/search" method="get">
+				<input type="text" name="q" results="0">
+				<input type="hidden" name="q" value="site:dacer.github.io">
+			</form>
+		</div>
+	</div>
+</nav>
+
+
+</header>
+
+	<div id="content" class="inner"><article class="post">
+	<h2 class="title">怎样在canvas中的方形中央画Text</h2>
+	<div class="entry-content"><p><code></p>
+
+<pre><code>/**
+*
+* @param canvas The canvas you need to draw on.
+* @param x The X Coordinate from left to right.
+* @param y The Y Coordinate form bottom to top.
+*/
+private void drawPopup(Canvas canvas,String num,int x,int y){
+int bottomTriangleHeight = 12;
+int padding = MyUtils.dip2px(mContext,2);
+int marginBottom = MyUtils.dip2px(mContext,5);
+boolean singularNum = (num.length() == 1);
+int sidePadding = MyUtils.dip2px(mContext,singularNum? 8:5);
+int xCoor = xCoordinateList.get(x);
+int yCoor = yCoordinateList.get(yCoordinateList.size()-y)-MyUtils.dip2px(mContext,5);&lt;/code&gt;
+
+Paint textPaint = new Paint();
+textPaint.setAntiAlias(true);
+textPaint.setColor(Color.BLACK);
+textPaint.setTextSize(MyUtils.sp2px(mContext, 13));
+textPaint.setStrokeWidth(5);
+textPaint.setTextAlign(Paint.Align.CENTER);
+Paint.FontMetrics fm = new Paint.FontMetrics();
+textPaint.getFontMetrics(fm);
+
+Rect r = new Rect((int)(xCoor-textPaint.measureText(num)/2)-sidePadding,
+(int)(yCoor - textPaint.getTextSize())-bottomTriangleHeight-padding-marginBottom,
+(int)(xCoor + textPaint.measureText(num)/2)+sidePadding,
+yCoor+padding-marginBottom);
+
+NinePatchDrawable popup = (NinePatchDrawable)getResources().
+getDrawable(R.drawable.popup_red);
+popup.setBounds(r);
+popup.draw(canvas);
+
+textPaint.setColor(Color.WHITE);
+canvas.drawText(num, xCoor, yCoor-bottomTriangleHeight-marginBottom, textPaint);
+}
+</code></pre>
+
+<p>被这个折腾死了。。
+详解待续</p>
+</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-09T13:22:10+08:00" pubdate data-updated="true">Nov 9<span>th</span>, 2013</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/android/'>Android</a>
+
+</div>
+
+
+	
+</div></article>
+
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+	
+	
+	
+<!---	<a class="addthis_counter addthis_pill_style"></a> --->
+	</div>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid="></script>
+</div>
+
+
+</div>
+	<footer id="footer" class="inner">Copyright &copy; 2014
+
+    Dacer
+
+<br>
+Powered by Octopress.
+</footer>
+	<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+
+
+
+
+</body>
+</html>

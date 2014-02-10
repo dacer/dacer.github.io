@@ -1,0 +1,199 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<script data-cfasync="false" type="text/javascript" src="//use.typekit.net/axj3cfp.js"></script>
+	<script data-cfasync="false" type="text/javascript">try{Typekit.load();}catch(e){}</script>
+	<meta charset="utf-8">
+	<title>AndroidCharts 开发笔记  | Dacer Blog</title>
+
+<meta name="author" content="Dacer"> 
+
+<meta name="description" content="最近在为 www.pomotodo.com 做 Android版的时候其中有三个设计的非常精致的统计视图，费了很大到劲把这三个图做出来之后想了想还是开源分享出来吧，其中 LineView 还是有些繁杂的，故写了本笔记。 虽然 Android 上已经有一个很棒到开源统计图了， &hellip;"> <meta name="keywords" content="">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="Dacer Blog" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.ico" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script type="text/javascript" src="/javascripts/jquery.fancybox.pack.js"></script>
+
+<script language="Javascript" type="text/javascript">
+$(document).ready(
+  function() {
+    (function($) {
+      $(".fancybox[data-content-id]").each(function() {
+        this.href = $(this).data('content-id');
+      });
+      $(".fancybox").fancybox({
+        beforeLoad: function() {
+          var el, 
+              id = $(this.element).data('title-id');
+
+          if (id) {
+            el = $('#' + id);
+
+            if (el.length) {
+              this.title = el.html();
+            }
+          }
+          if ($(this).data('content')) {
+            this.content = $(this).data('content');
+          }
+        },
+        helpers: {
+          title: {
+            type: 'inside'
+          }
+        }
+      });
+    })(jQuery);
+  }
+);
+</script>
+
+	
+</head>
+
+
+<body>
+	<header id="header" class="inner"><h1><a href="/">Dacer Blog</a></h1>
+<h4></h4>
+<nav id="main-nav"><ul>
+	<li><a href="/">Blog</a></li>
+	<li><a href="/about">About</a></li>
+	<li><a href="/portfolio">Portfolio</a></li>
+	<li><a href="/archives">Archive</a></li>
+</ul>
+</nav>
+<nav id="mobile-nav">
+	<div class="alignleft menu">
+		<a class="button">Menu</a>
+		<div class="container"><ul>
+	<li><a href="/">Blog</a></li>
+	<li><a href="/about">About</a></li>
+	<li><a href="/portfolio">Portfolio</a></li>
+	<li><a href="/archives">Archive</a></li>
+</ul>
+</div>
+	</div>
+	<div class="alignright search">
+		<a class="button"></a>
+		<div class="container">
+			<form action="http://google.com/search" method="get">
+				<input type="text" name="q" results="0">
+				<input type="hidden" name="q" value="site:dacer.github.io">
+			</form>
+		</div>
+	</div>
+</nav>
+
+
+</header>
+
+	<div id="content" class="inner"><article class="post">
+	<h2 class="title">AndroidCharts 开发笔记</h2>
+	<div class="entry-content"><p>最近在为 <a href="http://www.pomotodo.com">www.pomotodo.com</a> 做 Android版的时候其中有三个设计的非常精致的统计视图，费了很大到劲把这三个图做出来之后想了想还是开源分享出来吧，其中 LineView 还是有些繁杂的，故写了本笔记。</p>
+
+<p>虽然 Android 上已经有一个很棒到开源统计图了，但还是自己手写遍更有趣些不是嘛-,&ndash; 于是没怎么看那个就动手自己写了个这个。</p>
+
+<p>Github: <a href="http://https://github.com/dacer/AndroidCharts">https://github.com/dacer/AndroidCharts</a></p>
+
+<h2>LineView:</h2>
+
+<h3>目标：</h3>
+
+<ul>
+<li><p>大部分的可见元素都能任意随时修改</p></li>
+<li><p>可以修改一格所代表的数据大小（默认为1）</p></li>
+<li><p>view 的高度和方格到宽度为固定值，这样便于之后的动画效果和保证在不同大小的设备上的一致性</p></li>
+<li><p>在不同设备上完全的自适应</p></li>
+</ul>
+
+
+<h3>实现方式：</h3>
+
+<p>最重要的为这三个 ArrayList:</p>
+
+<ul>
+<li><p>ArrayList<Integer> xCoordinateList : 背景中点的所有X坐标</p></li>
+<li><p>ArrayList<Integer> yCoordinateList : 背景中点到所有Y坐标</p></li>
+<li><p>ArrayList<Point> drawPointList;      : 数据所表示的点的坐标</p></li>
+</ul>
+
+
+<p>在每次更新数据后刷新这三个 List，然后根据这三个 List 可以很轻易的画出所有的元素。</p>
+
+<p>但是点击后出现到 popup 会造成两个问题，</p>
+
+<ol>
+<li><p> 怎么样画一个这个出来，而且中间的字还要在正中央：这个的话已经写了个解法在之前的博文中，<a href="http://idacer.tk/2013/11/%e6%80%8e%e6%a0%b7%e5%9c%a8canvas%e4%b8%ad%e7%9a%84%e6%96%b9%e5%bd%a2%e4%b8%ad%e5%a4%ae%e7%94%bbtext/">链接</a></p></li>
+<li><p> 顶部的空间可能会不够显示最上方的点显示出的 popup：我先是在当前列表中的最大值的上方再加上一个格子，但这样有时还是不够，于是。。待续</p></li>
+</ol>
+
+</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-15T21:55:09+08:00" pubdate data-updated="true">Nov 15<span>th</span>, 2013</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/android/'>Android</a>
+
+</div>
+
+
+	
+</div></article>
+
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+	
+	
+	
+<!---	<a class="addthis_counter addthis_pill_style"></a> --->
+	</div>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid="></script>
+</div>
+
+
+</div>
+	<footer id="footer" class="inner">Copyright &copy; 2014
+
+    Dacer
+
+<br>
+Powered by Octopress.
+</footer>
+	<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+
+
+
+
+</body>
+</html>

@@ -4,7 +4,7 @@
   <title><![CDATA[Dacer Blog]]></title>
   <link href="http://dacer.github.io/atom.xml" rel="self"/>
   <link href="http://dacer.github.io/"/>
-  <updated>2014-02-10T15:07:22+08:00</updated>
+  <updated>2014-02-10T15:30:13+08:00</updated>
   <id>http://dacer.github.io/</id>
   <author>
     <name><![CDATA[Dacer]]></name>
@@ -21,6 +21,501 @@
     <content type="html"><![CDATA[<p>测试
 Test
 습니다</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[学习笔记- ruby]]></title>
+    <link href="http://dacer.github.io/blog/2014/01/31/e5ada6e4b9a0e7ac94e8aeb0-ruby/"/>
+    <updated>2014-01-31T20:47:17+08:00</updated>
+    <id>http://dacer.github.io/blog/2014/01/31/e5ada6e4b9a0e7ac94e8aeb0-ruby</id>
+    <content type="html"><![CDATA[<p>yield</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[国产单机游戏]]></title>
+    <link href="http://dacer.github.io/blog/2014/01/06/e59bbde4baa7e58d95e69cbae6b8b8e6888f/"/>
+    <updated>2014-01-06T00:42:41+08:00</updated>
+    <id>http://dacer.github.io/blog/2014/01/06/e59bbde4baa7e58d95e69cbae6b8b8e6888f</id>
+    <content type="html"><![CDATA[<p>今天脑中无意间响起了幻想三国志3中游戏开始标题画面中放的“界线”，于是在脑中泛滥的一发不可收拾起来，在虾米中找出1到4代的歌听着，顺便搜了搜幻三的最近动态，发现这个系列最终还是停在了第四代，连防盗版用的服务器都关闭了，发放了官方的“离线破解补丁”。一晃这么多年过去了，这个优秀程度在我心目中不亚于仙剑的国产RPG就此迎来了终结。</p>
+
+<p>说来惭愧，当时偷偷玩着电脑游戏的我是不敢花着父母的钱去买正版游戏的，本来想洋洋洒洒的写出主角们的爱恨情愁，但发现脑海中只余当时的我懵懵懂懂玩的场景，细细想来只记得某代主角刻骨铭心的爱情，为了爱侣不惜走遍千山万水，</p>
+
+<p>换下话题，其实幻三是有延续的，它出了一个web页游，打开宇峻奥氵丁（幻三开发公司）官网首页已没有了单机游戏的一席之地，</p>
+
+<p>不知道若干年后的00 10后还会不会知道有国产rpg这个东西呢</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Android上的一个神器『AIDE』]]></title>
+    <link href="http://dacer.github.io/blog/2013/12/23/androide4b88ae79a84e4b880e4b8aae7a59ee599a8e3808eaidee3808f/"/>
+    <updated>2013-12-23T21:24:04+08:00</updated>
+    <id>http://dacer.github.io/blog/2013/12/23/androide4b88ae79a84e4b880e4b8aae7a59ee599a8e3808eaidee3808f</id>
+    <content type="html"><![CDATA[<p>能直接在手机上git clone啊有木有！！</p>
+
+<p>clone完了什么都不用改直接就能编译出apk了有木有！！</p>
+
+<p>圣诞节出去旅游用手机就能修修bug 发布apk了有木有！！！</p>
+
+<p>mba的轻便性跟手机比起来弱爆了有木有！！！</p>
+
+<p>&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;正常向的分割线&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;</p>
+
+<p>圣诞节某个软件要发布beta版本但是又要出去旅游怎么办呢，正在纠结带不带mba的时候突然想起来手机上就有一个IDE，下了试了试超级好用而且升级key圣诞节还打折就果断入手了！</p>
+
+<p>此刻真是感动的痛哭流涕啊。。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[AndroidCharts 开发笔记]]></title>
+    <link href="http://dacer.github.io/blog/2013/11/15/androidcharts-e5bc80e58f91e7ac94e8aeb0/"/>
+    <updated>2013-11-15T21:55:09+08:00</updated>
+    <id>http://dacer.github.io/blog/2013/11/15/androidcharts-e5bc80e58f91e7ac94e8aeb0</id>
+    <content type="html"><![CDATA[<p>最近在为 <a href="http://www.pomotodo.com">www.pomotodo.com</a> 做 Android版的时候其中有三个设计的非常精致的统计视图，费了很大到劲把这三个图做出来之后想了想还是开源分享出来吧，其中 LineView 还是有些繁杂的，故写了本笔记。</p>
+
+<p>虽然 Android 上已经有一个很棒到开源统计图了，但还是自己手写遍更有趣些不是嘛-,&ndash; 于是没怎么看那个就动手自己写了个这个。</p>
+
+<p>Github: <a href="http://https://github.com/dacer/AndroidCharts">https://github.com/dacer/AndroidCharts</a></p>
+
+<h2>LineView:</h2>
+
+<h3>目标：</h3>
+
+<ul>
+<li><p>大部分的可见元素都能任意随时修改</p></li>
+<li><p>可以修改一格所代表的数据大小（默认为1）</p></li>
+<li><p>view 的高度和方格到宽度为固定值，这样便于之后的动画效果和保证在不同大小的设备上的一致性</p></li>
+<li><p>在不同设备上完全的自适应</p></li>
+</ul>
+
+
+<h3>实现方式：</h3>
+
+<p>最重要的为这三个 ArrayList:</p>
+
+<ul>
+<li><p>ArrayList<Integer> xCoordinateList : 背景中点的所有X坐标</p></li>
+<li><p>ArrayList<Integer> yCoordinateList : 背景中点到所有Y坐标</p></li>
+<li><p>ArrayList<Point> drawPointList;      : 数据所表示的点的坐标</p></li>
+</ul>
+
+
+<p>在每次更新数据后刷新这三个 List，然后根据这三个 List 可以很轻易的画出所有的元素。</p>
+
+<p>但是点击后出现到 popup 会造成两个问题，</p>
+
+<ol>
+<li><p> 怎么样画一个这个出来，而且中间的字还要在正中央：这个的话已经写了个解法在之前的博文中，<a href="http://idacer.tk/2013/11/%e6%80%8e%e6%a0%b7%e5%9c%a8canvas%e4%b8%ad%e7%9a%84%e6%96%b9%e5%bd%a2%e4%b8%ad%e5%a4%ae%e7%94%bbtext/">链接</a></p></li>
+<li><p> 顶部的空间可能会不够显示最上方的点显示出的 popup：我先是在当前列表中的最大值的上方再加上一个格子，但这样有时还是不够，于是。。待续</p></li>
+</ol>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[终于升到4.3了]]></title>
+    <link href="http://dacer.github.io/blog/2013/11/13/e7bb88e4ba8ee58d87e588b04-3e4ba86/"/>
+    <updated>2013-11-13T20:15:01+08:00</updated>
+    <id>http://dacer.github.io/blog/2013/11/13/e7bb88e4ba8ee58d87e588b04-3e4ba86</id>
+    <content type="html"><![CDATA[<p><a href="http://idacer.files.wordpress.com/2013/11/2013-11-13-12-09-08.png"><img src="http://idacer.files.wordpress.com/2013/11/2013-11-13-12-09-08.png?w=168" alt="2013-11-13-12.09.08" /></a></p>
+
+<p>我到韩版S3终于也能用上4.3了T_T, 虽然kitkat都出来了。。</p>
+
+<p>顺便分享一下Mac下更新三星手机固件的心得：</p>
+
+<p>我先在三星官网下载Mac版Kies之后连接手机不上，觉得可能是刷了自制固件到缘故，于是按住音量下键开机进入线刷模式，在Kies上输入手机型号和SN码之后顺利刷机，不过原来手机SD卡的东西都清空了。。还好应用都在，就先不root了用着吧=.=</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[怎样在canvas中的方形中央画Text]]></title>
+    <link href="http://dacer.github.io/blog/2013/11/09/e6808ee6a0b7e59ca8canvase4b8ade79a84e696b9e5bda2e4b8ade5a4aee794bbtext/"/>
+    <updated>2013-11-09T13:22:10+08:00</updated>
+    <id>http://dacer.github.io/blog/2013/11/09/e6808ee6a0b7e59ca8canvase4b8ade79a84e696b9e5bda2e4b8ade5a4aee794bbtext</id>
+    <content type="html"><![CDATA[<p><code></p>
+
+<pre><code>/**
+*
+* @param canvas The canvas you need to draw on.
+* @param x The X Coordinate from left to right.
+* @param y The Y Coordinate form bottom to top.
+*/
+private void drawPopup(Canvas canvas,String num,int x,int y){
+int bottomTriangleHeight = 12;
+int padding = MyUtils.dip2px(mContext,2);
+int marginBottom = MyUtils.dip2px(mContext,5);
+boolean singularNum = (num.length() == 1);
+int sidePadding = MyUtils.dip2px(mContext,singularNum? 8:5);
+int xCoor = xCoordinateList.get(x);
+int yCoor = yCoordinateList.get(yCoordinateList.size()-y)-MyUtils.dip2px(mContext,5);&lt;/code&gt;
+
+Paint textPaint = new Paint();
+textPaint.setAntiAlias(true);
+textPaint.setColor(Color.BLACK);
+textPaint.setTextSize(MyUtils.sp2px(mContext, 13));
+textPaint.setStrokeWidth(5);
+textPaint.setTextAlign(Paint.Align.CENTER);
+Paint.FontMetrics fm = new Paint.FontMetrics();
+textPaint.getFontMetrics(fm);
+
+Rect r = new Rect((int)(xCoor-textPaint.measureText(num)/2)-sidePadding,
+(int)(yCoor - textPaint.getTextSize())-bottomTriangleHeight-padding-marginBottom,
+(int)(xCoor + textPaint.measureText(num)/2)+sidePadding,
+yCoor+padding-marginBottom);
+
+NinePatchDrawable popup = (NinePatchDrawable)getResources().
+getDrawable(R.drawable.popup_red);
+popup.setBounds(r);
+popup.draw(canvas);
+
+textPaint.setColor(Color.WHITE);
+canvas.drawText(num, xCoor, yCoor-bottomTriangleHeight-marginBottom, textPaint);
+}
+</code></pre>
+
+<p>被这个折腾死了。。
+详解待续</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[有时会觉得这几个月的努力真的很值得]]></title>
+    <link href="http://dacer.github.io/blog/2013/11/01/e69c89e697b6e4bc9ae8a789e5be97e8bf99e587a0e4b8aae69c88e79a84e58aaae58a9be79c9fe79a84e5be88e580bce5be97/"/>
+    <updated>2013-11-01T23:02:02+08:00</updated>
+    <id>http://dacer.github.io/blog/2013/11/01/e69c89e697b6e4bc9ae8a789e5be97e8bf99e587a0e4b8aae69c88e79a84e58aaae58a9be79c9fe79a84e5be88e580bce5be97</id>
+    <content type="html"><![CDATA[<p>看到这些评价的时候。</p>
+
+<p><a href="http://idacer.files.wordpress.com/2013/11/screenshot_2013-11-01-23-57-421.png"><img src="http://idacer.files.wordpress.com/2013/11/screenshot_2013-11-01-23-57-421.png?w=168" alt="Screenshot_2013-11-01-23-57-42" /></a></p>
+
+<p>ps:第一个的那个说到我心坎里了啊！我之前一直想表述出这个但是就是组织语言不出来。。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[实在是受不了eclipse了]]></title>
+    <link href="http://dacer.github.io/blog/2013/11/01/e5ae9ee59ca8e698afe58f97e4b88de4ba86eclipsee4ba86/"/>
+    <updated>2013-11-01T10:40:00+08:00</updated>
+    <id>http://dacer.github.io/blog/2013/11/01/e5ae9ee59ca8e698afe58f97e4b88de4ba86eclipsee4ba86</id>
+    <content type="html"><![CDATA[<p>以前用Y450的时候就很卡很崩溃时不时就来点Bug错误什么的我也就忍了</p>
+
+<p>现在换mba了还是时不时出现点问题，现在连导出apk都会崩溃了(╯‵□′)╯︵┻━┻</p>
+
+<p>导出到Android studio也很有问题</p>
+
+<p>如果有一天我放弃了Simple Pomodoro的维护一定是eclipse的错！</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[设计一个两栏切皆可滑动的日期选择器]]></title>
+    <link href="http://dacer.github.io/blog/2013/11/01/e8aebee8aea1e4b880e4b8aae4b8a4e6a08fe58887e79a86e58fafe6bb91e58aa8e79a84e697a5e69c9fe98089e68ba9e599a8/"/>
+    <updated>2013-11-01T09:40:02+08:00</updated>
+    <id>http://dacer.github.io/blog/2013/11/01/e8aebee8aea1e4b880e4b8aae4b8a4e6a08fe58887e79a86e58fafe6bb91e58aa8e79a84e697a5e69c9fe98089e68ba9e599a8</id>
+    <content type="html"><![CDATA[<p>发现不记录一下开发的过程的话一出现问题很难理清楚啊(╯‵□′)╯︵┻━┻</p>
+
+<p>大概就是这样一个东西：</p>
+
+<p><a href="http://idacer.files.wordpress.com/2013/11/screenshot-2013-11-01-10-41-24.png"><img src="http://idacer.files.wordpress.com/2013/11/screenshot-2013-11-01-10-41-24.png" alt="Screenshot-2013-11-01-10.41.24" /></a></p>
+
+<p>要实现的功能有：</p>
+
+<ul>
+<li><p>月份选择器可滑动可点击，且月份切换时周视图也随之改变为当月的1号。</p></li>
+<li><p>周选择器可滑动可点击，点击后通过interface将所选择的日期传递出去。</p></li>
+<li><p>周选择器在滑动至其他月份时使月选择器自动调整为当前月份。</p></li>
+<li><p>月份选择器可独立出来</p></li>
+</ul>
+
+
+<p>实现的方法：</p>
+
+<ul>
+<li><p>两个视图都使用viewpager+fragment来实现滑动，且在月份选择器viewpager的两侧加两个button</p></li>
+<li><p>月份选择器总数为100*12+当前的月份，这儿有一个坑就是用Calendar中的month时，它的范围是0-11的，必须要多+1，在初始化视图的时候自动设置为今天（即最后一个）</p></li>
+<li><p>月份选择器在滑动后调用周的setCurrentWeek方法，再由其内部调用setCurrentItem方法。</p></li>
+</ul>
+
+
+<p>这要解决一个问题：</p>
+
+<p>月份在变化之后带动了周的变化，但是周的变化有可能会再次带动月份的变化，就造成了逻辑的混乱。</p>
+
+<p>想到的解决办法就是只有在滑动周选择器时才会改变月份,滑动月选择器时改变的周视图不会再次去改变月份。</p>
+
+<p>但是滑动周视图后改变了月视图之后月视图也会改变周视图。。所以balablabala要反过来再改一次</p>
+
+<p>虽然挺蛋疼了但总归是解决了这个问题，还有若干个小问题就不提了</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[用canvas画填充后的三角形]]></title>
+    <link href="http://dacer.github.io/blog/2013/10/29/e794a8canvase794bbe5a1abe58585e5908ee79a84e4b889e8a792e5bda2/"/>
+    <updated>2013-10-29T13:36:15+08:00</updated>
+    <id>http://dacer.github.io/blog/2013/10/29/e794a8canvase794bbe5a1abe58585e5908ee79a84e4b889e8a792e5bda2</id>
+    <content type="html"><![CDATA[<p>花了半天时间研究这个啊！！</p>
+
+<blockquote><p><a href="http://stackoverflow.com/questions/3501126/how-to-draw-a-filled-triangle-in-android-canvas">http://stackoverflow.com/questions/3501126/how-to-draw-a-filled-triangle-in-android-canvas</a></p></blockquote>
+
+<p>这个问题中不断的moveTo，lineTo后的path用setStyle(Paint.Style.FILL)的paint是画不了一个被填充的三角的，会直接无法显示，又找了大半天的解决方法才发现这个问题的第二个就是解决方法。。</p>
+
+<p>那就是moveTo之后就一直lineTo就可以了。。。。。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[李先生，非常的感谢您]]></title>
+    <link href="http://dacer.github.io/blog/2013/10/21/e69d8ee58588e7949fefbc8ce99d9ee5b8b8e79a84e6849fe8b0a2e682a8/"/>
+    <updated>2013-10-21T12:00:30+08:00</updated>
+    <id>http://dacer.github.io/blog/2013/10/21/e69d8ee58588e7949fefbc8ce99d9ee5b8b8e79a84e6849fe8b0a2e682a8</id>
+    <content type="html"><![CDATA[<p><a href="http://idacer.files.wordpress.com/2013/10/screenshot-2013-10-21-12-48-321.png"><img src="http://idacer.files.wordpress.com/2013/10/screenshot-2013-10-21-12-48-321.png" alt="Screenshot-2013-10-21-12.48.32" /></a></p>
+
+<p>这是我做这个软件以来收到的第一笔Donation。</p>
+
+<p>其实我之前是完全不相信，有人在用着免费软件的时候能想着给作者一些支持，特别是我这个并不优异的软件。</p>
+
+<p>今天开始永久删去极简番茄的广告条。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[我果然还是个风险厌恶型的人]]></title>
+    <link href="http://dacer.github.io/blog/2013/10/20/e68891e69e9ce784b6e8bf98e698afe4b8aae9a38ee999a9e58e8ce681b6e59e8be79a84e4baba/"/>
+    <updated>2013-10-20T23:08:44+08:00</updated>
+    <id>http://dacer.github.io/blog/2013/10/20/e68891e69e9ce784b6e8bf98e698afe4b8aae9a38ee999a9e58e8ce681b6e59e8be79a84e4baba</id>
+    <content type="html"><![CDATA[<p>经济的专业读了这么久能留在我脑子里的经济学的名词还真没几个，风险厌恶型算是一个。</p>
+
+<p>依我的非常浅薄的理解来解释一下它：就是在经济活动中会非常倾向于做出风险较小的那一面行为的类型。</p>
+
+<p>最近找到了个remote的工作是支付的bitcoin为每周的工资，每个周日我拿到工资后在当天就会将其卖出，即使bitcoin在不断的上涨，下图为卖出的历史纪录，最上方的为今天的情况，即比上周上涨了约200元。</p>
+
+<p><a href="http://idacer.files.wordpress.com/2013/10/screenshot-2013-10-20-23-59-341.png"><img src="http://idacer.files.wordpress.com/2013/10/screenshot-2013-10-20-23-59-341.png" alt="Screenshot-2013-10-20-23.59.34" /></a></p>
+
+<p>看到这个记录有人可能会想，如果把第一周的bitcoin攒到现在来卖的话，不就凭空多出了近600多元吗？</p>
+
+<p><strong>但我是个风险厌恶型</strong></p>
+
+<p>好吧以上都是废话。</p>
+
+<p>顺便一说最近blog怎么都不怎么更新了呢？</p>
+
+<p>原因不是我变懒了也不是这个bolg的实际访问量寥寥无几（这倒是事实）</p>
+
+<p>觉得把工作中的东西拿出来分享略有些不妥，好吧其实是在忙这个工作就变懒了(╯‵□′)╯︵┻━┻</p>
+
+<p>以后有时间的话把一个很有意思的actionbar进度条拿出来开源成library也不错的感觉</p>
+
+<p>好吧这一整篇都是废话</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[一定要注意身体啊！！！！]]></title>
+    <link href="http://dacer.github.io/blog/2013/10/06/e4b880e5ae9ae8a681e6b3a8e6848fe8baabe4bd93e5958aefbc81efbc81efbc81efbc81/"/>
+    <updated>2013-10-06T15:04:55+08:00</updated>
+    <id>http://dacer.github.io/blog/2013/10/06/e4b880e5ae9ae8a681e6b3a8e6848fe8baabe4bd93e5958aefbc81efbc81efbc81efbc81</id>
+    <content type="html"><![CDATA[<p>几个月前的样子吧手腕剧痛，尤其是抓着鼠标的右手，之后换了mba又注意休息手腕之后好了很多.</p>
+
+<p>不过最近又发现后颈在每天起床之后都巨酸痛，开始来以为是破枕头的问题，刚准备攒半个月的工资买个tempur的枕头，结果发现似乎和使用电脑的坐姿有很大关系，我用笔记本都是放在桌上需要低着头用的，所以还是把钱剩下来调整坐姿试试看吧.</p>
+
+<p>一定要注意好身体啊！！我在多大就那么多毛病了啊π_π</p>
+
+<p>顺便推荐一个教正确坐姿的视频</p>
+
+<p><a href="http://www.tudou.com/programs/view/I-Dap66v2cs/?resourceId=0_06_02_99?fr=2#fullscreen">http://www.tudou.com/programs/view/I-Dap66v2cs/?resourceId=0_06_02_99?fr=2#fullscreen</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[随笔 October 4, 2013]]></title>
+    <link href="http://dacer.github.io/blog/2013/10/04/e99a8fe7ac94-october-4-2013/"/>
+    <updated>2013-10-04T11:08:37+08:00</updated>
+    <id>http://dacer.github.io/blog/2013/10/04/e99a8fe7ac94-october-4-2013</id>
+    <content type="html"><![CDATA[<p>一大早看到极简番茄在Google Play上多了个2星的挺不爽的</p>
+
+<p>不过看到Chrome在Google Play上有4万多个1星顿时就释然了。。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[设计一个绝对准时又相对省电的Android 倒计时方案]]></title>
+    <link href="http://dacer.github.io/blog/2013/10/03/e8aebee8aea1e4b880e4b8aae7bb9de5afb9e58786e697b6e58f88e79bb8e5afb9e79c81e794b5e79a84android-e58092e8aea1e697b6e696b9e6a188/"/>
+    <updated>2013-10-03T08:46:30+08:00</updated>
+    <id>http://dacer.github.io/blog/2013/10/03/e8aebee8aea1e4b880e4b8aae7bb9de5afb9e58786e697b6e58f88e79bb8e5afb9e79c81e794b5e79a84android-e58092e8aea1e697b6e696b9e6a188</id>
+    <content type="html"><![CDATA[<p>如果没有小米的话就不用写这个文章了。。</p>
+
+<p>本文是<a href="http://idacer.tk/?p=67">这个</a>和<a href="http://idacer.tk/?p=83">这个</a>的后续，欲在现今环境下打造一个绝对准时又较省电的倒计时方案。<a href="http://idacer.tk/?p=67">
+</a></p>
+
+<ul>
+<li><p>目标：在软件的多个界面中都能<strong>一定准确</strong>的显示倒计时，无论手机处于何种界面或状态都能<strong>准时</strong>的提示，在非小米手机中能达到<strong>几乎不耗电量。</strong></p></li>
+<li><p>概述方案：记录开始计时的时间和进行状态到本地，针对小米启动一个service进行wakelock防止其休眠，</p></li>
+</ul>
+
+
+<p>小米准时唤醒验证程序：</p>
+
+<p>简单的搜了下wakelock应该没被小米阉割，所以要测试的内容为：不使用wakelock下的带和不带wakeup alarmmanager 的提示情况，使用wakelock下情况。顺便记录下开机，锁屏时间。</p>
+
+<p>记录内容模拟：</p>
+
+<p>&mdash;&mdash;&mdash;&mdash;&mdash;Wakeup AlarmManager TEST&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;</p>
+
+<p>[2012/10/02 16:02:02]  System boot completed.</p>
+
+<p>[2012/10/02 16:02:02]  add a alarmManager with wakeup to 16:12:01</p>
+
+<p>[2012/10/02 16:02:02]  &lt;16:12:01>alarmManager with wakeup alarmed at 16:15:01</p>
+
+<p>[2012/10/02 19:32:22]  &mdash;Screen off&mdash;</p>
+
+<p>[2012/10/02 19:32:02]  add a alarmManager with wakeup to 19:33:01</p>
+
+<p>[2012/10/02 19:32:02]  &mdash;-WakelockService started&mdash;&ndash;</p>
+
+<p>好累啊感觉不会再爱了T_T</p>
+
+<p>update：</p>
+
+<p>测试程序搞定</p>
+
+<p><a href="https://github.com/dacer/XiaoMiTest">https://github.com/dacer/XiaoMiTest</a></p>
+
+<p>但是发了email之后都木有人愿意帮忙..是发的姿势不对嘛！！！</p>
+
+<p>update(Oct 6):</p>
+
+<p>有回复了，确认有效。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[我从eclipse转到IntelliJ所做的事]]></title>
+    <link href="http://dacer.github.io/blog/2013/09/30/e68891e4bb8eeclipsee8bdace588b0intellije68980e5819ae79a84e4ba8b/"/>
+    <updated>2013-09-30T16:17:48+08:00</updated>
+    <id>http://dacer.github.io/blog/2013/09/30/e68891e4bb8eeclipsee8bdace588b0intellije68980e5819ae79a84e4ba8b</id>
+    <content type="html"><![CDATA[<p>早就不想用那个蜗牛速的eclipse了，于是着手准备转到Android studio开发</p>
+
+<p>1.鼠标悬停看javaDoc &ndash; 找到安装目录下的 bin/idea.properties ，填上下面一行</p>
+
+<pre><code>&lt;code&gt;auto.show.quick.doc=true&lt;/code&gt;
+</code></pre>
+
+<p>但是实际测试无用。又找到一个方法可显示，如下</p>
+
+<p>Settings &ndash;> Editor &ndash;> Show quick doc on mouse move</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[开新坑了，基于sinatra的中韩汇率查看网站]]></title>
+    <link href="http://dacer.github.io/blog/2013/09/29/e5bc80e696b0e59d91e4ba86efbc8ce59fbae4ba8esinatrae79a84e4b8ade99fa9e6b187e78e87e69fa5e79c8be7bd91e7ab99/"/>
+    <updated>2013-09-29T23:15:16+08:00</updated>
+    <id>http://dacer.github.io/blog/2013/09/29/e5bc80e696b0e59d91e4ba86efbc8ce59fbae4ba8esinatrae79a84e4b8ade99fa9e6b187e78e87e69fa5e79c8be7bd91e7ab99</id>
+    <content type="html"><![CDATA[<p><a href="http://huilv-idacer.rhcloud.com/">&mdash;-点击查看&mdash;&ndash;</a></p>
+
+<p>大概就是sinatra做后端进行post等行为在银联官网上读取银联汇率，前端直接显示结果。</p>
+
+<p>部署在了openshift上（就剩1个免费份额了好捉急！）</p>
+
+<p>显示效果嘛很明显是抄袭google now。。果然我的设计是硬伤。。</p>
+
+<p>当然这个是开源的，不过没啥意义就是了。。</p>
+
+<p>github: <a href="https://github.com/dacer/RMB2WON">https://github.com/dacer/RMB2WON</a></p>
+
+<p>todos:
+• <del>汇率计算器 触摸和输入型</del></p>
+
+<p>• FAQ</p>
+
+<p>analytic</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[如何在Action Bar中显示一层进度条，如7x7]]></title>
+    <link href="http://dacer.github.io/blog/2013/09/28/e5a682e4bd95e59ca8action-bare4b8ade698bee7a4bae4b880e5b182e8bf9be5baa6e69da1efbc8ce5a6827x7/"/>
+    <updated>2013-09-28T22:39:27+08:00</updated>
+    <id>http://dacer.github.io/blog/2013/09/28/e5a682e4bd95e59ca8action-bare4b8ade698bee7a4bae4b880e5b182e8bf9be5baa6e69da1efbc8ce5a6827x7</id>
+    <content type="html"><![CDATA[<p>看到这个需求第一时间我就想到了之前很沉迷的游戏 7x7, 搜了一下果然有相关的问题，链接如下：</p>
+
+<p><a href="http://stackoverflow.com/questions/17173414/how-to-implement-a-dynamic-background-on-actionbar-like-7x7">http://stackoverflow.com/questions/17173414/how-to-implement-a-dynamic-background-on-actionbar-like-7x7</a></p>
+
+<p>7x7作者亲自现身说道：</p>
+
+<blockquote><p>I actually made a custom Action Bar that was transparent and added the level progress bar underneath it.</p></blockquote>
+
+<p>然后给出了这个<a href="http://developer.android.com/reference/android/R.attr.html#windowActionBarOverlay">windowActionBarOverlay</a>链接，于是开始</p>
+
+<p>尝试1：</p>
+
+<p>将Action Bar设置为透明且可和下部分重叠，先简单的放了个button试了下，效果如下：</p>
+
+<p><a href="http://idacer.files.wordpress.com/2013/09/screen-shot-2013-09-30-at-4-49-52-pm1.png"><img src="http://idacer.files.wordpress.com/2013/09/screen-shot-2013-09-30-at-4-49-52-pm1.png" alt="Screen-Shot-2013-09-30-at-4.49.52-PM" /></a></p>
+
+<p>之后用testin测试了下其他机型的适配情况，除了联想的一个奇葩机型之外都如图显示，于是意外的得出了个结论，<strong>button高度=Action Bar高度</strong>（这是歪打正着吧(╯‵□′)╯︵┻━┻）</p>
+
+<p>尝试2：</p>
+
+<p>但这样还是不太方便，于是兴冲冲的研究了半天这个<a href="https://github.com/chrisbanes/ActionBar-PullToRefresh">pull-to-refresh</a>的源码，发现它的原理是在Action Bar上覆盖了一层，这不是完全没用嘛 (╯‵□′)╯︵┻━┻</p>
+
+<p>不过发现了这个方法</p>
+
+<p>[code language=&ldquo;java&rdquo;]
+public int getActionBarSize(Context context) {
+  int[] attrs = {android.R.attr.actionBarSize};
+  TypedArray values = context.getTheme().obtainStyledAttributes(attrs);
+  try {</p>
+
+<pre><code>return values.getDimensionPixelSize(0, 0);
+</code></pre>
+
+<p>  } finally {</p>
+
+<pre><code>values.recycle();
+</code></pre>
+
+<p>  }
+}[/code]</p>
+
+<p>最后得出的结论就是：目前看来还是用方法一，然后写个drawable作为自定义粗的进度条</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[为什么部分小米用户在使用极简番茄时提醒会延迟]]></title>
+    <link href="http://dacer.github.io/blog/2013/09/18/e68891e8a681ooe5b08fe7b1b3e7b3bbe7bb9fe4b880e4b887e4b8aaxxefbc81efbc81efbc81efbc81/"/>
+    <updated>2013-09-18T21:39:25+08:00</updated>
+    <id>http://dacer.github.io/blog/2013/09/18/e68891e8a681ooe5b08fe7b1b3e7b3bbe7bb9fe4b880e4b887e4b8aaxxefbc81efbc81efbc81efbc81</id>
+    <content type="html"><![CDATA[<p>很多小米用户反馈时间会错乱，之前一直以为是后台的Activity所占用的内存被清空所致，但修改后发现仍未改善，最后终于让我找到了根本原因。</p>
+
+<p>使用AlarmManager定的带有WAKEUP闹钟会被某些版本的MIUI系统推迟。</p>
+
+<p>我下面用浅显的语言说明一下</p>
+
+<p>每个软件都可以设置某个时间点的“闹钟”唤醒本程序，但是小米处于省电的考虑将每5分钟时间段内的“闹钟”集中在一起唤醒，例如启动番茄的25分钟后是12:31，但小米会强行将其改为12:35分，故程序的逻辑被彻底打断。</p>
+
+<p>此问题在将来有可能会通过系统补丁的方式修正，但不知会是何时，身为软件作者对此只能很无奈了，</p>
+
+<p>解决方案如下：</p>
+
+<ol>
+<li><p>(推荐)刷Android官方系统或者优秀的第三方CM系统可彻底解决此问题，但有可能造成使用上的略微不便（MIUI在某些方面还是有其优点的）</p></li>
+<li><p>(不推荐)使用我做的<a href="http://dacer.github.io/myapps/SimplePomodoro(MIUI">小米专用版本</a>.apk)，在未开启快速模式且开启屏幕常亮时理论上可正常使用（但仍不能确定），即不让屏幕锁定，(在番茄进行中点击时间可隐藏它，配合黑色全屏主题效果较佳)</p></li>
+</ol>
+
+
+<p>3.等待小米更新系统修改这个问题。</p>
+
+<p>以上。</p>
+
+<p>更新又一种方式: </p>
+
+<p><a href="http://bbs.zdworks.com/forum.php?mod=viewthread&amp;tid=166869">http://bbs.zdworks.com/forum.php?mod=viewthread&amp;tid=166869</a></p>
 ]]></content>
   </entry>
   

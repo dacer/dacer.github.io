@@ -1,0 +1,203 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<script data-cfasync="false" type="text/javascript" src="//use.typekit.net/axj3cfp.js"></script>
+	<script data-cfasync="false" type="text/javascript">try{Typekit.load();}catch(e){}</script>
+	<meta charset="utf-8">
+	<title>如何在Action Bar中显示一层进度条，如7x7  | Dacer Blog</title>
+
+<meta name="author" content="Dacer"> 
+
+<meta name="description" content="看到这个需求第一时间我就想到了之前很沉迷的游戏 7x7, 搜了一下果然有相关的问题，链接如下： http://stackoverflow.com/questions/17173414/how-to-implement-a-dynamic-background-on-actionbar-like- &hellip;"> <meta name="keywords" content="">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="Dacer Blog" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.ico" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script type="text/javascript" src="/javascripts/jquery.fancybox.pack.js"></script>
+
+<script language="Javascript" type="text/javascript">
+$(document).ready(
+  function() {
+    (function($) {
+      $(".fancybox[data-content-id]").each(function() {
+        this.href = $(this).data('content-id');
+      });
+      $(".fancybox").fancybox({
+        beforeLoad: function() {
+          var el, 
+              id = $(this.element).data('title-id');
+
+          if (id) {
+            el = $('#' + id);
+
+            if (el.length) {
+              this.title = el.html();
+            }
+          }
+          if ($(this).data('content')) {
+            this.content = $(this).data('content');
+          }
+        },
+        helpers: {
+          title: {
+            type: 'inside'
+          }
+        }
+      });
+    })(jQuery);
+  }
+);
+</script>
+
+	
+</head>
+
+
+<body>
+	<header id="header" class="inner"><h1><a href="/">Dacer Blog</a></h1>
+<h4></h4>
+<nav id="main-nav"><ul>
+	<li><a href="/">Blog</a></li>
+	<li><a href="/about">About</a></li>
+	<li><a href="/portfolio">Portfolio</a></li>
+	<li><a href="/archives">Archive</a></li>
+</ul>
+</nav>
+<nav id="mobile-nav">
+	<div class="alignleft menu">
+		<a class="button">Menu</a>
+		<div class="container"><ul>
+	<li><a href="/">Blog</a></li>
+	<li><a href="/about">About</a></li>
+	<li><a href="/portfolio">Portfolio</a></li>
+	<li><a href="/archives">Archive</a></li>
+</ul>
+</div>
+	</div>
+	<div class="alignright search">
+		<a class="button"></a>
+		<div class="container">
+			<form action="http://google.com/search" method="get">
+				<input type="text" name="q" results="0">
+				<input type="hidden" name="q" value="site:dacer.github.io">
+			</form>
+		</div>
+	</div>
+</nav>
+
+
+</header>
+
+	<div id="content" class="inner"><article class="post">
+	<h2 class="title">如何在Action Bar中显示一层进度条，如7x7</h2>
+	<div class="entry-content"><p>看到这个需求第一时间我就想到了之前很沉迷的游戏 7x7, 搜了一下果然有相关的问题，链接如下：</p>
+
+<p><a href="http://stackoverflow.com/questions/17173414/how-to-implement-a-dynamic-background-on-actionbar-like-7x7">http://stackoverflow.com/questions/17173414/how-to-implement-a-dynamic-background-on-actionbar-like-7x7</a></p>
+
+<p>7x7作者亲自现身说道：</p>
+
+<blockquote><p>I actually made a custom Action Bar that was transparent and added the level progress bar underneath it.</p></blockquote>
+
+<p>然后给出了这个<a href="http://developer.android.com/reference/android/R.attr.html#windowActionBarOverlay">windowActionBarOverlay</a>链接，于是开始</p>
+
+<p>尝试1：</p>
+
+<p>将Action Bar设置为透明且可和下部分重叠，先简单的放了个button试了下，效果如下：</p>
+
+<p><a href="http://idacer.files.wordpress.com/2013/09/screen-shot-2013-09-30-at-4-49-52-pm1.png"><img src="http://idacer.files.wordpress.com/2013/09/screen-shot-2013-09-30-at-4-49-52-pm1.png" alt="Screen-Shot-2013-09-30-at-4.49.52-PM" /></a></p>
+
+<p>之后用testin测试了下其他机型的适配情况，除了联想的一个奇葩机型之外都如图显示，于是意外的得出了个结论，<strong>button高度=Action Bar高度</strong>（这是歪打正着吧(╯‵□′)╯︵┻━┻）</p>
+
+<p>尝试2：</p>
+
+<p>但这样还是不太方便，于是兴冲冲的研究了半天这个<a href="https://github.com/chrisbanes/ActionBar-PullToRefresh">pull-to-refresh</a>的源码，发现它的原理是在Action Bar上覆盖了一层，这不是完全没用嘛 (╯‵□′)╯︵┻━┻</p>
+
+<p>不过发现了这个方法</p>
+
+<p>[code language=&ldquo;java&rdquo;]
+public int getActionBarSize(Context context) {
+  int[] attrs = {android.R.attr.actionBarSize};
+  TypedArray values = context.getTheme().obtainStyledAttributes(attrs);
+  try {</p>
+
+<pre><code>return values.getDimensionPixelSize(0, 0);
+</code></pre>
+
+<p>  } finally {</p>
+
+<pre><code>values.recycle();
+</code></pre>
+
+<p>  }
+}[/code]</p>
+
+<p>最后得出的结论就是：目前看来还是用方法一，然后写个drawable作为自定义粗的进度条</p>
+</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-28T22:39:27+08:00" pubdate data-updated="true">Sep 28<span>th</span>, 2013</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/kai-fa-bi-ji/'>开发笔记</a>
+
+</div>
+
+
+	
+</div></article>
+
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+	
+	
+	
+<!---	<a class="addthis_counter addthis_pill_style"></a> --->
+	</div>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid="></script>
+</div>
+
+
+</div>
+	<footer id="footer" class="inner">Copyright &copy; 2014
+
+    Dacer
+
+<br>
+Powered by Octopress.
+</footer>
+	<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: 随笔 | Dacer Blog]]></title>
+  <link href="http://dacer.github.io/blog/categories/sui-bi/atom.xml" rel="self"/>
+  <link href="http://dacer.github.io/"/>
+  <updated>2014-02-10T15:30:13+08:00</updated>
+  <id>http://dacer.github.io/</id>
+  <author>
+    <name><![CDATA[Dacer]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[国产单机游戏]]></title>
+    <link href="http://dacer.github.io/blog/2014/01/06/e59bbde4baa7e58d95e69cbae6b8b8e6888f/"/>
+    <updated>2014-01-06T00:42:41+08:00</updated>
+    <id>http://dacer.github.io/blog/2014/01/06/e59bbde4baa7e58d95e69cbae6b8b8e6888f</id>
+    <content type="html"><![CDATA[<p>今天脑中无意间响起了幻想三国志3中游戏开始标题画面中放的“界线”，于是在脑中泛滥的一发不可收拾起来，在虾米中找出1到4代的歌听着，顺便搜了搜幻三的最近动态，发现这个系列最终还是停在了第四代，连防盗版用的服务器都关闭了，发放了官方的“离线破解补丁”。一晃这么多年过去了，这个优秀程度在我心目中不亚于仙剑的国产RPG就此迎来了终结。</p>
+
+<p>说来惭愧，当时偷偷玩着电脑游戏的我是不敢花着父母的钱去买正版游戏的，本来想洋洋洒洒的写出主角们的爱恨情愁，但发现脑海中只余当时的我懵懵懂懂玩的场景，细细想来只记得某代主角刻骨铭心的爱情，为了爱侣不惜走遍千山万水，</p>
+
+<p>换下话题，其实幻三是有延续的，它出了一个web页游，打开宇峻奥氵丁（幻三开发公司）官网首页已没有了单机游戏的一席之地，</p>
+
+<p>不知道若干年后的00 10后还会不会知道有国产rpg这个东西呢</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Android上的一个神器『AIDE』]]></title>
+    <link href="http://dacer.github.io/blog/2013/12/23/androide4b88ae79a84e4b880e4b8aae7a59ee599a8e3808eaidee3808f/"/>
+    <updated>2013-12-23T21:24:04+08:00</updated>
+    <id>http://dacer.github.io/blog/2013/12/23/androide4b88ae79a84e4b880e4b8aae7a59ee599a8e3808eaidee3808f</id>
+    <content type="html"><![CDATA[<p>能直接在手机上git clone啊有木有！！</p>
+
+<p>clone完了什么都不用改直接就能编译出apk了有木有！！</p>
+
+<p>圣诞节出去旅游用手机就能修修bug 发布apk了有木有！！！</p>
+
+<p>mba的轻便性跟手机比起来弱爆了有木有！！！</p>
+
+<p>&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;正常向的分割线&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;</p>
+
+<p>圣诞节某个软件要发布beta版本但是又要出去旅游怎么办呢，正在纠结带不带mba的时候突然想起来手机上就有一个IDE，下了试了试超级好用而且升级key圣诞节还打折就果断入手了！</p>
+
+<p>此刻真是感动的痛哭流涕啊。。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[终于升到4.3了]]></title>
+    <link href="http://dacer.github.io/blog/2013/11/13/e7bb88e4ba8ee58d87e588b04-3e4ba86/"/>
+    <updated>2013-11-13T20:15:01+08:00</updated>
+    <id>http://dacer.github.io/blog/2013/11/13/e7bb88e4ba8ee58d87e588b04-3e4ba86</id>
+    <content type="html"><![CDATA[<p><a href="http://idacer.files.wordpress.com/2013/11/2013-11-13-12-09-08.png"><img src="http://idacer.files.wordpress.com/2013/11/2013-11-13-12-09-08.png?w=168" alt="2013-11-13-12.09.08" /></a></p>
+
+<p>我到韩版S3终于也能用上4.3了T_T, 虽然kitkat都出来了。。</p>
+
+<p>顺便分享一下Mac下更新三星手机固件的心得：</p>
+
+<p>我先在三星官网下载Mac版Kies之后连接手机不上，觉得可能是刷了自制固件到缘故，于是按住音量下键开机进入线刷模式，在Kies上输入手机型号和SN码之后顺利刷机，不过原来手机SD卡的东西都清空了。。还好应用都在，就先不root了用着吧=.=</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[李先生，非常的感谢您]]></title>
+    <link href="http://dacer.github.io/blog/2013/10/21/e69d8ee58588e7949fefbc8ce99d9ee5b8b8e79a84e6849fe8b0a2e682a8/"/>
+    <updated>2013-10-21T12:00:30+08:00</updated>
+    <id>http://dacer.github.io/blog/2013/10/21/e69d8ee58588e7949fefbc8ce99d9ee5b8b8e79a84e6849fe8b0a2e682a8</id>
+    <content type="html"><![CDATA[<p><a href="http://idacer.files.wordpress.com/2013/10/screenshot-2013-10-21-12-48-321.png"><img src="http://idacer.files.wordpress.com/2013/10/screenshot-2013-10-21-12-48-321.png" alt="Screenshot-2013-10-21-12.48.32" /></a></p>
+
+<p>这是我做这个软件以来收到的第一笔Donation。</p>
+
+<p>其实我之前是完全不相信，有人在用着免费软件的时候能想着给作者一些支持，特别是我这个并不优异的软件。</p>
+
+<p>今天开始永久删去极简番茄的广告条。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[我果然还是个风险厌恶型的人]]></title>
+    <link href="http://dacer.github.io/blog/2013/10/20/e68891e69e9ce784b6e8bf98e698afe4b8aae9a38ee999a9e58e8ce681b6e59e8be79a84e4baba/"/>
+    <updated>2013-10-20T23:08:44+08:00</updated>
+    <id>http://dacer.github.io/blog/2013/10/20/e68891e69e9ce784b6e8bf98e698afe4b8aae9a38ee999a9e58e8ce681b6e59e8be79a84e4baba</id>
+    <content type="html"><![CDATA[<p>经济的专业读了这么久能留在我脑子里的经济学的名词还真没几个，风险厌恶型算是一个。</p>
+
+<p>依我的非常浅薄的理解来解释一下它：就是在经济活动中会非常倾向于做出风险较小的那一面行为的类型。</p>
+
+<p>最近找到了个remote的工作是支付的bitcoin为每周的工资，每个周日我拿到工资后在当天就会将其卖出，即使bitcoin在不断的上涨，下图为卖出的历史纪录，最上方的为今天的情况，即比上周上涨了约200元。</p>
+
+<p><a href="http://idacer.files.wordpress.com/2013/10/screenshot-2013-10-20-23-59-341.png"><img src="http://idacer.files.wordpress.com/2013/10/screenshot-2013-10-20-23-59-341.png" alt="Screenshot-2013-10-20-23.59.34" /></a></p>
+
+<p>看到这个记录有人可能会想，如果把第一周的bitcoin攒到现在来卖的话，不就凭空多出了近600多元吗？</p>
+
+<p><strong>但我是个风险厌恶型</strong></p>
+
+<p>好吧以上都是废话。</p>
+
+<p>顺便一说最近blog怎么都不怎么更新了呢？</p>
+
+<p>原因不是我变懒了也不是这个bolg的实际访问量寥寥无几（这倒是事实）</p>
+
+<p>觉得把工作中的东西拿出来分享略有些不妥，好吧其实是在忙这个工作就变懒了(╯‵□′)╯︵┻━┻</p>
+
+<p>以后有时间的话把一个很有意思的actionbar进度条拿出来开源成library也不错的感觉</p>
+
+<p>好吧这一整篇都是废话</p>
+]]></content>
+  </entry>
+  
+</feed>
