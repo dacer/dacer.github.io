@@ -9,9 +9,10 @@
 
 <meta name="author" content="Dacer"> 
 
-<meta name="description" content=" Windows真是害人不浅- &ndash;#
+<meta name="description" content="Windows真是害人不浅- &ndash;#
 在Mac下可以 1
-iconv -f gbk -t utf-8 a.txt &gt; b.txt a.txt是要转换的文件，gbk是简体系统下txt默认保存编码(大概。。) Feb 10th, 2014 "> <meta name="keywords" content="">
+iconv -f gbk -t utf-8 a.txt &gt; b.txt 批量的话 1
+find *.txt -exec sh -c "iconv -f gbk -t UTF8 {} &gt; c/{}.txt" \; &hellip;"> <meta name="keywords" content="">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -110,6 +111,18 @@ $(document).ready(
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>iconv -f gbk -t utf-8 a.txt  &gt; b.txt </span></code></pre></td></tr></table></div></figure>
+
+
+<p>批量的话</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>find *.txt -exec sh -c "iconv -f gbk -t UTF8 {} &gt; c/{}.txt" \;  </span></code></pre></td></tr></table></div></figure>
+
+
+<p>Ubuntu下可以</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>enconv *.txt</span></code></pre></td></tr></table></div></figure>
 
 
 <p>a.txt是要转换的文件，gbk是简体系统下txt默认保存编码(大概。。)</p>

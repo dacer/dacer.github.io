@@ -4,7 +4,7 @@
   <title><![CDATA[Dacer Blog]]></title>
   <link href="http://dacer.github.io/atom.xml" rel="self"/>
   <link href="http://dacer.github.io/"/>
-  <updated>2014-02-10T20:05:48+08:00</updated>
+  <updated>2014-02-10T20:21:38+08:00</updated>
   <id>http://dacer.github.io/</id>
   <author>
     <name><![CDATA[Dacer]]></name>
@@ -23,6 +23,18 @@
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>iconv -f gbk -t utf-8 a.txt  &gt; b.txt </span></code></pre></td></tr></table></div></figure>
+
+
+<p>批量的话</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>find *.txt -exec sh -c "iconv -f gbk -t UTF8 {} &gt; c/{}.txt" \;  </span></code></pre></td></tr></table></div></figure>
+
+
+<p>Ubuntu下可以</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>enconv *.txt</span></code></pre></td></tr></table></div></figure>
 
 
 <p>a.txt是要转换的文件，gbk是简体系统下txt默认保存编码(大概。。)</p>
