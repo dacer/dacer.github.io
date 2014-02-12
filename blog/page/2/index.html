@@ -2,15 +2,12 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-	<script data-cfasync="false" type="text/javascript" src="//use.typekit.net/axj3cfp.js"></script>
-	<script data-cfasync="false" type="text/javascript">try{Typekit.load();}catch(e){}</script>
 	<meta charset="utf-8">
 	<title>  | Dacer Blog</title>
 
 <meta name="author" content="Dacer"> 
 
-<meta name="description" content="发现不记录一下开发的过程的话一出现问题很难理清楚啊(╯‵□′)╯︵┻━┻ 大概就是这样一个东西： 要实现的功能有： 月份选择器可滑动可点击，且月份切换时周视图也随之改变为当月的1号。
-周选择器可滑动可点击，点击后通过interface将所选择的日期传递出去。 &hellip;"> <meta name="keywords" content="">
+<meta name="description" content="以前用Y450的时候就很卡很崩溃时不时就来点Bug错误什么的我也就忍了 现在换mba了还是时不时出现点问题，现在连导出apk都会崩溃了(╯‵□′)╯︵┻━┻ 导出到Android studio也很有问题 如果有一天我放弃了Simple Pomodoro的维护一定是eclipse的错！ Nov &hellip;"> <meta name="keywords" content="">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -19,7 +16,7 @@
 	<link href="/favicon.ico" rel="shortcut icon">
 	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
 	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script src="/javascripts/jquery.min.js"></script>
 	<script type="text/javascript" src="/javascripts/jquery.fancybox.pack.js"></script>
 
 <script language="Javascript" type="text/javascript">
@@ -94,6 +91,48 @@ $(document).ready(
 </header>
 
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/11/01/e5ae9ee59ca8e698afe58f97e4b88de4ba86eclipsee4ba86/">
+		
+			实在是受不了eclipse了</a>
+	</h2>
+	<div class="entry-content">
+		<p>以前用Y450的时候就很卡很崩溃时不时就来点Bug错误什么的我也就忍了</p>
+
+<p>现在换mba了还是时不时出现点问题，现在连导出apk都会崩溃了(╯‵□′)╯︵┻━┻</p>
+
+<p>导出到Android studio也很有问题</p>
+
+<p>如果有一天我放弃了Simple Pomodoro的维护一定是eclipse的错！</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-01T10:40:00+08:00" pubdate data-updated="true">Nov 1<span>st</span>, 2013</time></div>
+	
+
+
+	
+</div></article>
 
 
     <article class="post">
@@ -606,93 +645,6 @@ $(document).ready(
 <div class="tags">
 
 	<a class='category' href='/blog/categories/ruby/'>Ruby</a>, <a class='category' href='/blog/categories/kai-fa-bi-ji/'>开发笔记</a>
-
-</div>
-
-
-	
-</div></article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2013/09/28/e5a682e4bd95e59ca8action-bare4b8ade698bee7a4bae4b880e5b182e8bf9be5baa6e69da1efbc8ce5a6827x7/">
-		
-			如何在Action Bar中显示一层进度条，如7x7</a>
-	</h2>
-	<div class="entry-content">
-		<p>看到这个需求第一时间我就想到了之前很沉迷的游戏 7x7, 搜了一下果然有相关的问题，链接如下：</p>
-
-<p><a href="http://stackoverflow.com/questions/17173414/how-to-implement-a-dynamic-background-on-actionbar-like-7x7">http://stackoverflow.com/questions/17173414/how-to-implement-a-dynamic-background-on-actionbar-like-7x7</a></p>
-
-<p>7x7作者亲自现身说道：</p>
-
-<blockquote><p>I actually made a custom Action Bar that was transparent and added the level progress bar underneath it.</p></blockquote>
-
-<p>然后给出了这个<a href="http://developer.android.com/reference/android/R.attr.html#windowActionBarOverlay">windowActionBarOverlay</a>链接，于是开始</p>
-
-<p>尝试1：</p>
-
-<p>将Action Bar设置为透明且可和下部分重叠，先简单的放了个button试了下，效果如下：</p>
-
-<p><img src="/images/post/screen-shot-2013-09-30-at-4-49-52-pm1.png" alt="Screen-Shot-2013-09-30-at-4.49.52-PM" /></p>
-
-<p>之后用testin测试了下其他机型的适配情况，除了联想的一个奇葩机型之外都如图显示，于是意外的得出了个结论，<strong>button高度=Action Bar高度</strong>（这是歪打正着吧(╯‵□′)╯︵┻━┻）</p>
-
-<p>尝试2：</p>
-
-<p>但这样还是不太方便，于是兴冲冲的研究了半天这个<a href="https://github.com/chrisbanes/ActionBar-PullToRefresh">pull-to-refresh</a>的源码，发现它的原理是在Action Bar上覆盖了一层，这不是完全没用嘛 (╯‵□′)╯︵┻━┻</p>
-
-<p>不过发现了这个方法</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kt">int</span> <span class="nf">getActionBarSize</span><span class="o">(</span><span class="n">Context</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>  <span class="kt">int</span><span class="o">[]</span> <span class="n">attrs</span> <span class="o">=</span> <span class="o">{</span><span class="n">android</span><span class="o">.</span><span class="na">R</span><span class="o">.</span><span class="na">attr</span><span class="o">.</span><span class="na">actionBarSize</span><span class="o">};</span>
-</span><span class='line'>  <span class="n">TypedArray</span> <span class="n">values</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="na">getTheme</span><span class="o">().</span><span class="na">obtainStyledAttributes</span><span class="o">(</span><span class="n">attrs</span><span class="o">);</span>
-</span><span class='line'>  <span class="k">try</span> <span class="o">{</span>
-</span><span class='line'>    <span class="k">return</span> <span class="n">values</span><span class="o">.</span><span class="na">getDimensionPixelSize</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
-</span><span class='line'>  <span class="o">}</span> <span class="k">finally</span> <span class="o">{</span>
-</span><span class='line'>    <span class="n">values</span><span class="o">.</span><span class="na">recycle</span><span class="o">();</span>
-</span><span class='line'>  <span class="o">}</span>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>最后得出的结论就是：目前看来还是用方法一，然后写个drawable作为自定义粗的进度条</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-09-28T22:39:27+08:00" pubdate data-updated="true">Sep 28<span>th</span>, 2013</time></div>
-	
-
-<div class="tags">
-
-	<a class='category' href='/blog/categories/kai-fa-bi-ji/'>开发笔记</a>
 
 </div>
 

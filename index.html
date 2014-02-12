@@ -2,17 +2,18 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-	<script data-cfasync="false" type="text/javascript" src="//use.typekit.net/axj3cfp.js"></script>
-	<script data-cfasync="false" type="text/javascript">try{Typekit.load();}catch(e){}</script>
 	<meta charset="utf-8">
 	<title>  | Dacer Blog</title>
 
 <meta name="author" content="Dacer"> 
 
-<meta name="description" content="Windows真是害人不浅- &ndash;#
-在Mac下可以 1
-iconv -f gbk -t utf-8 a.txt &gt; b.txt 批量的话 1
-find *.txt -exec sh -c "iconv -f gbk -t UTF8 {} &gt; c/{}.txt" \; &hellip;"> <meta name="keywords" content="">
+<meta name="description" content="保存 Block 的两种方式 分为Proc.new和Lambda. Proc.new Proc可以用{}或者do end来定义，call来执行 1
+2
+3
+4
+5
+my_proc = Proc.new{ p &quot;proc&quot; }
+my_proc = Proc.new do p & &hellip;"> <meta name="keywords" content="">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -21,7 +22,7 @@ find *.txt -exec sh -c "iconv -f gbk -t UTF8 {} &gt; c/{}.txt" \; &hellip;"> <me
 	<link href="/favicon.ico" rel="shortcut icon">
 	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
 	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script src="/javascripts/jquery.min.js"></script>
 	<script type="text/javascript" src="/javascripts/jquery.fancybox.pack.js"></script>
 
 <script language="Javascript" type="text/javascript">
@@ -101,6 +102,101 @@ $(document).ready(
     <article class="post">
 	<h2 class="title">
 		
+		<a href="/blog/2014/02/12/code-schoolbi-ji-ruby-bits-2/">
+		
+			Code School笔记 - Ruby Bits 2</a>
+	</h2>
+	<div class="entry-content">
+		<h2>保存 Block 的两种方式</h2>
+
+<p>分为<code>Proc.new</code>和<code>Lambda</code>.</p>
+
+<h3>Proc.new</h3>
+
+<p>Proc可以用<code>{}</code>或者<code>do end</code>来定义，<code>call</code>来执行</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">my_proc</span> <span class="o">=</span> <span class="no">Proc</span><span class="o">.</span><span class="n">new</span><span class="p">{</span> <span class="nb">p</span> <span class="s2">&quot;proc&quot;</span> <span class="p">}</span>
+</span><span class='line'><span class="n">my_proc</span> <span class="o">=</span> <span class="no">Proc</span><span class="o">.</span><span class="n">new</span> <span class="k">do</span>
+</span><span class='line'>  <span class="nb">p</span> <span class="s2">&quot;proc&quot;</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="n">my_proc</span><span class="o">.</span><span class="n">call</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Lambda</h3>
+
+<p>Lambda可以直接用<code>= -&gt;</code>来定义<strong>(Ruby1.9以上)</strong></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">my_proc</span> <span class="o">=</span> <span class="nb">lambda</span> <span class="p">{</span> <span class="nb">p</span> <span class="s2">&quot;proc&quot;</span> <span class="p">}</span>
+</span><span class='line'><span class="n">my_proc</span> <span class="o">=</span> <span class="o">-&gt;</span> <span class="p">{</span> <span class="nb">p</span> <span class="s2">&quot;proc&quot;</span> <span class="p">}</span>
+</span><span class='line'><span class="n">my_proc</span><span class="o">.</span><span class="n">call</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>使用场景</h3>
+
+<p>可以把Proc直接作为变量传入方法的参数中</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">my_proc</span> <span class="o">=</span> <span class="o">-&gt;</span> <span class="p">{</span> <span class="nb">p</span> <span class="s2">&quot;proc&quot;</span> <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">print</span><span class="p">(</span><span class="nb">proc</span><span class="p">)</span>
+</span><span class='line'>  <span class="nb">proc</span><span class="o">.</span><span class="n">call</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">print</span><span class="p">(</span><span class="n">my_proc</span><span class="p">)</span> <span class="c1"># &quot;proc&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-02-12T19:02:51+08:00" pubdate data-updated="true">Feb 12<span>th</span>, 2014</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/code-school/'>Code School</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>
+
+</div>
+
+
+	
+</div></article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
 		<a href="/blog/2014/02/10/zen-yao-ba-windowsxia-de-txtwen-jian-zhuan-wei-utf-8/">
 		
 			怎么把windows下的txt文件转为utf-8</a>
@@ -147,6 +243,12 @@ $(document).ready(
 
 <time datetime="2014-02-10T19:15:11+08:00" pubdate data-updated="true">Feb 10<span>th</span>, 2014</time></div>
 	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/windows/'>Windows</a>
+
+</div>
 
 
 	
@@ -618,48 +720,6 @@ ps:第一个的那个说到我心坎里了啊！我之前一直想表述出这�
 
 
 <time datetime="2013-11-01T23:02:02+08:00" pubdate data-updated="true">Nov 1<span>st</span>, 2013</time></div>
-	
-
-
-	
-</div></article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2013/11/01/e5ae9ee59ca8e698afe58f97e4b88de4ba86eclipsee4ba86/">
-		
-			实在是受不了eclipse了</a>
-	</h2>
-	<div class="entry-content">
-		<p>以前用Y450的时候就很卡很崩溃时不时就来点Bug错误什么的我也就忍了</p>
-
-<p>现在换mba了还是时不时出现点问题，现在连导出apk都会崩溃了(╯‵□′)╯︵┻━┻</p>
-
-<p>导出到Android studio也很有问题</p>
-
-<p>如果有一天我放弃了Simple Pomodoro的维护一定是eclipse的错！</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-11-01T10:40:00+08:00" pubdate data-updated="true">Nov 1<span>st</span>, 2013</time></div>
 	
 
 
