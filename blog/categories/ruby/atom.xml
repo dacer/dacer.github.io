@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ruby | Dacer Blog]]></title>
   <link href="http://dacer.github.io/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://dacer.github.io/"/>
-  <updated>2014-02-12T20:55:32+08:00</updated>
+  <updated>2014-02-12T21:34:52+08:00</updated>
   <id>http://dacer.github.io/</id>
   <author>
     <name><![CDATA[Dacer]]></name>
@@ -18,9 +18,9 @@
     <link href="http://dacer.github.io/blog/2014/02/12/code-schoolbi-ji-ruby-bits-2/"/>
     <updated>2014-02-12T19:02:51+08:00</updated>
     <id>http://dacer.github.io/blog/2014/02/12/code-schoolbi-ji-ruby-bits-2</id>
-    <content type="html"><![CDATA[<h2>保存 Block 的两种方式</h2>
+    <content type="html"><![CDATA[<h2>Block</h2>
 
-<p>分为<code>Proc.new</code>和<code>Lambda</code>.</p>
+<p>Block保存可以使用<code>Proc.new</code>和<code>Lambda</code>.</p>
 
 <h3>Proc.new</h3>
 
@@ -49,16 +49,44 @@ my_proc.call
 
 <p>可以把Proc直接作为变量传入方法的参数中
 ```ruby
-my_proc = &ndash;> { p &ldquo;proc&rdquo; }</p>
-
-<p>def print(proc)</p>
+def print(proc)</p>
 
 <pre><code>proc.call
 </code></pre>
 
 <p>end</p>
 
-<p>print(my_proc) # &ldquo;proc&rdquo;
+<p>my_proc = &ndash;> { p &ldquo;proc&rdquo; }
+print(my_proc) # &ldquo;proc&rdquo;
+```</p>
+
+<h3>需要注意</h3>
+
+<p><code>array.each( )</code>括号中放入的proc前必须加<code>&amp;</code>,<code>&amp;</code>可以把proc变为block
+<code>ruby
+tweets.each(&amp;printer)
+</code>
+当定义的方法中需要用到 block 时可以：
+<code>ruby
+ def each(&amp;block)
+   tweets.each(&amp;block)
+ end
+</code></p>
+
+<h3>其它</h3>
+
+<ul>
+<li>在方法中用<code>block_given?</code>可以知道调用此方法时是否提供了block</li>
+<li>lambda在生成时可以记住。。什么 <strong>需要回顾一下</strong>
+```ruby
+def tweet_as(user)
+lambda { |tweet| p &ldquo;#{user}: #{tweet}&rdquo;}
+end</li>
+</ul>
+
+
+<p>dacer_tweet = tweet_as(&ldquo;dacer&rdquo;)
+dacer_tweet.call(&ldquo;Hello&rdquo;) # => dacer: Hello
 ```</p>
 ]]></content>
   </entry>

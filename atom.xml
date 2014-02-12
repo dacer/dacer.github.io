@@ -4,7 +4,7 @@
   <title><![CDATA[Dacer Blog]]></title>
   <link href="http://dacer.github.io/atom.xml" rel="self"/>
   <link href="http://dacer.github.io/"/>
-  <updated>2014-02-12T20:55:32+08:00</updated>
+  <updated>2014-02-12T21:34:52+08:00</updated>
   <id>http://dacer.github.io/</id>
   <author>
     <name><![CDATA[Dacer]]></name>
@@ -18,9 +18,9 @@
     <link href="http://dacer.github.io/blog/2014/02/12/code-schoolbi-ji-ruby-bits-2/"/>
     <updated>2014-02-12T19:02:51+08:00</updated>
     <id>http://dacer.github.io/blog/2014/02/12/code-schoolbi-ji-ruby-bits-2</id>
-    <content type="html"><![CDATA[<h2>保存 Block 的两种方式</h2>
+    <content type="html"><![CDATA[<h2>Block</h2>
 
-<p>分为<code>Proc.new</code>和<code>Lambda</code>.</p>
+<p>Block保存可以使用<code>Proc.new</code>和<code>Lambda</code>.</p>
 
 <h3>Proc.new</h3>
 
@@ -62,14 +62,55 @@
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">my_proc</span> <span class="o">=</span> <span class="o">-&gt;</span> <span class="p">{</span> <span class="nb">p</span> <span class="s2">&quot;proc&quot;</span> <span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">def</span> <span class="nf">print</span><span class="p">(</span><span class="nb">proc</span><span class="p">)</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">print</span><span class="p">(</span><span class="nb">proc</span><span class="p">)</span>
 </span><span class='line'>  <span class="nb">proc</span><span class="o">.</span><span class="n">call</span>
 </span><span class='line'><span class="k">end</span>
 </span><span class='line'>
+</span><span class='line'><span class="n">my_proc</span> <span class="o">=</span> <span class="o">-&gt;</span> <span class="p">{</span> <span class="nb">p</span> <span class="s2">&quot;proc&quot;</span> <span class="p">}</span>
 </span><span class='line'><span class="nb">print</span><span class="p">(</span><span class="n">my_proc</span><span class="p">)</span> <span class="c1"># &quot;proc&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>需要注意</h3>
+
+<p><code>array.each( )</code>括号中放入的proc前必须加<code>&amp;</code>,<code>&amp;</code>可以把proc变为block</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">tweets</span><span class="o">.</span><span class="n">each</span><span class="p">(</span><span class="o">&amp;</span><span class="n">printer</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>当定义的方法中需要用到 block 时可以：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'> <span class="k">def</span> <span class="nf">each</span><span class="p">(</span><span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
+</span><span class='line'>   <span class="n">tweets</span><span class="o">.</span><span class="n">each</span><span class="p">(</span><span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
+</span><span class='line'> <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>其它</h3>
+
+<ul>
+<li>在方法中用<code>block_given?</code>可以知道调用此方法时是否提供了block</li>
+<li>lambda在生成时可以记住。。什么 <strong>需要回顾一下</strong></li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">tweet_as</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+</span><span class='line'>  <span class="nb">lambda</span> <span class="p">{</span> <span class="o">|</span><span class="n">tweet</span><span class="o">|</span> <span class="nb">p</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">user</span><span class="si">}</span><span class="s2">: </span><span class="si">#{</span><span class="n">tweet</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">}</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">dacer_tweet</span> <span class="o">=</span> <span class="n">tweet_as</span><span class="p">(</span><span class="s2">&quot;dacer&quot;</span><span class="p">)</span>
+</span><span class='line'><span class="n">dacer_tweet</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="s2">&quot;Hello&quot;</span><span class="p">)</span> <span class="c1"># =&gt; dacer: Hello</span>
 </span></code></pre></td></tr></table></div></figure>
 
 ]]></content>
