@@ -7,7 +7,8 @@
 
 <meta name="author" content="Dacer"> 
 
-<meta name="description" content="早就不想用那个蜗牛速的eclipse了，于是着手准备转到Android studio开发 1.鼠标悬停看javaDoc &ndash; 找到安装目录下的 bin/idea.properties ，填上下面一行 &lt;code&gt;auto.show.quick.doc=true&lt;/ &hellip;"> <meta name="keywords" content="">
+<meta name="description" content="如果没有小米的话就不用写这个文章了。。 本文是这个和这个的后续，欲在现今环境下打造一个绝对准时又较省电的倒计时方案。 目标：在软件的多个界面中都能一定准确的显示倒计时，无论手机处于何种界面或状态都能准时的提示，在非小米手机中能达到几乎不耗电量。
+概述方案：记录开始计时的时间和进行状态到本地， &hellip;"> <meta name="keywords" content="">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -91,6 +92,91 @@ $(document).ready(
 </header>
 
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/10/03/e8aebee8aea1e4b880e4b8aae7bb9de5afb9e58786e697b6e58f88e79bb8e5afb9e79c81e794b5e79a84android-e58092e8aea1e697b6e696b9e6a188/">
+		
+			设计一个绝对准时又相对省电的Android 倒计时方案</a>
+	</h2>
+	<div class="entry-content">
+		<p>如果没有小米的话就不用写这个文章了。。</p>
+
+<p>本文是<a href="http://idacer.tk/?p=67">这个</a>和<a href="http://idacer.tk/?p=83">这个</a>的后续，欲在现今环境下打造一个绝对准时又较省电的倒计时方案。<a href="http://idacer.tk/?p=67">
+</a></p>
+
+<ul>
+<li><p>目标：在软件的多个界面中都能<strong>一定准确</strong>的显示倒计时，无论手机处于何种界面或状态都能<strong>准时</strong>的提示，在非小米手机中能达到<strong>几乎不耗电量。</strong></p></li>
+<li><p>概述方案：记录开始计时的时间和进行状态到本地，针对小米启动一个service进行wakelock防止其休眠，</p></li>
+</ul>
+
+
+<p>小米准时唤醒验证程序：</p>
+
+<p>简单的搜了下wakelock应该没被小米阉割，所以要测试的内容为：不使用wakelock下的带和不带wakeup alarmmanager 的提示情况，使用wakelock下情况。顺便记录下开机，锁屏时间。</p>
+
+<p>记录内容模拟：</p>
+
+<p>&mdash;&mdash;&mdash;&mdash;&mdash;Wakeup AlarmManager TEST&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;</p>
+
+<p>[2012/10/02 16:02:02]  System boot completed.</p>
+
+<p>[2012/10/02 16:02:02]  add a alarmManager with wakeup to 16:12:01</p>
+
+<p>[2012/10/02 16:02:02]  &lt;16:12:01>alarmManager with wakeup alarmed at 16:15:01</p>
+
+<p>[2012/10/02 19:32:22]  &mdash;Screen off&mdash;</p>
+
+<p>[2012/10/02 19:32:02]  add a alarmManager with wakeup to 19:33:01</p>
+
+<p>[2012/10/02 19:32:02]  &mdash;-WakelockService started&mdash;&ndash;</p>
+
+<p>好累啊感觉不会再爱了T_T</p>
+
+<p>update：</p>
+
+<p>测试程序搞定</p>
+
+<p><a href="https://github.com/dacer/XiaoMiTest">https://github.com/dacer/XiaoMiTest</a></p>
+
+<p>但是发了email之后都木有人愿意帮忙..是发的姿势不对嘛！！！</p>
+
+<p>update(Oct 6):</p>
+
+<p>有回复了，确认有效。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-03T08:46:30+08:00" pubdate data-updated="true">Oct 3<span>rd</span>, 2013</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/android/'>Android</a>, <a class='category' href='/blog/categories/kai-fa-bi-ji/'>开发笔记</a>
+
+</div>
+
+
+	
+</div></article>
 
 
     <article class="post">
@@ -645,69 +731,6 @@ return mPosition_id;
 
 <time datetime="2013-08-03T22:37:15+08:00" pubdate data-updated="true">Aug 3<span>rd</span>, 2013</time></div>
 	
-
-
-	
-</div></article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2013/08/02/e585b3e4ba8ee4b8aae4babae5bc80e58f91e88085e79b88e588a9e6a8a1e5bc8f/">
-		
-			关于个人开发者盈利模式</a>
-	</h2>
-	<div class="entry-content">
-		<p>不早了长话短说
-很久之前就在考虑这个盈利模式的问题了，
-最开始的想法是做出一个自己都能觉得很棒的软件（对于一个强迫症来说很不容易
-然后分享给大家使用，也给了反馈的渠道
-出人意料的是还收到了不少好评
-但同时也衍生了些不大不小的众多的意见和建议
-我也就一直在兢兢业业的改Bug，增功能，力求更完美些让更多的人满意
-当然这一切都是无偿的，我本也没想要获取点什么
-近期抱着试一试的态度添加的赞助的支付宝信息和软件内广告
-当然结果是显而易见的支付宝毫无动静
-软件内的广告藏在设置中几乎没人会细看或点击
-不想还在搜索引擎中发现求去广告的帖子
-当然看到了还是挺高兴的XD
-今日又加了个百度的广告
-还是在设置栏
-实在是不忍见到我心爱的软件贴上那块狗皮膏药。
-这个软件的更新大概就到此为止吧，
-小改动还会有大变化怕是不会再有了
-如果有人能有缘看到这个文章又对我的软件有兴趣的话
-附上一个一直有效的去广告方法，
-在最新的1.3版本中点设置最后一项再点设置最后一项有个miniGame
-超过40秒即可去广告:)</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-08-02T00:22:45+08:00" pubdate data-updated="true">Aug 2<span>nd</span>, 2013</time></div>
-	
-
-<div class="tags">
-
-	<a class='category' href='/blog/categories/sui-bi/'>随笔</a>
-
-</div>
 
 
 	

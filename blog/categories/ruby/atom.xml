@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ruby | Dacer Blog]]></title>
   <link href="http://dacer.github.io/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://dacer.github.io/"/>
-  <updated>2014-02-13T18:26:26+08:00</updated>
+  <updated>2014-02-13T20:03:24+08:00</updated>
   <id>http://dacer.github.io/</id>
   <author>
     <name><![CDATA[Dacer]]></name>
@@ -12,6 +12,80 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Code School笔记 - Ruby Bits 2 Level 3]]></title>
+    <link href="http://dacer.github.io/blog/2014/02/13/code-schoolbi-ji-ruby-bits-2-level-3/"/>
+    <updated>2014-02-13T15:40:25+08:00</updated>
+    <id>http://dacer.github.io/blog/2014/02/13/code-schoolbi-ji-ruby-bits-2-level-3</id>
+    <content type="html"><![CDATA[<h2>Self</h2>
+
+<p>在class外调用self会返回<code>main</code>，在class内调用会返回class本身。<br/>
+如果在定义类中的方法时，在方法名前加<code>self</code>则这个方法会变成类似于Java的静态(static)方法
+```ruby
+class Tweet
+  def self.f(key)</p>
+
+<pre><code>p "#{self}"
+</code></pre>
+
+<p>  end
+  def Tweet.f &hellip; #与上方一致，但不常用
+end
+Tweet.f(&ldquo;a&rdquo;) # => Tweet
+tweet = Tweet.new
+tweet.f(&ldquo;a&rdquo;) # Error!
+```</p>
+
+<h3>Class_eval</h3>
+
+<p>重新打开一个class并往里面增加一些东西
+```ruby
+Tweet.class_eval do</p>
+
+<pre><code>attr_accessor :user
+</code></pre>
+
+<p>end
+```</p>
+
+<h4>用 class_eval 写一个MethodLogger</h4>
+
+<p>就是记录方法的使用log
+```ruby
+class MethodLogger</p>
+
+<pre><code>def log_method(klass, method_name) #这里用klass是因为class在ruby中是预置的词
+  klass.class_eval do
+    alias_method "#{method_name}_original", method_name
+    define_method method_name do
+      p "#{Time.now}: Called #{method_name}"
+      send "#{method_name}_original"
+    end
+end
+</code></pre>
+
+<p>  end
+end</p>
+
+<h1>使用</h1>
+
+<p>class Test</p>
+
+<pre><code>def t
+end
+</code></pre>
+
+<p>end</p>
+
+<p>logger = MethodLogger.new
+logger.log_method(Test, :t)
+Test.new.t
+```</p>
+
+<h3>Instance_eval</h3>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Code School笔记 - Ruby Bits 2 Level 2]]></title>

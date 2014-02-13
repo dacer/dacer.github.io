@@ -4,7 +4,7 @@
   <title><![CDATA[Dacer Blog]]></title>
   <link href="http://dacer.github.io/atom.xml" rel="self"/>
   <link href="http://dacer.github.io/"/>
-  <updated>2014-02-13T18:26:26+08:00</updated>
+  <updated>2014-02-13T20:03:24+08:00</updated>
   <id>http://dacer.github.io/</id>
   <author>
     <name><![CDATA[Dacer]]></name>
@@ -12,6 +12,101 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Code School笔记 - Ruby Bits 2 Level 3]]></title>
+    <link href="http://dacer.github.io/blog/2014/02/13/code-schoolbi-ji-ruby-bits-2-level-3/"/>
+    <updated>2014-02-13T15:40:25+08:00</updated>
+    <id>http://dacer.github.io/blog/2014/02/13/code-schoolbi-ji-ruby-bits-2-level-3</id>
+    <content type="html"><![CDATA[<h2>Self</h2>
+
+<p>在class外调用self会返回<code>main</code>，在class内调用会返回class本身。<br/>
+如果在定义类中的方法时，在方法名前加<code>self</code>则这个方法会变成类似于Java的静态(static)方法</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Tweet</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">f</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+</span><span class='line'>    <span class="nb">p</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="nb">self</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nc">Tweet</span><span class="o">.</span><span class="nf">f</span> <span class="o">.</span><span class="n">.</span><span class="o">.</span> <span class="c1">#与上方一致，但不常用</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="no">Tweet</span><span class="o">.</span><span class="n">f</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span> <span class="c1"># =&gt; Tweet</span>
+</span><span class='line'><span class="n">tweet</span> <span class="o">=</span> <span class="no">Tweet</span><span class="o">.</span><span class="n">new</span>
+</span><span class='line'><span class="n">tweet</span><span class="o">.</span><span class="n">f</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span> <span class="c1"># Error!</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Class_eval</h3>
+
+<p>重新打开一个class并往里面增加一些东西</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Tweet</span><span class="o">.</span><span class="n">class_eval</span> <span class="k">do</span>
+</span><span class='line'>  <span class="kp">attr_accessor</span> <span class="ss">:user</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>用 class_eval 写一个MethodLogger</h4>
+
+<p>就是记录方法的使用log</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">MethodLogger</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">log_method</span><span class="p">(</span><span class="n">klass</span><span class="p">,</span> <span class="n">method_name</span><span class="p">)</span> <span class="c1">#这里用klass是因为class在ruby中是预置的词</span>
+</span><span class='line'>    <span class="n">klass</span><span class="o">.</span><span class="n">class_eval</span> <span class="k">do</span>
+</span><span class='line'>      <span class="n">alias_method</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">method_name</span><span class="si">}</span><span class="s2">_original&quot;</span><span class="p">,</span> <span class="n">method_name</span>
+</span><span class='line'>      <span class="n">define_method</span> <span class="n">method_name</span> <span class="k">do</span>
+</span><span class='line'>        <span class="nb">p</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="no">Time</span><span class="o">.</span><span class="n">now</span><span class="si">}</span><span class="s2">: Called </span><span class="si">#{</span><span class="n">method_name</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'>        <span class="nb">send</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">method_name</span><span class="si">}</span><span class="s2">_original&quot;</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="c1">#使用</span>
+</span><span class='line'><span class="k">class</span> <span class="nc">Test</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">t</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">logger</span> <span class="o">=</span> <span class="no">MethodLogger</span><span class="o">.</span><span class="n">new</span>
+</span><span class='line'><span class="n">logger</span><span class="o">.</span><span class="n">log_method</span><span class="p">(</span><span class="no">Test</span><span class="p">,</span> <span class="ss">:t</span><span class="p">)</span>
+</span><span class='line'><span class="no">Test</span><span class="o">.</span><span class="n">new</span><span class="o">.</span><span class="n">t</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Instance_eval</h3>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Code School笔记 - Ruby Bits 2 Level 2]]></title>
@@ -754,58 +849,6 @@ ps:第一个的那个说到我心坎里了啊！我之前一直想表述出这�
     <content type="html"><![CDATA[<p>一大早看到极简番茄在Google Play上多了个2星的挺不爽的</p>
 
 <p>不过看到Chrome在Google Play上有4万多个1星顿时就释然了。。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[设计一个绝对准时又相对省电的Android 倒计时方案]]></title>
-    <link href="http://dacer.github.io/blog/2013/10/03/e8aebee8aea1e4b880e4b8aae7bb9de5afb9e58786e697b6e58f88e79bb8e5afb9e79c81e794b5e79a84android-e58092e8aea1e697b6e696b9e6a188/"/>
-    <updated>2013-10-03T08:46:30+08:00</updated>
-    <id>http://dacer.github.io/blog/2013/10/03/e8aebee8aea1e4b880e4b8aae7bb9de5afb9e58786e697b6e58f88e79bb8e5afb9e79c81e794b5e79a84android-e58092e8aea1e697b6e696b9e6a188</id>
-    <content type="html"><![CDATA[<p>如果没有小米的话就不用写这个文章了。。</p>
-
-<p>本文是<a href="http://idacer.tk/?p=67">这个</a>和<a href="http://idacer.tk/?p=83">这个</a>的后续，欲在现今环境下打造一个绝对准时又较省电的倒计时方案。<a href="http://idacer.tk/?p=67">
-</a></p>
-
-<ul>
-<li><p>目标：在软件的多个界面中都能<strong>一定准确</strong>的显示倒计时，无论手机处于何种界面或状态都能<strong>准时</strong>的提示，在非小米手机中能达到<strong>几乎不耗电量。</strong></p></li>
-<li><p>概述方案：记录开始计时的时间和进行状态到本地，针对小米启动一个service进行wakelock防止其休眠，</p></li>
-</ul>
-
-
-<p>小米准时唤醒验证程序：</p>
-
-<p>简单的搜了下wakelock应该没被小米阉割，所以要测试的内容为：不使用wakelock下的带和不带wakeup alarmmanager 的提示情况，使用wakelock下情况。顺便记录下开机，锁屏时间。</p>
-
-<p>记录内容模拟：</p>
-
-<p>&mdash;&mdash;&mdash;&mdash;&mdash;Wakeup AlarmManager TEST&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;</p>
-
-<p>[2012/10/02 16:02:02]  System boot completed.</p>
-
-<p>[2012/10/02 16:02:02]  add a alarmManager with wakeup to 16:12:01</p>
-
-<p>[2012/10/02 16:02:02]  &lt;16:12:01>alarmManager with wakeup alarmed at 16:15:01</p>
-
-<p>[2012/10/02 19:32:22]  &mdash;Screen off&mdash;</p>
-
-<p>[2012/10/02 19:32:02]  add a alarmManager with wakeup to 19:33:01</p>
-
-<p>[2012/10/02 19:32:02]  &mdash;-WakelockService started&mdash;&ndash;</p>
-
-<p>好累啊感觉不会再爱了T_T</p>
-
-<p>update：</p>
-
-<p>测试程序搞定</p>
-
-<p><a href="https://github.com/dacer/XiaoMiTest">https://github.com/dacer/XiaoMiTest</a></p>
-
-<p>但是发了email之后都木有人愿意帮忙..是发的姿势不对嘛！！！</p>
-
-<p>update(Oct 6):</p>
-
-<p>有回复了，确认有效。</p>
 ]]></content>
   </entry>
   

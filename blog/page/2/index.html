@@ -7,46 +7,7 @@
 
 <meta name="author" content="Dacer"> 
 
-<meta name="description" content="1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-/**
-*
-* @param canvas The canvas you need to &hellip;"> <meta name="keywords" content="">
+<meta name="description" content="我到韩版S3终于也能用上4.3了T_T, 虽然kitkat都出来了。。 顺便分享一下Mac下更新三星手机固件的心得： 我先在三星官网下载Mac版Kies之后连接手机不上，觉得可能是刷了自制固件到缘故，于是按住音量下键开机进入线刷模式，在Kies上输入手机型号和SN码之后顺利刷机， &hellip;"> <meta name="keywords" content="">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -130,6 +91,54 @@ $(document).ready(
 </header>
 
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/11/13/e7bb88e4ba8ee58d87e588b04-3e4ba86/">
+		
+			终于升到4.3了</a>
+	</h2>
+	<div class="entry-content">
+		<p><img src="/images/post/2013-11-13-12-09-08.png" alt="2013-11-13-12.09.08" /></p>
+
+<p>我到韩版S3终于也能用上4.3了T_T, 虽然kitkat都出来了。。</p>
+
+<p>顺便分享一下Mac下更新三星手机固件的心得：</p>
+
+<p>我先在三星官网下载Mac版Kies之后连接手机不上，觉得可能是刷了自制固件到缘故，于是按住音量下键开机进入线刷模式，在Kies上输入手机型号和SN码之后顺利刷机，不过原来手机SD卡的东西都清空了。。还好应用都在，就先不root了用着吧=.=</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-13T20:15:01+08:00" pubdate data-updated="true">Nov 13<span>th</span>, 2013</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/sui-bi/'>随笔</a>
+
+</div>
+
+
+	
+</div></article>
 
 
     <article class="post">
@@ -648,91 +657,6 @@ ps:第一个的那个说到我心坎里了啊！我之前一直想表述出这�
 <div class="tags">
 
 	<a class='category' href='/blog/categories/sui-bi/'>随笔</a>
-
-</div>
-
-
-	
-</div></article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2013/10/03/e8aebee8aea1e4b880e4b8aae7bb9de5afb9e58786e697b6e58f88e79bb8e5afb9e79c81e794b5e79a84android-e58092e8aea1e697b6e696b9e6a188/">
-		
-			设计一个绝对准时又相对省电的Android 倒计时方案</a>
-	</h2>
-	<div class="entry-content">
-		<p>如果没有小米的话就不用写这个文章了。。</p>
-
-<p>本文是<a href="http://idacer.tk/?p=67">这个</a>和<a href="http://idacer.tk/?p=83">这个</a>的后续，欲在现今环境下打造一个绝对准时又较省电的倒计时方案。<a href="http://idacer.tk/?p=67">
-</a></p>
-
-<ul>
-<li><p>目标：在软件的多个界面中都能<strong>一定准确</strong>的显示倒计时，无论手机处于何种界面或状态都能<strong>准时</strong>的提示，在非小米手机中能达到<strong>几乎不耗电量。</strong></p></li>
-<li><p>概述方案：记录开始计时的时间和进行状态到本地，针对小米启动一个service进行wakelock防止其休眠，</p></li>
-</ul>
-
-
-<p>小米准时唤醒验证程序：</p>
-
-<p>简单的搜了下wakelock应该没被小米阉割，所以要测试的内容为：不使用wakelock下的带和不带wakeup alarmmanager 的提示情况，使用wakelock下情况。顺便记录下开机，锁屏时间。</p>
-
-<p>记录内容模拟：</p>
-
-<p>&mdash;&mdash;&mdash;&mdash;&mdash;Wakeup AlarmManager TEST&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;</p>
-
-<p>[2012/10/02 16:02:02]  System boot completed.</p>
-
-<p>[2012/10/02 16:02:02]  add a alarmManager with wakeup to 16:12:01</p>
-
-<p>[2012/10/02 16:02:02]  &lt;16:12:01>alarmManager with wakeup alarmed at 16:15:01</p>
-
-<p>[2012/10/02 19:32:22]  &mdash;Screen off&mdash;</p>
-
-<p>[2012/10/02 19:32:02]  add a alarmManager with wakeup to 19:33:01</p>
-
-<p>[2012/10/02 19:32:02]  &mdash;-WakelockService started&mdash;&ndash;</p>
-
-<p>好累啊感觉不会再爱了T_T</p>
-
-<p>update：</p>
-
-<p>测试程序搞定</p>
-
-<p><a href="https://github.com/dacer/XiaoMiTest">https://github.com/dacer/XiaoMiTest</a></p>
-
-<p>但是发了email之后都木有人愿意帮忙..是发的姿势不对嘛！！！</p>
-
-<p>update(Oct 6):</p>
-
-<p>有回复了，确认有效。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-10-03T08:46:30+08:00" pubdate data-updated="true">Oct 3<span>rd</span>, 2013</time></div>
-	
-
-<div class="tags">
-
-	<a class='category' href='/blog/categories/android/'>Android</a>, <a class='category' href='/blog/categories/kai-fa-bi-ji/'>开发笔记</a>
 
 </div>
 
