@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ruby | Dacer Blog]]></title>
   <link href="http://dacer.github.io/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://dacer.github.io/"/>
-  <updated>2014-02-13T12:36:21+08:00</updated>
+  <updated>2014-02-13T13:27:37+08:00</updated>
   <id>http://dacer.github.io/</id>
   <author>
     <name><![CDATA[Dacer]]></name>
@@ -41,6 +41,9 @@ my_proc.call
 <p>Lambda可以直接用<code>= -&gt;</code>来定义<strong>(Ruby1.9以上)</strong>
 <code>ruby
 my_proc = lambda { p "proc" }
+my_proc = lambda do
+  p "proc"
+end
 my_proc = -&gt; { p "proc" }
 my_proc.call
 </code></p>
@@ -62,7 +65,7 @@ print(my_proc) # &ldquo;proc&rdquo;
 
 <h3>需要注意</h3>
 
-<p><code>array.each( )</code>括号中放入的proc前必须加<code>&amp;</code>,<code>&amp;</code>可以把proc变为block
+<p><code>&amp;</code>可以把proc变为block
 <code>ruby
 tweets.each(&amp;printer)
 </code>
@@ -87,6 +90,28 @@ end</li>
 
 <p>dacer_tweet = tweet_as(&ldquo;dacer&rdquo;)
 dacer_tweet.call(&ldquo;Hello&rdquo;) # => dacer: Hello
+```</p>
+
+<h3>个人想法</h3>
+
+<p>Proc其实和<code>def</code>定义的方法一样是一串代码的集合，但是Proc可以作为参数放入方法中。<br/>
+需要注意的是：
+```ruby
+proc = lambda { |a| puts a }</p>
+
+<p>def test(&amp;action)</p>
+
+<pre><code>ary = ["a","b","c"]
+ary.each(&amp;action)
+</code></pre>
+
+<p>end</p>
+
+<p>test &amp;proc
+<code>
+中去掉任意一个`&amp;`时都会报错
+</code>
+in `each': wrong number of arguments (1 for 0) (ArgumentError)
 ```</p>
 ]]></content>
   </entry>

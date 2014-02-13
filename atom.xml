@@ -4,7 +4,7 @@
   <title><![CDATA[Dacer Blog]]></title>
   <link href="http://dacer.github.io/atom.xml" rel="self"/>
   <link href="http://dacer.github.io/"/>
-  <updated>2014-02-13T12:36:21+08:00</updated>
+  <updated>2014-02-13T13:27:37+08:00</updated>
   <id>http://dacer.github.io/</id>
   <author>
     <name><![CDATA[Dacer]]></name>
@@ -65,7 +65,13 @@
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">my_proc</span> <span class="o">=</span> <span class="nb">lambda</span> <span class="p">{</span> <span class="nb">p</span> <span class="s2">&quot;proc&quot;</span> <span class="p">}</span>
+</span><span class='line'><span class="n">my_proc</span> <span class="o">=</span> <span class="nb">lambda</span> <span class="k">do</span>
+</span><span class='line'>  <span class="nb">p</span> <span class="s2">&quot;proc&quot;</span>
+</span><span class='line'><span class="k">end</span>
 </span><span class='line'><span class="n">my_proc</span> <span class="o">=</span> <span class="o">-&gt;</span> <span class="p">{</span> <span class="nb">p</span> <span class="s2">&quot;proc&quot;</span> <span class="p">}</span>
 </span><span class='line'><span class="n">my_proc</span><span class="o">.</span><span class="n">call</span>
 </span></code></pre></td></tr></table></div></figure>
@@ -92,7 +98,7 @@
 
 <h3>需要注意</h3>
 
-<p><code>array.each( )</code>括号中放入的proc前必须加<code>&amp;</code>,<code>&amp;</code>可以把proc变为block</p>
+<p><code>&amp;</code>可以把proc变为block</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">tweets</span><span class="o">.</span><span class="n">each</span><span class="p">(</span><span class="o">&amp;</span><span class="n">printer</span><span class="p">)</span>
@@ -130,6 +136,37 @@
 </span><span class='line'>
 </span><span class='line'><span class="n">dacer_tweet</span> <span class="o">=</span> <span class="n">tweet_as</span><span class="p">(</span><span class="s2">&quot;dacer&quot;</span><span class="p">)</span>
 </span><span class='line'><span class="n">dacer_tweet</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="s2">&quot;Hello&quot;</span><span class="p">)</span> <span class="c1"># =&gt; dacer: Hello</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>个人想法</h3>
+
+<p>Proc其实和<code>def</code>定义的方法一样是一串代码的集合，但是Proc可以作为参数放入方法中。<br/>
+需要注意的是：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">proc</span> <span class="o">=</span> <span class="nb">lambda</span> <span class="p">{</span> <span class="o">|</span><span class="n">a</span><span class="o">|</span> <span class="nb">puts</span> <span class="n">a</span> <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">test</span><span class="p">(</span><span class="o">&amp;</span><span class="n">action</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">ary</span> <span class="o">=</span> <span class="o">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span><span class="s2">&quot;b&quot;</span><span class="p">,</span><span class="s2">&quot;c&quot;</span><span class="o">]</span>
+</span><span class='line'>  <span class="n">ary</span><span class="o">.</span><span class="n">each</span><span class="p">(</span><span class="o">&amp;</span><span class="n">action</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">test</span> <span class="o">&amp;</span><span class="nb">proc</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>中去掉任意一个<code>&amp;</code>时都会报错</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">in</span> <span class="sb">`each&#39;: wrong number of arguments (1 for 0) (ArgumentError)</span>
 </span></code></pre></td></tr></table></div></figure>
 
 ]]></content>
