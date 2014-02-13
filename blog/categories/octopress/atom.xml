@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Octopress | Dacer Blog]]></title>
   <link href="http://dacer.github.io/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="http://dacer.github.io/"/>
-  <updated>2014-02-13T16:25:29+08:00</updated>
+  <updated>2014-02-13T18:26:26+08:00</updated>
   <id>http://dacer.github.io/</id>
   <author>
     <name><![CDATA[Dacer]]></name>
@@ -22,7 +22,7 @@
 但就是有几小点很别扭：</p>
 
 <ul>
-<li>Code 的背景太深了</li>
+<li>Code 和 blockquote 的背景太深了</li>
 <li>默认的英文字体在 Code 中的显示效果不好</li>
 <li>Code 下方有个很突兀的 margin</li>
 </ul>

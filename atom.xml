@@ -4,7 +4,7 @@
   <title><![CDATA[Dacer Blog]]></title>
   <link href="http://dacer.github.io/atom.xml" rel="self"/>
   <link href="http://dacer.github.io/"/>
-  <updated>2014-02-13T16:25:29+08:00</updated>
+  <updated>2014-02-13T18:26:26+08:00</updated>
   <id>http://dacer.github.io/</id>
   <author>
     <name><![CDATA[Dacer]]></name>
@@ -135,6 +135,17 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
+<p>如果动态生成的方法需要参数则可以：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">define_method</span> <span class="n">m</span> <span class="k">do</span> <span class="o">|</span><span class="n">var</span><span class="o">|</span>
+</span><span class='line'>  <span class="n">games</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">var</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
 <h3>Send</h3>
 
 <p><code>send</code>方法可以调用class中同名的方法(包括private,protected中的)<br/>
@@ -153,6 +164,8 @@
 <span class='line-number'>11</span>
 <span class='line-number'>12</span>
 <span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Timeline</span>
 </span><span class='line'>  <span class="c1">#...</span>
 </span><span class='line'>
@@ -166,6 +179,8 @@
 </span><span class='line'><span class="n">t</span><span class="o">.</span><span class="n">public_send</span><span class="p">(</span><span class="ss">:private_method</span><span class="p">)</span>
 </span><span class='line'><span class="n">t</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="ss">:private_method</span><span class="p">)</span>
 </span><span class='line'><span class="n">t</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;private_method&quot;</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">t</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="ss">:private_method</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="n">var</span><span class="p">)</span><span class="c1">#有参数时</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -180,7 +195,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<blockquote><p>Turn the Method object into a Proc object:</p></blockquote>
+<p>Turn the Method object into a Proc object:</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -204,7 +219,7 @@
 但就是有几小点很别扭：</p>
 
 <ul>
-<li>Code 的背景太深了</li>
+<li>Code 和 blockquote 的背景太深了</li>
 <li>默认的英文字体在 Code 中的显示效果不好</li>
 <li>Code 下方有个很突兀的 margin</li>
 </ul>

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ruby | Dacer Blog]]></title>
   <link href="http://dacer.github.io/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://dacer.github.io/"/>
-  <updated>2014-02-13T16:25:29+08:00</updated>
+  <updated>2014-02-13T18:26:26+08:00</updated>
   <id>http://dacer.github.io/</id>
   <author>
     <name><![CDATA[Dacer]]></name>
@@ -105,6 +105,12 @@ end
 </code></pre>
 
 <p>end
+<code>
+如果动态生成的方法需要参数则可以：
+</code>ruby
+define_method m do |var|
+  games.send(m, var)
+end
 ```</p>
 
 <h3>Send</h3>
@@ -124,7 +130,9 @@ t = Timeline.new
 t.private_method #ERROR
 t.public_send(:private_method)
 t.send(:private_method)
-t.send(&ldquo;private_method&rdquo;)
+t.send(&ldquo;private_method&rdquo;)</p>
+
+<p>t.send(:private_method,&ldquo;&rdquo;,var)#有参数时
 ```</p>
 
 <h3>The Method Method</h3>
@@ -133,9 +141,8 @@ t.send(&ldquo;private_method&rdquo;)
 <code>ruby
 show_method = timeline.method(:show_tweet)
 show_method.call
-</code></p>
-
-<blockquote><p>Turn the Method object into a Proc object:
+</code>
+Turn the Method object into a Proc object:
 ```ruby
 (0..1).each(&amp;show_method)</p>
 
@@ -143,7 +150,7 @@ show_method.call
 
 <p>show_method.call(0)
 show_method.call(1)
-```</p></blockquote>
+```</p>
 ]]></content>
   </entry>
   
