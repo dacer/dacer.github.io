@@ -10,3 +10,6 @@
 .code table{
 	margin: 0.1em 0 !important;
 }
+blockquote {
+background: #ECECEC !important;
+border-left: 5px solid #DDD !important;

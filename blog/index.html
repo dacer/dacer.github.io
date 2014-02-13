@@ -7,10 +7,16 @@
 
 <meta name="author" content="Dacer"> 
 
-<meta name="description" content="先感谢cleanpress做出了这么简洁大方的主题，
-但就是有几小点很别扭： Code 的背景太深了
-默认的英文字体在 Code 中的显示效果不好
-Code 下方有个很突兀的 margin 于是顺手就改掉了现在看的超级舒服咩哈哈哈哈，操作过程太简单就不赘述了。 Feb 12th, 2014 &hellip;"> <meta name="keywords" content="">
+<meta name="description" content="Dynamic Classes &amp; Methods Struct 在一个Class中如果包含的变量都在 initialize 中定义时可以用Struct简化，以下两种定义方式完全相同： 1
+2
+3
+4
+5
+6
+7
+8
+9
+class Tweet attr_accessor :user &hellip;"> <meta name="keywords" content="">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -99,6 +105,221 @@ $(document).ready(
     <article class="post">
 	<h2 class="title">
 		
+		<a href="/blog/2014/02/13/code-schoolbi-ji-ruby-bits-2-level-2/">
+		
+			Code School笔记 - Ruby Bits 2 Level 2</a>
+	</h2>
+	<div class="entry-content">
+		<h2>Dynamic Classes &amp; Methods</h2>
+
+<h3>Struct</h3>
+
+<p>在一个Class中如果包含的变量都在 initialize 中定义时可以用<code>Struct</code>简化，以下两种定义方式完全相同：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Tweet</span>
+</span><span class='line'>  <span class="kp">attr_accessor</span> <span class="ss">:user</span><span class="p">,</span> <span class="ss">:status</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="n">status</span><span class="p">)</span>
+</span><span class='line'>    <span class="vi">@user</span><span class="p">,</span> <span class="vi">@status</span> <span class="o">=</span> <span class="n">user</span><span class="p">,</span> <span class="n">status</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">to_s</span>
+</span><span class='line'>    <span class="s2">&quot;</span><span class="si">#{</span><span class="n">user</span><span class="si">}</span><span class="s2">: </span><span class="si">#{</span><span class="n">status</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Tweet</span> <span class="o">=</span> <span class="no">Struct</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">:user</span><span class="p">,</span> <span class="ss">:status</span><span class="p">)</span> <span class="k">do</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">to_s</span>
+</span><span class='line'>    <span class="s2">&quot;</span><span class="si">#{</span><span class="n">user</span><span class="si">}</span><span class="s2">: </span><span class="si">#{</span><span class="n">status</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>如果Class中无需其它方法，其中<code>do...end</code>部分也可以省略</p>
+
+<h3>Alias_Method</h3>
+
+<p>在一个Class中复制一个方法，仅改变方法名可以用<code>alias_method</code><br/>
+读取一个变量的方法可以用<code>attr_reader</code>简写</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">tweets</span>
+</span><span class='line'>  <span class="vi">@tweets</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">contents</span>
+</span><span class='line'>  <span class="vi">@tweets</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">#上下两组定义相等</span>
+</span><span class='line'><span class="kp">attr_reader</span> <span class="ss">:tweets</span>
+</span><span class='line'><span class="n">alias_method</span> <span class="ss">:contents</span><span class="p">,</span> <span class="ss">:tweets</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>动态生成方法</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Tweet</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">draft</span>
+</span><span class='line'>  <span class="vi">@status</span> <span class="o">=</span> <span class="k">end</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">posted</span>
+</span><span class='line'>  <span class="vi">@status</span> <span class="o">=</span> <span class="ss">:posted</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">deleted</span>
+</span><span class='line'>      <span class="vi">@status</span> <span class="o">=</span> <span class="ss">:deleted</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">#上下两个Class完全一致</span>
+</span><span class='line'><span class="k">class</span> <span class="nc">Tweet</span>
+</span><span class='line'>  <span class="n">states</span> <span class="o">=</span> <span class="o">[</span><span class="ss">:draft</span><span class="p">,</span> <span class="ss">:posted</span><span class="p">,</span> <span class="ss">:deleted</span><span class="o">]</span>
+</span><span class='line'>  <span class="n">states</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">status</span><span class="o">|</span>
+</span><span class='line'>    <span class="n">define_method</span> <span class="n">status</span> <span class="k">do</span>
+</span><span class='line'>      <span class="vi">@status</span> <span class="o">=</span> <span class="n">status</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Send</h3>
+
+<p><code>send</code>方法可以调用class中同名的方法(包括private,protected中的)<br/>
+<code>public_send</code>则只能调用公共方法</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Timeline</span>
+</span><span class='line'>  <span class="c1">#...</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kp">private</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">private_method</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="n">t</span> <span class="o">=</span> <span class="no">Timeline</span><span class="o">.</span><span class="n">new</span>
+</span><span class='line'><span class="n">t</span><span class="o">.</span><span class="n">private_method</span> <span class="c1">#ERROR</span>
+</span><span class='line'><span class="n">t</span><span class="o">.</span><span class="n">public_send</span><span class="p">(</span><span class="ss">:private_method</span><span class="p">)</span>
+</span><span class='line'><span class="n">t</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="ss">:private_method</span><span class="p">)</span>
+</span><span class='line'><span class="n">t</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;private_method&quot;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>The Method Method</h3>
+
+<p><code>.method</code>方法可以得到一个class的方法并保存起来,再次调用的方式为<code>call</code>，类似于<code>Proc</code></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">show_method</span> <span class="o">=</span> <span class="n">timeline</span><span class="o">.</span><span class="n">method</span><span class="p">(</span><span class="ss">:show_tweet</span><span class="p">)</span>
+</span><span class='line'><span class="n">show_method</span><span class="o">.</span><span class="n">call</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<blockquote><p>Turn the Method object into a Proc object:</p></blockquote>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="p">(</span><span class="mi">0</span><span class="o">.</span><span class="n">.</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">each</span><span class="p">(</span><span class="o">&amp;</span><span class="n">show_method</span><span class="p">)</span>
+</span><span class='line'><span class="c1">#上下相同</span>
+</span><span class='line'><span class="n">show_method</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span><span class='line'><span class="n">show_method</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-02-13T15:40:25+08:00" pubdate data-updated="true">Feb 13<span>th</span>, 2014</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/code-school/'>Code School</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>
+
+</div>
+
+
+	
+</div></article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
 		<a href="/blog/2014/02/12/ba-zhu-ti-wei-diao-liao-yi-xia/">
 		
 			把主题微调了一下</a>
@@ -156,7 +377,7 @@ $(document).ready(
 			Code School笔记 - Ruby Bits 2 Level 1</a>
 	</h2>
 	<div class="entry-content">
-		<h2>Block</h2>
+		<h2>Blocks, Procs and Lambdas</h2>
 
 <p>Block保存可以使用<code>Proc.new</code>和<code>Lambda</code>.</p>
 
@@ -687,126 +908,6 @@ $(document).ready(
 <div class="tags">
 
 	<a class='category' href='/blog/categories/sui-bi/'>随笔</a>
-
-</div>
-
-
-	
-</div></article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2013/11/09/e6808ee6a0b7e59ca8canvase4b8ade79a84e696b9e5bda2e4b8ade5a4aee794bbtext/">
-		
-			怎样在canvas中的方形中央画Text</a>
-	</h2>
-	<div class="entry-content">
-		<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="cm">/**</span>
-</span><span class='line'><span class="cm">*</span>
-</span><span class='line'><span class="cm">* @param canvas The canvas you need to draw on.</span>
-</span><span class='line'><span class="cm">* @param x The X Coordinate from left to right.</span>
-</span><span class='line'><span class="cm">* @param y The Y Coordinate form bottom to top.</span>
-</span><span class='line'><span class="cm">*/</span>
-</span><span class='line'><span class="kd">private</span> <span class="kt">void</span> <span class="nf">drawPopup</span><span class="o">(</span><span class="n">Canvas</span> <span class="n">canvas</span><span class="o">,</span><span class="n">String</span> <span class="n">num</span><span class="o">,</span><span class="kt">int</span> <span class="n">x</span><span class="o">,</span><span class="kt">int</span> <span class="n">y</span><span class="o">){</span>
-</span><span class='line'><span class="kt">int</span> <span class="n">bottomTriangleHeight</span> <span class="o">=</span> <span class="mi">12</span><span class="o">;</span>
-</span><span class='line'><span class="kt">int</span> <span class="n">padding</span> <span class="o">=</span> <span class="n">MyUtils</span><span class="o">.</span><span class="na">dip2px</span><span class="o">(</span><span class="n">mContext</span><span class="o">,</span><span class="mi">2</span><span class="o">);</span>
-</span><span class='line'><span class="kt">int</span> <span class="n">marginBottom</span> <span class="o">=</span> <span class="n">MyUtils</span><span class="o">.</span><span class="na">dip2px</span><span class="o">(</span><span class="n">mContext</span><span class="o">,</span><span class="mi">5</span><span class="o">);</span>
-</span><span class='line'><span class="kt">boolean</span> <span class="n">singularNum</span> <span class="o">=</span> <span class="o">(</span><span class="n">num</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">==</span> <span class="mi">1</span><span class="o">);</span>
-</span><span class='line'><span class="kt">int</span> <span class="n">sidePadding</span> <span class="o">=</span> <span class="n">MyUtils</span><span class="o">.</span><span class="na">dip2px</span><span class="o">(</span><span class="n">mContext</span><span class="o">,</span><span class="n">singularNum</span><span class="o">?</span> <span class="mi">8</span><span class="o">:</span><span class="mi">5</span><span class="o">);</span>
-</span><span class='line'><span class="kt">int</span> <span class="n">xCoor</span> <span class="o">=</span> <span class="n">xCoordinateList</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">x</span><span class="o">);</span>
-</span><span class='line'><span class="kt">int</span> <span class="n">yCoor</span> <span class="o">=</span> <span class="n">yCoordinateList</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">yCoordinateList</span><span class="o">.</span><span class="na">size</span><span class="o">()-</span><span class="n">y</span><span class="o">)-</span><span class="n">MyUtils</span><span class="o">.</span><span class="na">dip2px</span><span class="o">(</span><span class="n">mContext</span><span class="o">,</span><span class="mi">5</span><span class="o">);</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">Paint</span> <span class="n">textPaint</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Paint</span><span class="o">();</span>
-</span><span class='line'><span class="n">textPaint</span><span class="o">.</span><span class="na">setAntiAlias</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
-</span><span class='line'><span class="n">textPaint</span><span class="o">.</span><span class="na">setColor</span><span class="o">(</span><span class="n">Color</span><span class="o">.</span><span class="na">BLACK</span><span class="o">);</span>
-</span><span class='line'><span class="n">textPaint</span><span class="o">.</span><span class="na">setTextSize</span><span class="o">(</span><span class="n">MyUtils</span><span class="o">.</span><span class="na">sp2px</span><span class="o">(</span><span class="n">mContext</span><span class="o">,</span> <span class="mi">13</span><span class="o">));</span>
-</span><span class='line'><span class="n">textPaint</span><span class="o">.</span><span class="na">setStrokeWidth</span><span class="o">(</span><span class="mi">5</span><span class="o">);</span>
-</span><span class='line'><span class="n">textPaint</span><span class="o">.</span><span class="na">setTextAlign</span><span class="o">(</span><span class="n">Paint</span><span class="o">.</span><span class="na">Align</span><span class="o">.</span><span class="na">CENTER</span><span class="o">);</span>
-</span><span class='line'><span class="n">Paint</span><span class="o">.</span><span class="na">FontMetrics</span> <span class="n">fm</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Paint</span><span class="o">.</span><span class="na">FontMetrics</span><span class="o">();</span>
-</span><span class='line'><span class="n">textPaint</span><span class="o">.</span><span class="na">getFontMetrics</span><span class="o">(</span><span class="n">fm</span><span class="o">);</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">Rect</span> <span class="n">r</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Rect</span><span class="o">((</span><span class="kt">int</span><span class="o">)(</span><span class="n">xCoor</span><span class="o">-</span><span class="n">textPaint</span><span class="o">.</span><span class="na">measureText</span><span class="o">(</span><span class="n">num</span><span class="o">)/</span><span class="mi">2</span><span class="o">)-</span><span class="n">sidePadding</span><span class="o">,</span>
-</span><span class='line'><span class="o">(</span><span class="kt">int</span><span class="o">)(</span><span class="n">yCoor</span> <span class="o">-</span> <span class="n">textPaint</span><span class="o">.</span><span class="na">getTextSize</span><span class="o">())-</span><span class="n">bottomTriangleHeight</span><span class="o">-</span><span class="n">padding</span><span class="o">-</span><span class="n">marginBottom</span><span class="o">,</span>
-</span><span class='line'><span class="o">(</span><span class="kt">int</span><span class="o">)(</span><span class="n">xCoor</span> <span class="o">+</span> <span class="n">textPaint</span><span class="o">.</span><span class="na">measureText</span><span class="o">(</span><span class="n">num</span><span class="o">)/</span><span class="mi">2</span><span class="o">)+</span><span class="n">sidePadding</span><span class="o">,</span>
-</span><span class='line'><span class="n">yCoor</span><span class="o">+</span><span class="n">padding</span><span class="o">-</span><span class="n">marginBottom</span><span class="o">);</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">NinePatchDrawable</span> <span class="n">popup</span> <span class="o">=</span> <span class="o">(</span><span class="n">NinePatchDrawable</span><span class="o">)</span><span class="n">getResources</span><span class="o">().</span>
-</span><span class='line'><span class="n">getDrawable</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">drawable</span><span class="o">.</span><span class="na">popup_red</span><span class="o">);</span>
-</span><span class='line'><span class="n">popup</span><span class="o">.</span><span class="na">setBounds</span><span class="o">(</span><span class="n">r</span><span class="o">);</span>
-</span><span class='line'><span class="n">popup</span><span class="o">.</span><span class="na">draw</span><span class="o">(</span><span class="n">canvas</span><span class="o">);</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">textPaint</span><span class="o">.</span><span class="na">setColor</span><span class="o">(</span><span class="n">Color</span><span class="o">.</span><span class="na">WHITE</span><span class="o">);</span>
-</span><span class='line'><span class="n">canvas</span><span class="o">.</span><span class="na">drawText</span><span class="o">(</span><span class="n">num</span><span class="o">,</span> <span class="n">xCoor</span><span class="o">,</span> <span class="n">yCoor</span><span class="o">-</span><span class="n">bottomTriangleHeight</span><span class="o">-</span><span class="n">marginBottom</span><span class="o">,</span> <span class="n">textPaint</span><span class="o">);</span>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>被这个折腾死了。。
-详解待续</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-11-09T13:22:10+08:00" pubdate data-updated="true">Nov 9<span>th</span>, 2013</time></div>
-	
-
-<div class="tags">
-
-	<a class='category' href='/blog/categories/android/'>Android</a>
 
 </div>
 

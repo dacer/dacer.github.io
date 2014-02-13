@@ -4,7 +4,7 @@
   <title><![CDATA[Dacer Blog]]></title>
   <link href="http://dacer.github.io/atom.xml" rel="self"/>
   <link href="http://dacer.github.io/"/>
-  <updated>2014-02-13T13:27:37+08:00</updated>
+  <updated>2014-02-13T16:25:29+08:00</updated>
   <id>http://dacer.github.io/</id>
   <author>
     <name><![CDATA[Dacer]]></name>
@@ -12,6 +12,188 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Code School笔记 - Ruby Bits 2 Level 2]]></title>
+    <link href="http://dacer.github.io/blog/2014/02/13/code-schoolbi-ji-ruby-bits-2-level-2/"/>
+    <updated>2014-02-13T15:40:25+08:00</updated>
+    <id>http://dacer.github.io/blog/2014/02/13/code-schoolbi-ji-ruby-bits-2-level-2</id>
+    <content type="html"><![CDATA[<h2>Dynamic Classes &amp; Methods</h2>
+
+<h3>Struct</h3>
+
+<p>在一个Class中如果包含的变量都在 initialize 中定义时可以用<code>Struct</code>简化，以下两种定义方式完全相同：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Tweet</span>
+</span><span class='line'>  <span class="kp">attr_accessor</span> <span class="ss">:user</span><span class="p">,</span> <span class="ss">:status</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="n">status</span><span class="p">)</span>
+</span><span class='line'>    <span class="vi">@user</span><span class="p">,</span> <span class="vi">@status</span> <span class="o">=</span> <span class="n">user</span><span class="p">,</span> <span class="n">status</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">to_s</span>
+</span><span class='line'>    <span class="s2">&quot;</span><span class="si">#{</span><span class="n">user</span><span class="si">}</span><span class="s2">: </span><span class="si">#{</span><span class="n">status</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Tweet</span> <span class="o">=</span> <span class="no">Struct</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">:user</span><span class="p">,</span> <span class="ss">:status</span><span class="p">)</span> <span class="k">do</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">to_s</span>
+</span><span class='line'>    <span class="s2">&quot;</span><span class="si">#{</span><span class="n">user</span><span class="si">}</span><span class="s2">: </span><span class="si">#{</span><span class="n">status</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>如果Class中无需其它方法，其中<code>do...end</code>部分也可以省略</p>
+
+<h3>Alias_Method</h3>
+
+<p>在一个Class中复制一个方法，仅改变方法名可以用<code>alias_method</code><br/>
+读取一个变量的方法可以用<code>attr_reader</code>简写</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">tweets</span>
+</span><span class='line'>  <span class="vi">@tweets</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">contents</span>
+</span><span class='line'>  <span class="vi">@tweets</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">#上下两组定义相等</span>
+</span><span class='line'><span class="kp">attr_reader</span> <span class="ss">:tweets</span>
+</span><span class='line'><span class="n">alias_method</span> <span class="ss">:contents</span><span class="p">,</span> <span class="ss">:tweets</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>动态生成方法</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Tweet</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">draft</span>
+</span><span class='line'>  <span class="vi">@status</span> <span class="o">=</span> <span class="k">end</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">posted</span>
+</span><span class='line'>  <span class="vi">@status</span> <span class="o">=</span> <span class="ss">:posted</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">deleted</span>
+</span><span class='line'>      <span class="vi">@status</span> <span class="o">=</span> <span class="ss">:deleted</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">#上下两个Class完全一致</span>
+</span><span class='line'><span class="k">class</span> <span class="nc">Tweet</span>
+</span><span class='line'>  <span class="n">states</span> <span class="o">=</span> <span class="o">[</span><span class="ss">:draft</span><span class="p">,</span> <span class="ss">:posted</span><span class="p">,</span> <span class="ss">:deleted</span><span class="o">]</span>
+</span><span class='line'>  <span class="n">states</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">status</span><span class="o">|</span>
+</span><span class='line'>    <span class="n">define_method</span> <span class="n">status</span> <span class="k">do</span>
+</span><span class='line'>      <span class="vi">@status</span> <span class="o">=</span> <span class="n">status</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Send</h3>
+
+<p><code>send</code>方法可以调用class中同名的方法(包括private,protected中的)<br/>
+<code>public_send</code>则只能调用公共方法</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Timeline</span>
+</span><span class='line'>  <span class="c1">#...</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kp">private</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">private_method</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="n">t</span> <span class="o">=</span> <span class="no">Timeline</span><span class="o">.</span><span class="n">new</span>
+</span><span class='line'><span class="n">t</span><span class="o">.</span><span class="n">private_method</span> <span class="c1">#ERROR</span>
+</span><span class='line'><span class="n">t</span><span class="o">.</span><span class="n">public_send</span><span class="p">(</span><span class="ss">:private_method</span><span class="p">)</span>
+</span><span class='line'><span class="n">t</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="ss">:private_method</span><span class="p">)</span>
+</span><span class='line'><span class="n">t</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&quot;private_method&quot;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>The Method Method</h3>
+
+<p><code>.method</code>方法可以得到一个class的方法并保存起来,再次调用的方式为<code>call</code>，类似于<code>Proc</code></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">show_method</span> <span class="o">=</span> <span class="n">timeline</span><span class="o">.</span><span class="n">method</span><span class="p">(</span><span class="ss">:show_tweet</span><span class="p">)</span>
+</span><span class='line'><span class="n">show_method</span><span class="o">.</span><span class="n">call</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<blockquote><p>Turn the Method object into a Proc object:</p></blockquote>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="p">(</span><span class="mi">0</span><span class="o">.</span><span class="n">.</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">each</span><span class="p">(</span><span class="o">&amp;</span><span class="n">show_method</span><span class="p">)</span>
+</span><span class='line'><span class="c1">#上下相同</span>
+</span><span class='line'><span class="n">show_method</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span><span class='line'><span class="n">show_method</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[把主题微调了一下]]></title>
@@ -37,7 +219,7 @@
     <link href="http://dacer.github.io/blog/2014/02/12/code-schoolbi-ji-ruby-bits-2-level-1/"/>
     <updated>2014-02-12T19:02:51+08:00</updated>
     <id>http://dacer.github.io/blog/2014/02/12/code-schoolbi-ji-ruby-bits-2-level-1</id>
-    <content type="html"><![CDATA[<h2>Block</h2>
+    <content type="html"><![CDATA[<h2>Blocks, Procs and Lambdas</h2>
 
 <p>Block保存可以使用<code>Proc.new</code>和<code>Lambda</code>.</p>
 
@@ -609,24 +791,6 @@ ps:第一个的那个说到我心坎里了啊！我之前一直想表述出这�
 <p>update(Oct 6):</p>
 
 <p>有回复了，确认有效。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[我从eclipse转到IntelliJ所做的事]]></title>
-    <link href="http://dacer.github.io/blog/2013/09/30/e68891e4bb8eeclipsee8bdace588b0intellije68980e5819ae79a84e4ba8b/"/>
-    <updated>2013-09-30T16:17:48+08:00</updated>
-    <id>http://dacer.github.io/blog/2013/09/30/e68891e4bb8eeclipsee8bdace588b0intellije68980e5819ae79a84e4ba8b</id>
-    <content type="html"><![CDATA[<p>早就不想用那个蜗牛速的eclipse了，于是着手准备转到Android studio开发</p>
-
-<p>1.鼠标悬停看javaDoc &ndash; 找到安装目录下的 bin/idea.properties ，填上下面一行</p>
-
-<pre><code>&lt;code&gt;auto.show.quick.doc=true&lt;/code&gt;
-</code></pre>
-
-<p>但是实际测试无用。又找到一个方法可显示，如下</p>
-
-<p>Settings &ndash;> Editor &ndash;> Show quick doc on mouse move</p>
 ]]></content>
   </entry>
   

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Code School | Dacer Blog]]></title>
   <link href="http://dacer.github.io/blog/categories/code-school/atom.xml" rel="self"/>
   <link href="http://dacer.github.io/"/>
-  <updated>2014-02-13T13:27:37+08:00</updated>
+  <updated>2014-02-13T16:25:29+08:00</updated>
   <id>http://dacer.github.io/</id>
   <author>
     <name><![CDATA[Dacer]]></name>
@@ -14,11 +14,145 @@
 
   
   <entry>
+    <title type="html"><![CDATA[Code School笔记 - Ruby Bits 2 Level 2]]></title>
+    <link href="http://dacer.github.io/blog/2014/02/13/code-schoolbi-ji-ruby-bits-2-level-2/"/>
+    <updated>2014-02-13T15:40:25+08:00</updated>
+    <id>http://dacer.github.io/blog/2014/02/13/code-schoolbi-ji-ruby-bits-2-level-2</id>
+    <content type="html"><![CDATA[<h2>Dynamic Classes &amp; Methods</h2>
+
+<h3>Struct</h3>
+
+<p>在一个Class中如果包含的变量都在 initialize 中定义时可以用<code>Struct</code>简化，以下两种定义方式完全相同：
+```ruby
+class Tweet
+  attr_accessor :user, :status
+  def initialize(user, status)</p>
+
+<pre><code>@user, @status = user, status
+end
+</code></pre>
+
+<p>  def to_s</p>
+
+<pre><code>"#{user}: #{status}"
+</code></pre>
+
+<p>  end
+end
+<code>
+</code>ruby
+Tweet = Struct.new(:user, :status) do
+  def to_s</p>
+
+<pre><code>"#{user}: #{status}"
+</code></pre>
+
+<p>  end
+end
+<code>``
+如果Class中无需其它方法，其中</code>do&hellip;end`部分也可以省略</p>
+
+<h3>Alias_Method</h3>
+
+<p>在一个Class中复制一个方法，仅改变方法名可以用<code>alias_method</code><br/>
+读取一个变量的方法可以用<code>attr_reader</code>简写</p>
+
+<p>```ruby
+def tweets</p>
+
+<pre><code>@tweets
+</code></pre>
+
+<p>end</p>
+
+<p>def contents
+  @tweets
+end</p>
+
+<h1>上下两组定义相等</h1>
+
+<p>attr_reader :tweets
+alias_method :contents, :tweets
+```</p>
+
+<h3>动态生成方法</h3>
+
+<p>```ruby
+class Tweet
+  def draft</p>
+
+<pre><code>@status = end
+def posted
+@status = :posted
+end
+  def deleted
+    @status = :deleted
+end
+</code></pre>
+
+<p>end</p>
+
+<h1>上下两个Class完全一致</h1>
+
+<p>class Tweet
+  states = [:draft, :posted, :deleted]
+  states.each do |status|</p>
+
+<pre><code>define_method status do
+  @status = status
+end
+end 
+</code></pre>
+
+<p>end
+```</p>
+
+<h3>Send</h3>
+
+<p><code>send</code>方法可以调用class中同名的方法(包括private,protected中的)<br/>
+<code>public_send</code>则只能调用公共方法
+```ruby
+class Timeline
+  #&hellip;</p>
+
+<p>  private</p>
+
+<p>  def private_method
+  end
+end
+t = Timeline.new
+t.private_method #ERROR
+t.public_send(:private_method)
+t.send(:private_method)
+t.send(&ldquo;private_method&rdquo;)
+```</p>
+
+<h3>The Method Method</h3>
+
+<p><code>.method</code>方法可以得到一个class的方法并保存起来,再次调用的方式为<code>call</code>，类似于<code>Proc</code>
+<code>ruby
+show_method = timeline.method(:show_tweet)
+show_method.call
+</code></p>
+
+<blockquote><p>Turn the Method object into a Proc object:
+```ruby
+(0..1).each(&amp;show_method)</p>
+
+<h1>上下相同</h1>
+
+<p>show_method.call(0)
+show_method.call(1)
+```</p></blockquote>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Code School笔记 - Ruby Bits 2 Level 1]]></title>
     <link href="http://dacer.github.io/blog/2014/02/12/code-schoolbi-ji-ruby-bits-2-level-1/"/>
     <updated>2014-02-12T19:02:51+08:00</updated>
     <id>http://dacer.github.io/blog/2014/02/12/code-schoolbi-ji-ruby-bits-2-level-1</id>
-    <content type="html"><![CDATA[<h2>Block</h2>
+    <content type="html"><![CDATA[<h2>Blocks, Procs and Lambdas</h2>
 
 <p>Block保存可以使用<code>Proc.new</code>和<code>Lambda</code>.</p>
 
