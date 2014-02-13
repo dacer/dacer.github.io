@@ -4,7 +4,7 @@
   <title><![CDATA[Dacer Blog]]></title>
   <link href="http://dacer.github.io/atom.xml" rel="self"/>
   <link href="http://dacer.github.io/"/>
-  <updated>2014-02-13T20:03:24+08:00</updated>
+  <updated>2014-02-13T20:16:03+08:00</updated>
   <id>http://dacer.github.io/</id>
   <author>
     <name><![CDATA[Dacer]]></name>
@@ -105,6 +105,8 @@
 
 
 <h3>Instance_eval</h3>
+
+<p>类似于class_eval</p>
 ]]></content>
   </entry>
   
