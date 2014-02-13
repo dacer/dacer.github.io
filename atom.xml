@@ -4,7 +4,7 @@
   <title><![CDATA[Dacer Blog]]></title>
   <link href="http://dacer.github.io/atom.xml" rel="self"/>
   <link href="http://dacer.github.io/"/>
-  <updated>2014-02-12T21:50:06+08:00</updated>
+  <updated>2014-02-13T12:36:21+08:00</updated>
   <id>http://dacer.github.io/</id>
   <author>
     <name><![CDATA[Dacer]]></name>
@@ -33,10 +33,10 @@
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Code School笔记 - Ruby Bits 2]]></title>
-    <link href="http://dacer.github.io/blog/2014/02/12/code-schoolbi-ji-ruby-bits-2/"/>
+    <title type="html"><![CDATA[Code School笔记 - Ruby Bits 2 Level 1]]></title>
+    <link href="http://dacer.github.io/blog/2014/02/12/code-schoolbi-ji-ruby-bits-2-level-1/"/>
     <updated>2014-02-12T19:02:51+08:00</updated>
-    <id>http://dacer.github.io/blog/2014/02/12/code-schoolbi-ji-ruby-bits-2</id>
+    <id>http://dacer.github.io/blog/2014/02/12/code-schoolbi-ji-ruby-bits-2-level-1</id>
     <content type="html"><![CDATA[<h2>Block</h2>
 
 <p>Block保存可以使用<code>Proc.new</code>和<code>Lambda</code>.</p>
