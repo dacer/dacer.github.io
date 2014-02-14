@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ruby | Dacer Blog]]></title>
   <link href="http://dacer.github.io/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://dacer.github.io/"/>
-  <updated>2014-02-14T12:11:13+08:00</updated>
+  <updated>2014-02-14T16:34:54+08:00</updated>
   <id>http://dacer.github.io/</id>
   <author>
     <name><![CDATA[Dacer]]></name>
@@ -32,6 +32,115 @@ class Tweet
 <p>  end
 end
 Tweet.new.submit(1, &ldquo;Here&rsquo;s a tweet.&rdquo;) # You tried to call submit with arguments: [1, &ldquo;Here&rsquo;s a tweet.&rdquo;]
+<code>
+利用`method_missing`可以简化很多代码，下例中就是把这个方法所在的class中的方法链接到`@user`的同名方法中了
+</code>ruby
+def method_missing(method_name, *args)</p>
+
+<pre><code>@user.send(method_name, *args)
+</code></pre>
+
+<p>end
+<code>
+把上面的代码改进一下可以限定方法名
+</code>ruby
+class Tweet
+  DELEGATED_METHODS = [:username, :avatar]
+  def initialize(user)</p>
+
+<pre><code>@user = user
+end
+</code></pre>
+
+<p>  def method_missing(method_name, *args)</p>
+
+<pre><code>if DELEGATED_METHODS.include?(method_name)
+  @user.send(method_name, *args)
+else
+        super 
+    end
+end 
+</code></pre>
+
+<p>end
+<code>
+Ruby也自带了一个`delegate`可以很方便的实现上述代码
+</code>ruby
+require &lsquo;delegate&rsquo;
+class Tweet &lt; SimpleDelegator
+  def initialize(user)</p>
+
+<pre><code>super(user)
+</code></pre>
+
+<p>  end
+end
+```</p>
+
+<h3>一个跟本节不相关的知识点</h3>
+
+<p>正则表达式提取方法：
+```ruby
+match = name.to_s.match(/^hash_(/w+)/)
+match[1] if match #返回符合的首个子字符串，如果存在的话</p>
+
+<pre><code>              #0为返回整个
+</code></pre>
+
+<p>```</p>
+
+<h3>Respond_to?</h3>
+
+<p>Tells us if an object responds to a given method<br/>
+似乎可以翻译成回应一个object是否有所给的方法？
+<code>ruby
+tweet = Tweet.new
+tweet.respond_to?(:to_s) # =&gt; true
+</code>
+需要注意的是，用<code>method_missing</code>实现的方法在<code>respond_to?</code>下会返回false的，所以要做如下修改：
+```ruby
+def respond_to?(method_name)</p>
+
+<pre><code>method_name =~ /^hash_\w+/ || super # ||的作用是在||之前不为nil的时候返回之前的，为nil的时候返回后者
+#LIST.include?(method_name.to_s) || super #或者是从一个array中判断
+</code></pre>
+
+<p>end
+<code>
+但是这又带来了一个问题，`.method`方法仍是error
+</code>ruby
+tweet.method(:hash_ruby)
+<code>
+在1.9.3以上版本中可以这样解决：变为`respond_to_missing?`，这样`method`就能正确返回一个 method object
+</code>ruby
+def respond_to_missing?(method_name)</p>
+
+<pre><code>method_name =~ /^hash_\w+/ || super
+</code></pre>
+
+<p>end
+```</p>
+
+<h3>在 call 一个未定义方法时定义它</h3>
+
+<p>其实我还不太理解这种用法的意义在哪儿。。
+```ruby
+def method_missing(method_name, *args)</p>
+
+<pre><code>match = method_name.to_s.match(/^hash_(\w+)/)
+if match
+    self.class.class_eval do
+        define_method(method_name) do
+        @text &lt;&lt; " #" + match[1]
+        end
+    end
+    send(method_name)
+else 
+    super
+end 
+</code></pre>
+
+<p>end
 ```</p>
 ]]></content>
   </entry>
