@@ -47,4 +47,7 @@ public int getActionBarSize(Context context) {
   }
 }
 ```
-最后得出的结论就是：目前看来还是用方法一，然后写个drawable作为自定义粗的进度条
+最后得出的结论就是：目前看来还是用方法一，然后写个drawable作为自定义粗的进度条  
+**Update**  
+最后用的方法是，仿照actionbar做一个 custom view = =
+

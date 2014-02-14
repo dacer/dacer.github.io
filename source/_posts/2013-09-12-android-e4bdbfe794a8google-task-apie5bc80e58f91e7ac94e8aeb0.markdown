@@ -33,7 +33,7 @@ categories:
 
 改为建立一个HashMap保存Task以及对应的数据库id
 
-![第一步](http://{{ root_url }}/images/post/2013-9-3-1.png)
+![第一步]({{ root_url }}/images/post/2013-9-3-1.png)
 
 第二步：
 

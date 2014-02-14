@@ -7,7 +7,7 @@ categories:
 - Code School
 - Ruby
 ---
-##Block
+##Blocks, Procs and Lambdas
 
 Block保存可以使用`Proc.new`和`Lambda`.
 
@@ -25,6 +25,9 @@ my_proc.call
 Lambda可以直接用`= ->`来定义**(Ruby1.9以上)**
 ```ruby
 my_proc = lambda { p "proc" }
+my_proc = lambda do
+  p "proc"
+end
 my_proc = -> { p "proc" }
 my_proc.call
 ```
@@ -39,8 +42,9 @@ end
 my_proc = -> { p "proc" }
 print(my_proc) # "proc"
 ```
+
 ###需要注意
-`array.each( )`括号中放入的proc前必须加`&`,`&`可以把proc变为block
+`&`可以把proc变为block
 ```ruby
 tweets.each(&printer)
 ```
@@ -50,6 +54,7 @@ tweets.each(&printer)
    tweets.each(&block)
  end
 ```
+
 ###其它
 * 在方法中用`block_given?`可以知道调用此方法时是否提供了block
 * lambda在生成时可以记住。。什么 **需要回顾一下**
@@ -60,4 +65,22 @@ end
 
 dacer_tweet = tweet_as("dacer")
 dacer_tweet.call("Hello") # => dacer: Hello
+```
+
+###个人想法
+Proc其实和`def`定义的方法一样是一串代码的集合，但是Proc可以作为参数放入方法中。  
+需要注意的是：
+```ruby
+proc = lambda { |a| puts a }
+
+def test(&action)
+	ary = ["a","b","c"]
+	ary.each(&action)
+end
+
+test &proc
+```
+中去掉任意一个`&`时都会报错
+```
+in `each': wrong number of arguments (1 for 0) (ArgumentError)
 ```
