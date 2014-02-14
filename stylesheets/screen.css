@@ -13,3 +13,15 @@
 blockquote {
 background: #ECECEC !important;
 border-left: 5px solid #DDD !important;
+}
+article .entry-content h2 {
+padding-bottom: 5px;
+}
+
+article h2.title {
+padding-bottom: .5em !important;
+}
+
+article .entry-content blockquote p{
+margin-bottom:0;
+}

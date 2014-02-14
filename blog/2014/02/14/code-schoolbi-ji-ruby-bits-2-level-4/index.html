@@ -3,15 +3,18 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>把主题微调了一下  | Dacer Blog</title>
+	<title>Code School笔记 - Ruby Bits 2 Level 4  | Dacer Blog</title>
 
 <meta name="author" content="Dacer"> 
 
-<meta name="description" content="先感谢cleanpress做出了这么简洁大方的主题，
-但就是有几小点很别扭： Code 和 blockquote 的背景太深了
-默认的英文字体在 Code 中的显示效果不好
-Code 和 blockquote 下方有个很突兀的 margin
-文章中h1下方的border离字太近了 &hellip;"> <meta name="keywords" content="">
+<meta name="description" content="Handling Missing Methods 在class中可以定义一个method_missing方法，当调用这个class中不存在的方法时会变为调用此方法。 1
+2
+3
+4
+5
+6
+7
+class Tweet def method_missing(method_name, *args) &hellip;"> <meta name="keywords" content="">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -95,20 +98,27 @@ $(document).ready(
 </header>
 
 	<div id="content" class="inner"><article class="post">
-	<h2 class="title">把主题微调了一下</h2>
-	<div class="entry-content"><p>先感谢<a href="http://github.com/macjasp/cleanpress">cleanpress</a>做出了这么简洁大方的主题，<br/>
-但就是有几小点很别扭：</p>
+	<h2 class="title">Code School笔记 - Ruby Bits 2 Level 4</h2>
+	<div class="entry-content"><h2>Handling Missing Methods</h2>
 
-<ul>
-<li>Code 和 blockquote 的背景太深了</li>
-<li>默认的英文字体在 Code 中的显示效果不好</li>
-<li>Code 和 blockquote 下方有个很突兀的 margin</li>
-<li>文章中h1下方的border离字太近了</li>
-<li>文章标题下方的border又离的有点远</li>
-</ul>
+<p>在class中可以定义一个<code>method_missing</code>方法，当调用这个class中不存在的方法时会变为调用此方法。</p>
 
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Tweet</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">method_missing</span><span class="p">(</span><span class="n">method_name</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">)</span>
+</span><span class='line'>    <span class="nb">puts</span> <span class="s2">&quot;You tried to call </span><span class="si">#{</span><span class="n">method_name</span><span class="si">}</span><span class="s2"> with these arguments: </span><span class="si">#{</span><span class="n">args</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'>    <span class="c1">#super 可以调用ruby default方法， raises a NoMehodError.</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="no">Tweet</span><span class="o">.</span><span class="n">new</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;Here&#39;s a tweet.&quot;</span><span class="p">)</span> <span class="c1"># You tried to call submit with arguments: [1, &quot;Here&#39;s a tweet.&quot;]</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<p>于是顺手就改掉了现在看的超级舒服咩哈哈哈哈，操作过程太简单就不赘述了。</p>
 </div>
 
 
@@ -125,12 +135,12 @@ $(document).ready(
   
 
 
-<time datetime="2014-02-12T21:42:33+08:00" pubdate data-updated="true">Feb 12<span>th</span>, 2014</time></div>
+<time datetime="2014-02-14T15:40:25+08:00" pubdate data-updated="true">Feb 14<span>th</span>, 2014</time></div>
 	
 
 <div class="tags">
 
-	<a class='category' href='/blog/categories/octopress/'>Octopress</a>
+	<a class='category' href='/blog/categories/code-school/'>Code School</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>
 
 </div>
 

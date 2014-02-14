@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Android | Dacer Blog]]></title>
   <link href="http://dacer.github.io/blog/categories/android/atom.xml" rel="self"/>
   <link href="http://dacer.github.io/"/>
-  <updated>2014-02-13T21:42:55+08:00</updated>
+  <updated>2014-02-14T12:11:13+08:00</updated>
   <id>http://dacer.github.io/</id>
   <author>
     <name><![CDATA[Dacer]]></name>
@@ -107,8 +107,7 @@ canvas.drawText(num, xCoor, yCoor-bottomTriangleHeight-marginBottom, textPaint);
 
 <p>```</p>
 
-<p>被这个折腾死了。。
-详解待续</p>
+<p>被这个折腾死了。。</p>
 ]]></content>
   </entry>
   

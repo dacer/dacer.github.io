@@ -7,17 +7,14 @@
 
 <meta name="author" content="Dacer"> 
 
-<meta name="description" content="Self 在class外调用self会返回main，在class内调用会返回class本身。
-如果在定义类中的方法时，在方法名前加self则这个方法会变成类似于Java的静态(static)方法 1
+<meta name="description" content="Handling Missing Methods 在class中可以定义一个method_missing方法，当调用这个class中不存在的方法时会变为调用此方法。 1
 2
 3
 4
 5
 6
 7
-8
-9
-class Tweet def self.f(key) p & &hellip;"> <meta name="keywords" content="">
+class Tweet def method_missing(method_name, *args) &hellip;"> <meta name="keywords" content="">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -101,6 +98,67 @@ $(document).ready(
 </header>
 
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2014/02/14/code-schoolbi-ji-ruby-bits-2-level-4/">
+		
+			Code School笔记 - Ruby Bits 2 Level 4</a>
+	</h2>
+	<div class="entry-content">
+		<h2>Handling Missing Methods</h2>
+
+<p>在class中可以定义一个<code>method_missing</code>方法，当调用这个class中不存在的方法时会变为调用此方法。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Tweet</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">method_missing</span><span class="p">(</span><span class="n">method_name</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">)</span>
+</span><span class='line'>    <span class="nb">puts</span> <span class="s2">&quot;You tried to call </span><span class="si">#{</span><span class="n">method_name</span><span class="si">}</span><span class="s2"> with these arguments: </span><span class="si">#{</span><span class="n">args</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'>    <span class="c1">#super 可以调用ruby default方法， raises a NoMehodError.</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="no">Tweet</span><span class="o">.</span><span class="n">new</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;Here&#39;s a tweet.&quot;</span><span class="p">)</span> <span class="c1"># You tried to call submit with arguments: [1, &quot;Here&#39;s a tweet.&quot;]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-02-14T15:40:25+08:00" pubdate data-updated="true">Feb 14<span>th</span>, 2014</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/code-school/'>Code School</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>
+
+</div>
+
+
+	
+</div></article>
 
 
     <article class="post">
@@ -477,7 +535,9 @@ $(document).ready(
 <ul>
 <li>Code 和 blockquote 的背景太深了</li>
 <li>默认的英文字体在 Code 中的显示效果不好</li>
-<li>Code 下方有个很突兀的 margin</li>
+<li>Code 和 blockquote 下方有个很突兀的 margin</li>
+<li>文章中h1下方的border离字太近了</li>
+<li>文章标题下方的border又离的有点远</li>
 </ul>
 
 
@@ -927,85 +987,6 @@ $(document).ready(
 <div class="tags">
 
 	<a class='category' href='/blog/categories/sui-bi/'>随笔</a>
-
-</div>
-
-
-	
-</div></article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2013/11/15/androidcharts-e5bc80e58f91e7ac94e8aeb0/">
-		
-			AndroidCharts 开发笔记</a>
-	</h2>
-	<div class="entry-content">
-		<p>最近在为 <a href="http://www.pomotodo.com">www.pomotodo.com</a> 做 Android版的时候其中有三个设计的非常精致的统计视图，费了很大到劲把这三个图做出来之后想了想还是开源分享出来吧，其中 LineView 还是有些繁杂的，故写了本笔记。</p>
-
-<p>虽然 Android 上已经有一个很棒到开源统计图了，但还是自己手写遍更有趣些不是嘛-,&ndash; 于是没怎么看那个就动手自己写了个这个。</p>
-
-<p>Github: <a href="http://https://github.com/dacer/AndroidCharts">https://github.com/dacer/AndroidCharts</a></p>
-
-<h2>LineView:</h2>
-
-<h3>目标：</h3>
-
-<ul>
-<li><p>大部分的可见元素都能任意随时修改</p></li>
-<li><p>可以修改一格所代表的数据大小（默认为1）</p></li>
-<li><p>view 的高度和方格到宽度为固定值，这样便于之后的动画效果和保证在不同大小的设备上的一致性</p></li>
-<li><p>在不同设备上完全的自适应</p></li>
-</ul>
-
-
-<h3>实现方式：</h3>
-
-<p>最重要的为这三个 ArrayList:</p>
-
-<ul>
-<li><p>ArrayList<Integer> xCoordinateList : 背景中点的所有X坐标</p></li>
-<li><p>ArrayList<Integer> yCoordinateList : 背景中点到所有Y坐标</p></li>
-<li><p>ArrayList<Point> drawPointList;      : 数据所表示的点的坐标</p></li>
-</ul>
-
-
-<p>在每次更新数据后刷新这三个 List，然后根据这三个 List 可以很轻易的画出所有的元素。</p>
-
-<p>但是点击后出现到 popup 会造成两个问题，</p>
-
-<ol>
-<li><p> 怎么样画一个这个出来，而且中间的字还要在正中央：这个的话已经写了个解法在之前的博文中，</p></li>
-<li><p> 顶部的空间可能会不够显示最上方的点显示出的 popup：我先是在当前列表中的最大值的上方再加上一个格子，但这样有时还是不够，于是。。待续</p></li>
-</ol>
-
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-11-15T21:55:09+08:00" pubdate data-updated="true">Nov 15<span>th</span>, 2013</time></div>
-	
-
-<div class="tags">
-
-	<a class='category' href='/blog/categories/android/'>Android</a>
 
 </div>
 

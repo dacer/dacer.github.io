@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Code School | Dacer Blog]]></title>
   <link href="http://dacer.github.io/blog/categories/code-school/atom.xml" rel="self"/>
   <link href="http://dacer.github.io/"/>
-  <updated>2014-02-13T21:42:55+08:00</updated>
+  <updated>2014-02-14T12:11:13+08:00</updated>
   <id>http://dacer.github.io/</id>
   <author>
     <name><![CDATA[Dacer]]></name>
@@ -12,6 +12,29 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Code School笔记 - Ruby Bits 2 Level 4]]></title>
+    <link href="http://dacer.github.io/blog/2014/02/14/code-schoolbi-ji-ruby-bits-2-level-4/"/>
+    <updated>2014-02-14T15:40:25+08:00</updated>
+    <id>http://dacer.github.io/blog/2014/02/14/code-schoolbi-ji-ruby-bits-2-level-4</id>
+    <content type="html"><![CDATA[<h2>Handling Missing Methods</h2>
+
+<p>在class中可以定义一个<code>method_missing</code>方法，当调用这个class中不存在的方法时会变为调用此方法。
+```ruby
+class Tweet
+  def method_missing(method_name, *args)</p>
+
+<pre><code>puts "You tried to call #{method_name} with these arguments: #{args}"
+#super 可以调用ruby default方法， raises a NoMehodError.
+</code></pre>
+
+<p>  end
+end
+Tweet.new.submit(1, &ldquo;Here&rsquo;s a tweet.&rdquo;) # You tried to call submit with arguments: [1, &ldquo;Here&rsquo;s a tweet.&rdquo;]
+```</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Code School笔记 - Ruby Bits 2 Level 3]]></title>

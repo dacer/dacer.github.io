@@ -4,7 +4,7 @@
   <title><![CDATA[Dacer Blog]]></title>
   <link href="http://dacer.github.io/atom.xml" rel="self"/>
   <link href="http://dacer.github.io/"/>
-  <updated>2014-02-13T21:42:55+08:00</updated>
+  <updated>2014-02-14T12:11:13+08:00</updated>
   <id>http://dacer.github.io/</id>
   <author>
     <name><![CDATA[Dacer]]></name>
@@ -12,6 +12,34 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Code School笔记 - Ruby Bits 2 Level 4]]></title>
+    <link href="http://dacer.github.io/blog/2014/02/14/code-schoolbi-ji-ruby-bits-2-level-4/"/>
+    <updated>2014-02-14T15:40:25+08:00</updated>
+    <id>http://dacer.github.io/blog/2014/02/14/code-schoolbi-ji-ruby-bits-2-level-4</id>
+    <content type="html"><![CDATA[<h2>Handling Missing Methods</h2>
+
+<p>在class中可以定义一个<code>method_missing</code>方法，当调用这个class中不存在的方法时会变为调用此方法。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Tweet</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">method_missing</span><span class="p">(</span><span class="n">method_name</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">)</span>
+</span><span class='line'>    <span class="nb">puts</span> <span class="s2">&quot;You tried to call </span><span class="si">#{</span><span class="n">method_name</span><span class="si">}</span><span class="s2"> with these arguments: </span><span class="si">#{</span><span class="n">args</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'>    <span class="c1">#super 可以调用ruby default方法， raises a NoMehodError.</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="no">Tweet</span><span class="o">.</span><span class="n">new</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;Here&#39;s a tweet.&quot;</span><span class="p">)</span> <span class="c1"># You tried to call submit with arguments: [1, &quot;Here&#39;s a tweet.&quot;]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Code School笔记 - Ruby Bits 2 Level 3]]></title>
@@ -318,7 +346,9 @@
 <ul>
 <li>Code 和 blockquote 的背景太深了</li>
 <li>默认的英文字体在 Code 中的显示效果不好</li>
-<li>Code 下方有个很突兀的 margin</li>
+<li>Code 和 blockquote 下方有个很突兀的 margin</li>
+<li>文章中h1下方的border离字太近了</li>
+<li>文章标题下方的border又离的有点远</li>
 </ul>
 
 
@@ -691,8 +721,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>被这个折腾死了。。
-详解待续</p>
+<p>被这个折腾死了。。</p>
 ]]></content>
   </entry>
   
@@ -840,17 +869,6 @@ ps:第一个的那个说到我心坎里了啊！我之前一直想表述出这�
 <p>顺便推荐一个教正确坐姿的视频</p>
 
 <p><a href="http://www.tudou.com/programs/view/I-Dap66v2cs/?resourceId=0_06_02_99?fr=2#fullscreen">http://www.tudou.com/programs/view/I-Dap66v2cs/?resourceId=0_06_02_99?fr=2#fullscreen</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[随笔 October 4, 2013]]></title>
-    <link href="http://dacer.github.io/blog/2013/10/04/e99a8fe7ac94-october-4-2013/"/>
-    <updated>2013-10-04T11:08:37+08:00</updated>
-    <id>http://dacer.github.io/blog/2013/10/04/e99a8fe7ac94-october-4-2013</id>
-    <content type="html"><![CDATA[<p>一大早看到极简番茄在Google Play上多了个2星的挺不爽的</p>
-
-<p>不过看到Chrome在Google Play上有4万多个1星顿时就释然了。。</p>
 ]]></content>
   </entry>
   
