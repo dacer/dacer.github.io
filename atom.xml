@@ -4,7 +4,7 @@
   <title><![CDATA[Dacer Blog]]></title>
   <link href="http://dacer.github.io/atom.xml" rel="self"/>
   <link href="http://dacer.github.io/"/>
-  <updated>2014-02-15T21:30:21+08:00</updated>
+  <updated>2014-02-15T21:44:25+08:00</updated>
   <id>http://dacer.github.io/</id>
   <author>
     <name><![CDATA[Dacer]]></name>
@@ -18,7 +18,108 @@
     <link href="http://dacer.github.io/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-3/"/>
     <updated>2014-02-15T19:10:57+08:00</updated>
     <id>http://dacer.github.io/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-3</id>
-    <content type="html"><![CDATA[<h3>Scopes</h3>
+    <content type="html"><![CDATA[
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Code School笔记 - Zombie Outlaws level 2]]></title>
+    <link href="http://dacer.github.io/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-2/"/>
+    <updated>2014-02-15T15:10:57+08:00</updated>
+    <id>http://dacer.github.io/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-2</id>
+    <content type="html"><![CDATA[<h3>Finders</h3>
+
+<p>米什么好说的</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Post</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="ss">author</span><span class="p">:</span> <span class="s1">&#39;admin&#39;</span><span class="p">)</span> <span class="c1"># returns an ActiveRecord::Relation</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Find_By</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Post</span><span class="o">.</span><span class="n">find_by</span><span class="p">(</span><span class="ss">title</span><span class="p">:</span> <span class="s1">&#39;Rails 4&#39;</span><span class="p">)</span> <span class="c1">#returns a single model object, or possibly a collection of model objects in an Array (not a Relation). If nothing is found, an ActiveRecord::RecordNotFound exception is raised.</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>Find_by 与 where</h4>
+
+<p>用源码解释：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">find_by</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">where</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span><span class="o">.</span><span class="n">take</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>所以可以接受和 where 一样的 arguments</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Post</span><span class="o">.</span><span class="n">find_by</span><span class="p">(</span><span class="s2">&quot;published_on &lt; ?&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="o">.</span><span class="n">weeks</span><span class="o">.</span><span class="n">ago</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Find_or_*</h3>
+
+<p>Rail 4 简化了 3 的<code>Find_or_*</code>方法</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Post</span><span class="o">.</span><span class="n">find_or_initialize_by</span><span class="p">(</span><span class="ss">title</span><span class="p">:</span> <span class="s2">&quot;rails 4&quot;</span><span class="p">)</span>
+</span><span class='line'><span class="no">Post</span><span class="o">.</span><span class="n">find_or_create_by</span><span class="p">(</span><span class="ss">title</span><span class="p">:</span> <span class="s2">&quot;rails 4&quot;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>其中<code>find_or_create_by</code>可以和<code>after_create</code>相结合使用：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Post</span><span class="o">.</span><span class="n">find_or_create_by</span><span class="p">(</span><span class="ss">title</span><span class="p">:</span> <span class="s1">&#39;Rails 4&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="c1">#if Post not found ↓</span>
+</span><span class='line'><span class="no">Post</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="ss">title</span><span class="p">:</span> <span class="s1">&#39;Rails 4&#39;</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">Post</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord</span><span class="p">:</span><span class="ss">:Base</span>
+</span><span class='line'>    <span class="n">after_create</span> <span class="ss">:foo</span>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">foo</span>
+</span><span class='line'>      <span class="n">posts</span> <span class="o">=</span> <span class="no">Post</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="ss">author</span><span class="p">:</span> <span class="s1">&#39;admin&#39;</span><span class="p">)</span>
+</span><span class='line'>      <span class="o">.</span><span class="n">.</span><span class="o">.</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Update &amp; Update_column</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="vi">@post</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">post_params</span><span class="p">)</span> <span class="c1">#update attribute</span>
+</span><span class='line'><span class="vi">@post</span><span class="o">.</span><span class="n">update_columns</span><span class="p">(</span><span class="n">post_params</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Model.all</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="vi">@tweets</span> <span class="o">=</span> <span class="no">Tweet</span><span class="o">.</span><span class="n">all</span> <span class="c1"># returns an ActiveRecord::Relation</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>第二部分</h2>
+
+<h3>Scopes</h3>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -61,7 +162,7 @@
 
 <h3>Relation#Not</h3>
 
-<p>在使用<code>where</code>寻找时如果参数是<code>nil</code>的话会报 SQL 错误，使用<code>.where.not</code>则会自动判别参数是否为空，且在非空时才执行SQL语句</p>
+<p>在使用<code>where</code>寻找类似<code>user != ?</code>的不等于时如果参数是<code>nil</code>的话会报 SQL 错误，使用<code>.where.not</code>则会自动判别参数是否为空，且在非空时才执行SQL语句</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Post</span><span class="o">.</span><span class="n">where</span><span class="o">.</span><span class="n">not</span><span class="p">(</span><span class="ss">author</span><span class="p">:</span> <span class="n">author</span><span class="p">)</span>
@@ -165,103 +266,6 @@ Desc : descending order 递减</p>
 </span><span class='line'>  <span class="n">validates_presence_of</span> <span class="ss">:title</span>
 </span><span class='line'>  <span class="n">validates_presence_of</span> <span class="ss">:description</span>
 </span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Code School笔记 - Zombie Outlaws level 2]]></title>
-    <link href="http://dacer.github.io/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-2/"/>
-    <updated>2014-02-15T15:10:57+08:00</updated>
-    <id>http://dacer.github.io/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-2</id>
-    <content type="html"><![CDATA[<h3>Finders</h3>
-
-<p>米什么好说的</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Post</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="ss">author</span><span class="p">:</span> <span class="s1">&#39;admin&#39;</span><span class="p">)</span> <span class="c1"># returns an ActiveRecord::Relation</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>Find_By</h3>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Post</span><span class="o">.</span><span class="n">find_by</span><span class="p">(</span><span class="ss">title</span><span class="p">:</span> <span class="s1">&#39;Rails 4&#39;</span><span class="p">)</span> <span class="c1">#returns a single model object, or possibly a collection of model objects in an Array (not a Relation). If nothing is found, an ActiveRecord::RecordNotFound exception is raised.</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h4>Find_by 与 where</h4>
-
-<p>用源码解释：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">find_by</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
-</span><span class='line'>  <span class="n">where</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span><span class="o">.</span><span class="n">take</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>所以可以接受和 where 一样的 arguments</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Post</span><span class="o">.</span><span class="n">find_by</span><span class="p">(</span><span class="s2">&quot;published_on &lt; ?&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="o">.</span><span class="n">weeks</span><span class="o">.</span><span class="n">ago</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>Find_or_*</h3>
-
-<p>Rail 4 简化了 3 的<code>Find_or_*</code>方法</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Post</span><span class="o">.</span><span class="n">find_or_initialize_by</span><span class="p">(</span><span class="ss">title</span><span class="p">:</span> <span class="s2">&quot;rails 4&quot;</span><span class="p">)</span>
-</span><span class='line'><span class="no">Post</span><span class="o">.</span><span class="n">find_or_create_by</span><span class="p">(</span><span class="ss">title</span><span class="p">:</span> <span class="s2">&quot;rails 4&quot;</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>其中<code>find_or_create_by</code>可以和<code>after_create</code>相结合使用：</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Post</span><span class="o">.</span><span class="n">find_or_create_by</span><span class="p">(</span><span class="ss">title</span><span class="p">:</span> <span class="s1">&#39;Rails 4&#39;</span><span class="p">)</span>
-</span><span class='line'><span class="c1">#if Post not found ↓</span>
-</span><span class='line'><span class="no">Post</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="ss">title</span><span class="p">:</span> <span class="s1">&#39;Rails 4&#39;</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">class</span> <span class="nc">Post</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord</span><span class="p">:</span><span class="ss">:Base</span>
-</span><span class='line'>    <span class="n">after_create</span> <span class="ss">:foo</span>
-</span><span class='line'>    <span class="k">def</span> <span class="nf">foo</span>
-</span><span class='line'>      <span class="n">posts</span> <span class="o">=</span> <span class="no">Post</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="ss">author</span><span class="p">:</span> <span class="s1">&#39;admin&#39;</span><span class="p">)</span>
-</span><span class='line'>      <span class="o">.</span><span class="n">.</span><span class="o">.</span>
-</span><span class='line'>      <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>Update &amp; Update_column</h3>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="vi">@post</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">post_params</span><span class="p">)</span> <span class="c1">#update attribute</span>
-</span><span class='line'><span class="vi">@post</span><span class="o">.</span><span class="n">update_columns</span><span class="p">(</span><span class="n">post_params</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>Model.all</h3>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="vi">@tweets</span> <span class="o">=</span> <span class="no">Tweet</span><span class="o">.</span><span class="n">all</span> <span class="c1"># returns an ActiveRecord::Relation</span>
 </span></code></pre></td></tr></table></div></figure>
 
 ]]></content>

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Rails 4 | Dacer Blog]]></title>
   <link href="http://dacer.github.io/blog/categories/rails-4/atom.xml" rel="self"/>
   <link href="http://dacer.github.io/"/>
-  <updated>2014-02-15T21:30:21+08:00</updated>
+  <updated>2014-02-15T21:44:25+08:00</updated>
   <id>http://dacer.github.io/</id>
   <author>
     <name><![CDATA[Dacer]]></name>
@@ -18,107 +18,7 @@
     <link href="http://dacer.github.io/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-3/"/>
     <updated>2014-02-15T19:10:57+08:00</updated>
     <id>http://dacer.github.io/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-3</id>
-    <content type="html"><![CDATA[<h3>Scopes</h3>
-
-<p>```ruby
-scope :sold, &ndash;>{ where(state: &lsquo;sold&rsquo;) } #scopes should take a proc object</p>
-
-<p>default_scope { where(state: &lsquo;available&rsquo;) }
-default_scope &ndash;>{ where(state: &lsquo;available&rsquo;) } #defaults scopes should take proc object or a block￼￼
-```</p>
-
-<h3>Eager-Loaded Scopes</h3>
-
-<p><code>ruby
-scope :recent, -&gt;{ where(published_at: 2.weeks.ago) }
-scope :recent_red, -&gt;{ recent.where(color: 'red') }
-</code></p>
-
-<h3>Relation#None</h3>
-
-<p><code>.none</code>可以返回一个空的 ActiveRecord::Relation，避免在使用空的<code>array</code>时出现错误
-<code>ruby
-case role
-when "Reviewer"
-  Post.published
-when "Bad User"
-  Post.none
-end
-</code></p>
-
-<h3>Relation#Not</h3>
-
-<p>在使用<code>where</code>寻找时如果参数是<code>nil</code>的话会报 SQL 错误，使用<code>.where.not</code>则会自动判别参数是否为空，且在非空时才执行SQL语句
-<code>ruby
-Post.where.not(author: author)
-</code></p>
-
-<h3>Relation#Order</h3>
-
-<p>在 Rails 4 中如果<code>default_scope</code>已经有了<code>order()</code>后，再执行<code>.order</code>时这两者的先后顺序与 3 相反， Rails 4 会将<code>default_scope</code>中的放在后面：
-```ruby
-class User &lt; ActiveRecord::Base</p>
-
-<pre><code>default_scope { order(:name) }
-</code></pre>
-
-<p>end</p>
-
-<p>User.order(&ldquo;created_at DESC&rdquo;)</p>
-
-<p>SELECT * FROM users ORDER BY name asc, created_at desc # Rails 3
-SELECT * FROM users ORDER BY created_at desc, name asc # Rails 4
-```</p>
-
-<h4>手动排序</h4>
-
-<p>Rails 4 可以使用 Hash 来排序
-<code>ruby
-User.order(:name, created_at: :desc)
-User.order(created_at: :desc)
-</code></p>
-
-<h4>后面缩写的意思</h4>
-
-<p>Asc : ascending order 递增<br/>
-Desc : descending order 递减</p>
-
-<h3>Relation#References</h3>
-
-<p><code>ruby
-Post.includes(:comments).
-  where("comments.name = 'foo'").references(:comments)
-</code>
-上例中，<code>.include</code>使返回值包含了与 Post 相关联的 comments，
-在一下情况则无需使用<code>references</code>
-```ruby
-Post.includes(:comments).where(comments: { name: &lsquo;foo&rsquo; })
-Post.includes(:comments).where(&lsquo;comments.name&rsquo; => &lsquo;foo&rsquo;) #hash-based conditions</p>
-
-<p>Post.includes(:comments).order(&lsquo;comments.name&rsquo;) #no conditions
-```</p>
-
-<h3>ActiveModel::Model</h3>
-
-<p><code>ruby
-class SupportTicket
-  include ActiveModel::Conversion
-  include ActiveModel::Validations
-  extend ActiveModel::Naming
-  attr_accessor :title, :description
-  validates_presence_of :title
-  validates_presence_of :description
-end
-</code>
-可以简化为：
-<code>ruby
-class SupportTicket
-  include ActiveModel::Model
-  attr_accessor :title, :description
-  validates_presence_of :title
-  validates_presence_of :description
-end
-</code></p>
+    <content type="html"><![CDATA[
 ]]></content>
   </entry>
   
@@ -194,6 +94,110 @@ def foo
 
 <p><code>ruby
 @tweets = Tweet.all # returns an ActiveRecord::Relation
+</code></p>
+
+<h2>第二部分</h2>
+
+<h3>Scopes</h3>
+
+<p>```ruby
+scope :sold, &ndash;>{ where(state: &lsquo;sold&rsquo;) } #scopes should take a proc object</p>
+
+<p>default_scope { where(state: &lsquo;available&rsquo;) }
+default_scope &ndash;>{ where(state: &lsquo;available&rsquo;) } #defaults scopes should take proc object or a block￼￼
+```</p>
+
+<h3>Eager-Loaded Scopes</h3>
+
+<p><code>ruby
+scope :recent, -&gt;{ where(published_at: 2.weeks.ago) }
+scope :recent_red, -&gt;{ recent.where(color: 'red') }
+</code></p>
+
+<h3>Relation#None</h3>
+
+<p><code>.none</code>可以返回一个空的 ActiveRecord::Relation，避免在使用空的<code>array</code>时出现错误
+<code>ruby
+case role
+when "Reviewer"
+  Post.published
+when "Bad User"
+  Post.none
+end
+</code></p>
+
+<h3>Relation#Not</h3>
+
+<p>在使用<code>where</code>寻找类似<code>user != ?</code>的不等于时如果参数是<code>nil</code>的话会报 SQL 错误，使用<code>.where.not</code>则会自动判别参数是否为空，且在非空时才执行SQL语句
+<code>ruby
+Post.where.not(author: author)
+</code></p>
+
+<h3>Relation#Order</h3>
+
+<p>在 Rails 4 中如果<code>default_scope</code>已经有了<code>order()</code>后，再执行<code>.order</code>时这两者的先后顺序与 3 相反， Rails 4 会将<code>default_scope</code>中的放在后面：
+```ruby
+class User &lt; ActiveRecord::Base</p>
+
+<pre><code>default_scope { order(:name) }
+</code></pre>
+
+<p>end</p>
+
+<p>User.order(&ldquo;created_at DESC&rdquo;)</p>
+
+<p>SELECT * FROM users ORDER BY name asc, created_at desc # Rails 3
+SELECT * FROM users ORDER BY created_at desc, name asc # Rails 4
+```</p>
+
+<h4>手动排序</h4>
+
+<p>Rails 4 可以使用 Hash 来排序
+<code>ruby
+User.order(:name, created_at: :desc)
+User.order(created_at: :desc)
+</code></p>
+
+<h4>后面缩写的意思</h4>
+
+<p>Asc : ascending order 递增<br/>
+Desc : descending order 递减</p>
+
+<h3>Relation#References</h3>
+
+<p><code>ruby
+Post.includes(:comments).
+  where("comments.name = 'foo'").references(:comments)
+</code>
+上例中，<code>.include</code>使返回值包含了与 Post 相关联的 comments，
+在一下情况则无需使用<code>references</code>
+```ruby
+Post.includes(:comments).where(comments: { name: &lsquo;foo&rsquo; })
+Post.includes(:comments).where(&lsquo;comments.name&rsquo; => &lsquo;foo&rsquo;) #hash-based conditions</p>
+
+<p>Post.includes(:comments).order(&lsquo;comments.name&rsquo;) #no conditions
+```</p>
+
+<h3>ActiveModel::Model</h3>
+
+<p><code>ruby
+class SupportTicket
+  include ActiveModel::Conversion
+  include ActiveModel::Validations
+  extend ActiveModel::Naming
+  attr_accessor :title, :description
+  validates_presence_of :title
+  validates_presence_of :description
+end
+</code>
+可以简化为：
+<code>ruby
+class SupportTicket
+  include ActiveModel::Model
+  attr_accessor :title, :description
+  validates_presence_of :title
+  validates_presence_of :description
+end
 </code></p>
 ]]></content>
   </entry>
