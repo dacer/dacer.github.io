@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Code School | Dacer Blog]]></title>
   <link href="http://dacer.github.io/blog/categories/code-school/atom.xml" rel="self"/>
   <link href="http://dacer.github.io/"/>
-  <updated>2014-02-15T16:16:57+08:00</updated>
+  <updated>2014-02-15T16:18:25+08:00</updated>
   <id>http://dacer.github.io/</id>
   <author>
     <name><![CDATA[Dacer]]></name>
@@ -81,6 +81,8 @@ end</p>
 <p>concern :sociable， Sociable</p>
 
 <h1>&hellip;</h1>
+
+<p>```</p>
 
 <h3>Thread-Safety</h3>
 
