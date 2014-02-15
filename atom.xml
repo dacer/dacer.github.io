@@ -4,7 +4,7 @@
   <title><![CDATA[Dacer Blog]]></title>
   <link href="http://dacer.github.io/atom.xml" rel="self"/>
   <link href="http://dacer.github.io/"/>
-  <updated>2014-02-14T16:34:54+08:00</updated>
+  <updated>2014-02-15T16:07:53+08:00</updated>
   <id>http://dacer.github.io/</id>
   <author>
     <name><![CDATA[Dacer]]></name>
@@ -12,6 +12,116 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Code School笔记 - Zombie Outlaws level 2]]></title>
+    <link href="http://dacer.github.io/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-2/"/>
+    <updated>2014-02-15T15:10:57+08:00</updated>
+    <id>http://dacer.github.io/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-2</id>
+    <content type="html"><![CDATA[
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Code School笔记 - Zombie Outlaws level 1]]></title>
+    <link href="http://dacer.github.io/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-1/"/>
+    <updated>2014-02-15T15:10:57+08:00</updated>
+    <id>http://dacer.github.io/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-1</id>
+    <content type="html"><![CDATA[<h2>Match Routes</h2>
+
+<p>有两种方式</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>post '/somewhere', to: 'controller#action'
+</span><span class='line'>match '/somewhere', to: 'controller#action', via: :post
+</span><span class='line'>match '/somewhere', to: 'controller#action', via: :all</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Concern</h2>
+
+<p>用来简化route</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>concern :sociable do
+</span><span class='line'>  resources :comments
+</span><span class='line'>  resources :tags
+</span><span class='line'>end
+</span><span class='line'>
+</span><span class='line'>resources :posts, concerns: :sociable
+</span><span class='line'>resources :items, concerns: :sociable</span></code></pre></td></tr></table></div></figure>
+
+
+<p>可以加上选项</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>concern :sociable do |options|
+</span><span class='line'>  resources :comments, options
+</span><span class='line'>  resources :tags, options
+</span><span class='line'>end
+</span><span class='line'>
+</span><span class='line'>resources :msgs, concerns: :sociable
+</span><span class='line'>resources :posts, concerns: :sociable
+</span><span class='line'>resources :items do
+</span><span class='line'>  concerns: :sociable, only: :create
+</span><span class='line'>end</span></code></pre></td></tr></table></div></figure>
+
+
+<p>可以单独封装起来</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1">#app/concerns/sociable.rb</span>
+</span><span class='line'><span class="k">class</span> <span class="nc">Sociable</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">call</span><span class="p">(</span><span class="n">mapper</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">mapper</span><span class="o">.</span><span class="n">resources</span> <span class="ss">:comments</span><span class="p">,</span> <span class="n">options</span>
+</span><span class='line'>    <span class="n">mapper</span><span class="o">.</span><span class="n">resources</span> <span class="ss">:tags</span><span class="p">,</span> <span class="n">options</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">#routes.rb</span>
+</span><span class='line'><span class="n">concern</span> <span class="ss">:sociable</span><span class="err">，</span> <span class="no">Sociable</span>
+</span><span class='line'><span class="c1">#...</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Code School笔记 - Ruby Bits 2 Level 5 & 6]]></title>
+    <link href="http://dacer.github.io/blog/2014/02/14/code-schoolbi-ji-ruby-bits-2-level-5/"/>
+    <updated>2014-02-14T15:40:25+08:00</updated>
+    <id>http://dacer.github.io/blog/2014/02/14/code-schoolbi-ji-ruby-bits-2-level-5</id>
+    <content type="html"><![CDATA[<h2>DSL</h2>
+
+<p>yield</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Code School笔记 - Ruby Bits 2 Level 4]]></title>
@@ -954,69 +1064,6 @@ ps:第一个的那个说到我心坎里了啊！我之前一直想表述出这�
 <p>这个问题中不断的moveTo，lineTo后的path用setStyle(Paint.Style.FILL)的paint是画不了一个被填充的三角的，会直接无法显示，又找了大半天的解决方法才发现这个问题的第二个就是解决方法。。</p>
 
 <p>那就是moveTo之后就一直lineTo就可以了。。。。。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[李先生，非常的感谢您]]></title>
-    <link href="http://dacer.github.io/blog/2013/10/21/e69d8ee58588e7949fefbc8ce99d9ee5b8b8e79a84e6849fe8b0a2e682a8/"/>
-    <updated>2013-10-21T12:00:30+08:00</updated>
-    <id>http://dacer.github.io/blog/2013/10/21/e69d8ee58588e7949fefbc8ce99d9ee5b8b8e79a84e6849fe8b0a2e682a8</id>
-    <content type="html"><![CDATA[<p><img src="http://dacer.github.io/images/post/screenshot-2013-10-21-12-48-321.png" alt="Screenshot-2013-10-21-12.48.32" /></p>
-
-<p>这是我做这个软件以来收到的第一笔Donation。</p>
-
-<p>其实我之前是完全不相信，有人在用着免费软件的时候能想着给作者一些支持，特别是我这个并不优异的软件。</p>
-
-<p>今天开始永久删去极简番茄的广告条。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[我果然还是个风险厌恶型的人]]></title>
-    <link href="http://dacer.github.io/blog/2013/10/20/e68891e69e9ce784b6e8bf98e698afe4b8aae9a38ee999a9e58e8ce681b6e59e8be79a84e4baba/"/>
-    <updated>2013-10-20T23:08:44+08:00</updated>
-    <id>http://dacer.github.io/blog/2013/10/20/e68891e69e9ce784b6e8bf98e698afe4b8aae9a38ee999a9e58e8ce681b6e59e8be79a84e4baba</id>
-    <content type="html"><![CDATA[<p>经济的专业读了这么久能留在我脑子里的经济学的名词还真没几个，风险厌恶型算是一个。</p>
-
-<p>依我的非常浅薄的理解来解释一下它：就是在经济活动中会非常倾向于做出风险较小的那一面行为的类型。</p>
-
-<p>最近找到了个remote的工作是支付的bitcoin为每周的工资，每个周日我拿到工资后在当天就会将其卖出，即使bitcoin在不断的上涨，下图为卖出的历史纪录，最上方的为今天的情况，即比上周上涨了约200元。</p>
-
-<p><a href="http://dacer.github.io/images/post/screenshot-2013-10-20-23-59-341.png">Screenshot-2013-10-20-23.59.34</a></p>
-
-<p>看到这个记录有人可能会想，如果把第一周的bitcoin攒到现在来卖的话，不就凭空多出了近600多元吗？</p>
-
-<p><strong>但我是个风险厌恶型</strong></p>
-
-<p>好吧以上都是废话。</p>
-
-<p>顺便一说最近blog怎么都不怎么更新了呢？</p>
-
-<p>原因不是我变懒了也不是这个bolg的实际访问量寥寥无几（这倒是事实）</p>
-
-<p>觉得把工作中的东西拿出来分享略有些不妥，好吧其实是在忙这个工作就变懒了(╯‵□′)╯︵┻━┻</p>
-
-<p>以后有时间的话把一个很有意思的actionbar进度条拿出来开源成library也不错的感觉</p>
-
-<p>好吧这一整篇都是废话</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[一定要注意身体啊！！！！]]></title>
-    <link href="http://dacer.github.io/blog/2013/10/06/e4b880e5ae9ae8a681e6b3a8e6848fe8baabe4bd93e5958aefbc81efbc81efbc81efbc81/"/>
-    <updated>2013-10-06T15:04:55+08:00</updated>
-    <id>http://dacer.github.io/blog/2013/10/06/e4b880e5ae9ae8a681e6b3a8e6848fe8baabe4bd93e5958aefbc81efbc81efbc81efbc81</id>
-    <content type="html"><![CDATA[<p>几个月前的样子吧手腕剧痛，尤其是抓着鼠标的右手，之后换了mba又注意休息手腕之后好了很多.</p>
-
-<p>不过最近又发现后颈在每天起床之后都巨酸痛，开始来以为是破枕头的问题，刚准备攒半个月的工资买个tempur的枕头，结果发现似乎和使用电脑的坐姿有很大关系，我用笔记本都是放在桌上需要低着头用的，所以还是把钱剩下来调整坐姿试试看吧.</p>
-
-<p>一定要注意好身体啊！！我在多大就那么多毛病了啊π_π</p>
-
-<p>顺便推荐一个教正确坐姿的视频</p>
-
-<p><a href="http://www.tudou.com/programs/view/I-Dap66v2cs/?resourceId=0_06_02_99?fr=2#fullscreen">http://www.tudou.com/programs/view/I-Dap66v2cs/?resourceId=0_06_02_99?fr=2#fullscreen</a></p>
 ]]></content>
   </entry>
   

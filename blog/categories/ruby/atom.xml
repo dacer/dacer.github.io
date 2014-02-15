@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ruby | Dacer Blog]]></title>
   <link href="http://dacer.github.io/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://dacer.github.io/"/>
-  <updated>2014-02-14T16:34:54+08:00</updated>
+  <updated>2014-02-15T16:07:53+08:00</updated>
   <id>http://dacer.github.io/</id>
   <author>
     <name><![CDATA[Dacer]]></name>
@@ -12,6 +12,17 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Code School笔记 - Ruby Bits 2 Level 5 & 6]]></title>
+    <link href="http://dacer.github.io/blog/2014/02/14/code-schoolbi-ji-ruby-bits-2-level-5/"/>
+    <updated>2014-02-14T15:40:25+08:00</updated>
+    <id>http://dacer.github.io/blog/2014/02/14/code-schoolbi-ji-ruby-bits-2-level-5</id>
+    <content type="html"><![CDATA[<h2>DSL</h2>
+
+<p>yield</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Code School笔记 - Ruby Bits 2 Level 4]]></title>
@@ -462,32 +473,6 @@ ary.each(&amp;action)
 </code>
 in `each': wrong number of arguments (1 for 0) (ArgumentError)
 ```</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[开新坑了，基于sinatra的中韩汇率查看网站]]></title>
-    <link href="http://dacer.github.io/blog/2013/09/29/e5bc80e696b0e59d91e4ba86efbc8ce59fbae4ba8esinatrae79a84e4b8ade99fa9e6b187e78e87e69fa5e79c8be7bd91e7ab99/"/>
-    <updated>2013-09-29T23:15:16+08:00</updated>
-    <id>http://dacer.github.io/blog/2013/09/29/e5bc80e696b0e59d91e4ba86efbc8ce59fbae4ba8esinatrae79a84e4b8ade99fa9e6b187e78e87e69fa5e79c8be7bd91e7ab99</id>
-    <content type="html"><![CDATA[<p><a href="http://huilv-idacer.rhcloud.com/">&mdash;-点击查看&mdash;&ndash;</a></p>
-
-<p>大概就是sinatra做后端进行post等行为在银联官网上读取银联汇率，前端直接显示结果。</p>
-
-<p>部署在了openshift上（就剩1个免费份额了好捉急！）</p>
-
-<p>显示效果嘛很明显是抄袭google now。。果然我的设计是硬伤。。</p>
-
-<p>当然这个是开源的，不过没啥意义就是了。。</p>
-
-<p>github: <a href="https://github.com/dacer/RMB2WON">https://github.com/dacer/RMB2WON</a></p>
-
-<p>todos:
-• <del>汇率计算器 触摸和输入型</del></p>
-
-<p>• FAQ</p>
-
-<p>analytic</p>
 ]]></content>
   </entry>
   

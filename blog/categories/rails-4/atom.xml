@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Rails 4 | Dacer Blog]]></title>
+  <link href="http://dacer.github.io/blog/categories/rails-4/atom.xml" rel="self"/>
+  <link href="http://dacer.github.io/"/>
+  <updated>2014-02-15T16:07:53+08:00</updated>
+  <id>http://dacer.github.io/</id>
+  <author>
+    <name><![CDATA[Dacer]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Code School笔记 - Zombie Outlaws level 2]]></title>
+    <link href="http://dacer.github.io/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-2/"/>
+    <updated>2014-02-15T15:10:57+08:00</updated>
+    <id>http://dacer.github.io/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-2</id>
+    <content type="html"><![CDATA[
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Code School笔记 - Zombie Outlaws level 1]]></title>
+    <link href="http://dacer.github.io/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-1/"/>
+    <updated>2014-02-15T15:10:57+08:00</updated>
+    <id>http://dacer.github.io/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-1</id>
+    <content type="html"><![CDATA[<h2>Match Routes</h2>
+
+<p>有两种方式
+<code>
+post '/somewhere', to: 'controller#action'
+match '/somewhere', to: 'controller#action', via: :post
+match '/somewhere', to: 'controller#action', via: :all
+</code></p>
+
+<h2>Concern</h2>
+
+<p>用来简化route
+```
+concern :sociable do
+  resources :comments
+  resources :tags
+end</p>
+
+<p>resources :posts, concerns: :sociable
+resources :items, concerns: :sociable
+<code>
+可以加上选项
+</code>
+concern :sociable do |options|
+  resources :comments, options
+  resources :tags, options
+end</p>
+
+<p>resources :msgs, concerns: :sociable
+resources :posts, concerns: :sociable
+resources :items do
+  concerns: :sociable, only: :create
+end
+<code>
+可以单独封装起来
+</code>ruby</p>
+
+<h1>app/concerns/sociable.rb</h1>
+
+<p>class Sociable</p>
+
+<pre><code>def self.call(mapper, options)
+  mapper.resources :comments, options
+mapper.resources :tags, options
+</code></pre>
+
+<p>  end
+end</p>
+
+<h1>routes.rb</h1>
+
+<p>concern :sociable， Sociable</p>
+
+<h1>&hellip;</h1>
+
+<p>```</p>
+]]></content>
+  </entry>
+  
+</feed>
