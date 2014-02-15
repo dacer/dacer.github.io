@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 随笔 | Dacer Blog]]></title>
   <link href="http://dacer.github.io/blog/categories/sui-bi/atom.xml" rel="self"/>
   <link href="http://dacer.github.io/"/>
-  <updated>2014-02-15T17:31:04+08:00</updated>
+  <updated>2014-02-15T21:22:51+08:00</updated>
   <id>http://dacer.github.io/</id>
   <author>
     <name><![CDATA[Dacer]]></name>
@@ -54,7 +54,7 @@
     <link href="http://dacer.github.io/blog/2013/11/13/e7bb88e4ba8ee58d87e588b04-3e4ba86/"/>
     <updated>2013-11-13T20:15:01+08:00</updated>
     <id>http://dacer.github.io/blog/2013/11/13/e7bb88e4ba8ee58d87e588b04-3e4ba86</id>
-    <content type="html"><![CDATA[<p><img src="/images/post/2013-11-13-12-09-08.png" alt="2013-11-13-12.09.08" /></p>
+    <content type="html"><![CDATA[<p><img src="{{%20root_url%20}}/images/post/2013-11-13-12-09-08.png" alt="2013-11-13-12.09.08" /></p>
 
 <p>我到韩版S3终于也能用上4.3了T_T, 虽然kitkat都出来了。。</p>
 
@@ -69,7 +69,7 @@
     <link href="http://dacer.github.io/blog/2013/10/21/e69d8ee58588e7949fefbc8ce99d9ee5b8b8e79a84e6849fe8b0a2e682a8/"/>
     <updated>2013-10-21T12:00:30+08:00</updated>
     <id>http://dacer.github.io/blog/2013/10/21/e69d8ee58588e7949fefbc8ce99d9ee5b8b8e79a84e6849fe8b0a2e682a8</id>
-    <content type="html"><![CDATA[<p><img src="/images/post/screenshot-2013-10-21-12-48-321.png" alt="Screenshot-2013-10-21-12.48.32" /></p>
+    <content type="html"><![CDATA[<p><img src="{{%20root_url%20}}/images/post/screenshot-2013-10-21-12-48-321.png" alt="Screenshot-2013-10-21-12.48.32" /></p>
 
 <p>这是我做这个软件以来收到的第一笔Donation。</p>
 
@@ -90,7 +90,7 @@
 
 <p>最近找到了个remote的工作是支付的bitcoin为每周的工资，每个周日我拿到工资后在当天就会将其卖出，即使bitcoin在不断的上涨，下图为卖出的历史纪录，最上方的为今天的情况，即比上周上涨了约200元。</p>
 
-<p><a href="/images/post/screenshot-2013-10-20-23-59-341.png">Screenshot-2013-10-20-23.59.34</a></p>
+<p><a href="{{%20root_url%20}}/images/post/screenshot-2013-10-20-23-59-341.png">Screenshot-2013-10-20-23.59.34</a></p>
 
 <p>看到这个记录有人可能会想，如果把第一周的bitcoin攒到现在来卖的话，不就凭空多出了近600多元吗？</p>
 

@@ -7,7 +7,7 @@
 
 <meta name="author" content="Dacer"> 
 
-<meta name="description" content=" 这是我做这个软件以来收到的第一笔Donation。 其实我之前是完全不相信，有人在用着免费软件的时候能想着给作者一些支持，特别是我这个并不优异的软件。 今天开始永久删去极简番茄的广告条。 Oct 21st, 2013 随笔 "> <meta name="keywords" content="">
+<meta name="description" content="花了半天时间研究这个啊！！ http://stackoverflow.com/questions/3501126/how-to-draw-a-filled-triangle-in-android-canvas 这个问题中不断的moveTo，lineTo后的path用setStyle(Paint. &hellip;"> <meta name="keywords" content="">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -91,6 +91,54 @@ $(document).ready(
 </header>
 
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/10/29/e794a8canvase794bbe5a1abe58585e5908ee79a84e4b889e8a792e5bda2/">
+		
+			用canvas画填充后的三角形</a>
+	</h2>
+	<div class="entry-content">
+		<p>花了半天时间研究这个啊！！</p>
+
+<blockquote><p><a href="http://stackoverflow.com/questions/3501126/how-to-draw-a-filled-triangle-in-android-canvas">http://stackoverflow.com/questions/3501126/how-to-draw-a-filled-triangle-in-android-canvas</a></p></blockquote>
+
+<p>这个问题中不断的moveTo，lineTo后的path用setStyle(Paint.Style.FILL)的paint是画不了一个被填充的三角的，会直接无法显示，又找了大半天的解决方法才发现这个问题的第二个就是解决方法。。</p>
+
+<p>那就是moveTo之后就一直lineTo就可以了。。。。。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-29T13:36:15+08:00" pubdate data-updated="true">Oct 29<span>th</span>, 2013</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/android/'>Android</a>
+
+</div>
+
+
+	
+</div></article>
 
 
     <article class="post">
@@ -630,56 +678,6 @@ $(document).ready(
 
 
 <time datetime="2013-09-18T21:39:25+08:00" pubdate data-updated="true">Sep 18<span>th</span>, 2013</time></div>
-	
-
-<div class="tags">
-
-	<a class='category' href='/blog/categories/kai-fa-bi-ji/'>开发笔记</a>
-
-</div>
-
-
-	
-</div></article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2013/09/18/e69e81e7ae80e795aae88c84buge8aeb0e5bd95/">
-		
-			极简番茄BUG记录</a>
-	</h2>
-	<div class="entry-content">
-		<p>硬伤：</p>
-
-<p>切换Google账户BUG：1.正常使用帐号并授权同步2.在网页端撤销授权3.同步后FC</p>
-
-<p>软伤：</p>
-
-<p>切换Google Task同步之后本地task不会重置</p>
-
-<p>极速模式下横屏时开启屏幕会再次被锁屏（因为重新调用了onCreate中的锁屏方法）</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-09-18T15:26:41+08:00" pubdate data-updated="true">Sep 18<span>th</span>, 2013</time></div>
 	
 
 <div class="tags">
