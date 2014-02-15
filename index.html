@@ -194,6 +194,67 @@ $(document).ready(
 <p>Asc : ascending order 递增<br/>
 Desc : descending order 递减</p>
 
+<h3>Relation#References</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Post</span><span class="o">.</span><span class="n">includes</span><span class="p">(</span><span class="ss">:comments</span><span class="p">)</span><span class="o">.</span>
+</span><span class='line'>  <span class="n">where</span><span class="p">(</span><span class="s2">&quot;comments.name = &#39;foo&#39;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">references</span><span class="p">(</span><span class="ss">:comments</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>上例中，<code>.include</code>使返回值包含了与 Post 相关联的 comments，
+在一下情况则无需使用<code>references</code></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Post</span><span class="o">.</span><span class="n">includes</span><span class="p">(</span><span class="ss">:comments</span><span class="p">)</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="ss">comments</span><span class="p">:</span> <span class="p">{</span> <span class="nb">name</span><span class="p">:</span> <span class="s1">&#39;foo&#39;</span> <span class="p">})</span>
+</span><span class='line'><span class="no">Post</span><span class="o">.</span><span class="n">includes</span><span class="p">(</span><span class="ss">:comments</span><span class="p">)</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="s1">&#39;comments.name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;foo&#39;</span><span class="p">)</span> <span class="c1">#hash-based conditions</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">Post</span><span class="o">.</span><span class="n">includes</span><span class="p">(</span><span class="ss">:comments</span><span class="p">)</span><span class="o">.</span><span class="n">order</span><span class="p">(</span><span class="s1">&#39;comments.name&#39;</span><span class="p">)</span> <span class="c1">#no conditions</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>ActiveModel::Model</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">SupportTicket</span>
+</span><span class='line'>  <span class="kp">include</span> <span class="ss">ActiveModel</span><span class="p">:</span><span class="ss">:Conversion</span>
+</span><span class='line'>  <span class="kp">include</span> <span class="ss">ActiveModel</span><span class="p">:</span><span class="ss">:Validations</span>
+</span><span class='line'>  <span class="kp">extend</span> <span class="ss">ActiveModel</span><span class="p">:</span><span class="ss">:Naming</span>
+</span><span class='line'>  <span class="kp">attr_accessor</span> <span class="ss">:title</span><span class="p">,</span> <span class="ss">:description</span>
+</span><span class='line'>  <span class="n">validates_presence_of</span> <span class="ss">:title</span>
+</span><span class='line'>  <span class="n">validates_presence_of</span> <span class="ss">:description</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>可以简化为：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">SupportTicket</span>
+</span><span class='line'>  <span class="kp">include</span> <span class="ss">ActiveModel</span><span class="p">:</span><span class="ss">:Model</span>
+</span><span class='line'>  <span class="kp">attr_accessor</span> <span class="ss">:title</span><span class="p">,</span> <span class="ss">:description</span>
+</span><span class='line'>  <span class="n">validates_presence_of</span> <span class="ss">:title</span>
+</span><span class='line'>  <span class="n">validates_presence_of</span> <span class="ss">:description</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
 		
 		
 	</div>
@@ -212,7 +273,7 @@ Desc : descending order 递减</p>
   
 
 
-<time datetime="2014-02-15T15:10:57+08:00" pubdate data-updated="true">Feb 15<span>th</span>, 2014</time></div>
+<time datetime="2014-02-15T19:10:57+08:00" pubdate data-updated="true">Feb 15<span>th</span>, 2014</time></div>
 	
 
 <div class="tags">

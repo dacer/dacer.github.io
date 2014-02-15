@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Code School | Dacer Blog]]></title>
   <link href="http://dacer.github.io/blog/categories/code-school/atom.xml" rel="self"/>
   <link href="http://dacer.github.io/"/>
-  <updated>2014-02-15T21:22:51+08:00</updated>
+  <updated>2014-02-15T21:30:21+08:00</updated>
   <id>http://dacer.github.io/</id>
   <author>
     <name><![CDATA[Dacer]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Code School笔记 - Zombie Outlaws level 3]]></title>
     <link href="http://dacer.github.io/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-3/"/>
-    <updated>2014-02-15T15:10:57+08:00</updated>
+    <updated>2014-02-15T19:10:57+08:00</updated>
     <id>http://dacer.github.io/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-3</id>
     <content type="html"><![CDATA[<h3>Scopes</h3>
 
@@ -85,7 +85,7 @@ Desc : descending order 递减</p>
 
 <h3>Relation#References</h3>
 
-<p><code>ruby￼
+<p><code>ruby
 Post.includes(:comments).
   where("comments.name = 'foo'").references(:comments)
 </code>
@@ -101,7 +101,7 @@ Post.includes(:comments).where(&lsquo;comments.name&rsquo; => &lsquo;foo&rsquo;)
 <h3>ActiveModel::Model</h3>
 
 <p><code>ruby
-￼class SupportTicket
+class SupportTicket
   include ActiveModel::Conversion
   include ActiveModel::Validations
   extend ActiveModel::Naming
