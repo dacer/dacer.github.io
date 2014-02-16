@@ -25,4 +25,7 @@ padding-bottom: .5em !important;
 article .entry-content blockquote p{
 margin-bottom:0;
 }
+/*duoshuo*/
 .comments{margin-top:123px;}
+#ds-reset a.ds-like-thread-button{background-image: none!important;border:none!important;background-color:transparent!important;}
+#ds-reset .ds-comments-info {display: none!important;}
