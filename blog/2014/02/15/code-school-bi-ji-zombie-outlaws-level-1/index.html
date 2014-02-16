@@ -7,12 +7,11 @@
 
 <meta name="author" content="Dacer"> 
 
-<meta name="description" content="Match Routes 有两种方式 1
+<meta name="description" content="Ruby 1.9.3, ThreadSafety and Routes Match Routes 有两种方式 1
 2
 3
 post '/somewhere', to: 'controller#action'
-match '/somewhere', to: 'controller#action', via: :post
-match '/somewhere', to: ' &hellip;"> <meta name="keywords" content="">
+match '/somewhere', to: 'controller#action', &hellip;"> <meta name="keywords" content="">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -97,7 +96,9 @@ $(document).ready(
 
 	<div id="content" class="inner"><article class="post">
 	<h2 class="title">Code School笔记 - Zombie Outlaws Level 1</h2>
-	<div class="entry-content"><h2>Match Routes</h2>
+	<div class="entry-content"><h2>Ruby 1.9.3, ThreadSafety and Routes</h2>
+
+<h3>Match Routes</h3>
 
 <p>有两种方式</p>
 
@@ -109,7 +110,7 @@ $(document).ready(
 </span><span class='line'>match '/somewhere', to: 'controller#action', via: :all</span></code></pre></td></tr></table></div></figure>
 
 
-<h2>Concern</h2>
+<h3>Concern</h3>
 
 <p>用来简化route</p>
 

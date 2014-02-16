@@ -1,0 +1,236 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Code School笔记 - Zombie Outlaws level 5  | Dacer Blog</title>
+
+<meta name="author" content="Dacer"> 
+
+<meta name="description" content="Test Your Mettle Rake Tasks 1
+2
+3
+4
+rake test:models
+rake test:controllers
+rake test:helpers
+rake test:mailers 需回顾： 1
+ruby -Itest test/models/ &hellip;"> <meta name="keywords" content="">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="Dacer Blog" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.ico" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script src="/javascripts/jquery.min.js"></script>
+	<script type="text/javascript" src="/javascripts/jquery.fancybox.pack.js"></script>
+
+<script language="Javascript" type="text/javascript">
+$(document).ready(
+  function() {
+    (function($) {
+      $(".fancybox[data-content-id]").each(function() {
+        this.href = $(this).data('content-id');
+      });
+      $(".fancybox").fancybox({
+        beforeLoad: function() {
+          var el, 
+              id = $(this.element).data('title-id');
+
+          if (id) {
+            el = $('#' + id);
+
+            if (el.length) {
+              this.title = el.html();
+            }
+          }
+          if ($(this).data('content')) {
+            this.content = $(this).data('content');
+          }
+        },
+        helpers: {
+          title: {
+            type: 'inside'
+          }
+        }
+      });
+    })(jQuery);
+  }
+);
+</script>
+
+	
+</head>
+
+
+<body>
+	<header id="header" class="inner"><h1><a href="/">Dacer Blog</a></h1>
+<h4>Ruby & Android</h4>
+<nav id="main-nav"><ul>
+	<li><a href="/">Blog</a></li>
+	<li><a href="/about">About</a></li>
+	<li><a href="/archives">Archive</a></li>
+</ul>
+</nav>
+<nav id="mobile-nav">
+	<div class="alignleft menu">
+		<a class="button">Menu</a>
+		<div class="container"><ul>
+	<li><a href="/">Blog</a></li>
+	<li><a href="/about">About</a></li>
+	<li><a href="/archives">Archive</a></li>
+</ul>
+</div>
+	</div>
+	<div class="alignright search">
+		<a class="button"></a>
+		<div class="container">
+			<form action="http://google.com/search" method="get">
+				<input type="text" name="q" results="0">
+				<input type="hidden" name="q" value="site:dacer.github.io">
+			</form>
+		</div>
+	</div>
+</nav>
+
+
+</header>
+
+	<div id="content" class="inner"><article class="post">
+	<h2 class="title">Code School笔记 - Zombie Outlaws Level 5</h2>
+	<div class="entry-content"><h2>Test Your Mettle</h2>
+
+<h3>Rake Tasks</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>rake test:models
+</span><span class='line'>rake test:controllers
+</span><span class='line'>rake test:helpers
+</span><span class='line'>rake test:mailers</span></code></pre></td></tr></table></div></figure>
+
+
+<h1>需回顾：</h1>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>ruby -Itest test/models/location_test.rb  #raises pending migration error</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Re-Adding Performance Testing</h3>
+
+<p>在 Rails 4 中需要添加 gem 实现</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>gem 'rails-perftest'
+</span><span class='line'>gem 'ruby-prof'</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Skip</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">ItemTest</span> <span class="o">&lt;</span> <span class="ss">ActiveSupport</span><span class="p">:</span><span class="ss">:TestCase</span>
+</span><span class='line'>  <span class="nb">test</span> <span class="s2">&quot;can shorten its name&quot;</span> <span class="k">do</span>
+</span><span class='line'>    <span class="n">item</span> <span class="o">=</span> <span class="no">Item</span><span class="o">.</span><span class="n">new</span>
+</span><span class='line'>    <span class="n">item</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Super-duper long name&quot;</span>
+</span><span class='line'>    <span class="n">assert_equal</span> <span class="s2">&quot;Super-duper&quot;</span><span class="p">,</span> <span class="n">item</span><span class="o">.</span><span class="n">short_name</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>  <span class="nb">test</span> <span class="s2">&quot;doesn&#39;t shorten short names&quot;</span> <span class="k">do</span>
+</span><span class='line'>      <span class="n">skip</span> <span class="c1">#Use &quot;skip&quot; method if you don&#39;t want to run a test right now</span>
+</span><span class='line'>    <span class="n">item</span> <span class="o">=</span> <span class="no">Item</span><span class="o">.</span><span class="n">new</span>
+</span><span class='line'>    <span class="n">item</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Name&quot;</span>
+</span><span class='line'>    <span class="n">assert_equal</span> <span class="s2">&quot;Name&quot;</span><span class="p">,</span> <span class="n">item</span><span class="o">.</span><span class="n">short_name</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Minitest Test_Opts</h3>
+
+<p>get passed as test parameters
+Verbose mode shows run time and skip status for each test</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">rake</span> <span class="nb">test</span><span class="ss">:models</span> <span class="no">TEST_OPTS</span><span class="o">=</span><span class="s2">&quot;--verbose&quot;</span>
+</span><span class='line'><span class="no">Run</span> <span class="ss">options</span><span class="p">:</span> <span class="o">--</span><span class="n">verbose</span> <span class="o">--</span><span class="n">seed</span> <span class="mi">57945</span>
+</span><span class='line'><span class="c1"># Running tests:</span>
+</span><span class='line'><span class="no">ItemTest</span><span class="c1">#test_can_shorten_its_name = 0.07 s = .</span>
+</span><span class='line'><span class="no">ItemTest</span><span class="c1">#test_doesn&#39;t_shorten_short_names = 0.00 s = S</span>
+</span><span class='line'><span class="no">Finished</span> <span class="n">tests</span> <span class="k">in</span> <span class="mi">0</span><span class="o">.</span><span class="mo">076</span><span class="mi">938</span><span class="n">s</span><span class="p">,</span> <span class="mi">25</span><span class="o">.</span><span class="mi">9950</span> <span class="n">tests</span><span class="o">/</span><span class="n">s</span><span class="p">,</span> <span class="mi">12</span><span class="o">.</span><span class="mi">9975</span>
+</span><span class='line'><span class="n">assertions</span><span class="o">/</span><span class="n">s</span><span class="o">.</span>
+</span><span class='line'><span class="mi">2</span> <span class="n">tests</span><span class="p">,</span> <span class="mi">1</span> <span class="n">assertions</span><span class="p">,</span> <span class="mi">0</span> <span class="n">failures</span><span class="p">,</span> <span class="mi">0</span> <span class="n">errors</span><span class="p">,</span> <span class="mi">1</span> <span class="n">skips</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-02-15T19:10:57+08:00" pubdate data-updated="true">Feb 15<span>th</span>, 2014</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/code-school/'>Code School</a>, <a class='category' href='/blog/categories/rails-4/'>Rails 4</a>
+
+</div>
+
+
+	
+</div></article></div>
+	<footer id="footer" class="inner">Copyright &copy; 2014
+
+    Dacer
+
+<br>
+Powered by Octopress.
+</footer>
+	<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+
+
+
+
+</body>
+</html>

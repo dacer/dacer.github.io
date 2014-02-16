@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Code School | Dacer Blog]]></title>
   <link href="http://dacer.github.io/blog/categories/code-school/atom.xml" rel="self"/>
   <link href="http://dacer.github.io/"/>
-  <updated>2014-02-16T12:01:07+08:00</updated>
+  <updated>2014-02-16T17:33:48+08:00</updated>
   <id>http://dacer.github.io/</id>
   <author>
     <name><![CDATA[Dacer]]></name>
@@ -14,11 +14,176 @@
 
   
   <entry>
+    <title type="html"><![CDATA[Code School笔记 - jQuery Part2 level 1]]></title>
+    <link href="http://dacer.github.io/blog/2014/02/16/code-school-bi-ji-jquery-part2-level-1/"/>
+    <updated>2014-02-16T19:10:57+08:00</updated>
+    <id>http://dacer.github.io/blog/2014/02/16/code-school-bi-ji-jquery-part2-level-1</id>
+    <content type="html"><![CDATA[<h3>Ajax Basics</h3>
+
+<p>使用Ajax时需要在网站后加上<code>?dc=123</code>之类的参数时可以用<code>data</code>
+```javascript
+$.ajax(&lsquo;confirmation.html&rsquo;, {
+   success: function(response) {</p>
+
+<pre><code> $('.ticket').html(response).slideDown();
+</code></pre>
+
+<p>   },
+   data: { &ldquo;confNum&rdquo;: 1234 }
+   }
+});
+//confirmation.html?confNum=1234
+```</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Code School笔记 - Zombie Outlaws level 5]]></title>
+    <link href="http://dacer.github.io/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-5/"/>
+    <updated>2014-02-15T19:10:57+08:00</updated>
+    <id>http://dacer.github.io/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-5</id>
+    <content type="html"><![CDATA[<h2>Test Your Mettle</h2>
+
+<h3>Rake Tasks</h3>
+
+<p><code>
+rake test:models
+rake test:controllers
+rake test:helpers
+rake test:mailers
+</code></p>
+
+<h1>需回顾：</h1>
+
+<p><code>
+ruby -Itest test/models/location_test.rb  #raises pending migration error
+</code></p>
+
+<h3>Re-Adding Performance Testing</h3>
+
+<p>在 Rails 4 中需要添加 gem 实现
+<code>
+gem 'rails-perftest'
+gem 'ruby-prof'
+</code></p>
+
+<h3>Skip</h3>
+
+<p>```ruby
+class ItemTest &lt; ActiveSupport::TestCase
+  test &ldquo;can shorten its name&rdquo; do</p>
+
+<pre><code>item = Item.new
+item.name = "Super-duper long name"
+assert_equal "Super-duper", item.short_name
+</code></pre>
+
+<p>  end
+  test &ldquo;doesn&rsquo;t shorten short names&rdquo; do</p>
+
+<pre><code>    skip #Use "skip" method if you don't want to run a test right now
+item = Item.new
+item.name = "Name"
+assert_equal "Name", item.short_name
+end 
+</code></pre>
+
+<p>end
+```</p>
+
+<h3>Minitest Test_Opts</h3>
+
+<p>get passed as test parameters
+Verbose mode shows run time and skip status for each test
+```
+rake test:models TEST_OPTS=&ldquo;&mdash;verbose&rdquo;
+Run options: &mdash;verbose &mdash;seed 57945</p>
+
+<h1>Running tests:</h1>
+
+<p>ItemTest#test_can_shorten_its_name = 0.07 s = .
+ItemTest#test_doesn&rsquo;t_shorten_short_names = 0.00 s = S
+Finished tests in 0.076938s, 25.9950 tests/s, 12.9975
+assertions/s.
+2 tests, 1 assertions, 0 failures, 0 errors, 1 skips
+```</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Code School笔记 - Zombie Outlaws level 4]]></title>
+    <link href="http://dacer.github.io/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-4/"/>
+    <updated>2014-02-15T19:10:57+08:00</updated>
+    <id>http://dacer.github.io/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-4</id>
+    <content type="html"><![CDATA[<h2>Views &amp; Vistas</h2>
+
+<h3>Collection Form Helpers</h3>
+
+<p>Rail 4 提供了更多的helpers
+```ruby
+class Owner &lt; ActiveRecord::Base
+   has_many :items
+end
+ class Item &lt; ActiveRecord::Base
+   belongs_to :owner
+end</p>
+
+<p>collection_select(:item, :owner_id, Owner.all, :id, :name)
+collection_radio_buttons(:item, :owner_id, Owner.all, :id, :name)
+collection_check_boxes(:item, :owner_id, Owner.all, :id, :name)
+```</p>
+
+<h3>Date Field</h3>
+
+<p>Rails 4 提供了新的 <code>date_field</code>
+<code>ruby
+&lt;%= f.date_field :return_date %&gt;
+</code></p>
+
+<h3>Response Type From Controller</h3>
+
+<p>默认返回json的格式
+```ruby
+def index
+   @owners = Owner.all
+   respond_to do |format|</p>
+
+<pre><code> format.html
+ format.json { render json: @owners }
+</code></pre>
+
+<p>   end
+end
+<code>
+自定义json返回的格式可以用`jbuilder`或者Rails 4 中新的：
+</code>ruby</p>
+
+<h1>views/owners/index.json.ruby</h1>
+
+<p>owners_hashes = @owners.map do |owner|
+   { name: owner.name, url: owner_url(owner) }
+end
+owners_hashes.to_json</p>
+
+<h1>Output</h1>
+
+<p>[
+  {&ldquo;name&rdquo;:&ldquo;Slow-draw&rdquo;,  &ldquo;url&rdquo;:&ldquo;<a href="http://localhost:3000/owners/1">http://localhost:3000/owners/1</a>&rdquo;},
+  {&ldquo;name&rdquo;:&ldquo;Sheriff&rdquo;,    &ldquo;url&rdquo;:&ldquo;<a href="http://localhost:3000/owners/2">http://localhost:3000/owners/2</a>&rdquo;},
+  {&ldquo;name&rdquo;:&ldquo;Walking Ned&rdquo;,&ldquo;url&rdquo;:&ldquo;<a href="http://localhost:3000/owners/3">http://localhost:3000/owners/3</a>&rdquo;}
+]
+```</p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Code School笔记 - Zombie Outlaws level 3]]></title>
     <link href="http://dacer.github.io/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-3/"/>
     <updated>2014-02-15T19:10:57+08:00</updated>
     <id>http://dacer.github.io/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-3</id>
-    <content type="html"><![CDATA[<h3>Strong Parameters</h3>
+    <content type="html"><![CDATA[<h2>Strong Parameters and Remote Forms &amp; Filters, Session, Custom Flash Types</h2>
+
+<h3>Strong Parameters</h3>
 
 <p>在rails 4的controller中必须指定可接受的params
 ```ruby</p>
@@ -102,7 +267,9 @@ end</p>
     <link href="http://dacer.github.io/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-2/"/>
     <updated>2014-02-15T15:10:57+08:00</updated>
     <id>http://dacer.github.io/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-2</id>
-    <content type="html"><![CDATA[<h3>Finders</h3>
+    <content type="html"><![CDATA[<h2>ActiveRecord &amp; ActiveModel</h2>
+
+<h3>Finders</h3>
 
 <p>米什么好说的
 <code>ruby
@@ -274,223 +441,6 @@ class SupportTicket
   validates_presence_of :description
 end
 </code></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Code School笔记 - Zombie Outlaws level 1]]></title>
-    <link href="http://dacer.github.io/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-1/"/>
-    <updated>2014-02-15T15:10:57+08:00</updated>
-    <id>http://dacer.github.io/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-1</id>
-    <content type="html"><![CDATA[<h2>Match Routes</h2>
-
-<p>有两种方式
-<code>
-post '/somewhere', to: 'controller#action'
-match '/somewhere', to: 'controller#action', via: :post
-match '/somewhere', to: 'controller#action', via: :all
-</code></p>
-
-<h2>Concern</h2>
-
-<p>用来简化route
-```
-concern :sociable do
-  resources :comments
-  resources :tags
-end</p>
-
-<p>resources :posts, concerns: :sociable
-resources :items, concerns: :sociable
-<code>
-可以加上选项
-</code>
-concern :sociable do |options|
-  resources :comments, options
-  resources :tags, options
-end</p>
-
-<p>resources :msgs, concerns: :sociable
-resources :posts, concerns: :sociable
-resources :items do
-  concerns :sociable, only: :create
-end
-<code>
-可以单独封装起来
-</code>ruby</p>
-
-<h1>app/concerns/sociable.rb</h1>
-
-<p>class Sociable</p>
-
-<pre><code>def self.call(mapper, options)
-  mapper.resources :comments, options
-mapper.resources :tags, options
-</code></pre>
-
-<p>  end
-end</p>
-
-<h1>routes.rb</h1>
-
-<p>concern :sociable， Sociable</p>
-
-<h1>&hellip;</h1>
-
-<p>```</p>
-
-<h3>Thread-Safety</h3>
-
-<p>In Rails 4
-<code>ruby
-MyApp::Application.configure do
-  config.cache_classes = true
-  config.eager_load = true
-end
-</code></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Code School笔记 - Ruby Bits 2 Level 5 & 6]]></title>
-    <link href="http://dacer.github.io/blog/2014/02/14/code-schoolbi-ji-ruby-bits-2-level-5/"/>
-    <updated>2014-02-14T15:40:25+08:00</updated>
-    <id>http://dacer.github.io/blog/2014/02/14/code-schoolbi-ji-ruby-bits-2-level-5</id>
-    <content type="html"><![CDATA[<h2>DSL</h2>
-
-<p>yield</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Code School笔记 - Ruby Bits 2 Level 4]]></title>
-    <link href="http://dacer.github.io/blog/2014/02/14/code-schoolbi-ji-ruby-bits-2-level-4/"/>
-    <updated>2014-02-14T15:40:25+08:00</updated>
-    <id>http://dacer.github.io/blog/2014/02/14/code-schoolbi-ji-ruby-bits-2-level-4</id>
-    <content type="html"><![CDATA[<h2>Handling Missing Methods</h2>
-
-<p>在class中可以定义一个<code>method_missing</code>方法，当调用这个class中不存在的方法时会变为调用此方法。
-```ruby
-class Tweet
-  def method_missing(method_name, *args)</p>
-
-<pre><code>puts "You tried to call #{method_name} with these arguments: #{args}"
-#super 可以调用ruby default方法， raises a NoMehodError.
-</code></pre>
-
-<p>  end
-end
-Tweet.new.submit(1, &ldquo;Here&rsquo;s a tweet.&rdquo;) # You tried to call submit with arguments: [1, &ldquo;Here&rsquo;s a tweet.&rdquo;]
-<code>
-利用`method_missing`可以简化很多代码，下例中就是把这个方法所在的class中的方法链接到`@user`的同名方法中了
-</code>ruby
-def method_missing(method_name, *args)</p>
-
-<pre><code>@user.send(method_name, *args)
-</code></pre>
-
-<p>end
-<code>
-把上面的代码改进一下可以限定方法名
-</code>ruby
-class Tweet
-  DELEGATED_METHODS = [:username, :avatar]
-  def initialize(user)</p>
-
-<pre><code>@user = user
-end
-</code></pre>
-
-<p>  def method_missing(method_name, *args)</p>
-
-<pre><code>if DELEGATED_METHODS.include?(method_name)
-  @user.send(method_name, *args)
-else
-        super 
-    end
-end 
-</code></pre>
-
-<p>end
-<code>
-Ruby也自带了一个`delegate`可以很方便的实现上述代码
-</code>ruby
-require &lsquo;delegate&rsquo;
-class Tweet &lt; SimpleDelegator
-  def initialize(user)</p>
-
-<pre><code>super(user)
-</code></pre>
-
-<p>  end
-end
-```</p>
-
-<h3>一个跟本节不相关的知识点</h3>
-
-<p>正则表达式提取方法：
-```ruby
-match = name.to_s.match(/^hash_(/w+)/)
-match[1] if match #返回符合的首个子字符串，如果存在的话</p>
-
-<pre><code>              #0为返回整个
-</code></pre>
-
-<p>```</p>
-
-<h3>Respond_to?</h3>
-
-<p>Tells us if an object responds to a given method<br/>
-似乎可以翻译成回应一个object是否有所给的方法？
-<code>ruby
-tweet = Tweet.new
-tweet.respond_to?(:to_s) # =&gt; true
-</code>
-需要注意的是，用<code>method_missing</code>实现的方法在<code>respond_to?</code>下会返回false的，所以要做如下修改：
-```ruby
-def respond_to?(method_name)</p>
-
-<pre><code>method_name =~ /^hash_\w+/ || super # ||的作用是在||之前不为nil的时候返回之前的，为nil的时候返回后者
-#LIST.include?(method_name.to_s) || super #或者是从一个array中判断
-</code></pre>
-
-<p>end
-<code>
-但是这又带来了一个问题，`.method`方法仍是error
-</code>ruby
-tweet.method(:hash_ruby)
-<code>
-在1.9.3以上版本中可以这样解决：变为`respond_to_missing?`，这样`method`就能正确返回一个 method object
-</code>ruby
-def respond_to_missing?(method_name)</p>
-
-<pre><code>method_name =~ /^hash_\w+/ || super
-</code></pre>
-
-<p>end
-```</p>
-
-<h3>在 call 一个未定义方法时定义它</h3>
-
-<p>其实我还不太理解这种用法的意义在哪儿。。
-```ruby
-def method_missing(method_name, *args)</p>
-
-<pre><code>match = method_name.to_s.match(/^hash_(\w+)/)
-if match
-    self.class.class_eval do
-        define_method(method_name) do
-        @text &lt;&lt; " #" + match[1]
-        end
-    end
-    send(method_name)
-else 
-    super
-end 
-</code></pre>
-
-<p>end
-```</p>
 ]]></content>
   </entry>
   

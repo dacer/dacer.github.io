@@ -1,0 +1,242 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Code School笔记 - Zombie Outlaws level 4  | Dacer Blog</title>
+
+<meta name="author" content="Dacer"> 
+
+<meta name="description" content="Views &amp; Vistas Collection Form Helpers Rail 4 提供了更多的helpers 1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+class Owner &lt; ActiveRecord::Base has_many :items
+end class &hellip;"> <meta name="keywords" content="">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="Dacer Blog" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.ico" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script src="/javascripts/jquery.min.js"></script>
+	<script type="text/javascript" src="/javascripts/jquery.fancybox.pack.js"></script>
+
+<script language="Javascript" type="text/javascript">
+$(document).ready(
+  function() {
+    (function($) {
+      $(".fancybox[data-content-id]").each(function() {
+        this.href = $(this).data('content-id');
+      });
+      $(".fancybox").fancybox({
+        beforeLoad: function() {
+          var el, 
+              id = $(this.element).data('title-id');
+
+          if (id) {
+            el = $('#' + id);
+
+            if (el.length) {
+              this.title = el.html();
+            }
+          }
+          if ($(this).data('content')) {
+            this.content = $(this).data('content');
+          }
+        },
+        helpers: {
+          title: {
+            type: 'inside'
+          }
+        }
+      });
+    })(jQuery);
+  }
+);
+</script>
+
+	
+</head>
+
+
+<body>
+	<header id="header" class="inner"><h1><a href="/">Dacer Blog</a></h1>
+<h4>Ruby & Android</h4>
+<nav id="main-nav"><ul>
+	<li><a href="/">Blog</a></li>
+	<li><a href="/about">About</a></li>
+	<li><a href="/archives">Archive</a></li>
+</ul>
+</nav>
+<nav id="mobile-nav">
+	<div class="alignleft menu">
+		<a class="button">Menu</a>
+		<div class="container"><ul>
+	<li><a href="/">Blog</a></li>
+	<li><a href="/about">About</a></li>
+	<li><a href="/archives">Archive</a></li>
+</ul>
+</div>
+	</div>
+	<div class="alignright search">
+		<a class="button"></a>
+		<div class="container">
+			<form action="http://google.com/search" method="get">
+				<input type="text" name="q" results="0">
+				<input type="hidden" name="q" value="site:dacer.github.io">
+			</form>
+		</div>
+	</div>
+</nav>
+
+
+</header>
+
+	<div id="content" class="inner"><article class="post">
+	<h2 class="title">Code School笔记 - Zombie Outlaws Level 4</h2>
+	<div class="entry-content"><h2>Views &amp; Vistas</h2>
+
+<h3>Collection Form Helpers</h3>
+
+<p>Rail 4 提供了更多的helpers</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Owner</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord</span><span class="p">:</span><span class="ss">:Base</span>
+</span><span class='line'>   <span class="n">has_many</span> <span class="ss">:items</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'> <span class="k">class</span> <span class="nc">Item</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord</span><span class="p">:</span><span class="ss">:Base</span>
+</span><span class='line'>   <span class="n">belongs_to</span> <span class="ss">:owner</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">collection_select</span><span class="p">(</span><span class="ss">:item</span><span class="p">,</span> <span class="ss">:owner_id</span><span class="p">,</span> <span class="no">Owner</span><span class="o">.</span><span class="n">all</span><span class="p">,</span> <span class="ss">:id</span><span class="p">,</span> <span class="ss">:name</span><span class="p">)</span>
+</span><span class='line'><span class="n">collection_radio_buttons</span><span class="p">(</span><span class="ss">:item</span><span class="p">,</span> <span class="ss">:owner_id</span><span class="p">,</span> <span class="no">Owner</span><span class="o">.</span><span class="n">all</span><span class="p">,</span> <span class="ss">:id</span><span class="p">,</span> <span class="ss">:name</span><span class="p">)</span>
+</span><span class='line'><span class="n">collection_check_boxes</span><span class="p">(</span><span class="ss">:item</span><span class="p">,</span> <span class="ss">:owner_id</span><span class="p">,</span> <span class="no">Owner</span><span class="o">.</span><span class="n">all</span><span class="p">,</span> <span class="ss">:id</span><span class="p">,</span> <span class="ss">:name</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Date Field</h3>
+
+<p>Rails 4 提供了新的 <code>date_field</code></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;%=</span> <span class="n">f</span><span class="o">.</span><span class="n">date_field</span> <span class="ss">:return_date</span> <span class="o">%&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Response Type From Controller</h3>
+
+<p>默认返回json的格式</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">index</span>
+</span><span class='line'>   <span class="vi">@owners</span> <span class="o">=</span> <span class="no">Owner</span><span class="o">.</span><span class="n">all</span>
+</span><span class='line'>   <span class="n">respond_to</span> <span class="k">do</span> <span class="o">|</span><span class="nb">format</span><span class="o">|</span>
+</span><span class='line'>     <span class="nb">format</span><span class="o">.</span><span class="n">html</span>
+</span><span class='line'>     <span class="nb">format</span><span class="o">.</span><span class="n">json</span> <span class="p">{</span> <span class="n">render</span> <span class="ss">json</span><span class="p">:</span> <span class="vi">@owners</span> <span class="p">}</span>
+</span><span class='line'>   <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>自定义json返回的格式可以用<code>jbuilder</code>或者Rails 4 中新的：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1">#views/owners/index.json.ruby</span>
+</span><span class='line'><span class="n">owners_hashes</span> <span class="o">=</span> <span class="vi">@owners</span><span class="o">.</span><span class="n">map</span> <span class="k">do</span> <span class="o">|</span><span class="n">owner</span><span class="o">|</span>
+</span><span class='line'>   <span class="p">{</span> <span class="nb">name</span><span class="p">:</span> <span class="n">owner</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="ss">url</span><span class="p">:</span> <span class="n">owner_url</span><span class="p">(</span><span class="n">owner</span><span class="p">)</span> <span class="p">}</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="n">owners_hashes</span><span class="o">.</span><span class="n">to_json</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">#Output</span>
+</span><span class='line'><span class="o">[</span>
+</span><span class='line'>  <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="ss">:&quot;Slow-draw&quot;</span><span class="p">,</span>  <span class="s2">&quot;url&quot;</span><span class="ss">:&quot;http://localhost:3000/owners/1&quot;</span><span class="p">},</span>
+</span><span class='line'>  <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="ss">:&quot;Sheriff&quot;</span><span class="p">,</span>    <span class="s2">&quot;url&quot;</span><span class="ss">:&quot;http://localhost:3000/owners/2&quot;</span><span class="p">},</span>
+</span><span class='line'>  <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="ss">:&quot;Walking Ned&quot;</span><span class="p">,</span><span class="s2">&quot;url&quot;</span><span class="ss">:&quot;http://localhost:3000/owners/3&quot;</span><span class="p">}</span>
+</span><span class='line'><span class="o">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-02-15T19:10:57+08:00" pubdate data-updated="true">Feb 15<span>th</span>, 2014</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/code-school/'>Code School</a>, <a class='category' href='/blog/categories/rails-4/'>Rails 4</a>
+
+</div>
+
+
+	
+</div></article></div>
+	<footer id="footer" class="inner">Copyright &copy; 2014
+
+    Dacer
+
+<br>
+Powered by Octopress.
+</footer>
+	<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+
+
+
+
+</body>
+</html>

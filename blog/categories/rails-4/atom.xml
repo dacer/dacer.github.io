@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Rails 4 | Dacer Blog]]></title>
   <link href="http://dacer.github.io/blog/categories/rails-4/atom.xml" rel="self"/>
   <link href="http://dacer.github.io/"/>
-  <updated>2014-02-16T12:01:07+08:00</updated>
+  <updated>2014-02-16T17:33:48+08:00</updated>
   <id>http://dacer.github.io/</id>
   <author>
     <name><![CDATA[Dacer]]></name>
@@ -14,11 +14,152 @@
 
   
   <entry>
+    <title type="html"><![CDATA[Code School笔记 - Zombie Outlaws level 5]]></title>
+    <link href="http://dacer.github.io/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-5/"/>
+    <updated>2014-02-15T19:10:57+08:00</updated>
+    <id>http://dacer.github.io/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-5</id>
+    <content type="html"><![CDATA[<h2>Test Your Mettle</h2>
+
+<h3>Rake Tasks</h3>
+
+<p><code>
+rake test:models
+rake test:controllers
+rake test:helpers
+rake test:mailers
+</code></p>
+
+<h1>需回顾：</h1>
+
+<p><code>
+ruby -Itest test/models/location_test.rb  #raises pending migration error
+</code></p>
+
+<h3>Re-Adding Performance Testing</h3>
+
+<p>在 Rails 4 中需要添加 gem 实现
+<code>
+gem 'rails-perftest'
+gem 'ruby-prof'
+</code></p>
+
+<h3>Skip</h3>
+
+<p>```ruby
+class ItemTest &lt; ActiveSupport::TestCase
+  test &ldquo;can shorten its name&rdquo; do</p>
+
+<pre><code>item = Item.new
+item.name = "Super-duper long name"
+assert_equal "Super-duper", item.short_name
+</code></pre>
+
+<p>  end
+  test &ldquo;doesn&rsquo;t shorten short names&rdquo; do</p>
+
+<pre><code>    skip #Use "skip" method if you don't want to run a test right now
+item = Item.new
+item.name = "Name"
+assert_equal "Name", item.short_name
+end 
+</code></pre>
+
+<p>end
+```</p>
+
+<h3>Minitest Test_Opts</h3>
+
+<p>get passed as test parameters
+Verbose mode shows run time and skip status for each test
+```
+rake test:models TEST_OPTS=&ldquo;&mdash;verbose&rdquo;
+Run options: &mdash;verbose &mdash;seed 57945</p>
+
+<h1>Running tests:</h1>
+
+<p>ItemTest#test_can_shorten_its_name = 0.07 s = .
+ItemTest#test_doesn&rsquo;t_shorten_short_names = 0.00 s = S
+Finished tests in 0.076938s, 25.9950 tests/s, 12.9975
+assertions/s.
+2 tests, 1 assertions, 0 failures, 0 errors, 1 skips
+```</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Code School笔记 - Zombie Outlaws level 4]]></title>
+    <link href="http://dacer.github.io/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-4/"/>
+    <updated>2014-02-15T19:10:57+08:00</updated>
+    <id>http://dacer.github.io/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-4</id>
+    <content type="html"><![CDATA[<h2>Views &amp; Vistas</h2>
+
+<h3>Collection Form Helpers</h3>
+
+<p>Rail 4 提供了更多的helpers
+```ruby
+class Owner &lt; ActiveRecord::Base
+   has_many :items
+end
+ class Item &lt; ActiveRecord::Base
+   belongs_to :owner
+end</p>
+
+<p>collection_select(:item, :owner_id, Owner.all, :id, :name)
+collection_radio_buttons(:item, :owner_id, Owner.all, :id, :name)
+collection_check_boxes(:item, :owner_id, Owner.all, :id, :name)
+```</p>
+
+<h3>Date Field</h3>
+
+<p>Rails 4 提供了新的 <code>date_field</code>
+<code>ruby
+&lt;%= f.date_field :return_date %&gt;
+</code></p>
+
+<h3>Response Type From Controller</h3>
+
+<p>默认返回json的格式
+```ruby
+def index
+   @owners = Owner.all
+   respond_to do |format|</p>
+
+<pre><code> format.html
+ format.json { render json: @owners }
+</code></pre>
+
+<p>   end
+end
+<code>
+自定义json返回的格式可以用`jbuilder`或者Rails 4 中新的：
+</code>ruby</p>
+
+<h1>views/owners/index.json.ruby</h1>
+
+<p>owners_hashes = @owners.map do |owner|
+   { name: owner.name, url: owner_url(owner) }
+end
+owners_hashes.to_json</p>
+
+<h1>Output</h1>
+
+<p>[
+  {&ldquo;name&rdquo;:&ldquo;Slow-draw&rdquo;,  &ldquo;url&rdquo;:&ldquo;<a href="http://localhost:3000/owners/1">http://localhost:3000/owners/1</a>&rdquo;},
+  {&ldquo;name&rdquo;:&ldquo;Sheriff&rdquo;,    &ldquo;url&rdquo;:&ldquo;<a href="http://localhost:3000/owners/2">http://localhost:3000/owners/2</a>&rdquo;},
+  {&ldquo;name&rdquo;:&ldquo;Walking Ned&rdquo;,&ldquo;url&rdquo;:&ldquo;<a href="http://localhost:3000/owners/3">http://localhost:3000/owners/3</a>&rdquo;}
+]
+```</p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Code School笔记 - Zombie Outlaws level 3]]></title>
     <link href="http://dacer.github.io/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-3/"/>
     <updated>2014-02-15T19:10:57+08:00</updated>
     <id>http://dacer.github.io/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-3</id>
-    <content type="html"><![CDATA[<h3>Strong Parameters</h3>
+    <content type="html"><![CDATA[<h2>Strong Parameters and Remote Forms &amp; Filters, Session, Custom Flash Types</h2>
+
+<h3>Strong Parameters</h3>
 
 <p>在rails 4的controller中必须指定可接受的params
 ```ruby</p>
@@ -102,7 +243,9 @@ end</p>
     <link href="http://dacer.github.io/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-2/"/>
     <updated>2014-02-15T15:10:57+08:00</updated>
     <id>http://dacer.github.io/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-2</id>
-    <content type="html"><![CDATA[<h3>Finders</h3>
+    <content type="html"><![CDATA[<h2>ActiveRecord &amp; ActiveModel</h2>
+
+<h3>Finders</h3>
 
 <p>米什么好说的
 <code>ruby
@@ -282,7 +425,9 @@ end
     <link href="http://dacer.github.io/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-1/"/>
     <updated>2014-02-15T15:10:57+08:00</updated>
     <id>http://dacer.github.io/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-1</id>
-    <content type="html"><![CDATA[<h2>Match Routes</h2>
+    <content type="html"><![CDATA[<h2>Ruby 1.9.3, ThreadSafety and Routes</h2>
+
+<h3>Match Routes</h3>
 
 <p>有两种方式
 <code>
@@ -291,7 +436,7 @@ match '/somewhere', to: 'controller#action', via: :post
 match '/somewhere', to: 'controller#action', via: :all
 </code></p>
 
-<h2>Concern</h2>
+<h3>Concern</h3>
 
 <p>用来简化route
 ```

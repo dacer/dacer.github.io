@@ -4,7 +4,7 @@
   <title><![CDATA[Dacer Blog]]></title>
   <link href="http://dacer.github.io/atom.xml" rel="self"/>
   <link href="http://dacer.github.io/"/>
-  <updated>2014-02-16T12:01:07+08:00</updated>
+  <updated>2014-02-16T17:33:48+08:00</updated>
   <id>http://dacer.github.io/</id>
   <author>
     <name><![CDATA[Dacer]]></name>
@@ -14,11 +14,230 @@
 
   
   <entry>
+    <title type="html"><![CDATA[Code School笔记 - jQuery Part2 level 1]]></title>
+    <link href="http://dacer.github.io/blog/2014/02/16/code-school-bi-ji-jquery-part2-level-1/"/>
+    <updated>2014-02-16T19:10:57+08:00</updated>
+    <id>http://dacer.github.io/blog/2014/02/16/code-school-bi-ji-jquery-part2-level-1</id>
+    <content type="html"><![CDATA[<h3>Ajax Basics</h3>
+
+<p>使用Ajax时需要在网站后加上<code>?dc=123</code>之类的参数时可以用<code>data</code></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">(</span><span class="s1">&#39;confirmation.html&#39;</span><span class="p">,</span> <span class="p">{</span>
+</span><span class='line'>   <span class="nx">success</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>     <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.ticket&#39;</span><span class="p">).</span><span class="nx">html</span><span class="p">(</span><span class="nx">response</span><span class="p">).</span><span class="nx">slideDown</span><span class="p">();</span>
+</span><span class='line'>   <span class="p">},</span>
+</span><span class='line'>   <span class="nx">data</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;confNum&quot;</span><span class="o">:</span> <span class="mi">1234</span> <span class="p">}</span>
+</span><span class='line'>   <span class="p">}</span>
+</span><span class='line'><span class="p">});</span>
+</span><span class='line'><span class="c1">//confirmation.html?confNum=1234</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Code School笔记 - Zombie Outlaws level 5]]></title>
+    <link href="http://dacer.github.io/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-5/"/>
+    <updated>2014-02-15T19:10:57+08:00</updated>
+    <id>http://dacer.github.io/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-5</id>
+    <content type="html"><![CDATA[<h2>Test Your Mettle</h2>
+
+<h3>Rake Tasks</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>rake test:models
+</span><span class='line'>rake test:controllers
+</span><span class='line'>rake test:helpers
+</span><span class='line'>rake test:mailers</span></code></pre></td></tr></table></div></figure>
+
+
+<h1>需回顾：</h1>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>ruby -Itest test/models/location_test.rb  #raises pending migration error</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Re-Adding Performance Testing</h3>
+
+<p>在 Rails 4 中需要添加 gem 实现</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>gem 'rails-perftest'
+</span><span class='line'>gem 'ruby-prof'</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Skip</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">ItemTest</span> <span class="o">&lt;</span> <span class="ss">ActiveSupport</span><span class="p">:</span><span class="ss">:TestCase</span>
+</span><span class='line'>  <span class="nb">test</span> <span class="s2">&quot;can shorten its name&quot;</span> <span class="k">do</span>
+</span><span class='line'>    <span class="n">item</span> <span class="o">=</span> <span class="no">Item</span><span class="o">.</span><span class="n">new</span>
+</span><span class='line'>    <span class="n">item</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Super-duper long name&quot;</span>
+</span><span class='line'>    <span class="n">assert_equal</span> <span class="s2">&quot;Super-duper&quot;</span><span class="p">,</span> <span class="n">item</span><span class="o">.</span><span class="n">short_name</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>  <span class="nb">test</span> <span class="s2">&quot;doesn&#39;t shorten short names&quot;</span> <span class="k">do</span>
+</span><span class='line'>      <span class="n">skip</span> <span class="c1">#Use &quot;skip&quot; method if you don&#39;t want to run a test right now</span>
+</span><span class='line'>    <span class="n">item</span> <span class="o">=</span> <span class="no">Item</span><span class="o">.</span><span class="n">new</span>
+</span><span class='line'>    <span class="n">item</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Name&quot;</span>
+</span><span class='line'>    <span class="n">assert_equal</span> <span class="s2">&quot;Name&quot;</span><span class="p">,</span> <span class="n">item</span><span class="o">.</span><span class="n">short_name</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Minitest Test_Opts</h3>
+
+<p>get passed as test parameters
+Verbose mode shows run time and skip status for each test</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">rake</span> <span class="nb">test</span><span class="ss">:models</span> <span class="no">TEST_OPTS</span><span class="o">=</span><span class="s2">&quot;--verbose&quot;</span>
+</span><span class='line'><span class="no">Run</span> <span class="ss">options</span><span class="p">:</span> <span class="o">--</span><span class="n">verbose</span> <span class="o">--</span><span class="n">seed</span> <span class="mi">57945</span>
+</span><span class='line'><span class="c1"># Running tests:</span>
+</span><span class='line'><span class="no">ItemTest</span><span class="c1">#test_can_shorten_its_name = 0.07 s = .</span>
+</span><span class='line'><span class="no">ItemTest</span><span class="c1">#test_doesn&#39;t_shorten_short_names = 0.00 s = S</span>
+</span><span class='line'><span class="no">Finished</span> <span class="n">tests</span> <span class="k">in</span> <span class="mi">0</span><span class="o">.</span><span class="mo">076</span><span class="mi">938</span><span class="n">s</span><span class="p">,</span> <span class="mi">25</span><span class="o">.</span><span class="mi">9950</span> <span class="n">tests</span><span class="o">/</span><span class="n">s</span><span class="p">,</span> <span class="mi">12</span><span class="o">.</span><span class="mi">9975</span>
+</span><span class='line'><span class="n">assertions</span><span class="o">/</span><span class="n">s</span><span class="o">.</span>
+</span><span class='line'><span class="mi">2</span> <span class="n">tests</span><span class="p">,</span> <span class="mi">1</span> <span class="n">assertions</span><span class="p">,</span> <span class="mi">0</span> <span class="n">failures</span><span class="p">,</span> <span class="mi">0</span> <span class="n">errors</span><span class="p">,</span> <span class="mi">1</span> <span class="n">skips</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Code School笔记 - Zombie Outlaws level 4]]></title>
+    <link href="http://dacer.github.io/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-4/"/>
+    <updated>2014-02-15T19:10:57+08:00</updated>
+    <id>http://dacer.github.io/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-4</id>
+    <content type="html"><![CDATA[<h2>Views &amp; Vistas</h2>
+
+<h3>Collection Form Helpers</h3>
+
+<p>Rail 4 提供了更多的helpers</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Owner</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord</span><span class="p">:</span><span class="ss">:Base</span>
+</span><span class='line'>   <span class="n">has_many</span> <span class="ss">:items</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'> <span class="k">class</span> <span class="nc">Item</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord</span><span class="p">:</span><span class="ss">:Base</span>
+</span><span class='line'>   <span class="n">belongs_to</span> <span class="ss">:owner</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">collection_select</span><span class="p">(</span><span class="ss">:item</span><span class="p">,</span> <span class="ss">:owner_id</span><span class="p">,</span> <span class="no">Owner</span><span class="o">.</span><span class="n">all</span><span class="p">,</span> <span class="ss">:id</span><span class="p">,</span> <span class="ss">:name</span><span class="p">)</span>
+</span><span class='line'><span class="n">collection_radio_buttons</span><span class="p">(</span><span class="ss">:item</span><span class="p">,</span> <span class="ss">:owner_id</span><span class="p">,</span> <span class="no">Owner</span><span class="o">.</span><span class="n">all</span><span class="p">,</span> <span class="ss">:id</span><span class="p">,</span> <span class="ss">:name</span><span class="p">)</span>
+</span><span class='line'><span class="n">collection_check_boxes</span><span class="p">(</span><span class="ss">:item</span><span class="p">,</span> <span class="ss">:owner_id</span><span class="p">,</span> <span class="no">Owner</span><span class="o">.</span><span class="n">all</span><span class="p">,</span> <span class="ss">:id</span><span class="p">,</span> <span class="ss">:name</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Date Field</h3>
+
+<p>Rails 4 提供了新的 <code>date_field</code></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;%=</span> <span class="n">f</span><span class="o">.</span><span class="n">date_field</span> <span class="ss">:return_date</span> <span class="o">%&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Response Type From Controller</h3>
+
+<p>默认返回json的格式</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">index</span>
+</span><span class='line'>   <span class="vi">@owners</span> <span class="o">=</span> <span class="no">Owner</span><span class="o">.</span><span class="n">all</span>
+</span><span class='line'>   <span class="n">respond_to</span> <span class="k">do</span> <span class="o">|</span><span class="nb">format</span><span class="o">|</span>
+</span><span class='line'>     <span class="nb">format</span><span class="o">.</span><span class="n">html</span>
+</span><span class='line'>     <span class="nb">format</span><span class="o">.</span><span class="n">json</span> <span class="p">{</span> <span class="n">render</span> <span class="ss">json</span><span class="p">:</span> <span class="vi">@owners</span> <span class="p">}</span>
+</span><span class='line'>   <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>自定义json返回的格式可以用<code>jbuilder</code>或者Rails 4 中新的：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1">#views/owners/index.json.ruby</span>
+</span><span class='line'><span class="n">owners_hashes</span> <span class="o">=</span> <span class="vi">@owners</span><span class="o">.</span><span class="n">map</span> <span class="k">do</span> <span class="o">|</span><span class="n">owner</span><span class="o">|</span>
+</span><span class='line'>   <span class="p">{</span> <span class="nb">name</span><span class="p">:</span> <span class="n">owner</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="ss">url</span><span class="p">:</span> <span class="n">owner_url</span><span class="p">(</span><span class="n">owner</span><span class="p">)</span> <span class="p">}</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="n">owners_hashes</span><span class="o">.</span><span class="n">to_json</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">#Output</span>
+</span><span class='line'><span class="o">[</span>
+</span><span class='line'>  <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="ss">:&quot;Slow-draw&quot;</span><span class="p">,</span>  <span class="s2">&quot;url&quot;</span><span class="ss">:&quot;http://localhost:3000/owners/1&quot;</span><span class="p">},</span>
+</span><span class='line'>  <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="ss">:&quot;Sheriff&quot;</span><span class="p">,</span>    <span class="s2">&quot;url&quot;</span><span class="ss">:&quot;http://localhost:3000/owners/2&quot;</span><span class="p">},</span>
+</span><span class='line'>  <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="ss">:&quot;Walking Ned&quot;</span><span class="p">,</span><span class="s2">&quot;url&quot;</span><span class="ss">:&quot;http://localhost:3000/owners/3&quot;</span><span class="p">}</span>
+</span><span class='line'><span class="o">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Code School笔记 - Zombie Outlaws level 3]]></title>
     <link href="http://dacer.github.io/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-3/"/>
     <updated>2014-02-15T19:10:57+08:00</updated>
     <id>http://dacer.github.io/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-3</id>
-    <content type="html"><![CDATA[<h3>Strong Parameters</h3>
+    <content type="html"><![CDATA[<h2>Strong Parameters and Remote Forms &amp; Filters, Session, Custom Flash Types</h2>
+
+<h3>Strong Parameters</h3>
 
 <p>在rails 4的controller中必须指定可接受的params</p>
 
@@ -130,7 +349,9 @@ add this line if you want to raise errors for unpermitted params:</p>
     <link href="http://dacer.github.io/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-2/"/>
     <updated>2014-02-15T15:10:57+08:00</updated>
     <id>http://dacer.github.io/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-2</id>
-    <content type="html"><![CDATA[<h3>Finders</h3>
+    <content type="html"><![CDATA[<h2>ActiveRecord &amp; ActiveModel</h2>
+
+<h3>Finders</h3>
 
 <p>米什么好说的</p>
 
@@ -379,7 +600,9 @@ Desc : descending order 递减</p>
     <link href="http://dacer.github.io/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-1/"/>
     <updated>2014-02-15T15:10:57+08:00</updated>
     <id>http://dacer.github.io/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-1</id>
-    <content type="html"><![CDATA[<h2>Match Routes</h2>
+    <content type="html"><![CDATA[<h2>Ruby 1.9.3, ThreadSafety and Routes</h2>
+
+<h3>Match Routes</h3>
 
 <p>有两种方式</p>
 
@@ -391,7 +614,7 @@ Desc : descending order 递减</p>
 </span><span class='line'>match '/somewhere', to: 'controller#action', via: :all</span></code></pre></td></tr></table></div></figure>
 
 
-<h2>Concern</h2>
+<h3>Concern</h3>
 
 <p>用来简化route</p>
 
@@ -1347,75 +1570,6 @@ Desc : descending order 递减</p>
 
 
 <p>被这个折腾死了。。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[有时会觉得这几个月的努力真的很值得]]></title>
-    <link href="http://dacer.github.io/blog/2013/11/01/e69c89e697b6e4bc9ae8a789e5be97e8bf99e587a0e4b8aae69c88e79a84e58aaae58a9be79c9fe79a84e5be88e580bce5be97/"/>
-    <updated>2013-11-01T23:02:02+08:00</updated>
-    <id>http://dacer.github.io/blog/2013/11/01/e69c89e697b6e4bc9ae8a789e5be97e8bf99e587a0e4b8aae69c88e79a84e58aaae58a9be79c9fe79a84e5be88e580bce5be97</id>
-    <content type="html"><![CDATA[<p>看到这些评价的时候。</p>
-
-<p><img src="http://dacer.github.io/images/post/screenshot_2013-11-01-23-57-421.png" alt="Screenshot_2013-11-01-23-57-42" />
-ps:第一个的那个说到我心坎里了啊！我之前一直想表述出这个但是就是组织语言不出来。。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[实在是受不了eclipse了]]></title>
-    <link href="http://dacer.github.io/blog/2013/11/01/e5ae9ee59ca8e698afe58f97e4b88de4ba86eclipsee4ba86/"/>
-    <updated>2013-11-01T10:40:00+08:00</updated>
-    <id>http://dacer.github.io/blog/2013/11/01/e5ae9ee59ca8e698afe58f97e4b88de4ba86eclipsee4ba86</id>
-    <content type="html"><![CDATA[<p>以前用Y450的时候就很卡很崩溃时不时就来点Bug错误什么的我也就忍了</p>
-
-<p>现在换mba了还是时不时出现点问题，现在连导出apk都会崩溃了(╯‵□′)╯︵┻━┻</p>
-
-<p>导出到Android studio也很有问题</p>
-
-<p>如果有一天我放弃了Simple Pomodoro的维护一定是eclipse的错！</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[设计一个两栏切皆可滑动的日期选择器]]></title>
-    <link href="http://dacer.github.io/blog/2013/11/01/e8aebee8aea1e4b880e4b8aae4b8a4e6a08fe58887e79a86e58fafe6bb91e58aa8e79a84e697a5e69c9fe98089e68ba9e599a8/"/>
-    <updated>2013-11-01T09:40:02+08:00</updated>
-    <id>http://dacer.github.io/blog/2013/11/01/e8aebee8aea1e4b880e4b8aae4b8a4e6a08fe58887e79a86e58fafe6bb91e58aa8e79a84e697a5e69c9fe98089e68ba9e599a8</id>
-    <content type="html"><![CDATA[<p>发现不记录一下开发的过程的话一出现问题很难理清楚啊(╯‵□′)╯︵┻━┻</p>
-
-<p>大概就是这样一个东西：</p>
-
-<p><img src="http://dacer.github.io/images/post/screenshot-2013-11-01-10-41-24.png" alt="Screenshot-2013-11-01-10.41.24" /></p>
-
-<p>要实现的功能有：</p>
-
-<ul>
-<li><p>月份选择器可滑动可点击，且月份切换时周视图也随之改变为当月的1号。</p></li>
-<li><p>周选择器可滑动可点击，点击后通过interface将所选择的日期传递出去。</p></li>
-<li><p>周选择器在滑动至其他月份时使月选择器自动调整为当前月份。</p></li>
-<li><p>月份选择器可独立出来</p></li>
-</ul>
-
-
-<p>实现的方法：</p>
-
-<ul>
-<li><p>两个视图都使用viewpager+fragment来实现滑动，且在月份选择器viewpager的两侧加两个button</p></li>
-<li><p>月份选择器总数为100*12+当前的月份，这儿有一个坑就是用Calendar中的month时，它的范围是0-11的，必须要多+1，在初始化视图的时候自动设置为今天（即最后一个）</p></li>
-<li><p>月份选择器在滑动后调用周的setCurrentWeek方法，再由其内部调用setCurrentItem方法。</p></li>
-</ul>
-
-
-<p>这要解决一个问题：</p>
-
-<p>月份在变化之后带动了周的变化，但是周的变化有可能会再次带动月份的变化，就造成了逻辑的混乱。</p>
-
-<p>想到的解决办法就是只有在滑动周选择器时才会改变月份,滑动月选择器时改变的周视图不会再次去改变月份。</p>
-
-<p>但是滑动周视图后改变了月视图之后月视图也会改变周视图。。所以balablabala要反过来再改一次</p>
-
-<p>虽然挺蛋疼了但总归是解决了这个问题，还有若干个小问题就不提了</p>
 ]]></content>
   </entry>
   
