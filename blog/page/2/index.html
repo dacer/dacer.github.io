@@ -7,7 +7,8 @@
 
 <meta name="author" content="Dacer"> 
 
-<meta name="description" content="Dynamic Classes &amp; Methods Struct 在一个Class中如果包含的变量都在 initialize 中定义时可以用Struct简化，以下两种定义方式完全相同： 1
+<meta name="description" content="Self 在class外调用self会返回main，在class内调用会返回class本身。
+如果在定义类中的方法时，在方法名前加self则这个方法会变成类似于Java的静态(static)方法 1
 2
 3
 4
@@ -16,7 +17,7 @@
 7
 8
 9
-class Tweet attr_accessor :user &hellip;"> <meta name="keywords" content="">
+class Tweet def self.f(key) p & &hellip;"> <meta name="keywords" content="">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -90,7 +91,7 @@ $(document).ready(
 		<div class="container">
 			<form action="http://google.com/search" method="get">
 				<input type="text" name="q" results="0">
-				<input type="hidden" name="q" value="site:dacer.github.io">
+				<input type="hidden" name="q" value="site:blog.dacer.im">
 			</form>
 		</div>
 	</div>
@@ -100,6 +101,135 @@ $(document).ready(
 </header>
 
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2014/02/13/code-schoolbi-ji-ruby-bits-2-level-3/">
+		
+			Code School笔记 - Ruby Bits 2 Level 3</a>
+	</h2>
+	<div class="entry-content">
+		<h2>Self</h2>
+
+<p>在class外调用self会返回<code>main</code>，在class内调用会返回class本身。<br/>
+如果在定义类中的方法时，在方法名前加<code>self</code>则这个方法会变成类似于Java的静态(static)方法</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Tweet</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">f</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+</span><span class='line'>    <span class="nb">p</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="nb">self</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nc">Tweet</span><span class="o">.</span><span class="nf">f</span> <span class="o">.</span><span class="n">.</span><span class="o">.</span> <span class="c1">#与上方一致，但不常用</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="no">Tweet</span><span class="o">.</span><span class="n">f</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span> <span class="c1"># =&gt; Tweet</span>
+</span><span class='line'><span class="n">tweet</span> <span class="o">=</span> <span class="no">Tweet</span><span class="o">.</span><span class="n">new</span>
+</span><span class='line'><span class="n">tweet</span><span class="o">.</span><span class="n">f</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span> <span class="c1"># Error!</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Class_eval</h3>
+
+<p>重新打开一个class并往里面增加一些东西</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Tweet</span><span class="o">.</span><span class="n">class_eval</span> <span class="k">do</span>
+</span><span class='line'>  <span class="kp">attr_accessor</span> <span class="ss">:user</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>用 class_eval 写一个MethodLogger</h4>
+
+<p>就是记录方法的使用log</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">MethodLogger</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">log_method</span><span class="p">(</span><span class="n">klass</span><span class="p">,</span> <span class="n">method_name</span><span class="p">)</span> <span class="c1">#这里用klass是因为class在ruby中是预置的词</span>
+</span><span class='line'>    <span class="n">klass</span><span class="o">.</span><span class="n">class_eval</span> <span class="k">do</span>
+</span><span class='line'>      <span class="n">alias_method</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">method_name</span><span class="si">}</span><span class="s2">_original&quot;</span><span class="p">,</span> <span class="n">method_name</span>
+</span><span class='line'>      <span class="n">define_method</span> <span class="n">method_name</span> <span class="k">do</span>
+</span><span class='line'>        <span class="nb">p</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="no">Time</span><span class="o">.</span><span class="n">now</span><span class="si">}</span><span class="s2">: Called </span><span class="si">#{</span><span class="n">method_name</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'>        <span class="nb">send</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">method_name</span><span class="si">}</span><span class="s2">_original&quot;</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="c1">#使用</span>
+</span><span class='line'><span class="k">class</span> <span class="nc">Test</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">t</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">logger</span> <span class="o">=</span> <span class="no">MethodLogger</span><span class="o">.</span><span class="n">new</span>
+</span><span class='line'><span class="n">logger</span><span class="o">.</span><span class="n">log_method</span><span class="p">(</span><span class="no">Test</span><span class="p">,</span> <span class="ss">:t</span><span class="p">)</span>
+</span><span class='line'><span class="no">Test</span><span class="o">.</span><span class="n">new</span><span class="o">.</span><span class="n">t</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Instance_eval</h3>
+
+<p>类似于class_eval</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-02-13T15:40:25+08:00" pubdate data-updated="true">Feb 13<span>th</span>, 2014</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/code-school/'>Code School</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>
+
+</div>
+
+
+</div></article>
 
 
     <article class="post">
@@ -328,9 +458,6 @@ $(document).ready(
 </div>
 
 
-	
-          | <a href="/blog/2014/02/13/code-schoolbi-ji-ruby-bits-2-level-2/#comments">Comments</a>
-         
 </div></article>
 
 
@@ -384,9 +511,6 @@ $(document).ready(
 </div>
 
 
-	
-          | <a href="/blog/2014/02/12/ba-zhu-ti-wei-diao-liao-yi-xia/#comments">Comments</a>
-         
 </div></article>
 
 
@@ -559,9 +683,6 @@ $(document).ready(
 </div>
 
 
-	
-          | <a href="/blog/2014/02/12/code-schoolbi-ji-ruby-bits-2-level-1/#comments">Comments</a>
-         
 </div></article>
 
 
@@ -622,9 +743,6 @@ $(document).ready(
 </div>
 
 
-	
-          | <a href="/blog/2014/02/10/zen-yao-ba-windowsxia-de-txtwen-jian-zhuan-wei-utf-8/#comments">Comments</a>
-         
 </div></article>
 
 
@@ -666,9 +784,6 @@ $(document).ready(
 </div>
 
 
-	
-          | <a href="/blog/2014/02/10/hello-octopress/#comments">Comments</a>
-         
 </div></article>
 
 
@@ -710,9 +825,6 @@ $(document).ready(
 </div>
 
 
-	
-          | <a href="/blog/2014/01/31/e5ada6e4b9a0e7ac94e8aeb0-ruby/#comments">Comments</a>
-         
 </div></article>
 
 
@@ -760,9 +872,6 @@ $(document).ready(
 </div>
 
 
-	
-          | <a href="/blog/2014/01/06/e59bbde4baa7e58d95e69cbae6b8b8e6888f/#comments">Comments</a>
-         
 </div></article>
 
 
@@ -816,9 +925,6 @@ $(document).ready(
 </div>
 
 
-	
-          | <a href="/blog/2013/12/23/androide4b88ae79a84e4b880e4b8aae7a59ee599a8e3808eaidee3808f/#comments">Comments</a>
-         
 </div></article>
 
 
@@ -897,59 +1003,6 @@ $(document).ready(
 </div>
 
 
-	
-          | <a href="/blog/2013/11/15/androidcharts-e5bc80e58f91e7ac94e8aeb0/#comments">Comments</a>
-         
-</div></article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2013/11/13/e7bb88e4ba8ee58d87e588b04-3e4ba86/">
-		
-			终于升到4.3了</a>
-	</h2>
-	<div class="entry-content">
-		<p><img src="/images/post/2013-11-13-12-09-08.png" alt="2013-11-13-12.09.08" /></p>
-
-<p>我到韩版S3终于也能用上4.3了T_T, 虽然kitkat都出来了。。</p>
-
-<p>顺便分享一下Mac下更新三星手机固件的心得：</p>
-
-<p>我先在三星官网下载Mac版Kies之后连接手机不上，觉得可能是刷了自制固件到缘故，于是按住音量下键开机进入线刷模式，在Kies上输入手机型号和SN码之后顺利刷机，不过原来手机SD卡的东西都清空了。。还好应用都在，就先不root了用着吧=.=</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-11-13T20:15:01+08:00" pubdate data-updated="true">Nov 13<span>th</span>, 2013</time></div>
-	
-
-<div class="tags">
-
-	<a class='category' href='/blog/categories/sui-bi/'>随笔</a>
-
-</div>
-
-
-	
-          | <a href="/blog/2013/11/13/e7bb88e4ba8ee58d87e588b04-3e4ba86/#comments">Comments</a>
-         
 </div></article>
 
 <nav id="pagenavi">

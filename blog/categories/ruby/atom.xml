@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Ruby | Dacer Blog]]></title>
-  <link href="http://dacer.github.io/blog/categories/ruby/atom.xml" rel="self"/>
-  <link href="http://dacer.github.io/"/>
-  <updated>2014-02-16T18:07:00+08:00</updated>
-  <id>http://dacer.github.io/</id>
+  <link href="http://blog.dacer.im/blog/categories/ruby/atom.xml" rel="self"/>
+  <link href="http://blog.dacer.im/"/>
+  <updated>2014-02-16T18:49:49+08:00</updated>
+  <id>http://blog.dacer.im/</id>
   <author>
     <name><![CDATA[Dacer]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Code School笔记 - Ruby Bits 2 Level 5 & 6]]></title>
-    <link href="http://dacer.github.io/blog/2014/02/14/code-schoolbi-ji-ruby-bits-2-level-5/"/>
+    <link href="http://blog.dacer.im/blog/2014/02/14/code-schoolbi-ji-ruby-bits-2-level-5/"/>
     <updated>2014-02-14T15:40:25+08:00</updated>
-    <id>http://dacer.github.io/blog/2014/02/14/code-schoolbi-ji-ruby-bits-2-level-5</id>
+    <id>http://blog.dacer.im/blog/2014/02/14/code-schoolbi-ji-ruby-bits-2-level-5</id>
     <content type="html"><![CDATA[<h2>DSL</h2>
 
 <p>yield</p>
@@ -26,9 +26,9 @@
   
   <entry>
     <title type="html"><![CDATA[Code School笔记 - Ruby Bits 2 Level 4]]></title>
-    <link href="http://dacer.github.io/blog/2014/02/14/code-schoolbi-ji-ruby-bits-2-level-4/"/>
+    <link href="http://blog.dacer.im/blog/2014/02/14/code-schoolbi-ji-ruby-bits-2-level-4/"/>
     <updated>2014-02-14T15:40:25+08:00</updated>
-    <id>http://dacer.github.io/blog/2014/02/14/code-schoolbi-ji-ruby-bits-2-level-4</id>
+    <id>http://blog.dacer.im/blog/2014/02/14/code-schoolbi-ji-ruby-bits-2-level-4</id>
     <content type="html"><![CDATA[<h2>Handling Missing Methods</h2>
 
 <p>在class中可以定义一个<code>method_missing</code>方法，当调用这个class中不存在的方法时会变为调用此方法。
@@ -158,9 +158,9 @@ end
   
   <entry>
     <title type="html"><![CDATA[Code School笔记 - Ruby Bits 2 Level 3]]></title>
-    <link href="http://dacer.github.io/blog/2014/02/13/code-schoolbi-ji-ruby-bits-2-level-3/"/>
+    <link href="http://blog.dacer.im/blog/2014/02/13/code-schoolbi-ji-ruby-bits-2-level-3/"/>
     <updated>2014-02-13T15:40:25+08:00</updated>
-    <id>http://dacer.github.io/blog/2014/02/13/code-schoolbi-ji-ruby-bits-2-level-3</id>
+    <id>http://blog.dacer.im/blog/2014/02/13/code-schoolbi-ji-ruby-bits-2-level-3</id>
     <content type="html"><![CDATA[<h2>Self</h2>
 
 <p>在class外调用self会返回<code>main</code>，在class内调用会返回class本身。<br/>
@@ -234,9 +234,9 @@ Test.new.t
   
   <entry>
     <title type="html"><![CDATA[Code School笔记 - Ruby Bits 2 Level 2]]></title>
-    <link href="http://dacer.github.io/blog/2014/02/13/code-schoolbi-ji-ruby-bits-2-level-2/"/>
+    <link href="http://blog.dacer.im/blog/2014/02/13/code-schoolbi-ji-ruby-bits-2-level-2/"/>
     <updated>2014-02-13T15:40:25+08:00</updated>
-    <id>http://dacer.github.io/blog/2014/02/13/code-schoolbi-ji-ruby-bits-2-level-2</id>
+    <id>http://blog.dacer.im/blog/2014/02/13/code-schoolbi-ji-ruby-bits-2-level-2</id>
     <content type="html"><![CDATA[<h2>Dynamic Classes &amp; Methods</h2>
 
 <h3>Struct</h3>
@@ -375,9 +375,9 @@ show_method.call(1)
   
   <entry>
     <title type="html"><![CDATA[Code School笔记 - Ruby Bits 2 Level 1]]></title>
-    <link href="http://dacer.github.io/blog/2014/02/12/code-schoolbi-ji-ruby-bits-2-level-1/"/>
+    <link href="http://blog.dacer.im/blog/2014/02/12/code-schoolbi-ji-ruby-bits-2-level-1/"/>
     <updated>2014-02-12T19:02:51+08:00</updated>
-    <id>http://dacer.github.io/blog/2014/02/12/code-schoolbi-ji-ruby-bits-2-level-1</id>
+    <id>http://blog.dacer.im/blog/2014/02/12/code-schoolbi-ji-ruby-bits-2-level-1</id>
     <content type="html"><![CDATA[<h2>Blocks, Procs and Lambdas</h2>
 
 <p>Block保存可以使用<code>Proc.new</code>和<code>Lambda</code>.</p>

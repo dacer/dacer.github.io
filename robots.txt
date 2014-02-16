@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: 
 
-Sitemap: http://dacer.github.io/sitemap.xml 
+Sitemap: http://blog.dacer.im/sitemap.xml 

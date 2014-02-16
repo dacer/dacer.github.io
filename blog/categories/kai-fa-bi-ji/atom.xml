@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: 开发笔记 | Dacer Blog]]></title>
-  <link href="http://dacer.github.io/blog/categories/kai-fa-bi-ji/atom.xml" rel="self"/>
-  <link href="http://dacer.github.io/"/>
-  <updated>2014-02-16T18:07:00+08:00</updated>
-  <id>http://dacer.github.io/</id>
+  <link href="http://blog.dacer.im/blog/categories/kai-fa-bi-ji/atom.xml" rel="self"/>
+  <link href="http://blog.dacer.im/"/>
+  <updated>2014-02-16T18:49:49+08:00</updated>
+  <id>http://blog.dacer.im/</id>
   <author>
     <name><![CDATA[Dacer]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[设计一个绝对准时又相对省电的Android 倒计时方案]]></title>
-    <link href="http://dacer.github.io/blog/2013/10/03/e8aebee8aea1e4b880e4b8aae7bb9de5afb9e58786e697b6e58f88e79bb8e5afb9e79c81e794b5e79a84android-e58092e8aea1e697b6e696b9e6a188/"/>
+    <link href="http://blog.dacer.im/blog/2013/10/03/e8aebee8aea1e4b880e4b8aae7bb9de5afb9e58786e697b6e58f88e79bb8e5afb9e79c81e794b5e79a84android-e58092e8aea1e697b6e696b9e6a188/"/>
     <updated>2013-10-03T08:46:30+08:00</updated>
-    <id>http://dacer.github.io/blog/2013/10/03/e8aebee8aea1e4b880e4b8aae7bb9de5afb9e58786e697b6e58f88e79bb8e5afb9e79c81e794b5e79a84android-e58092e8aea1e697b6e696b9e6a188</id>
+    <id>http://blog.dacer.im/blog/2013/10/03/e8aebee8aea1e4b880e4b8aae7bb9de5afb9e58786e697b6e58f88e79bb8e5afb9e79c81e794b5e79a84android-e58092e8aea1e697b6e696b9e6a188</id>
     <content type="html"><![CDATA[<p>如果没有小米的话就不用写这个文章了。。</p>
 
 <p>本文是<a href="http://idacer.tk/?p=67">这个</a>和<a href="http://idacer.tk/?p=83">这个</a>的后续，欲在现今环境下打造一个绝对准时又较省电的倒计时方案。<a href="http://idacer.tk/?p=67">
@@ -67,9 +67,9 @@
   
   <entry>
     <title type="html"><![CDATA[开新坑了，基于sinatra的中韩汇率查看网站]]></title>
-    <link href="http://dacer.github.io/blog/2013/09/29/e5bc80e696b0e59d91e4ba86efbc8ce59fbae4ba8esinatrae79a84e4b8ade99fa9e6b187e78e87e69fa5e79c8be7bd91e7ab99/"/>
+    <link href="http://blog.dacer.im/blog/2013/09/29/e5bc80e696b0e59d91e4ba86efbc8ce59fbae4ba8esinatrae79a84e4b8ade99fa9e6b187e78e87e69fa5e79c8be7bd91e7ab99/"/>
     <updated>2013-09-29T23:15:16+08:00</updated>
-    <id>http://dacer.github.io/blog/2013/09/29/e5bc80e696b0e59d91e4ba86efbc8ce59fbae4ba8esinatrae79a84e4b8ade99fa9e6b187e78e87e69fa5e79c8be7bd91e7ab99</id>
+    <id>http://blog.dacer.im/blog/2013/09/29/e5bc80e696b0e59d91e4ba86efbc8ce59fbae4ba8esinatrae79a84e4b8ade99fa9e6b187e78e87e69fa5e79c8be7bd91e7ab99</id>
     <content type="html"><![CDATA[<p><a href="http://huilv-idacer.rhcloud.com/">&mdash;-点击查看&mdash;&ndash;</a></p>
 
 <p>大概就是sinatra做后端进行post等行为在银联官网上读取银联汇率，前端直接显示结果。</p>
@@ -93,9 +93,9 @@
   
   <entry>
     <title type="html"><![CDATA[如何在Action Bar中显示一层进度条，如7x7]]></title>
-    <link href="http://dacer.github.io/blog/2013/09/28/e5a682e4bd95e59ca8action-bare4b8ade698bee7a4bae4b880e5b182e8bf9be5baa6e69da1efbc8ce5a6827x7/"/>
+    <link href="http://blog.dacer.im/blog/2013/09/28/e5a682e4bd95e59ca8action-bare4b8ade698bee7a4bae4b880e5b182e8bf9be5baa6e69da1efbc8ce5a6827x7/"/>
     <updated>2013-09-28T22:39:27+08:00</updated>
-    <id>http://dacer.github.io/blog/2013/09/28/e5a682e4bd95e59ca8action-bare4b8ade698bee7a4bae4b880e5b182e8bf9be5baa6e69da1efbc8ce5a6827x7</id>
+    <id>http://blog.dacer.im/blog/2013/09/28/e5a682e4bd95e59ca8action-bare4b8ade698bee7a4bae4b880e5b182e8bf9be5baa6e69da1efbc8ce5a6827x7</id>
     <content type="html"><![CDATA[<p>看到这个需求第一时间我就想到了之前很沉迷的游戏 7x7, 搜了一下果然有相关的问题，链接如下：</p>
 
 <p><a href="http://stackoverflow.com/questions/17173414/how-to-implement-a-dynamic-background-on-actionbar-like-7x7">http://stackoverflow.com/questions/17173414/how-to-implement-a-dynamic-background-on-actionbar-like-7x7</a></p>
@@ -110,7 +110,7 @@
 
 <p>将Action Bar设置为透明且可和下部分重叠，先简单的放了个button试了下，效果如下：</p>
 
-<p><img src="{{%20root_url%20}}/images/post/screen-shot-2013-09-30-at-4-49-52-pm1.png" alt="Screen-Shot-2013-09-30-at-4.49.52-PM" /></p>
+<p><img src="/images/post/screen-shot-2013-09-30-at-4-49-52-pm1.png" alt="Screen-Shot-2013-09-30-at-4.49.52-PM" /></p>
 
 <p>之后用testin测试了下其他机型的适配情况，除了联想的一个奇葩机型之外都如图显示，于是意外的得出了个结论，<strong>button高度=Action Bar高度</strong>（这是歪打正着吧(╯‵□′)╯︵┻━┻）</p>
 
@@ -145,9 +145,9 @@ public int getActionBarSize(Context context) {
   
   <entry>
     <title type="html"><![CDATA[为什么部分小米用户在使用极简番茄时提醒会延迟]]></title>
-    <link href="http://dacer.github.io/blog/2013/09/18/e68891e8a681ooe5b08fe7b1b3e7b3bbe7bb9fe4b880e4b887e4b8aaxxefbc81efbc81efbc81efbc81/"/>
+    <link href="http://blog.dacer.im/blog/2013/09/18/e68891e8a681ooe5b08fe7b1b3e7b3bbe7bb9fe4b880e4b887e4b8aaxxefbc81efbc81efbc81efbc81/"/>
     <updated>2013-09-18T21:39:25+08:00</updated>
-    <id>http://dacer.github.io/blog/2013/09/18/e68891e8a681ooe5b08fe7b1b3e7b3bbe7bb9fe4b880e4b887e4b8aaxxefbc81efbc81efbc81efbc81</id>
+    <id>http://blog.dacer.im/blog/2013/09/18/e68891e8a681ooe5b08fe7b1b3e7b3bbe7bb9fe4b880e4b887e4b8aaxxefbc81efbc81efbc81efbc81</id>
     <content type="html"><![CDATA[<p>很多小米用户反馈时间会错乱，之前一直以为是后台的Activity所占用的内存被清空所致，但修改后发现仍未改善，最后终于让我找到了根本原因。</p>
 
 <p>使用AlarmManager定的带有WAKEUP闹钟会被某些版本的MIUI系统推迟。</p>
@@ -178,9 +178,9 @@ public int getActionBarSize(Context context) {
   
   <entry>
     <title type="html"><![CDATA[极简番茄BUG记录]]></title>
-    <link href="http://dacer.github.io/blog/2013/09/18/e69e81e7ae80e795aae88c84buge8aeb0e5bd95/"/>
+    <link href="http://blog.dacer.im/blog/2013/09/18/e69e81e7ae80e795aae88c84buge8aeb0e5bd95/"/>
     <updated>2013-09-18T15:26:41+08:00</updated>
-    <id>http://dacer.github.io/blog/2013/09/18/e69e81e7ae80e795aae88c84buge8aeb0e5bd95</id>
+    <id>http://blog.dacer.im/blog/2013/09/18/e69e81e7ae80e795aae88c84buge8aeb0e5bd95</id>
     <content type="html"><![CDATA[<p>硬伤：</p>
 
 <p>切换Google账户BUG：1.正常使用帐号并授权同步2.在网页端撤销授权3.同步后FC</p>

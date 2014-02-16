@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: jQuery | Dacer Blog]]></title>
-  <link href="http://dacer.github.io/blog/categories/jquery/atom.xml" rel="self"/>
-  <link href="http://dacer.github.io/"/>
-  <updated>2014-02-16T18:07:00+08:00</updated>
-  <id>http://dacer.github.io/</id>
+  <link href="http://blog.dacer.im/blog/categories/jquery/atom.xml" rel="self"/>
+  <link href="http://blog.dacer.im/"/>
+  <updated>2014-02-16T18:49:49+08:00</updated>
+  <id>http://blog.dacer.im/</id>
   <author>
     <name><![CDATA[Dacer]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Code School笔记 - jQuery Part2 level 1]]></title>
-    <link href="http://dacer.github.io/blog/2014/02/16/code-school-bi-ji-jquery-part2-level-1/"/>
+    <link href="http://blog.dacer.im/blog/2014/02/16/code-school-bi-ji-jquery-part2-level-1/"/>
     <updated>2014-02-16T19:10:57+08:00</updated>
-    <id>http://dacer.github.io/blog/2014/02/16/code-school-bi-ji-jquery-part2-level-1</id>
+    <id>http://blog.dacer.im/blog/2014/02/16/code-school-bi-ji-jquery-part2-level-1</id>
     <content type="html"><![CDATA[<h3>Ajax Basics</h3>
 
 <p>使用Ajax时需要在网站后加上<code>?dc=123</code>之类的参数时可以用<code>data</code>

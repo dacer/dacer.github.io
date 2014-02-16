@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Rails 4 | Dacer Blog]]></title>
-  <link href="http://dacer.github.io/blog/categories/rails-4/atom.xml" rel="self"/>
-  <link href="http://dacer.github.io/"/>
-  <updated>2014-02-16T18:07:00+08:00</updated>
-  <id>http://dacer.github.io/</id>
+  <link href="http://blog.dacer.im/blog/categories/rails-4/atom.xml" rel="self"/>
+  <link href="http://blog.dacer.im/"/>
+  <updated>2014-02-16T18:49:49+08:00</updated>
+  <id>http://blog.dacer.im/</id>
   <author>
     <name><![CDATA[Dacer]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Code School笔记 - Zombie Outlaws level 5]]></title>
-    <link href="http://dacer.github.io/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-5/"/>
+    <link href="http://blog.dacer.im/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-5/"/>
     <updated>2014-02-15T19:10:57+08:00</updated>
-    <id>http://dacer.github.io/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-5</id>
+    <id>http://blog.dacer.im/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-5</id>
     <content type="html"><![CDATA[<h2>Test Your Mettle</h2>
 
 <h3>Rake Tasks</h3>
@@ -88,9 +88,9 @@ assertions/s.
   
   <entry>
     <title type="html"><![CDATA[Code School笔记 - Zombie Outlaws level 4]]></title>
-    <link href="http://dacer.github.io/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-4/"/>
+    <link href="http://blog.dacer.im/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-4/"/>
     <updated>2014-02-15T19:10:57+08:00</updated>
-    <id>http://dacer.github.io/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-4</id>
+    <id>http://blog.dacer.im/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-4</id>
     <content type="html"><![CDATA[<h2>Views &amp; Vistas</h2>
 
 <h3>Collection Form Helpers</h3>
@@ -154,9 +154,9 @@ owners_hashes.to_json</p>
   
   <entry>
     <title type="html"><![CDATA[Code School笔记 - Zombie Outlaws level 3]]></title>
-    <link href="http://dacer.github.io/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-3/"/>
+    <link href="http://blog.dacer.im/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-3/"/>
     <updated>2014-02-15T19:10:57+08:00</updated>
-    <id>http://dacer.github.io/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-3</id>
+    <id>http://blog.dacer.im/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-3</id>
     <content type="html"><![CDATA[<h2>Strong Parameters and Remote Forms &amp; Filters, Session, Custom Flash Types</h2>
 
 <h3>Strong Parameters</h3>
@@ -240,9 +240,9 @@ end</p>
   
   <entry>
     <title type="html"><![CDATA[Code School笔记 - Zombie Outlaws level 2]]></title>
-    <link href="http://dacer.github.io/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-2/"/>
+    <link href="http://blog.dacer.im/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-2/"/>
     <updated>2014-02-15T15:10:57+08:00</updated>
-    <id>http://dacer.github.io/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-2</id>
+    <id>http://blog.dacer.im/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-2</id>
     <content type="html"><![CDATA[<h2>ActiveRecord &amp; ActiveModel</h2>
 
 <h3>Finders</h3>
@@ -422,9 +422,9 @@ end
   
   <entry>
     <title type="html"><![CDATA[Code School笔记 - Zombie Outlaws level 1]]></title>
-    <link href="http://dacer.github.io/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-1/"/>
+    <link href="http://blog.dacer.im/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-1/"/>
     <updated>2014-02-15T15:10:57+08:00</updated>
-    <id>http://dacer.github.io/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-1</id>
+    <id>http://blog.dacer.im/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-1</id>
     <content type="html"><![CDATA[<h2>Ruby 1.9.3, ThreadSafety and Routes</h2>
 
 <h3>Match Routes</h3>
