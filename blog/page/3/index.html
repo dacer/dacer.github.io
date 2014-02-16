@@ -7,7 +7,46 @@
 
 <meta name="author" content="Dacer"> 
 
-<meta name="description" content=" 看到这些评价的时候。 ps:第一个的那个说到我心坎里了啊！我之前一直想表述出这个但是就是组织语言不出来。。 Nov 1st, 2013 "> <meta name="keywords" content="">
+<meta name="description" content="1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+/**
+*
+* @param canvas The canvas you need to &hellip;"> <meta name="keywords" content="">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -91,6 +130,125 @@ $(document).ready(
 </header>
 
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/11/09/e6808ee6a0b7e59ca8canvase4b8ade79a84e696b9e5bda2e4b8ade5a4aee794bbtext/">
+		
+			怎样在canvas中的方形中央画Text</a>
+	</h2>
+	<div class="entry-content">
+		<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="cm">/**</span>
+</span><span class='line'><span class="cm">*</span>
+</span><span class='line'><span class="cm">* @param canvas The canvas you need to draw on.</span>
+</span><span class='line'><span class="cm">* @param x The X Coordinate from left to right.</span>
+</span><span class='line'><span class="cm">* @param y The Y Coordinate form bottom to top.</span>
+</span><span class='line'><span class="cm">*/</span>
+</span><span class='line'><span class="kd">private</span> <span class="kt">void</span> <span class="nf">drawPopup</span><span class="o">(</span><span class="n">Canvas</span> <span class="n">canvas</span><span class="o">,</span><span class="n">String</span> <span class="n">num</span><span class="o">,</span><span class="kt">int</span> <span class="n">x</span><span class="o">,</span><span class="kt">int</span> <span class="n">y</span><span class="o">){</span>
+</span><span class='line'><span class="kt">int</span> <span class="n">bottomTriangleHeight</span> <span class="o">=</span> <span class="mi">12</span><span class="o">;</span>
+</span><span class='line'><span class="kt">int</span> <span class="n">padding</span> <span class="o">=</span> <span class="n">MyUtils</span><span class="o">.</span><span class="na">dip2px</span><span class="o">(</span><span class="n">mContext</span><span class="o">,</span><span class="mi">2</span><span class="o">);</span>
+</span><span class='line'><span class="kt">int</span> <span class="n">marginBottom</span> <span class="o">=</span> <span class="n">MyUtils</span><span class="o">.</span><span class="na">dip2px</span><span class="o">(</span><span class="n">mContext</span><span class="o">,</span><span class="mi">5</span><span class="o">);</span>
+</span><span class='line'><span class="kt">boolean</span> <span class="n">singularNum</span> <span class="o">=</span> <span class="o">(</span><span class="n">num</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">==</span> <span class="mi">1</span><span class="o">);</span>
+</span><span class='line'><span class="kt">int</span> <span class="n">sidePadding</span> <span class="o">=</span> <span class="n">MyUtils</span><span class="o">.</span><span class="na">dip2px</span><span class="o">(</span><span class="n">mContext</span><span class="o">,</span><span class="n">singularNum</span><span class="o">?</span> <span class="mi">8</span><span class="o">:</span><span class="mi">5</span><span class="o">);</span>
+</span><span class='line'><span class="kt">int</span> <span class="n">xCoor</span> <span class="o">=</span> <span class="n">xCoordinateList</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">x</span><span class="o">);</span>
+</span><span class='line'><span class="kt">int</span> <span class="n">yCoor</span> <span class="o">=</span> <span class="n">yCoordinateList</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">yCoordinateList</span><span class="o">.</span><span class="na">size</span><span class="o">()-</span><span class="n">y</span><span class="o">)-</span><span class="n">MyUtils</span><span class="o">.</span><span class="na">dip2px</span><span class="o">(</span><span class="n">mContext</span><span class="o">,</span><span class="mi">5</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">Paint</span> <span class="n">textPaint</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Paint</span><span class="o">();</span>
+</span><span class='line'><span class="n">textPaint</span><span class="o">.</span><span class="na">setAntiAlias</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+</span><span class='line'><span class="n">textPaint</span><span class="o">.</span><span class="na">setColor</span><span class="o">(</span><span class="n">Color</span><span class="o">.</span><span class="na">BLACK</span><span class="o">);</span>
+</span><span class='line'><span class="n">textPaint</span><span class="o">.</span><span class="na">setTextSize</span><span class="o">(</span><span class="n">MyUtils</span><span class="o">.</span><span class="na">sp2px</span><span class="o">(</span><span class="n">mContext</span><span class="o">,</span> <span class="mi">13</span><span class="o">));</span>
+</span><span class='line'><span class="n">textPaint</span><span class="o">.</span><span class="na">setStrokeWidth</span><span class="o">(</span><span class="mi">5</span><span class="o">);</span>
+</span><span class='line'><span class="n">textPaint</span><span class="o">.</span><span class="na">setTextAlign</span><span class="o">(</span><span class="n">Paint</span><span class="o">.</span><span class="na">Align</span><span class="o">.</span><span class="na">CENTER</span><span class="o">);</span>
+</span><span class='line'><span class="n">Paint</span><span class="o">.</span><span class="na">FontMetrics</span> <span class="n">fm</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Paint</span><span class="o">.</span><span class="na">FontMetrics</span><span class="o">();</span>
+</span><span class='line'><span class="n">textPaint</span><span class="o">.</span><span class="na">getFontMetrics</span><span class="o">(</span><span class="n">fm</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">Rect</span> <span class="n">r</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Rect</span><span class="o">((</span><span class="kt">int</span><span class="o">)(</span><span class="n">xCoor</span><span class="o">-</span><span class="n">textPaint</span><span class="o">.</span><span class="na">measureText</span><span class="o">(</span><span class="n">num</span><span class="o">)/</span><span class="mi">2</span><span class="o">)-</span><span class="n">sidePadding</span><span class="o">,</span>
+</span><span class='line'><span class="o">(</span><span class="kt">int</span><span class="o">)(</span><span class="n">yCoor</span> <span class="o">-</span> <span class="n">textPaint</span><span class="o">.</span><span class="na">getTextSize</span><span class="o">())-</span><span class="n">bottomTriangleHeight</span><span class="o">-</span><span class="n">padding</span><span class="o">-</span><span class="n">marginBottom</span><span class="o">,</span>
+</span><span class='line'><span class="o">(</span><span class="kt">int</span><span class="o">)(</span><span class="n">xCoor</span> <span class="o">+</span> <span class="n">textPaint</span><span class="o">.</span><span class="na">measureText</span><span class="o">(</span><span class="n">num</span><span class="o">)/</span><span class="mi">2</span><span class="o">)+</span><span class="n">sidePadding</span><span class="o">,</span>
+</span><span class='line'><span class="n">yCoor</span><span class="o">+</span><span class="n">padding</span><span class="o">-</span><span class="n">marginBottom</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">NinePatchDrawable</span> <span class="n">popup</span> <span class="o">=</span> <span class="o">(</span><span class="n">NinePatchDrawable</span><span class="o">)</span><span class="n">getResources</span><span class="o">().</span>
+</span><span class='line'><span class="n">getDrawable</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">drawable</span><span class="o">.</span><span class="na">popup_red</span><span class="o">);</span>
+</span><span class='line'><span class="n">popup</span><span class="o">.</span><span class="na">setBounds</span><span class="o">(</span><span class="n">r</span><span class="o">);</span>
+</span><span class='line'><span class="n">popup</span><span class="o">.</span><span class="na">draw</span><span class="o">(</span><span class="n">canvas</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">textPaint</span><span class="o">.</span><span class="na">setColor</span><span class="o">(</span><span class="n">Color</span><span class="o">.</span><span class="na">WHITE</span><span class="o">);</span>
+</span><span class='line'><span class="n">canvas</span><span class="o">.</span><span class="na">drawText</span><span class="o">(</span><span class="n">num</span><span class="o">,</span> <span class="n">xCoor</span><span class="o">,</span> <span class="n">yCoor</span><span class="o">-</span><span class="n">bottomTriangleHeight</span><span class="o">-</span><span class="n">marginBottom</span><span class="o">,</span> <span class="n">textPaint</span><span class="o">);</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>被这个折腾死了。。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-09T13:22:10+08:00" pubdate data-updated="true">Nov 9<span>th</span>, 2013</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/android/'>Android</a>
+
+</div>
+
+
+	
+</div></article>
 
 
     <article class="post">
@@ -574,57 +732,6 @@ ps:第一个的那个说到我心坎里了啊！我之前一直想表述出这�
 <div class="tags">
 
 	<a class='category' href='/blog/categories/android/'>Android</a>, <a class='category' href='/blog/categories/kai-fa-bi-ji/'>开发笔记</a>
-
-</div>
-
-
-	
-</div></article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2013/09/30/e68891e4bb8eeclipsee8bdace588b0intellije68980e5819ae79a84e4ba8b/">
-		
-			我从eclipse转到IntelliJ所做的事</a>
-	</h2>
-	<div class="entry-content">
-		<p>早就不想用那个蜗牛速的eclipse了，于是着手准备转到Android studio开发</p>
-
-<p>1.鼠标悬停看javaDoc &ndash; 找到安装目录下的 bin/idea.properties ，填上下面一行</p>
-
-<pre><code>&lt;code&gt;auto.show.quick.doc=true&lt;/code&gt;
-</code></pre>
-
-<p>但是实际测试无用。又找到一个方法可显示，如下</p>
-
-<p>Settings &ndash;> Editor &ndash;> Show quick doc on mouse move</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-09-30T16:17:48+08:00" pubdate data-updated="true">Sep 30<span>th</span>, 2013</time></div>
-	
-
-<div class="tags">
-
-	<a class='category' href='/blog/categories/android/'>Android</a>
 
 </div>
 

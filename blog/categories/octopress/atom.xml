@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Octopress | Dacer Blog]]></title>
   <link href="http://dacer.github.io/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="http://dacer.github.io/"/>
-  <updated>2014-02-16T17:39:20+08:00</updated>
+  <updated>2014-02-16T17:49:42+08:00</updated>
   <id>http://dacer.github.io/</id>
   <author>
     <name><![CDATA[Dacer]]></name>
@@ -12,6 +12,15 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[简化Octopress发布步骤]]></title>
+    <link href="http://dacer.github.io/blog/2014/02/16/jian-hua-octopressfa-bu-bu-zou/"/>
+    <updated>2014-02-16T17:43:24+08:00</updated>
+    <id>http://dacer.github.io/blog/2014/02/16/jian-hua-octopressfa-bu-bu-zou</id>
+    <content type="html"><![CDATA[
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[把主题微调了一下]]></title>
