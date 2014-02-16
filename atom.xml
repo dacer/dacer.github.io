@@ -4,7 +4,7 @@
   <title><![CDATA[Dacer Blog]]></title>
   <link href="http://dacer.github.io/atom.xml" rel="self"/>
   <link href="http://dacer.github.io/"/>
-  <updated>2014-02-15T21:44:25+08:00</updated>
+  <updated>2014-02-16T12:01:07+08:00</updated>
   <id>http://dacer.github.io/</id>
   <author>
     <name><![CDATA[Dacer]]></name>
@@ -18,7 +18,110 @@
     <link href="http://dacer.github.io/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-3/"/>
     <updated>2014-02-15T19:10:57+08:00</updated>
     <id>http://dacer.github.io/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-3</id>
-    <content type="html"><![CDATA[
+    <content type="html"><![CDATA[<h3>Strong Parameters</h3>
+
+<p>在rails 4的controller中必须指定可接受的params</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">user_params</span>
+</span><span class='line'>  <span class="n">params</span><span class="o">.</span><span class="n">require</span><span class="p">(</span><span class="ss">:user</span><span class="p">)</span><span class="o">.</span><span class="n">permit</span><span class="p">(</span><span class="ss">:name</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>其中<code>rquire</code>会检查是否有参数中的key，没有则返回400错误，但并不会将这个key的值返回到<code>user_params</code>中，<code>permit</code>则会将参数中key对应的值返回<br/>
+add this line if you want to raise errors for unpermitted params:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1">#config/application.rb</span>
+</span><span class='line'><span class="n">config</span><span class="o">.</span><span class="n">action_controller</span><span class="o">.</span><span class="n">action_on_unpermitted_parameters</span> <span class="o">=</span> <span class="ss">:raise</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Authenticity Token</h3>
+
+<p>Rails 会自动在form中的value加入token来防止机器人的spam</p>
+
+<h3>Action Controller Filters/Actions</h3>
+
+<p>3中的<code>before_filter</code>变为了<code>before_action</code>,可以让Controller在部分方法call之前做出一些动作：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">PeopleController</span> <span class="o">&lt;</span> <span class="ss">ActionController</span><span class="p">:</span><span class="ss">:Base</span>
+</span><span class='line'>  <span class="n">before_action</span> <span class="ss">:set_person</span><span class="p">,</span>      <span class="ss">except</span><span class="p">:</span> <span class="o">[</span> <span class="ss">:index</span><span class="p">,</span> <span class="ss">:new</span><span class="p">,</span> <span class="ss">:create</span> <span class="o">]</span>
+</span><span class='line'>  <span class="n">before_action</span> <span class="ss">:ensure_permission</span><span class="p">,</span> <span class="ss">only</span><span class="p">:</span> <span class="o">[</span> <span class="ss">:edit</span><span class="p">,</span> <span class="ss">:update</span> <span class="o">]</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Flash Types</h3>
+
+<p>以下方法可以生成flash信息：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">if</span> <span class="vi">@item</span><span class="o">.</span><span class="n">save</span>
+</span><span class='line'>  <span class="n">flash</span><span class="o">[</span><span class="ss">:notice</span><span class="o">]</span> <span class="o">=</span> <span class="s1">&#39;Item created.&#39;</span>
+</span><span class='line'>  <span class="n">redirect_to</span> <span class="vi">@item</span>
+</span><span class='line'><span class="k">else</span>
+</span><span class='line'>  <span class="n">render</span> <span class="ss">action</span><span class="p">:</span> <span class="s1">&#39;new&#39;</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;p</span> <span class="na">id=</span><span class="s">&quot;notice&quot;</span><span class="nt">&gt;</span><span class="err">&lt;</span>%= flash[:notice] %&gt;<span class="nt">&lt;/p&gt;</span>
+</span><span class='line'><span class="nt">&lt;p&gt;</span> <span class="nt">&lt;strong&gt;</span>Name:<span class="nt">&lt;/strong&gt;</span> <span class="err">&lt;</span>%= @item.name %&gt;
+</span><span class='line'><span class="nt">&lt;/p&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>其中erb部分可以简写为</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;p</span> <span class="na">id=</span><span class="s">&quot;notice&quot;</span><span class="nt">&gt;</span><span class="err">&lt;</span>%= notice %&gt;<span class="nt">&lt;/p&gt;</span>
+</span><span class='line'><span class="nt">&lt;p</span> <span class="na">id=</span><span class="s">&quot;alert&quot;</span><span class="nt">&gt;</span><span class="err">&lt;</span>%= alert %&gt;<span class="nt">&lt;/p&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>你也可以自定义flash类型</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">ApplicationController</span> <span class="o">&lt;</span> <span class="ss">ActionController</span><span class="p">:</span><span class="ss">:Base</span>
+</span><span class='line'>  <span class="n">add_flash_types</span> <span class="ss">:grunt</span><span class="p">,</span> <span class="ss">:snarl</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">#...</span>
+</span><span class='line'><span class="n">flash</span><span class="o">[</span><span class="ss">:grunt</span><span class="o">]</span> <span class="o">=</span> <span class="s1">&#39;braaains...&#39;</span>
+</span><span class='line'><span class="c1">#或者简写为</span>
+</span><span class='line'><span class="n">redirect_to</span> <span class="vi">@user</span><span class="p">,</span> <span class="ss">grunt</span><span class="p">:</span> <span class="s1">&#39;braaains...&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;grunt&quot;</span><span class="nt">&gt;</span><span class="err">&lt;</span>%= grunt %&gt;<span class="nt">&lt;/div&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
 ]]></content>
   </entry>
   

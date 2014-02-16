@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Rails 4 | Dacer Blog]]></title>
   <link href="http://dacer.github.io/blog/categories/rails-4/atom.xml" rel="self"/>
   <link href="http://dacer.github.io/"/>
-  <updated>2014-02-15T21:44:25+08:00</updated>
+  <updated>2014-02-16T12:01:07+08:00</updated>
   <id>http://dacer.github.io/</id>
   <author>
     <name><![CDATA[Dacer]]></name>
@@ -18,7 +18,82 @@
     <link href="http://dacer.github.io/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-3/"/>
     <updated>2014-02-15T19:10:57+08:00</updated>
     <id>http://dacer.github.io/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-3</id>
-    <content type="html"><![CDATA[
+    <content type="html"><![CDATA[<h3>Strong Parameters</h3>
+
+<p>在rails 4的controller中必须指定可接受的params
+```ruby</p>
+
+<pre><code>def user_params
+  params.require(:user).permit(:name)
+end
+</code></pre>
+
+<p><code>
+其中`rquire`会检查是否有参数中的key，没有则返回400错误，但并不会将这个key的值返回到`user_params`中，`permit`则会将参数中key对应的值返回  
+add this line if you want to raise errors for unpermitted params:
+</code>ruby</p>
+
+<h1>config/application.rb</h1>
+
+<p>config.action_controller.action_on_unpermitted_parameters = :raise
+```</p>
+
+<h3>Authenticity Token</h3>
+
+<p>Rails 会自动在form中的value加入token来防止机器人的spam</p>
+
+<h3>Action Controller Filters/Actions</h3>
+
+<p>3中的<code>before_filter</code>变为了<code>before_action</code>,可以让Controller在部分方法call之前做出一些动作：
+```ruby
+class PeopleController &lt; ActionController::Base</p>
+
+<pre><code>before_action :set_person,      except: [ :index, :new, :create ]
+before_action :ensure_permission, only: [ :edit, :update ]
+</code></pre>
+
+<p>end
+```</p>
+
+<h3>Flash Types</h3>
+
+<p>以下方法可以生成flash信息：
+<code>ruby
+if @item.save
+  flash[:notice] = 'Item created.'
+  redirect_to @item
+else
+  render action: 'new'
+end
+</code>
+```html</p>
+
+<p><p id="notice">&lt;%= flash[:notice] %></p>
+<p> <strong>Name:</strong> &lt;%= @item.name %>
+</p>
+<code>
+其中erb部分可以简写为
+</code>html
+<p id="notice">&lt;%= notice %></p>
+<p id="alert">&lt;%= alert %></p>
+<code>
+你也可以自定义flash类型
+</code>ruby
+class ApplicationController &lt; ActionController::Base
+  add_flash_types :grunt, :snarl
+end</p>
+
+<h1>&hellip;</h1>
+
+<p>flash[:grunt] = &lsquo;braaains&hellip;&rsquo;</p>
+
+<h1>或者简写为</h1>
+
+<p>redirect_to @user, grunt: &lsquo;braaains&hellip;&rsquo;
+<code>
+</code>html
+<div id="grunt">&lt;%= grunt %></div>
+```</p>
 ]]></content>
   </entry>
   
