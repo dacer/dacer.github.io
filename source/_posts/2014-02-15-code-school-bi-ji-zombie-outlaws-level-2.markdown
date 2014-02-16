@@ -7,6 +7,7 @@ categories:
 - Code School
 - Rails 4
 ---
+##ActiveRecord & ActiveModel
 ###Finders
 米什么好说的
 ```ruby

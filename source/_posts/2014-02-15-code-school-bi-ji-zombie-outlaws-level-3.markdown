@@ -7,6 +7,7 @@ categories:
 - Code School
 - Rails 4
 ---
+##Strong Parameters and Remote Forms & Filters, Session, Custom Flash Types
 ###Strong Parameters
 在rails 4的controller中必须指定可接受的params
 ```ruby

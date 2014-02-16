@@ -7,7 +7,8 @@ categories:
 - Code School
 - Rails 4
 ---
-##Match Routes
+##Ruby 1.9.3, ThreadSafety and Routes
+###Match Routes
 有两种方式
 ```
 post '/somewhere', to: 'controller#action'
@@ -15,7 +16,7 @@ match '/somewhere', to: 'controller#action', via: :post
 match '/somewhere', to: 'controller#action', via: :all
 ```
 
-##Concern
+###Concern
 用来简化route
 ```
 concern :sociable do
