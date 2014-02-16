@@ -7,7 +7,11 @@
 
 <meta name="author" content="Dacer"> 
 
-<meta name="description" content=" Feb 16th, 2014 Octopress "> <meta name="keywords" content="">
+<meta name="description" content="用了一段时间 Octopress 确实挺好用的，就是发布需要两个步骤 1
+2
+bundle exec rake generate
+bundle exec rake deploy 灰常麻烦，下面说说怎么简化：
+首先bundle exec前缀是因为Gemfile中rake版本号被限定在旧的版本号了， &hellip;"> <meta name="keywords" content="">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -92,7 +96,62 @@ $(document).ready(
 
 	<div id="content" class="inner"><article class="post">
 	<h2 class="title">简化Octopress发布步骤</h2>
-	<div class="entry-content">
+	<div class="entry-content"><p>用了一段时间 Octopress 确实挺好用的，就是发布需要两个步骤</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>bundle exec rake generate
+</span><span class='line'>bundle exec rake deploy  </span></code></pre></td></tr></table></div></figure>
+
+
+<p>灰常麻烦，下面说说怎么简化：<br/>
+首先<code>bundle exec</code>前缀是因为Gemfile中rake版本号被限定在旧的版本号了，把那行简化为</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1">#Gemfile</span>
+</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;rake&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>然后再</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">bundle</span> <span class="n">update</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>就行了，<br/>
+下一步是合并生成和发布，打开<code>Rakefile</code>,随便找个地方copy</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">desc</span> <span class="s2">&quot;Generate + Deploy&quot;</span>
+</span><span class='line'><span class="n">task</span> <span class="ss">:d</span> <span class="k">do</span>
+</span><span class='line'>  <span class="ss">Rake</span><span class="p">:</span><span class="ss">:Task</span><span class="o">[</span><span class="ss">:generate</span><span class="o">].</span><span class="n">execute</span>
+</span><span class='line'>  <span class="ss">Rake</span><span class="p">:</span><span class="ss">:Task</span><span class="o">[</span><span class="ss">:deploy</span><span class="o">].</span><span class="n">execute</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>然后以后要发布的时候用<code>rake d</code>就行了，灰常舒服<br/>
+也可以把preview简化一下</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">desc</span> <span class="s2">&quot;Preview&quot;</span>
+</span><span class='line'><span class="n">task</span> <span class="ss">:p</span> <span class="k">do</span>
+</span><span class='line'>  <span class="ss">Rake</span><span class="p">:</span><span class="ss">:Task</span><span class="o">[</span><span class="ss">:preview</span><span class="o">].</span><span class="n">execute</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>然后用<code>rake p</code>即可</p>
 </div>
 
 

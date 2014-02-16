@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Octopress | Dacer Blog]]></title>
   <link href="http://dacer.github.io/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="http://dacer.github.io/"/>
-  <updated>2014-02-16T17:49:42+08:00</updated>
+  <updated>2014-02-16T17:54:12+08:00</updated>
   <id>http://dacer.github.io/</id>
   <author>
     <name><![CDATA[Dacer]]></name>
@@ -18,7 +18,41 @@
     <link href="http://dacer.github.io/blog/2014/02/16/jian-hua-octopressfa-bu-bu-zou/"/>
     <updated>2014-02-16T17:43:24+08:00</updated>
     <id>http://dacer.github.io/blog/2014/02/16/jian-hua-octopressfa-bu-bu-zou</id>
-    <content type="html"><![CDATA[
+    <content type="html"><![CDATA[<p>用了一段时间 Octopress 确实挺好用的，就是发布需要两个步骤
+<code>
+bundle exec rake generate
+bundle exec rake deploy  
+</code>
+灰常麻烦，下面说说怎么简化：<br/>
+首先<code>bundle exec</code>前缀是因为Gemfile中rake版本号被限定在旧的版本号了，把那行简化为
+```ruby</p>
+
+<h1>Gemfile</h1>
+
+<p>gem &lsquo;rake&rsquo;
+<code>
+然后再
+</code>
+bundle update
+<code>
+就行了，  
+下一步是合并生成和发布，打开`Rakefile`,随便找个地方copy
+</code>ruby
+desc &ldquo;Generate + Deploy&rdquo;
+task :d do
+  Rake::Task[:generate].execute
+  Rake::Task[:deploy].execute
+end
+<code>
+然后以后要发布的时候用`rake d`就行了，灰常舒服  
+也可以把preview简化一下
+</code>ruby
+desc &ldquo;Preview&rdquo;
+task :p do
+  Rake::Task[:preview].execute
+end
+<code>``
+然后用</code>rake p`即可</p>
 ]]></content>
   </entry>
   
