@@ -19,3 +19,10 @@ $.ajax('confirmation.html', {
 });
 //confirmation.html?confNum=1234
 ```
+timeout
+```javascript
+$.ajax('confirmation.html', {
+   ...,
+   timeout: 3000 //3000ms = 3 seconds
+});
+```

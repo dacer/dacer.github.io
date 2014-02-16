@@ -9,4 +9,5 @@ categories:
 ---
 参考了
 > http://havee.me/internet/2013-02/add-duoshuo-commemt-system-into-octopress.html
-顺便用css删减了点=，=
+
+顺便用css精简了下
