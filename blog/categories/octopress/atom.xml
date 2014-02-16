@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Octopress | Dacer Blog]]></title>
   <link href="http://dacer.github.io/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="http://dacer.github.io/"/>
-  <updated>2014-02-16T17:54:12+08:00</updated>
+  <updated>2014-02-16T17:56:41+08:00</updated>
   <id>http://dacer.github.io/</id>
   <author>
     <name><![CDATA[Dacer]]></name>
@@ -45,7 +45,7 @@ task :d do
 end
 <code>
 然后以后要发布的时候用`rake d`就行了，灰常舒服  
-也可以把preview简化一下
+顺便也可以把preview简化一下
 </code>ruby
 desc &ldquo;Preview&rdquo;
 task :p do

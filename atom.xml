@@ -4,7 +4,7 @@
   <title><![CDATA[Dacer Blog]]></title>
   <link href="http://dacer.github.io/atom.xml" rel="self"/>
   <link href="http://dacer.github.io/"/>
-  <updated>2014-02-16T17:54:12+08:00</updated>
+  <updated>2014-02-16T17:56:41+08:00</updated>
   <id>http://dacer.github.io/</id>
   <author>
     <name><![CDATA[Dacer]]></name>
@@ -90,7 +90,7 @@
 
 
 <p>然后以后要发布的时候用<code>rake d</code>就行了，灰常舒服<br/>
-也可以把preview简化一下</p>
+顺便也可以把preview简化一下</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
