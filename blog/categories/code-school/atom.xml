@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Code School | Dacer Blog]]></title>
   <link href="http://blog.dacer.im/blog/categories/code-school/atom.xml" rel="self"/>
   <link href="http://blog.dacer.im/"/>
-  <updated>2014-02-16T19:38:40+08:00</updated>
+  <updated>2014-02-16T21:40:24+08:00</updated>
   <id>http://blog.dacer.im/</id>
   <author>
     <name><![CDATA[Dacer]]></name>
@@ -14,10 +14,10 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Code School笔记 - jQuery Part2 level 1]]></title>
-    <link href="http://blog.dacer.im/blog/2014/02/16/code-school-bi-ji-jquery-part2-level-1/"/>
+    <title type="html"><![CDATA[Code School笔记 - jQuery Part2 level 1 & 2]]></title>
+    <link href="http://blog.dacer.im/blog/2014/02/16/code-school-bi-ji-jquery-part2-level-1-and-2/"/>
     <updated>2014-02-16T19:10:57+08:00</updated>
-    <id>http://blog.dacer.im/blog/2014/02/16/code-school-bi-ji-jquery-part2-level-1</id>
+    <id>http://blog.dacer.im/blog/2014/02/16/code-school-bi-ji-jquery-part2-level-1-and-2</id>
     <content type="html"><![CDATA[<h3>Ajax Basics</h3>
 
 <p>使用Ajax时需要在网站后加上<code>?dc=123</code>之类的参数时可以用<code>data</code>
@@ -33,6 +33,47 @@ $.ajax(&lsquo;confirmation.html&rsquo;, {
    }
 });
 //confirmation.html?confNum=1234
+<code>
+timeout
+</code>javascript
+$.ajax(&lsquo;confirmation.html&rsquo;, {
+   &hellip;,
+   timeout: 3000 //3000ms = 3 seconds
+});
+<code>`
+还有`beforeSend</code>complete`等</p>
+
+<h3>Event Delegation</h3>
+
+<p>当你用jquery监听点击事件时只会在网页加载完毕后执行监听，如果是用ajax创造出来的是无法监听到的，所以要用到<code>Event Delegation</code>
+<code>javascript
+$('.confirmation .view-boarding-pass').on('click', function(){ ... }); //无法监听到
+$('.confirmation').on('click', '.view-boarding-pass', function(){ ... });
+</code>
+以上代码是监听<code>.confirmation</code>中的点击事件，每次<code>.confirmation</code>中有元素被点击了之后都会检查是否是<code>.view-boarding-pass</code></p>
+
+<h3>Javascript Object</h3>
+
+<p>用<code>var</code>可以声明一个 Object ，然后将其中的function提取出来使代码更整洁
+```javascript
+var confirmation = {
+  init: function() {</p>
+
+<pre><code>$('.confirmation').on('click', 'button', this.loadConfirmation);
+</code></pre>
+
+<p>$(&lsquo;.confirmation&rsquo;).on(&lsquo;click&rsquo;, &lsquo;.view-boarding-pass&rsquo;, this.showBoardingPass); },
+  loadConfirmation: function() {</p>
+
+<pre><code>$.ajax('confirmation.html', { ... });
+</code></pre>
+
+<p>   ,
+  showBoardingPass: function(event) { &hellip; }
+};
+$(document).ready(function() {
+  confirmation.init();
+});
 ```</p>
 ]]></content>
   </entry>
