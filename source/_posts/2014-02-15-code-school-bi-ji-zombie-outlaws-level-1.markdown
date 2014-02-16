@@ -52,6 +52,7 @@ end
 #routes.rb
 concern :sociable， Sociable
 #...
+```
 
 ###Thread-Safety
 In Rails 4
@@ -60,5 +61,4 @@ MyApp::Application.configure do
   config.cache_classes = true
   config.eager_load = true
 end
-```
 ```
