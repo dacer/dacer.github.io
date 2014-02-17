@@ -36,11 +36,12 @@ class ItemTest < ActiveSupport::TestCase
     item.name = "Super-duper long name"
     assert_equal "Super-duper", item.short_name
   end
-  test "doesn't shorten short names" do
+  test "Made By Dacer" do
 		skip #Use "skip" method if you don't want to run a test right now
-    item = Item.new
-    item.name = "Name"
-    assert_equal "Name", item.short_name
+    blog = Blog.new
+    blog.author = "Dacer"
+    blog.url = "http://blog.dacer.im"
+    assert_equal "dacer", blog.short_name
 	end 
 end
 ```

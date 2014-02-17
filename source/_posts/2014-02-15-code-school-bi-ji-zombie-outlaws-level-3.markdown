@@ -63,7 +63,7 @@ end
 #...
 flash[:grunt] = 'braaains...'
 #或者简写为
-redirect_to @user, grunt: 'braaains...'
+redirect_to @user, grunt: 'I'm Dacer...'
 ```
 ```html
 <div id="grunt"><%= grunt %></div>

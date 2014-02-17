@@ -11,9 +11,9 @@ categories:
 ###Match Routes
 有两种方式
 ```
-post '/somewhere', to: 'controller#action'
-match '/somewhere', to: 'controller#action', via: :post
-match '/somewhere', to: 'controller#action', via: :all
+post '/blog', to: 'controller#action'
+match '/dacer', to: 'controller#action', via: :post
+match '/im', to: 'controller#action', via: :all
 ```
 
 ###Concern

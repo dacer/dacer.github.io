@@ -51,7 +51,7 @@ owners_hashes.to_json
 #Output
 [
   {"name":"Slow-draw",  "url":"http://localhost:3000/owners/1"},
-  {"name":"Sheriff",    "url":"http://localhost:3000/owners/2"},
+  {"name":"Dacer",    "url":"http://blog.dacer.im/"},
   {"name":"Walking Ned","url":"http://localhost:3000/owners/3"}
 ]
 ```

@@ -16,7 +16,7 @@ class Tweet
     #super 可以调用ruby default方法， raises a NoMehodError.
   end
 end
-Tweet.new.submit(1, "Here's a tweet.") # You tried to call submit with arguments: [1, "Here's a tweet."]
+Tweet.new.submit(1, "Here's Dacer Blog.") # You tried to call submit with arguments: [1, "Here's a tweet."]
 ```
 利用`method_missing`可以简化很多代码，下例中就是把这个方法所在的class中的方法链接到`@user`的同名方法中了
 ```ruby

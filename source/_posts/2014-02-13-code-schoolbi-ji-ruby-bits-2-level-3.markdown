@@ -17,9 +17,9 @@ class Tweet
   end
   def Tweet.f ... #与上方一致，但不常用
 end
-Tweet.f("a") # => Tweet
+Tweet.f("Hi") # => Tweet
 tweet = Tweet.new
-tweet.f("a") # Error!
+tweet.f("dacer") # Error!
 ```
 
 ###Class_eval

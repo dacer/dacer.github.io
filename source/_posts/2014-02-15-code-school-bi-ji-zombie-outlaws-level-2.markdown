@@ -11,7 +11,7 @@ categories:
 ###Finders
 米什么好说的
 ```ruby
-Post.where(author: 'admin') # returns an ActiveRecord::Relation
+Post.where(author: 'Dacer') # returns an ActiveRecord::Relation
 ```
 
 ###Find_By
@@ -46,7 +46,7 @@ Post.create(title: 'Rails 4')
 class Post < ActiveRecord::Base
     after_create :foo
     def foo
-      posts = Post.where(author: 'admin')
+      posts = Post.where(author: 'dacer')
       ...
 		end
 end
@@ -92,7 +92,7 @@ end
 ###Relation#Not
 在使用`where`寻找类似`user != ?`的不等于时如果参数是`nil`的话会报 SQL 错误，使用`.where.not`则会自动判别参数是否为空，且在非空时才执行SQL语句
 ```ruby
-Post.where.not(author: author)
+Post.where.not(author: dacer)
 ```
 
 ###Relation#Order

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Code School笔记 - jQuery Part2 level 1 & 2"
-date: 2014-02-16 19:10:57 +0800
+date: 2014-02-17 20:10:57 +0800
 comments: true
 categories: 
 - Code School
@@ -14,10 +14,10 @@ $.ajax('confirmation.html', {
    success: function(response) {
      $('.ticket').html(response).slideDown();
    },
-   data: { "confNum": 1234 }
+   data: { "author": dacer }
    }
 });
-//confirmation.html?confNum=1234
+//confirmation.html?author=dacer
 ```
 timeout
 ```javascript
@@ -42,13 +42,52 @@ $('.confirmation').on('click', '.view-boarding-pass', function(){ ... });
 var confirmation = {
   init: function() {
     $('.confirmation').on('click', 'button', this.loadConfirmation);
-$('.confirmation').on('click', '.view-boarding-pass', this.showBoardingPass); },
+    $('.confirmation').on('click', '.view-boarding-pass', this.showBoardingPass); 
+  },
   loadConfirmation: function() {
     $.ajax('confirmation.html', { ... });
-   ,
+  },
   showBoardingPass: function(event) { ... }
 };
+
 $(document).ready(function() {
   confirmation.init();
 });
+```
+
+###Javascript Function
+用驼峰法命名一个js的function
+```javascript
+function Blog(author) {
+  // init
+}
+var blog = new Blog('Dacer');
+```
+
+function中可以嵌套function
+```javascript
+function Blog(author) {
+  this.print = function(){
+    console.log(author)
+  }
+}
+var blog = new Blog('Dacer');
+blog.print(); //"Dacer"
+```
+###用 Function 重构之前的代码
+```javascript
+function Confirmation(el) {
+  this.el = el;
+  this.ticket = this.el.find('.ticket');
+  var confirmation = this;
+  this.loadConfirmation = function() {
+    $.ajax('confirmation.html', {
+      timeout: 3000,
+      context: confirmation, //因为ajax内部的this和外部的不同，所以用context把内部的this替换成外部的
+      success: function(response) {
+        this.ticket .html(response).slideDown(); 
+      }
+    }); 
+  }
+}
 ```
