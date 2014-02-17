@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Rails 4 | Dacer Blog]]></title>
   <link href="http://blog.dacer.im/blog/categories/rails-4/atom.xml" rel="self"/>
   <link href="http://blog.dacer.im/"/>
-  <updated>2014-02-16T21:40:24+08:00</updated>
+  <updated>2014-02-17T12:35:29+08:00</updated>
   <id>http://blog.dacer.im/</id>
   <author>
     <name><![CDATA[Dacer]]></name>
@@ -12,6 +12,221 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Code School笔记 - Zombie Outlaws level 6]]></title>
+    <link href="http://blog.dacer.im/blog/2014/02/17/code-school-bi-ji-zombie-outlaws-level-6/"/>
+    <updated>2014-02-17T11:10:57+08:00</updated>
+    <id>http://blog.dacer.im/blog/2014/02/17/code-school-bi-ji-zombie-outlaws-level-6</id>
+    <content type="html"><![CDATA[<h2>ETags,Dalli, &amp; Cache-Digests</h2>
+
+<h3>ETags</h3>
+
+<p>在client请求网页时Rail 4会生成ETags一并发送回去，且client在第二次请求时会将ETags返回回来，此时Rails会再次生成ETags并与之比对，如果相同则返回304让client直接读取缓存的内容。<br/>
+换句话说就是ETags是用来判断一个page是否有改变。</p>
+
+<h3>Setting Custom ETags</h3>
+
+<p>可以自定义ETags，<code>fresh_when</code>就是将Etags与<code>@item</code>相关联，在<code>@item.cache_key</code>不变时返回的Etags也相同，和上一节一样返回304
+```ruby
+class ItemsController &lt; ApplicationController
+  def show</p>
+
+<pre><code>@item = Item.find(params[:id])
+</code></pre>
+
+<p>￼    fresh_when(@item) # => headers[&lsquo;ETag&rsquo;] = Digest::MD5.hexdigest(@item.cache_key)
+  end
+end</p>
+
+<h1>@item.cache_key</h1>
+
+<h1>= &lsquo;item/2-2011224150000&rsquo;</h1>
+
+<h1>= <model name>/ <id>&ndash;&lt;updated_at></h1>
+
+<p>```</p>
+
+<h3>Declarative Etags</h3>
+
+<p>可以简化Etags的代码：
+```ruby
+class ItemsController &lt; ApplicationController
+  etag { current_user.id }
+  etag { current_user.age }
+  def show</p>
+
+<pre><code>@item = Item.find(params[:id])
+fresh_when(@item)
+end
+def edit
+@item = Item.find(params[:id])
+fresh_when(@item)
+</code></pre>
+
+<p>  end
+  def most_recent</p>
+
+<pre><code>@item = Item.find(params[:id])
+</code></pre>
+
+<p>￼    fresh_when(@item)  # => fresh_when([@item, current_user.id, current_user.age])
+  end
+end
+```</p>
+
+<h2>Dalli &amp; Cache-Digests</h2>
+
+<p>Dalli is a high performance pure Ruby client for accessing memcached servers.<br/>
+启用：
+```ruby</p>
+
+<h1>config/environments/production.rb</h1>
+
+<p>config.cache_store = :mem_cache_store</p>
+
+<h1>Gemfile</h1>
+
+<p>gem &lsquo;dalli&rsquo;</p>
+
+<h1>Cache Store API</h1>
+
+<p>Rails.cache.read(&lsquo;key&rsquo;)
+Rails.cache.write(&lsquo;key&rsquo;, value)
+Rails.cache.fetch(&lsquo;key&rsquo;) { value }</p>
+
+<h1>config/environments/production.rb</h1>
+
+<p>config.action_controller.perform_caching = true
+```</p>
+
+<h3>Fragment Caching</h3>
+
+<p>在某个 Client 第一次获取 fragments 时 Rail 4同时将其放入了 Cache中，之后有同样的 Request 时 Rails 就会直接从 Cache 中读取。<br/>
+使用方式：
+```ruby</p>
+
+<ul>
+ <%= render document.comments %>
+</ul>
+
+
+<h1>变为</h1>
+
+<p>&lt;% cache comment do %></p>
+
+<pre><code>&lt;li&gt;&lt;%= comment %&gt;&lt;/li&gt;
+</code></pre>
+
+<p>&lt;% end %></p>
+
+<h1>app/models/comment.rb</h1>
+
+<p>class Comment &lt; ActiveRecord::Base
+  belongs_to :document
+end
+<code>
+上述方法和 ETags 类似，就是通过生成，保存，读取，对比 cache_key 来判断是否从 cache 读取还是重新 render ，  
+但是这样会出现一个问题：如果上面代码中的 comment 没有改变，但是网页中`&lt;% cache comment do %&gt;`中的内容进行了改变，如增加了`&lt;%= comment.author %&gt;`，就会造成之前的Client仍被缓存在之前的版本中，所以需要一个 template version :
+</code>ruby
+&lt;% cache [&lsquo;v1&rsquo;, comment] do %>
+  <li>&lt;%= comment %></li>
+&lt;% end %></p>
+
+<h1>变为</h1>
+
+<p>&lt;% cache [&lsquo;v2&rsquo;, comment] do %>
+  <li>&lt;%= comment %> &ndash; &lt;%= comment.author %></li>
+&lt;% end %>
+```
+但是 Rails 4 中的 cache 会自动保存和对比本文件的 MD5 Hash ，当这个改变时会同样重新缓存<br/>
+<strong>所以 Rails 4 无需 version</strong></p>
+
+<h3>Cache 嵌套出现的问题</h3>
+
+<p>```html</p>
+
+<h1>app/views/projects/show.html.erb</h1>
+
+<p>&lt;%= render @project.documents %></p>
+
+<h1>app/views/documents/_document.html.erb</h1>
+
+<p>&lt;% cache document do %>
+ <article>
+   <h3>&lt;%= document.title %></h3>
+   <ul></p>
+
+<pre><code> &lt;%= render document.comments %&gt;
+</code></pre>
+
+<p>   </ul>
+   &lt;%= link_to &lsquo;View details&rsquo;, document %>
+ </article>
+ &lt;% end %></p>
+
+<h1>app/views/comments/_comment.html.erb</h1>
+
+<p>&lt;% cache comment do %>
+   <li>&lt;%= comment %></li>
+&lt;% end %>
+<code>
+现在模拟下述流程：
+</code>
+First Request to get Document 1:</p>
+
+<pre><code>document/1     sets cache 
+  comment/1    sets cache
+  comment/2    sets cache
+</code></pre>
+
+<p>Second Request to get Document 1:</p>
+
+<pre><code>document/1     reads cache 
+</code></pre>
+
+<p>Comment 2 gets Updated in Database</p>
+
+<p>Third Request to get Document 1:</p>
+
+<pre><code>document/1     reads cache 
+</code></pre>
+
+<p><code>
+这样会发现被修改的`Comment 2`因为在`document`之内，所以无论怎么修改都仍会显示`document`的 cache，解决方法：
+</code>ruby</p>
+
+<h1>app/models/comment.rb</h1>
+
+<p>class Comment &lt; ActiveRecord::Base
+  belongs_to :document, touch: true
+  belongs_to :dacer
+end
+<code>``
+增加了</code>touch: true<code>之后comment在更新了</code>updated_at<code>时会将所</code>belongs_to<code>的document的</code>updated_at`也一同更新了</p>
+
+<h3>Cache Digests</h3>
+
+<p>当使用<code>helper methods</code>时必须要用<code>partial</code>:
+```html
+&lt;% cache document do %>
+ <article>
+   <h3>&lt;%= document.title %></h3>
+   <ul>
+   &lt;%= render document.recent_comments %> #error
+   &lt;%= render partial: &ldquo;comments/comment&rdquo;,</p>
+
+<pre><code>   collection: document.recent_comments %&gt;
+</code></pre>
+
+<p>   </ul>
+   &lt;%= link_to &lsquo;More details&rsquo;, document %>
+ </article>
+ &lt;% end %></p>
+
+<p>```</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Code School笔记 - Zombie Outlaws level 5]]></title>
@@ -55,12 +270,13 @@ assert_equal "Super-duper", item.short_name
 </code></pre>
 
 <p>  end
-  test &ldquo;doesn&rsquo;t shorten short names&rdquo; do</p>
+  test &ldquo;Made By Dacer&rdquo; do</p>
 
 <pre><code>    skip #Use "skip" method if you don't want to run a test right now
-item = Item.new
-item.name = "Name"
-assert_equal "Name", item.short_name
+blog = Blog.new
+blog.author = "Dacer"
+blog.url = "http://blog.dacer.im"
+assert_equal "dacer", blog.short_name
 end 
 </code></pre>
 
@@ -145,7 +361,7 @@ owners_hashes.to_json</p>
 
 <p>[
   {&ldquo;name&rdquo;:&ldquo;Slow-draw&rdquo;,  &ldquo;url&rdquo;:&ldquo;<a href="http://localhost:3000/owners/1">http://localhost:3000/owners/1</a>&rdquo;},
-  {&ldquo;name&rdquo;:&ldquo;Sheriff&rdquo;,    &ldquo;url&rdquo;:&ldquo;<a href="http://localhost:3000/owners/2">http://localhost:3000/owners/2</a>&rdquo;},
+  {&ldquo;name&rdquo;:&ldquo;Dacer&rdquo;,    &ldquo;url&rdquo;:&ldquo;<a href="http://blog.dacer.im/">http://blog.dacer.im/</a>&rdquo;},
   {&ldquo;name&rdquo;:&ldquo;Walking Ned&rdquo;,&ldquo;url&rdquo;:&ldquo;<a href="http://localhost:3000/owners/3">http://localhost:3000/owners/3</a>&rdquo;}
 ]
 ```</p>
@@ -230,7 +446,7 @@ end</p>
 
 <h1>或者简写为</h1>
 
-<p>redirect_to @user, grunt: &lsquo;braaains&hellip;&rsquo;
+<p>redirect_to @user, grunt: &lsquo;I&rsquo;m Dacer&hellip;&rsquo;
 <code>
 </code>html
 <div id="grunt">&lt;%= grunt %></div>
@@ -249,7 +465,7 @@ end</p>
 
 <p>米什么好说的
 <code>ruby
-Post.where(author: 'admin') # returns an ActiveRecord::Relation
+Post.where(author: 'Dacer') # returns an ActiveRecord::Relation
 </code></p>
 
 <h3>Find_By</h3>
@@ -293,7 +509,7 @@ Post.find_or_create_by(title: &lsquo;Rails 4&rsquo;)</p>
 
 <pre><code>after_create :foo
 def foo
-  posts = Post.where(author: 'admin')
+  posts = Post.where(author: 'dacer')
   ...
     end
 </code></pre>
@@ -348,7 +564,7 @@ end
 
 <p>在使用<code>where</code>寻找类似<code>user != ?</code>的不等于时如果参数是<code>nil</code>的话会报 SQL 错误，使用<code>.where.not</code>则会自动判别参数是否为空，且在非空时才执行SQL语句
 <code>ruby
-Post.where.not(author: author)
+Post.where.not(author: dacer)
 </code></p>
 
 <h3>Relation#Order</h3>
@@ -415,82 +631,6 @@ class SupportTicket
   attr_accessor :title, :description
   validates_presence_of :title
   validates_presence_of :description
-end
-</code></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Code School笔记 - Zombie Outlaws level 1]]></title>
-    <link href="http://blog.dacer.im/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-1/"/>
-    <updated>2014-02-15T15:10:57+08:00</updated>
-    <id>http://blog.dacer.im/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-1</id>
-    <content type="html"><![CDATA[<h2>Ruby 1.9.3, ThreadSafety and Routes</h2>
-
-<h3>Match Routes</h3>
-
-<p>有两种方式
-<code>
-post '/somewhere', to: 'controller#action'
-match '/somewhere', to: 'controller#action', via: :post
-match '/somewhere', to: 'controller#action', via: :all
-</code></p>
-
-<h3>Concern</h3>
-
-<p>用来简化route
-```
-concern :sociable do
-  resources :comments
-  resources :tags
-end</p>
-
-<p>resources :posts, concerns: :sociable
-resources :items, concerns: :sociable
-<code>
-可以加上选项
-</code>
-concern :sociable do |options|
-  resources :comments, options
-  resources :tags, options
-end</p>
-
-<p>resources :msgs, concerns: :sociable
-resources :posts, concerns: :sociable
-resources :items do
-  concerns :sociable, only: :create
-end
-<code>
-可以单独封装起来
-</code>ruby</p>
-
-<h1>app/concerns/sociable.rb</h1>
-
-<p>class Sociable</p>
-
-<pre><code>def self.call(mapper, options)
-  mapper.resources :comments, options
-mapper.resources :tags, options
-</code></pre>
-
-<p>  end
-end</p>
-
-<h1>routes.rb</h1>
-
-<p>concern :sociable， Sociable</p>
-
-<h1>&hellip;</h1>
-
-<p>```</p>
-
-<h3>Thread-Safety</h3>
-
-<p>In Rails 4
-<code>ruby
-MyApp::Application.configure do
-  config.cache_classes = true
-  config.eager_load = true
 end
 </code></p>
 ]]></content>

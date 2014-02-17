@@ -7,7 +7,7 @@
 
 <meta name="author" content="Dacer"> 
 
-<meta name="description" content="我到韩版S3终于也能用上4.3了T_T, 虽然kitkat都出来了。。 顺便分享一下Mac下更新三星手机固件的心得： 我先在三星官网下载Mac版Kies之后连接手机不上，觉得可能是刷了自制固件到缘故，于是按住音量下键开机进入线刷模式，在Kies上输入手机型号和SN码之后顺利刷机， &hellip;"> <meta name="keywords" content="">
+<meta name="description" content="最近在为 www.pomotodo.com 做 Android版的时候其中有三个设计的非常精致的统计视图，费了很大到劲把这三个图做出来之后想了想还是开源分享出来吧，其中 LineView 还是有些繁杂的，故写了本笔记。 虽然 Android 上已经有一个很棒到开源统计图了， &hellip;"> <meta name="keywords" content="">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -91,6 +91,84 @@ $(document).ready(
 </header>
 
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/11/15/androidcharts-e5bc80e58f91e7ac94e8aeb0/">
+		
+			AndroidCharts 开发笔记</a>
+	</h2>
+	<div class="entry-content">
+		<p>最近在为 <a href="http://www.pomotodo.com">www.pomotodo.com</a> 做 Android版的时候其中有三个设计的非常精致的统计视图，费了很大到劲把这三个图做出来之后想了想还是开源分享出来吧，其中 LineView 还是有些繁杂的，故写了本笔记。</p>
+
+<p>虽然 Android 上已经有一个很棒到开源统计图了，但还是自己手写遍更有趣些不是嘛-,&ndash; 于是没怎么看那个就动手自己写了个这个。</p>
+
+<p>Github: <a href="http://https://github.com/dacer/AndroidCharts">https://github.com/dacer/AndroidCharts</a></p>
+
+<h2>LineView:</h2>
+
+<h3>目标：</h3>
+
+<ul>
+<li><p>大部分的可见元素都能任意随时修改</p></li>
+<li><p>可以修改一格所代表的数据大小（默认为1）</p></li>
+<li><p>view 的高度和方格到宽度为固定值，这样便于之后的动画效果和保证在不同大小的设备上的一致性</p></li>
+<li><p>在不同设备上完全的自适应</p></li>
+</ul>
+
+
+<h3>实现方式：</h3>
+
+<p>最重要的为这三个 ArrayList:</p>
+
+<ul>
+<li><p>ArrayList<Integer> xCoordinateList : 背景中点的所有X坐标</p></li>
+<li><p>ArrayList<Integer> yCoordinateList : 背景中点到所有Y坐标</p></li>
+<li><p>ArrayList<Point> drawPointList;      : 数据所表示的点的坐标</p></li>
+</ul>
+
+
+<p>在每次更新数据后刷新这三个 List，然后根据这三个 List 可以很轻易的画出所有的元素。</p>
+
+<p>但是点击后出现到 popup 会造成两个问题，</p>
+
+<ol>
+<li><p> 怎么样画一个这个出来，而且中间的字还要在正中央：这个的话已经写了个解法在之前的博文中，</p></li>
+<li><p> 顶部的空间可能会不够显示最上方的点显示出的 popup：我先是在当前列表中的最大值的上方再加上一个格子，但这样有时还是不够，于是。。待续</p></li>
+</ol>
+
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-15T21:55:09+08:00" pubdate data-updated="true">Nov 15<span>th</span>, 2013</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/android/'>Android</a>
+
+</div>
+
+
+</div></article>
 
 
     <article class="post">
@@ -606,49 +684,6 @@ ps:第一个的那个说到我心坎里了啊！我之前一直想表述出这�
 
 <time datetime="2013-10-06T15:04:55+08:00" pubdate data-updated="true">Oct 6<span>th</span>, 2013</time></div>
 	
-
-
-</div></article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2013/10/04/e99a8fe7ac94-october-4-2013/">
-		
-			随笔 October 4, 2013</a>
-	</h2>
-	<div class="entry-content">
-		<p>一大早看到极简番茄在Google Play上多了个2星的挺不爽的</p>
-
-<p>不过看到Chrome在Google Play上有4万多个1星顿时就释然了。。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-10-04T11:08:37+08:00" pubdate data-updated="true">Oct 4<span>th</span>, 2013</time></div>
-	
-
-<div class="tags">
-
-	<a class='category' href='/blog/categories/sui-bi/'>随笔</a>
-
-</div>
 
 
 </div></article>

@@ -7,17 +7,14 @@
 
 <meta name="author" content="Dacer"> 
 
-<meta name="description" content="Self 在class外调用self会返回main，在class内调用会返回class本身。
-如果在定义类中的方法时，在方法名前加self则这个方法会变成类似于Java的静态(static)方法 1
+<meta name="description" content="Handling Missing Methods 在class中可以定义一个method_missing方法，当调用这个class中不存在的方法时会变为调用此方法。 1
 2
 3
 4
 5
 6
 7
-8
-9
-class Tweet def self.f(key) p & &hellip;"> <meta name="keywords" content="">
+class Tweet def method_missing(method_name, *args) &hellip;"> <meta name="keywords" content="">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -106,6 +103,214 @@ $(document).ready(
     <article class="post">
 	<h2 class="title">
 		
+		<a href="/blog/2014/02/14/code-schoolbi-ji-ruby-bits-2-level-4/">
+		
+			Code School笔记 - Ruby Bits 2 Level 4</a>
+	</h2>
+	<div class="entry-content">
+		<h2>Handling Missing Methods</h2>
+
+<p>在class中可以定义一个<code>method_missing</code>方法，当调用这个class中不存在的方法时会变为调用此方法。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Tweet</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">method_missing</span><span class="p">(</span><span class="n">method_name</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">)</span>
+</span><span class='line'>    <span class="nb">puts</span> <span class="s2">&quot;You tried to call </span><span class="si">#{</span><span class="n">method_name</span><span class="si">}</span><span class="s2"> with these arguments: </span><span class="si">#{</span><span class="n">args</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'>    <span class="c1">#super 可以调用ruby default方法， raises a NoMehodError.</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="no">Tweet</span><span class="o">.</span><span class="n">new</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;Here&#39;s Dacer Blog.&quot;</span><span class="p">)</span> <span class="c1"># You tried to call submit with arguments: [1, &quot;Here&#39;s a tweet.&quot;]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>利用<code>method_missing</code>可以简化很多代码，下例中就是把这个方法所在的class中的方法链接到<code>@user</code>的同名方法中了</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">method_missing</span><span class="p">(</span><span class="n">method_name</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">)</span>
+</span><span class='line'>    <span class="vi">@user</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">method_name</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>把上面的代码改进一下可以限定方法名</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Tweet</span>
+</span><span class='line'>  <span class="no">DELEGATED_METHODS</span> <span class="o">=</span> <span class="o">[</span><span class="ss">:username</span><span class="p">,</span> <span class="ss">:avatar</span><span class="o">]</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+</span><span class='line'>    <span class="vi">@user</span> <span class="o">=</span> <span class="n">user</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">method_missing</span><span class="p">(</span><span class="n">method_name</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">if</span> <span class="no">DELEGATED_METHODS</span><span class="o">.</span><span class="n">include?</span><span class="p">(</span><span class="n">method_name</span><span class="p">)</span>
+</span><span class='line'>      <span class="vi">@user</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">method_name</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">else</span>
+</span><span class='line'>          <span class="k">super</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Ruby也自带了一个<code>delegate</code>可以很方便的实现上述代码</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;delegate&#39;</span>
+</span><span class='line'><span class="k">class</span> <span class="nc">Tweet</span> <span class="o">&lt;</span> <span class="no">SimpleDelegator</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">super</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>一个跟本节不相关的知识点</h3>
+
+<p>正则表达式提取方法：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">match</span> <span class="o">=</span> <span class="nb">name</span><span class="o">.</span><span class="n">to_s</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sr">/^hash_(/</span><span class="n">w</span><span class="o">+</span><span class="p">)</span><span class="o">/</span><span class="p">)</span>
+</span><span class='line'><span class="n">match</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="k">if</span> <span class="n">match</span> <span class="c1">#返回符合的首个子字符串，如果存在的话</span>
+</span><span class='line'>                  <span class="c1">#0为返回整个</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Respond_to?</h3>
+
+<p>Tells us if an object responds to a given method<br/>
+似乎可以翻译成回应一个object是否有所给的方法？</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">tweet</span> <span class="o">=</span> <span class="no">Tweet</span><span class="o">.</span><span class="n">new</span>
+</span><span class='line'><span class="n">tweet</span><span class="o">.</span><span class="n">respond_to?</span><span class="p">(</span><span class="ss">:to_s</span><span class="p">)</span> <span class="c1"># =&gt; true</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>需要注意的是，用<code>method_missing</code>实现的方法在<code>respond_to?</code>下会返回false的，所以要做如下修改：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">respond_to?</span><span class="p">(</span><span class="n">method_name</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">method_name</span> <span class="o">=~</span> <span class="sr">/^hash_\w+/</span> <span class="o">||</span> <span class="k">super</span> <span class="c1"># ||的作用是在||之前不为nil的时候返回之前的，为nil的时候返回后者</span>
+</span><span class='line'>    <span class="c1">#LIST.include?(method_name.to_s) || super #或者是从一个array中判断</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>但是这又带来了一个问题，<code>.method</code>方法仍是error</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">tweet</span><span class="o">.</span><span class="n">method</span><span class="p">(</span><span class="ss">:hash_ruby</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>在1.9.3以上版本中可以这样解决：变为<code>respond_to_missing?</code>，这样<code>method</code>就能正确返回一个 method object</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">respond_to_missing?</span><span class="p">(</span><span class="n">method_name</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">method_name</span> <span class="o">=~</span> <span class="sr">/^hash_\w+/</span> <span class="o">||</span> <span class="k">super</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>在 call 一个未定义方法时定义它</h3>
+
+<p>其实我还不太理解这种用法的意义在哪儿。。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">method_missing</span><span class="p">(</span><span class="n">method_name</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">match</span> <span class="o">=</span> <span class="n">method_name</span><span class="o">.</span><span class="n">to_s</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sr">/^hash_(\w+)/</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">if</span> <span class="n">match</span>
+</span><span class='line'>      <span class="nb">self</span><span class="o">.</span><span class="n">class</span><span class="o">.</span><span class="n">class_eval</span> <span class="k">do</span>
+</span><span class='line'>          <span class="n">define_method</span><span class="p">(</span><span class="n">method_name</span><span class="p">)</span> <span class="k">do</span>
+</span><span class='line'>          <span class="vi">@text</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot; #&quot;</span> <span class="o">+</span> <span class="n">match</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span>
+</span><span class='line'>          <span class="k">end</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>      <span class="nb">send</span><span class="p">(</span><span class="n">method_name</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">else</span>
+</span><span class='line'>      <span class="k">super</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-02-14T15:40:25+08:00" pubdate data-updated="true">Feb 14<span>th</span>, 2014</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/code-school/'>Code School</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>
+
+</div>
+
+
+</div></article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
 		<a href="/blog/2014/02/13/code-schoolbi-ji-ruby-bits-2-level-3/">
 		
 			Code School笔记 - Ruby Bits 2 Level 3</a>
@@ -131,9 +336,9 @@ $(document).ready(
 </span><span class='line'>  <span class="k">end</span>
 </span><span class='line'>  <span class="k">def</span> <span class="nc">Tweet</span><span class="o">.</span><span class="nf">f</span> <span class="o">.</span><span class="n">.</span><span class="o">.</span> <span class="c1">#与上方一致，但不常用</span>
 </span><span class='line'><span class="k">end</span>
-</span><span class='line'><span class="no">Tweet</span><span class="o">.</span><span class="n">f</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span> <span class="c1"># =&gt; Tweet</span>
+</span><span class='line'><span class="no">Tweet</span><span class="o">.</span><span class="n">f</span><span class="p">(</span><span class="s2">&quot;Hi&quot;</span><span class="p">)</span> <span class="c1"># =&gt; Tweet</span>
 </span><span class='line'><span class="n">tweet</span> <span class="o">=</span> <span class="no">Tweet</span><span class="o">.</span><span class="n">new</span>
-</span><span class='line'><span class="n">tweet</span><span class="o">.</span><span class="n">f</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span> <span class="c1"># Error!</span>
+</span><span class='line'><span class="n">tweet</span><span class="o">.</span><span class="n">f</span><span class="p">(</span><span class="s2">&quot;dacer&quot;</span><span class="p">)</span> <span class="c1"># Error!</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -921,84 +1126,6 @@ $(document).ready(
 <div class="tags">
 
 	<a class='category' href='/blog/categories/sui-bi/'>随笔</a>
-
-</div>
-
-
-</div></article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2013/11/15/androidcharts-e5bc80e58f91e7ac94e8aeb0/">
-		
-			AndroidCharts 开发笔记</a>
-	</h2>
-	<div class="entry-content">
-		<p>最近在为 <a href="http://www.pomotodo.com">www.pomotodo.com</a> 做 Android版的时候其中有三个设计的非常精致的统计视图，费了很大到劲把这三个图做出来之后想了想还是开源分享出来吧，其中 LineView 还是有些繁杂的，故写了本笔记。</p>
-
-<p>虽然 Android 上已经有一个很棒到开源统计图了，但还是自己手写遍更有趣些不是嘛-,&ndash; 于是没怎么看那个就动手自己写了个这个。</p>
-
-<p>Github: <a href="http://https://github.com/dacer/AndroidCharts">https://github.com/dacer/AndroidCharts</a></p>
-
-<h2>LineView:</h2>
-
-<h3>目标：</h3>
-
-<ul>
-<li><p>大部分的可见元素都能任意随时修改</p></li>
-<li><p>可以修改一格所代表的数据大小（默认为1）</p></li>
-<li><p>view 的高度和方格到宽度为固定值，这样便于之后的动画效果和保证在不同大小的设备上的一致性</p></li>
-<li><p>在不同设备上完全的自适应</p></li>
-</ul>
-
-
-<h3>实现方式：</h3>
-
-<p>最重要的为这三个 ArrayList:</p>
-
-<ul>
-<li><p>ArrayList<Integer> xCoordinateList : 背景中点的所有X坐标</p></li>
-<li><p>ArrayList<Integer> yCoordinateList : 背景中点到所有Y坐标</p></li>
-<li><p>ArrayList<Point> drawPointList;      : 数据所表示的点的坐标</p></li>
-</ul>
-
-
-<p>在每次更新数据后刷新这三个 List，然后根据这三个 List 可以很轻易的画出所有的元素。</p>
-
-<p>但是点击后出现到 popup 会造成两个问题，</p>
-
-<ol>
-<li><p> 怎么样画一个这个出来，而且中间的字还要在正中央：这个的话已经写了个解法在之前的博文中，</p></li>
-<li><p> 顶部的空间可能会不够显示最上方的点显示出的 popup：我先是在当前列表中的最大值的上方再加上一个格子，但这样有时还是不够，于是。。待续</p></li>
-</ol>
-
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-11-15T21:55:09+08:00" pubdate data-updated="true">Nov 15<span>th</span>, 2013</time></div>
-	
-
-<div class="tags">
-
-	<a class='category' href='/blog/categories/android/'>Android</a>
 
 </div>
 

@@ -10,8 +10,8 @@
 <meta name="description" content="Ruby 1.9.3, ThreadSafety and Routes Match Routes 有两种方式 1
 2
 3
-post '/somewhere', to: 'controller#action'
-match '/somewhere', to: 'controller#action', &hellip;"> <meta name="keywords" content="">
+post '/blog', to: 'controller#action'
+match '/dacer', to: 'controller#action', via: : &hellip;"> <meta name="keywords" content="">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -105,9 +105,9 @@ $(document).ready(
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>post '/somewhere', to: 'controller#action'
-</span><span class='line'>match '/somewhere', to: 'controller#action', via: :post
-</span><span class='line'>match '/somewhere', to: 'controller#action', via: :all</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class=''><span class='line'>post '/blog', to: 'controller#action'
+</span><span class='line'>match '/dacer', to: 'controller#action', via: :post
+</span><span class='line'>match '/im', to: 'controller#action', via: :all</span></code></pre></td></tr></table></div></figure>
 
 
 <h3>Concern</h3>

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: jQuery | Dacer Blog]]></title>
   <link href="http://blog.dacer.im/blog/categories/jquery/atom.xml" rel="self"/>
   <link href="http://blog.dacer.im/"/>
-  <updated>2014-02-16T21:40:24+08:00</updated>
+  <updated>2014-02-17T12:35:29+08:00</updated>
   <id>http://blog.dacer.im/</id>
   <author>
     <name><![CDATA[Dacer]]></name>
@@ -29,10 +29,10 @@ $.ajax(&lsquo;confirmation.html&rsquo;, {
 </code></pre>
 
 <p>   },
-   data: { &ldquo;confNum&rdquo;: 1234 }
+   data: { &ldquo;author&rdquo;: dacer }
    }
 });
-//confirmation.html?confNum=1234
+//confirmation.html?author=dacer
 <code>
 timeout
 </code>javascript

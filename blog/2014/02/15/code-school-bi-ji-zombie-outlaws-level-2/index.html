@@ -8,7 +8,7 @@
 <meta name="author" content="Dacer"> 
 
 <meta name="description" content="ActiveRecord &amp; ActiveModel Finders 米什么好说的 1
-Post.where(author: &#39;admin&#39;) # returns an ActiveRecord::Relation Find_By 1
+Post.where(author: &#39;Dacer&#39;) # returns an ActiveRecord::Relation Find_By 1
 Post.find_by(title &hellip;"> <meta name="keywords" content="">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -101,7 +101,7 @@ $(document).ready(
 <p>米什么好说的</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Post</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="ss">author</span><span class="p">:</span> <span class="s1">&#39;admin&#39;</span><span class="p">)</span> <span class="c1"># returns an ActiveRecord::Relation</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Post</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="ss">author</span><span class="p">:</span> <span class="s1">&#39;Dacer&#39;</span><span class="p">)</span> <span class="c1"># returns an ActiveRecord::Relation</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -163,7 +163,7 @@ $(document).ready(
 </span><span class='line'><span class="k">class</span> <span class="nc">Post</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord</span><span class="p">:</span><span class="ss">:Base</span>
 </span><span class='line'>    <span class="n">after_create</span> <span class="ss">:foo</span>
 </span><span class='line'>    <span class="k">def</span> <span class="nf">foo</span>
-</span><span class='line'>      <span class="n">posts</span> <span class="o">=</span> <span class="no">Post</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="ss">author</span><span class="p">:</span> <span class="s1">&#39;admin&#39;</span><span class="p">)</span>
+</span><span class='line'>      <span class="n">posts</span> <span class="o">=</span> <span class="no">Post</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="ss">author</span><span class="p">:</span> <span class="s1">&#39;dacer&#39;</span><span class="p">)</span>
 </span><span class='line'>      <span class="o">.</span><span class="n">.</span><span class="o">.</span>
 </span><span class='line'>      <span class="k">end</span>
 </span><span class='line'><span class="k">end</span>
@@ -234,7 +234,7 @@ $(document).ready(
 <p>在使用<code>where</code>寻找类似<code>user != ?</code>的不等于时如果参数是<code>nil</code>的话会报 SQL 错误，使用<code>.where.not</code>则会自动判别参数是否为空，且在非空时才执行SQL语句</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Post</span><span class="o">.</span><span class="n">where</span><span class="o">.</span><span class="n">not</span><span class="p">(</span><span class="ss">author</span><span class="p">:</span> <span class="n">author</span><span class="p">)</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Post</span><span class="o">.</span><span class="n">where</span><span class="o">.</span><span class="n">not</span><span class="p">(</span><span class="ss">author</span><span class="p">:</span> <span class="n">dacer</span><span class="p">)</span>
 </span></code></pre></td></tr></table></div></figure>
 
 

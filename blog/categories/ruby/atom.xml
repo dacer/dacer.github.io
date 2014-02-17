@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ruby | Dacer Blog]]></title>
   <link href="http://blog.dacer.im/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://blog.dacer.im/"/>
-  <updated>2014-02-16T21:40:24+08:00</updated>
+  <updated>2014-02-17T12:35:29+08:00</updated>
   <id>http://blog.dacer.im/</id>
   <author>
     <name><![CDATA[Dacer]]></name>
@@ -42,7 +42,7 @@ class Tweet
 
 <p>  end
 end
-Tweet.new.submit(1, &ldquo;Here&rsquo;s a tweet.&rdquo;) # You tried to call submit with arguments: [1, &ldquo;Here&rsquo;s a tweet.&rdquo;]
+Tweet.new.submit(1, &ldquo;Here&rsquo;s Dacer Blog.&rdquo;) # You tried to call submit with arguments: [1, &ldquo;Here&rsquo;s a tweet.&rdquo;]
 <code>
 利用`method_missing`可以简化很多代码，下例中就是把这个方法所在的class中的方法链接到`@user`的同名方法中了
 </code>ruby
@@ -175,9 +175,9 @@ class Tweet
 <p>  end
   def Tweet.f &hellip; #与上方一致，但不常用
 end
-Tweet.f(&ldquo;a&rdquo;) # => Tweet
+Tweet.f(&ldquo;Hi&rdquo;) # => Tweet
 tweet = Tweet.new
-tweet.f(&ldquo;a&rdquo;) # Error!
+tweet.f(&ldquo;dacer&rdquo;) # Error!
 ```</p>
 
 <h3>Class_eval</h3>

@@ -145,17 +145,19 @@ $(document).ready(
 <span class='line-number'>11</span>
 <span class='line-number'>12</span>
 <span class='line-number'>13</span>
+<span class='line-number'>14</span>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">ItemTest</span> <span class="o">&lt;</span> <span class="ss">ActiveSupport</span><span class="p">:</span><span class="ss">:TestCase</span>
 </span><span class='line'>  <span class="nb">test</span> <span class="s2">&quot;can shorten its name&quot;</span> <span class="k">do</span>
 </span><span class='line'>    <span class="n">item</span> <span class="o">=</span> <span class="no">Item</span><span class="o">.</span><span class="n">new</span>
 </span><span class='line'>    <span class="n">item</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Super-duper long name&quot;</span>
 </span><span class='line'>    <span class="n">assert_equal</span> <span class="s2">&quot;Super-duper&quot;</span><span class="p">,</span> <span class="n">item</span><span class="o">.</span><span class="n">short_name</span>
 </span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>  <span class="nb">test</span> <span class="s2">&quot;doesn&#39;t shorten short names&quot;</span> <span class="k">do</span>
+</span><span class='line'>  <span class="nb">test</span> <span class="s2">&quot;Made By Dacer&quot;</span> <span class="k">do</span>
 </span><span class='line'>      <span class="n">skip</span> <span class="c1">#Use &quot;skip&quot; method if you don&#39;t want to run a test right now</span>
-</span><span class='line'>    <span class="n">item</span> <span class="o">=</span> <span class="no">Item</span><span class="o">.</span><span class="n">new</span>
-</span><span class='line'>    <span class="n">item</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Name&quot;</span>
-</span><span class='line'>    <span class="n">assert_equal</span> <span class="s2">&quot;Name&quot;</span><span class="p">,</span> <span class="n">item</span><span class="o">.</span><span class="n">short_name</span>
+</span><span class='line'>    <span class="n">blog</span> <span class="o">=</span> <span class="no">Blog</span><span class="o">.</span><span class="n">new</span>
+</span><span class='line'>    <span class="n">blog</span><span class="o">.</span><span class="n">author</span> <span class="o">=</span> <span class="s2">&quot;Dacer&quot;</span>
+</span><span class='line'>    <span class="n">blog</span><span class="o">.</span><span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;http://blog.dacer.im&quot;</span>
+</span><span class='line'>    <span class="n">assert_equal</span> <span class="s2">&quot;dacer&quot;</span><span class="p">,</span> <span class="n">blog</span><span class="o">.</span><span class="n">short_name</span>
 </span><span class='line'>  <span class="k">end</span>
 </span><span class='line'><span class="k">end</span>
 </span></code></pre></td></tr></table></div></figure>
