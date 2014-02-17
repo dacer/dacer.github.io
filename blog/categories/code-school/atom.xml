@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Code School | Dacer Blog]]></title>
   <link href="http://blog.dacer.im/blog/categories/code-school/atom.xml" rel="self"/>
   <link href="http://blog.dacer.im/"/>
-  <updated>2014-02-17T12:35:29+08:00</updated>
+  <updated>2014-02-17T12:41:53+08:00</updated>
   <id>http://blog.dacer.im/</id>
   <author>
     <name><![CDATA[Dacer]]></name>
@@ -213,7 +213,7 @@ end
  <article>
    <h3>&lt;%= document.title %></h3>
    <ul>
-   &lt;%= render document.recent_comments %> #error
+   &lt;%= render document.recent_comments %> #需要替换为下面这个
    &lt;%= render partial: &ldquo;comments/comment&rdquo;,</p>
 
 <pre><code>   collection: document.recent_comments %&gt;
