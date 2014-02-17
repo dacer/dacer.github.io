@@ -4,7 +4,7 @@
   <title><![CDATA[Category: jQuery | Dacer Blog]]></title>
   <link href="http://blog.dacer.im/blog/categories/jquery/atom.xml" rel="self"/>
   <link href="http://blog.dacer.im/"/>
-  <updated>2014-02-17T12:41:53+08:00</updated>
+  <updated>2014-02-17T15:30:22+08:00</updated>
   <id>http://blog.dacer.im/</id>
   <author>
     <name><![CDATA[Dacer]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Code School笔记 - jQuery Part2 level 1 & 2]]></title>
-    <link href="http://blog.dacer.im/blog/2014/02/16/code-school-bi-ji-jquery-part2-level-1-and-2/"/>
-    <updated>2014-02-16T19:10:57+08:00</updated>
-    <id>http://blog.dacer.im/blog/2014/02/16/code-school-bi-ji-jquery-part2-level-1-and-2</id>
+    <link href="http://blog.dacer.im/blog/2014/02/17/code-school-bi-ji-jquery-part2-level-1-and-2/"/>
+    <updated>2014-02-17T20:10:57+08:00</updated>
+    <id>http://blog.dacer.im/blog/2014/02/17/code-school-bi-ji-jquery-part2-level-1-and-2</id>
     <content type="html"><![CDATA[<h3>Ajax Basics</h3>
 
 <p>使用Ajax时需要在网站后加上<code>?dc=123</code>之类的参数时可以用<code>data</code>
@@ -60,20 +60,68 @@ var confirmation = {
   init: function() {</p>
 
 <pre><code>$('.confirmation').on('click', 'button', this.loadConfirmation);
+$('.confirmation').on('click', '.view-boarding-pass', this.showBoardingPass); 
 </code></pre>
 
-<p>$(&lsquo;.confirmation&rsquo;).on(&lsquo;click&rsquo;, &lsquo;.view-boarding-pass&rsquo;, this.showBoardingPass); },
+<p>  },
   loadConfirmation: function() {</p>
 
 <pre><code>$.ajax('confirmation.html', { ... });
 </code></pre>
 
-<p>   ,
+<p>  },
   showBoardingPass: function(event) { &hellip; }
-};
-$(document).ready(function() {
+};</p>
+
+<p>$(document).ready(function() {
   confirmation.init();
 });
+```</p>
+
+<h3>Javascript Function</h3>
+
+<p>用驼峰法命名一个js的function
+<code>javascript
+function Blog(author) {
+  // init
+}
+var blog = new Blog('Dacer');
+</code></p>
+
+<p>function中可以嵌套function
+```javascript
+function Blog(author) {
+  this.print = function(){</p>
+
+<pre><code>console.log(author)
+</code></pre>
+
+<p>  }
+}
+var blog = new Blog(&lsquo;Dacer&rsquo;);
+blog.print(); //&ldquo;Dacer&rdquo;
+```</p>
+
+<h3>用 Function 重构之前的代码</h3>
+
+<p>```javascript
+function Confirmation(el) {
+  this.el = el;
+  this.ticket = this.el.find(&lsquo;.ticket&rsquo;);
+  var confirmation = this;
+  this.loadConfirmation = function() {</p>
+
+<pre><code>$.ajax('confirmation.html', {
+  timeout: 3000,
+  context: confirmation, //因为ajax内部的this和外部的不同，所以用context把内部的this替换成外部的
+  success: function(response) {
+    this.ticket .html(response).slideDown(); 
+  }
+}); 
+</code></pre>
+
+<p>  }
+}
 ```</p>
 ]]></content>
   </entry>

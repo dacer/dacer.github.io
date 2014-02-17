@@ -167,18 +167,89 @@ $(document).ready(
 <span class='line-number'>10</span>
 <span class='line-number'>11</span>
 <span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
 </pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">confirmation</span> <span class="o">=</span> <span class="p">{</span>
 </span><span class='line'>  <span class="nx">init</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 </span><span class='line'>    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.confirmation&#39;</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="s1">&#39;button&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">loadConfirmation</span><span class="p">);</span>
-</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.confirmation&#39;</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="s1">&#39;.view-boarding-pass&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">showBoardingPass</span><span class="p">);</span> <span class="p">},</span>
+</span><span class='line'>    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.confirmation&#39;</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="s1">&#39;.view-boarding-pass&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">showBoardingPass</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">},</span>
 </span><span class='line'>  <span class="nx">loadConfirmation</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 </span><span class='line'>    <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">(</span><span class="s1">&#39;confirmation.html&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="p">...</span> <span class="p">});</span>
-</span><span class='line'>   <span class="p">,</span>
+</span><span class='line'>  <span class="p">},</span>
 </span><span class='line'>  <span class="nx">showBoardingPass</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
 </span><span class='line'><span class="p">};</span>
+</span><span class='line'>
 </span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 </span><span class='line'>  <span class="nx">confirmation</span><span class="p">.</span><span class="nx">init</span><span class="p">();</span>
 </span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Javascript Function</h3>
+
+<p>用驼峰法命名一个js的function</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">function</span> <span class="nx">Blog</span><span class="p">(</span><span class="nx">author</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="c1">// init</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">blog</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Blog</span><span class="p">(</span><span class="s1">&#39;Dacer&#39;</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>function中可以嵌套function</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">function</span> <span class="nx">Blog</span><span class="p">(</span><span class="nx">author</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">this</span><span class="p">.</span><span class="nx">print</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+</span><span class='line'>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">author</span><span class="p">)</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">blog</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Blog</span><span class="p">(</span><span class="s1">&#39;Dacer&#39;</span><span class="p">);</span>
+</span><span class='line'><span class="nx">blog</span><span class="p">.</span><span class="nx">print</span><span class="p">();</span> <span class="c1">//&quot;Dacer&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>用 Function 重构之前的代码</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">function</span> <span class="nx">Confirmation</span><span class="p">(</span><span class="nx">el</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">this</span><span class="p">.</span><span class="nx">el</span> <span class="o">=</span> <span class="nx">el</span><span class="p">;</span>
+</span><span class='line'>  <span class="k">this</span><span class="p">.</span><span class="nx">ticket</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">el</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;.ticket&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">confirmation</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+</span><span class='line'>  <span class="k">this</span><span class="p">.</span><span class="nx">loadConfirmation</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">(</span><span class="s1">&#39;confirmation.html&#39;</span><span class="p">,</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">timeout</span><span class="o">:</span> <span class="mi">3000</span><span class="p">,</span>
+</span><span class='line'>      <span class="nx">context</span><span class="o">:</span> <span class="nx">confirmation</span><span class="p">,</span> <span class="c1">//因为ajax内部的this和外部的不同，所以用context把内部的this替换成外部的</span>
+</span><span class='line'>      <span class="nx">success</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="k">this</span><span class="p">.</span><span class="nx">ticket</span> <span class="p">.</span><span class="nx">html</span><span class="p">(</span><span class="nx">response</span><span class="p">).</span><span class="nx">slideDown</span><span class="p">();</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>    <span class="p">});</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
 </span></code></pre></td></tr></table></div></figure>
 
 </div>
@@ -197,7 +268,7 @@ $(document).ready(
   
 
 
-<time datetime="2014-02-16T19:10:57+08:00" pubdate data-updated="true">Feb 16<span>th</span>, 2014</time></div>
+<time datetime="2014-02-17T20:10:57+08:00" pubdate data-updated="true">Feb 17<span>th</span>, 2014</time></div>
 	
 
 <div class="tags">

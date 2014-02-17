@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Code School | Dacer Blog]]></title>
   <link href="http://blog.dacer.im/blog/categories/code-school/atom.xml" rel="self"/>
   <link href="http://blog.dacer.im/"/>
-  <updated>2014-02-17T12:41:53+08:00</updated>
+  <updated>2014-02-17T15:30:22+08:00</updated>
   <id>http://blog.dacer.im/</id>
   <author>
     <name><![CDATA[Dacer]]></name>
@@ -12,6 +12,119 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Code School笔记 - jQuery Part2 level 1 & 2]]></title>
+    <link href="http://blog.dacer.im/blog/2014/02/17/code-school-bi-ji-jquery-part2-level-1-and-2/"/>
+    <updated>2014-02-17T20:10:57+08:00</updated>
+    <id>http://blog.dacer.im/blog/2014/02/17/code-school-bi-ji-jquery-part2-level-1-and-2</id>
+    <content type="html"><![CDATA[<h3>Ajax Basics</h3>
+
+<p>使用Ajax时需要在网站后加上<code>?dc=123</code>之类的参数时可以用<code>data</code>
+```javascript
+$.ajax(&lsquo;confirmation.html&rsquo;, {
+   success: function(response) {</p>
+
+<pre><code> $('.ticket').html(response).slideDown();
+</code></pre>
+
+<p>   },
+   data: { &ldquo;author&rdquo;: dacer }
+   }
+});
+//confirmation.html?author=dacer
+<code>
+timeout
+</code>javascript
+$.ajax(&lsquo;confirmation.html&rsquo;, {
+   &hellip;,
+   timeout: 3000 //3000ms = 3 seconds
+});
+<code>`
+还有`beforeSend</code>complete`等</p>
+
+<h3>Event Delegation</h3>
+
+<p>当你用jquery监听点击事件时只会在网页加载完毕后执行监听，如果是用ajax创造出来的是无法监听到的，所以要用到<code>Event Delegation</code>
+<code>javascript
+$('.confirmation .view-boarding-pass').on('click', function(){ ... }); //无法监听到
+$('.confirmation').on('click', '.view-boarding-pass', function(){ ... });
+</code>
+以上代码是监听<code>.confirmation</code>中的点击事件，每次<code>.confirmation</code>中有元素被点击了之后都会检查是否是<code>.view-boarding-pass</code></p>
+
+<h3>Javascript Object</h3>
+
+<p>用<code>var</code>可以声明一个 Object ，然后将其中的function提取出来使代码更整洁
+```javascript
+var confirmation = {
+  init: function() {</p>
+
+<pre><code>$('.confirmation').on('click', 'button', this.loadConfirmation);
+$('.confirmation').on('click', '.view-boarding-pass', this.showBoardingPass); 
+</code></pre>
+
+<p>  },
+  loadConfirmation: function() {</p>
+
+<pre><code>$.ajax('confirmation.html', { ... });
+</code></pre>
+
+<p>  },
+  showBoardingPass: function(event) { &hellip; }
+};</p>
+
+<p>$(document).ready(function() {
+  confirmation.init();
+});
+```</p>
+
+<h3>Javascript Function</h3>
+
+<p>用驼峰法命名一个js的function
+<code>javascript
+function Blog(author) {
+  // init
+}
+var blog = new Blog('Dacer');
+</code></p>
+
+<p>function中可以嵌套function
+```javascript
+function Blog(author) {
+  this.print = function(){</p>
+
+<pre><code>console.log(author)
+</code></pre>
+
+<p>  }
+}
+var blog = new Blog(&lsquo;Dacer&rsquo;);
+blog.print(); //&ldquo;Dacer&rdquo;
+```</p>
+
+<h3>用 Function 重构之前的代码</h3>
+
+<p>```javascript
+function Confirmation(el) {
+  this.el = el;
+  this.ticket = this.el.find(&lsquo;.ticket&rsquo;);
+  var confirmation = this;
+  this.loadConfirmation = function() {</p>
+
+<pre><code>$.ajax('confirmation.html', {
+  timeout: 3000,
+  context: confirmation, //因为ajax内部的this和外部的不同，所以用context把内部的this替换成外部的
+  success: function(response) {
+    this.ticket .html(response).slideDown(); 
+  }
+}); 
+</code></pre>
+
+<p>  }
+}
+```</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Code School笔记 - Zombie Outlaws level 6]]></title>
@@ -225,71 +338,6 @@ end
  &lt;% end %></p>
 
 <p>```</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Code School笔记 - jQuery Part2 level 1 & 2]]></title>
-    <link href="http://blog.dacer.im/blog/2014/02/16/code-school-bi-ji-jquery-part2-level-1-and-2/"/>
-    <updated>2014-02-16T19:10:57+08:00</updated>
-    <id>http://blog.dacer.im/blog/2014/02/16/code-school-bi-ji-jquery-part2-level-1-and-2</id>
-    <content type="html"><![CDATA[<h3>Ajax Basics</h3>
-
-<p>使用Ajax时需要在网站后加上<code>?dc=123</code>之类的参数时可以用<code>data</code>
-```javascript
-$.ajax(&lsquo;confirmation.html&rsquo;, {
-   success: function(response) {</p>
-
-<pre><code> $('.ticket').html(response).slideDown();
-</code></pre>
-
-<p>   },
-   data: { &ldquo;author&rdquo;: dacer }
-   }
-});
-//confirmation.html?author=dacer
-<code>
-timeout
-</code>javascript
-$.ajax(&lsquo;confirmation.html&rsquo;, {
-   &hellip;,
-   timeout: 3000 //3000ms = 3 seconds
-});
-<code>`
-还有`beforeSend</code>complete`等</p>
-
-<h3>Event Delegation</h3>
-
-<p>当你用jquery监听点击事件时只会在网页加载完毕后执行监听，如果是用ajax创造出来的是无法监听到的，所以要用到<code>Event Delegation</code>
-<code>javascript
-$('.confirmation .view-boarding-pass').on('click', function(){ ... }); //无法监听到
-$('.confirmation').on('click', '.view-boarding-pass', function(){ ... });
-</code>
-以上代码是监听<code>.confirmation</code>中的点击事件，每次<code>.confirmation</code>中有元素被点击了之后都会检查是否是<code>.view-boarding-pass</code></p>
-
-<h3>Javascript Object</h3>
-
-<p>用<code>var</code>可以声明一个 Object ，然后将其中的function提取出来使代码更整洁
-```javascript
-var confirmation = {
-  init: function() {</p>
-
-<pre><code>$('.confirmation').on('click', 'button', this.loadConfirmation);
-</code></pre>
-
-<p>$(&lsquo;.confirmation&rsquo;).on(&lsquo;click&rsquo;, &lsquo;.view-boarding-pass&rsquo;, this.showBoardingPass); },
-  loadConfirmation: function() {</p>
-
-<pre><code>$.ajax('confirmation.html', { ... });
-</code></pre>
-
-<p>   ,
-  showBoardingPass: function(event) { &hellip; }
-};
-$(document).ready(function() {
-  confirmation.init();
-});
-```</p>
 ]]></content>
   </entry>
   
