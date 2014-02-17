@@ -4,7 +4,7 @@
   <title><![CDATA[Dacer Blog]]></title>
   <link href="http://blog.dacer.im/atom.xml" rel="self"/>
   <link href="http://blog.dacer.im/"/>
-  <updated>2014-02-17T15:30:22+08:00</updated>
+  <updated>2014-02-17T21:40:13+08:00</updated>
   <id>http://blog.dacer.im/</id>
   <author>
     <name><![CDATA[Dacer]]></name>
@@ -12,6 +12,241 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Code School笔记 - Zombie Outlaws level 7]]></title>
+    <link href="http://blog.dacer.im/blog/2014/02/18/code-school-bi-ji-zombie-outlaws-level-7/"/>
+    <updated>2014-02-18T11:10:57+08:00</updated>
+    <id>http://blog.dacer.im/blog/2014/02/18/code-school-bi-ji-zombie-outlaws-level-7</id>
+    <content type="html"><![CDATA[<h2>ActionController Live &amp; Turbolinks</h2>
+
+<p>使用<code>ActionController::Live</code>可以让服务器和 client 保持</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1">#controllers/items_controller.rb</span>
+</span><span class='line'><span class="k">class</span> <span class="nc">ItemsController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+</span><span class='line'>  <span class="kp">include</span> <span class="ss">ActionController</span><span class="p">:</span><span class="ss">:Live</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>默认的 WEBrick 会断开连接，所以要使用  Puma or Rainbows or other compatible servers</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">gem</span> <span class="s1">&#39;puma&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>使用方法：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1">#controllers/items_controller.rb</span>
+</span><span class='line'><span class="k">def</span> <span class="nf">show</span>
+</span><span class='line'>  <span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="o">[</span><span class="s2">&quot;Content-Type&quot;</span><span class="o">]</span> <span class="o">=</span> <span class="s2">&quot;text/event-stream&quot;</span>
+</span><span class='line'>  <span class="mi">3</span><span class="o">.</span><span class="n">times</span> <span class="p">{</span>
+</span><span class='line'>      <span class="n">response</span><span class="o">.</span><span class="n">stream</span><span class="o">.</span><span class="n">write</span> <span class="s2">&quot;Hello, browser!</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="c1">#write一定要在设置了 headers 之后</span>
+</span><span class='line'>      <span class="nb">sleep</span> <span class="mi">1</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>  <span class="n">response</span><span class="o">.</span><span class="n">stream</span><span class="o">.</span><span class="n">close</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>EventSource</h3>
+
+<p>使用js的方法：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="nx">initialize</span><span class="p">);</span>
+</span><span class='line'><span class="kd">function</span> <span class="nx">initialize</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">source</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">EventSource</span><span class="p">(</span><span class="s1">&#39;/items/events&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="nx">source</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;message&#39;</span><span class="p">,</span> <span class="nx">update</span><span class="p">);</span>
+</span><span class='line'><span class="p">};</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">function</span> <span class="nx">update</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">item</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;&lt;li&gt;&#39;</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#items&#39;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="nx">item</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>使用Redis</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># controllers/items_controller.rb</span>
+</span><span class='line'><span class="k">def</span> <span class="nf">events</span>
+</span><span class='line'>  <span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="o">[</span><span class="s2">&quot;Content-Type&quot;</span><span class="o">]</span> <span class="o">=</span> <span class="s2">&quot;text/event-stream&quot;</span>
+</span><span class='line'>  <span class="n">redis</span> <span class="o">=</span> <span class="no">Redis</span><span class="o">.</span><span class="n">new</span>
+</span><span class='line'>  <span class="n">redis</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="s1">&#39;item.create&#39;</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">on</span><span class="o">|</span>
+</span><span class='line'>    <span class="n">on</span><span class="o">.</span><span class="n">message</span> <span class="k">do</span> <span class="o">|</span><span class="n">event</span><span class="p">,</span> <span class="n">data</span><span class="o">|</span>
+</span><span class='line'>      <span class="n">response</span><span class="o">.</span><span class="n">stream</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;data: </span><span class="si">#{</span><span class="n">data</span><span class="si">}</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>  <span class="n">response</span><span class="o">.</span><span class="n">stream</span><span class="o">.</span><span class="n">close</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Turbolinks</h2>
+
+<p>Rails 4 中默认使用 Turbolinks 通过 ajax 来加快点击 link 之后的跳转速度</p>
+
+<p>Turbolinks 会自动判断载入的 css js 有无改动</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sx">%= stylesheet_link_tag &quot;application&quot;, media:</span>
+</span><span class='line'><span class="sx">  &quot;all&quot;, &quot;data-turbolinks-track&quot; =</span><span class="o">&gt;</span> <span class="kp">true</span> <span class="sx">%&gt;</span>
+</span><span class='line'><span class="sx">&lt;%= javascript_include_tag &quot;application&quot;,</span>
+</span><span class='line'><span class="sx">  &quot;data-turbolinks-track&quot; =&gt;</span> <span class="kp">true</span> <span class="o">%&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>启用方法</h3>
+
+<p>以下在 Rails 4 中默认启用</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1">#Gemfile</span>
+</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;turbolinks&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">#assets/javascripts/application.js</span>
+</span><span class='line'> <span class="sr">//</span><span class="o">=</span> <span class="nb">require</span> <span class="n">turbolinks</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Turbolinks Events</h3>
+
+<p>用 js 监听时要注意使用<code>page:load</code>，来初始化监听，以免点击link后监听失效</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">function</span> <span class="nx">initialize</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#owner_active&#39;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">alert</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">checked</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">});</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="nx">initialize</span><span class="p">);</span>
+</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;page:load&#39;</span><span class="p">,</span> <span class="nx">initialize</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>或者可以用一个 gem 自动实现上述代码，ready() will always fire after &ldquo;page:load&rdquo;</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="err">#</span><span class="nx">Gemfile</span>
+</span><span class='line'><span class="nx">gem</span> <span class="s1">&#39;jquery-turbolinks&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">assets</span><span class="o">/</span><span class="nx">javascripts</span><span class="o">/</span><span class="nx">application</span><span class="p">.</span><span class="nx">js</span>
+</span><span class='line'> <span class="c1">//= require jquery</span>
+</span><span class='line'> <span class="c1">//= require jquery.turbolinks  #order is important!</span>
+</span><span class='line'> <span class="c1">//= require jquery_ujs</span>
+</span><span class='line'> <span class="c1">//= require turbolinks</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>￼
+另一种监听方式：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">function</span> <span class="nx">checkAlert</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">alert</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">checked</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="s1">&#39;#owner_active&#39;</span><span class="p">,</span> <span class="nx">checkAlert</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>监听<code>page:fetch</code>和<code>page:change</code> 可以用来显示loading</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;page:fetch&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#loading&#39;</span><span class="p">).</span><span class="nx">show</span><span class="p">();</span>
+</span><span class='line'><span class="p">});</span>
+</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;page:change&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#loading&#39;</span><span class="p">).</span><span class="nx">hide</span><span class="p">();</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>取消 Turbolinks</h3>
+
+<p>Turbolinks affect all internal links by default, but you may not want all links to use it:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="o">&lt;%=</span> <span class="nx">link_to</span> <span class="s1">&#39;Requests&#39;</span><span class="p">,</span> <span class="nx">requests_path</span><span class="p">,</span> <span class="s2">&quot;data-no-turbolink&quot;</span> <span class="o">=&gt;</span> <span class="kc">true</span> <span class="o">%&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>If a parent has the attribute, all children will be opted-out of Turbolinks:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="o">&lt;</span><span class="nx">div</span> <span class="nx">id</span><span class="o">=</span><span class="s2">&quot;navigation&quot;</span> <span class="nx">data</span><span class="o">-</span><span class="nx">no</span><span class="o">-</span><span class="nx">turbolink</span><span class="o">=</span><span class="s2">&quot;true&quot;</span><span class="o">&gt;</span>
+</span><span class='line'>  <span class="o">&lt;%=</span> <span class="nx">link_to</span> <span class="s1">&#39;Show&#39;</span><span class="p">,</span> <span class="err">@</span><span class="nx">request</span> <span class="o">%&gt;</span> <span class="o">|</span>
+</span><span class='line'>  <span class="o">&lt;%=</span> <span class="nx">link_to</span> <span class="s1">&#39;Back&#39;</span><span class="p">,</span> <span class="nx">requests_path</span> <span class="o">%&gt;</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/div&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Code School笔记 - jQuery Part2 level 1 & 2]]></title>
@@ -1905,27 +2140,6 @@ Desc : descending order 递减</p>
 <p>打开宇峻奧汀科技（幻三开发公司）官网首页已没有了单机游戏的一席之地，</p>
 
 <p>不知道若干年后的00 10后还会不会知道有国产rpg这个东西呢</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Android上的一个神器『AIDE』]]></title>
-    <link href="http://blog.dacer.im/blog/2013/12/23/androide4b88ae79a84e4b880e4b8aae7a59ee599a8e3808eaidee3808f/"/>
-    <updated>2013-12-23T21:24:04+08:00</updated>
-    <id>http://blog.dacer.im/blog/2013/12/23/androide4b88ae79a84e4b880e4b8aae7a59ee599a8e3808eaidee3808f</id>
-    <content type="html"><![CDATA[<p>能直接在手机上git clone啊有木有！！</p>
-
-<p>clone完了什么都不用改直接就能编译出apk了有木有！！</p>
-
-<p>圣诞节出去旅游用手机就能修修bug 发布apk了有木有！！！</p>
-
-<p>mba的轻便性跟手机比起来弱爆了有木有！！！</p>
-
-<p>&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;正常向的分割线&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;</p>
-
-<p>圣诞节某个软件要发布beta版本但是又要出去旅游怎么办呢，正在纠结带不带mba的时候突然想起来手机上就有一个IDE，下了试了试超级好用而且升级key圣诞节还打折就果断入手了！</p>
-
-<p>此刻真是感动的痛哭流涕啊。。</p>
 ]]></content>
   </entry>
   

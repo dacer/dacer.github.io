@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Rails 4 | Dacer Blog]]></title>
   <link href="http://blog.dacer.im/blog/categories/rails-4/atom.xml" rel="self"/>
   <link href="http://blog.dacer.im/"/>
-  <updated>2014-02-17T15:30:22+08:00</updated>
+  <updated>2014-02-17T21:40:13+08:00</updated>
   <id>http://blog.dacer.im/</id>
   <author>
     <name><![CDATA[Dacer]]></name>
@@ -12,6 +12,174 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Code School笔记 - Zombie Outlaws level 7]]></title>
+    <link href="http://blog.dacer.im/blog/2014/02/18/code-school-bi-ji-zombie-outlaws-level-7/"/>
+    <updated>2014-02-18T11:10:57+08:00</updated>
+    <id>http://blog.dacer.im/blog/2014/02/18/code-school-bi-ji-zombie-outlaws-level-7</id>
+    <content type="html"><![CDATA[<h2>ActionController Live &amp; Turbolinks</h2>
+
+<p>使用<code>ActionController::Live</code>可以让服务器和 client 保持
+```ruby</p>
+
+<h1>controllers/items_controller.rb</h1>
+
+<p>class ItemsController &lt; ApplicationController
+  include ActionController::Live
+end
+<code>
+默认的 WEBrick 会断开连接，所以要使用  Puma or Rainbows or other compatible servers
+</code>ruby
+gem &lsquo;puma&rsquo;
+<code>
+使用方法：
+</code>ruby</p>
+
+<h1>controllers/items_controller.rb</h1>
+
+<p>def show</p>
+
+<pre><code>response.headers["Content-Type"] = "text/event-stream" 
+3.times {
+    response.stream.write "Hello, browser!\n" #write一定要在设置了 headers 之后
+    sleep 1 
+}
+</code></pre>
+
+<p>  response.stream.close
+end
+```</p>
+
+<h3>EventSource</h3>
+
+<p>使用js的方法：
+```javascript
+$(document).ready(initialize);
+function initialize() {
+  var source = new EventSource(&lsquo;/items/events&rsquo;);
+  source.addEventListener(&lsquo;message&rsquo;, update);
+};</p>
+
+<p>function update(event) {
+  var item = $(&lsquo;<li>&rsquo;).text(event.data);
+  $(&lsquo;#items&rsquo;).append(item);
+}
+```</p>
+
+<h3>使用Redis</h3>
+
+<p>```ruby</p>
+
+<h1>controllers/items_controller.rb</h1>
+
+<p>def events
+  response.headers[&ldquo;Content-Type&rdquo;] = &ldquo;text/event-stream&rdquo;
+  redis = Redis.new
+  redis.subscribe(&lsquo;item.create&rsquo;) do |on|</p>
+
+<pre><code>on.message do |event, data|
+  response.stream.write("data: #{data}\n\n")
+    end 
+end
+</code></pre>
+
+<p>  response.stream.close
+end
+```</p>
+
+<h2>Turbolinks</h2>
+
+<p>Rails 4 中默认使用 Turbolinks 通过 ajax 来加快点击 link 之后的跳转速度</p>
+
+<p>Turbolinks 会自动判断载入的 css js 有无改动
+<code>
+&lt;%= stylesheet_link_tag "application", media:
+  "all", "data-turbolinks-track" =&gt; true %&gt;
+&lt;%= javascript_include_tag "application",
+  "data-turbolinks-track" =&gt; true %&gt;
+</code></p>
+
+<h3>启用方法</h3>
+
+<p>以下在 Rails 4 中默认启用
+```</p>
+
+<h1>Gemfile</h1>
+
+<p>gem &lsquo;turbolinks&rsquo;</p>
+
+<h1>assets/javascripts/application.js</h1>
+
+<p> //= require turbolinks
+```</p>
+
+<h3>Turbolinks Events</h3>
+
+<p>用 js 监听时要注意使用<code>page:load</code>，来初始化监听，以免点击link后监听失效
+```javascript
+function initialize() {
+  $(&lsquo;#owner_active&rsquo;).click( function() {</p>
+
+<pre><code>alert(this.checked);
+</code></pre>
+
+<p>  });
+}
+$(document).ready(initialize);
+$(document).on(&lsquo;page:load&rsquo;, initialize);
+```</p>
+
+<p>或者可以用一个 gem 自动实现上述代码，ready() will always fire after &ldquo;page:load&rdquo;
+```</p>
+
+<h1>Gemfile</h1>
+
+<p>gem &lsquo;jquery-turbolinks&rsquo;</p>
+
+<p>assets/javascripts/application.js
+ //= require jquery
+ //= require jquery.turbolinks  #order is important!
+ //= require jquery_ujs
+ //= require turbolinks
+<code>
+￼
+另一种监听方式：
+</code>javascript
+function checkAlert() {
+  alert(this.checked);
+}
+$(document).on(&lsquo;click&rsquo;, &lsquo;#owner_active&rsquo;, checkAlert);
+```</p>
+
+<p>监听<code>page:fetch</code>和<code>page:change</code> 可以用来显示loading
+<code>javascript
+$(document).on('page:fetch', function() {
+  $('#loading').show();
+});
+$(document).on('page:change', function() {
+  $('#loading').hide();
+});
+</code></p>
+
+<h3>取消 Turbolinks</h3>
+
+<p>Turbolinks affect all internal links by default, but you may not want all links to use it:
+<code>
+&lt;%= link_to 'Requests', requests_path, "data-no-turbolink" =&gt; true %&gt;
+</code>
+If a parent has the attribute, all children will be opted-out of Turbolinks:
+```</p>
+
+<div id="navigation" data-no-turbolink="true">
+  <%= link_to 'Show', @request %> |
+  <%= link_to 'Back', requests_path %>
+</div>
+
+
+<p>```</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Code School笔记 - Zombie Outlaws level 6]]></title>
@@ -451,188 +619,6 @@ end</p>
 </code>html
 <div id="grunt">&lt;%= grunt %></div>
 ```</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Code School笔记 - Zombie Outlaws level 2]]></title>
-    <link href="http://blog.dacer.im/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-2/"/>
-    <updated>2014-02-15T15:10:57+08:00</updated>
-    <id>http://blog.dacer.im/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-2</id>
-    <content type="html"><![CDATA[<h2>ActiveRecord &amp; ActiveModel</h2>
-
-<h3>Finders</h3>
-
-<p>米什么好说的
-<code>ruby
-Post.where(author: 'Dacer') # returns an ActiveRecord::Relation
-</code></p>
-
-<h3>Find_By</h3>
-
-<p><code>ruby
-Post.find_by(title: 'Rails 4') #returns a single model object, or possibly a collection of model objects in an Array (not a Relation). If nothing is found, an ActiveRecord::RecordNotFound exception is raised.
-</code></p>
-
-<h4>Find_by 与 where</h4>
-
-<p>用源码解释：
-```ruby
-def find_by(*args)</p>
-
-<pre><code>where(*args).take
-</code></pre>
-
-<p>end
-<code>
-所以可以接受和 where 一样的 arguments
-</code>ruby
-Post.find_by(&ldquo;published_on &lt; ?&rdquo;, 2.weeks.ago)
-```</p>
-
-<h3>Find_or_*</h3>
-
-<p>Rail 4 简化了 3 的<code>Find_or_*</code>方法
-<code>ruby
-Post.find_or_initialize_by(title: "rails 4")
-Post.find_or_create_by(title: "rails 4")
-</code>
-其中<code>find_or_create_by</code>可以和<code>after_create</code>相结合使用：
-```ruby
-Post.find_or_create_by(title: &lsquo;Rails 4&rsquo;)</p>
-
-<h1>if Post not found ↓</h1>
-
-<p>Post.create(title: &lsquo;Rails 4&rsquo;)</p>
-
-<p>class Post &lt; ActiveRecord::Base</p>
-
-<pre><code>after_create :foo
-def foo
-  posts = Post.where(author: 'dacer')
-  ...
-    end
-</code></pre>
-
-<p>end
-```</p>
-
-<h3>Update &amp; Update_column</h3>
-
-<p><code>ruby
-@post.update(post_params) #update attribute
-@post.update_columns(post_params)
-</code></p>
-
-<h3>Model.all</h3>
-
-<p><code>ruby
-@tweets = Tweet.all # returns an ActiveRecord::Relation
-</code></p>
-
-<h2>第二部分</h2>
-
-<h3>Scopes</h3>
-
-<p>```ruby
-scope :sold, &ndash;>{ where(state: &lsquo;sold&rsquo;) } #scopes should take a proc object</p>
-
-<p>default_scope { where(state: &lsquo;available&rsquo;) }
-default_scope &ndash;>{ where(state: &lsquo;available&rsquo;) } #defaults scopes should take proc object or a block￼￼
-```</p>
-
-<h3>Eager-Loaded Scopes</h3>
-
-<p><code>ruby
-scope :recent, -&gt;{ where(published_at: 2.weeks.ago) }
-scope :recent_red, -&gt;{ recent.where(color: 'red') }
-</code></p>
-
-<h3>Relation#None</h3>
-
-<p><code>.none</code>可以返回一个空的 ActiveRecord::Relation，避免在使用空的<code>array</code>时出现错误
-<code>ruby
-case role
-when "Reviewer"
-  Post.published
-when "Bad User"
-  Post.none
-end
-</code></p>
-
-<h3>Relation#Not</h3>
-
-<p>在使用<code>where</code>寻找类似<code>user != ?</code>的不等于时如果参数是<code>nil</code>的话会报 SQL 错误，使用<code>.where.not</code>则会自动判别参数是否为空，且在非空时才执行SQL语句
-<code>ruby
-Post.where.not(author: dacer)
-</code></p>
-
-<h3>Relation#Order</h3>
-
-<p>在 Rails 4 中如果<code>default_scope</code>已经有了<code>order()</code>后，再执行<code>.order</code>时这两者的先后顺序与 3 相反， Rails 4 会将<code>default_scope</code>中的放在后面：
-```ruby
-class User &lt; ActiveRecord::Base</p>
-
-<pre><code>default_scope { order(:name) }
-</code></pre>
-
-<p>end</p>
-
-<p>User.order(&ldquo;created_at DESC&rdquo;)</p>
-
-<p>SELECT * FROM users ORDER BY name asc, created_at desc # Rails 3
-SELECT * FROM users ORDER BY created_at desc, name asc # Rails 4
-```</p>
-
-<h4>手动排序</h4>
-
-<p>Rails 4 可以使用 Hash 来排序
-<code>ruby
-User.order(:name, created_at: :desc)
-User.order(created_at: :desc)
-</code></p>
-
-<h4>后面缩写的意思</h4>
-
-<p>Asc : ascending order 递增<br/>
-Desc : descending order 递减</p>
-
-<h3>Relation#References</h3>
-
-<p><code>ruby
-Post.includes(:comments).
-  where("comments.name = 'foo'").references(:comments)
-</code>
-上例中，<code>.include</code>使返回值包含了与 Post 相关联的 comments，
-在一下情况则无需使用<code>references</code>
-```ruby
-Post.includes(:comments).where(comments: { name: &lsquo;foo&rsquo; })
-Post.includes(:comments).where(&lsquo;comments.name&rsquo; => &lsquo;foo&rsquo;) #hash-based conditions</p>
-
-<p>Post.includes(:comments).order(&lsquo;comments.name&rsquo;) #no conditions
-```</p>
-
-<h3>ActiveModel::Model</h3>
-
-<p><code>ruby
-class SupportTicket
-  include ActiveModel::Conversion
-  include ActiveModel::Validations
-  extend ActiveModel::Naming
-  attr_accessor :title, :description
-  validates_presence_of :title
-  validates_presence_of :description
-end
-</code>
-可以简化为：
-<code>ruby
-class SupportTicket
-  include ActiveModel::Model
-  attr_accessor :title, :description
-  validates_presence_of :title
-  validates_presence_of :description
-end
-</code></p>
 ]]></content>
   </entry>
   

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Code School | Dacer Blog]]></title>
   <link href="http://blog.dacer.im/blog/categories/code-school/atom.xml" rel="self"/>
   <link href="http://blog.dacer.im/"/>
-  <updated>2014-02-17T15:30:22+08:00</updated>
+  <updated>2014-02-17T21:40:13+08:00</updated>
   <id>http://blog.dacer.im/</id>
   <author>
     <name><![CDATA[Dacer]]></name>
@@ -12,6 +12,174 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Code School笔记 - Zombie Outlaws level 7]]></title>
+    <link href="http://blog.dacer.im/blog/2014/02/18/code-school-bi-ji-zombie-outlaws-level-7/"/>
+    <updated>2014-02-18T11:10:57+08:00</updated>
+    <id>http://blog.dacer.im/blog/2014/02/18/code-school-bi-ji-zombie-outlaws-level-7</id>
+    <content type="html"><![CDATA[<h2>ActionController Live &amp; Turbolinks</h2>
+
+<p>使用<code>ActionController::Live</code>可以让服务器和 client 保持
+```ruby</p>
+
+<h1>controllers/items_controller.rb</h1>
+
+<p>class ItemsController &lt; ApplicationController
+  include ActionController::Live
+end
+<code>
+默认的 WEBrick 会断开连接，所以要使用  Puma or Rainbows or other compatible servers
+</code>ruby
+gem &lsquo;puma&rsquo;
+<code>
+使用方法：
+</code>ruby</p>
+
+<h1>controllers/items_controller.rb</h1>
+
+<p>def show</p>
+
+<pre><code>response.headers["Content-Type"] = "text/event-stream" 
+3.times {
+    response.stream.write "Hello, browser!\n" #write一定要在设置了 headers 之后
+    sleep 1 
+}
+</code></pre>
+
+<p>  response.stream.close
+end
+```</p>
+
+<h3>EventSource</h3>
+
+<p>使用js的方法：
+```javascript
+$(document).ready(initialize);
+function initialize() {
+  var source = new EventSource(&lsquo;/items/events&rsquo;);
+  source.addEventListener(&lsquo;message&rsquo;, update);
+};</p>
+
+<p>function update(event) {
+  var item = $(&lsquo;<li>&rsquo;).text(event.data);
+  $(&lsquo;#items&rsquo;).append(item);
+}
+```</p>
+
+<h3>使用Redis</h3>
+
+<p>```ruby</p>
+
+<h1>controllers/items_controller.rb</h1>
+
+<p>def events
+  response.headers[&ldquo;Content-Type&rdquo;] = &ldquo;text/event-stream&rdquo;
+  redis = Redis.new
+  redis.subscribe(&lsquo;item.create&rsquo;) do |on|</p>
+
+<pre><code>on.message do |event, data|
+  response.stream.write("data: #{data}\n\n")
+    end 
+end
+</code></pre>
+
+<p>  response.stream.close
+end
+```</p>
+
+<h2>Turbolinks</h2>
+
+<p>Rails 4 中默认使用 Turbolinks 通过 ajax 来加快点击 link 之后的跳转速度</p>
+
+<p>Turbolinks 会自动判断载入的 css js 有无改动
+<code>
+&lt;%= stylesheet_link_tag "application", media:
+  "all", "data-turbolinks-track" =&gt; true %&gt;
+&lt;%= javascript_include_tag "application",
+  "data-turbolinks-track" =&gt; true %&gt;
+</code></p>
+
+<h3>启用方法</h3>
+
+<p>以下在 Rails 4 中默认启用
+```</p>
+
+<h1>Gemfile</h1>
+
+<p>gem &lsquo;turbolinks&rsquo;</p>
+
+<h1>assets/javascripts/application.js</h1>
+
+<p> //= require turbolinks
+```</p>
+
+<h3>Turbolinks Events</h3>
+
+<p>用 js 监听时要注意使用<code>page:load</code>，来初始化监听，以免点击link后监听失效
+```javascript
+function initialize() {
+  $(&lsquo;#owner_active&rsquo;).click( function() {</p>
+
+<pre><code>alert(this.checked);
+</code></pre>
+
+<p>  });
+}
+$(document).ready(initialize);
+$(document).on(&lsquo;page:load&rsquo;, initialize);
+```</p>
+
+<p>或者可以用一个 gem 自动实现上述代码，ready() will always fire after &ldquo;page:load&rdquo;
+```</p>
+
+<h1>Gemfile</h1>
+
+<p>gem &lsquo;jquery-turbolinks&rsquo;</p>
+
+<p>assets/javascripts/application.js
+ //= require jquery
+ //= require jquery.turbolinks  #order is important!
+ //= require jquery_ujs
+ //= require turbolinks
+<code>
+￼
+另一种监听方式：
+</code>javascript
+function checkAlert() {
+  alert(this.checked);
+}
+$(document).on(&lsquo;click&rsquo;, &lsquo;#owner_active&rsquo;, checkAlert);
+```</p>
+
+<p>监听<code>page:fetch</code>和<code>page:change</code> 可以用来显示loading
+<code>javascript
+$(document).on('page:fetch', function() {
+  $('#loading').show();
+});
+$(document).on('page:change', function() {
+  $('#loading').hide();
+});
+</code></p>
+
+<h3>取消 Turbolinks</h3>
+
+<p>Turbolinks affect all internal links by default, but you may not want all links to use it:
+<code>
+&lt;%= link_to 'Requests', requests_path, "data-no-turbolink" =&gt; true %&gt;
+</code>
+If a parent has the attribute, all children will be opted-out of Turbolinks:
+```</p>
+
+<div id="navigation" data-no-turbolink="true">
+  <%= link_to 'Show', @request %> |
+  <%= link_to 'Back', requests_path %>
+</div>
+
+
+<p>```</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Code School笔记 - jQuery Part2 level 1 & 2]]></title>
@@ -477,92 +645,6 @@ owners_hashes.to_json</p>
   {&ldquo;name&rdquo;:&ldquo;Dacer&rdquo;,    &ldquo;url&rdquo;:&ldquo;<a href="http://blog.dacer.im/">http://blog.dacer.im/</a>&rdquo;},
   {&ldquo;name&rdquo;:&ldquo;Walking Ned&rdquo;,&ldquo;url&rdquo;:&ldquo;<a href="http://localhost:3000/owners/3">http://localhost:3000/owners/3</a>&rdquo;}
 ]
-```</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Code School笔记 - Zombie Outlaws level 3]]></title>
-    <link href="http://blog.dacer.im/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-3/"/>
-    <updated>2014-02-15T19:10:57+08:00</updated>
-    <id>http://blog.dacer.im/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-3</id>
-    <content type="html"><![CDATA[<h2>Strong Parameters and Remote Forms &amp; Filters, Session, Custom Flash Types</h2>
-
-<h3>Strong Parameters</h3>
-
-<p>在rails 4的controller中必须指定可接受的params
-```ruby</p>
-
-<pre><code>def user_params
-  params.require(:user).permit(:name)
-end
-</code></pre>
-
-<p><code>
-其中`rquire`会检查是否有参数中的key，没有则返回400错误，但并不会将这个key的值返回到`user_params`中，`permit`则会将参数中key对应的值返回  
-add this line if you want to raise errors for unpermitted params:
-</code>ruby</p>
-
-<h1>config/application.rb</h1>
-
-<p>config.action_controller.action_on_unpermitted_parameters = :raise
-```</p>
-
-<h3>Authenticity Token</h3>
-
-<p>Rails 会自动在form中的value加入token来防止机器人的spam</p>
-
-<h3>Action Controller Filters/Actions</h3>
-
-<p>3中的<code>before_filter</code>变为了<code>before_action</code>,可以让Controller在部分方法call之前做出一些动作：
-```ruby
-class PeopleController &lt; ActionController::Base</p>
-
-<pre><code>before_action :set_person,      except: [ :index, :new, :create ]
-before_action :ensure_permission, only: [ :edit, :update ]
-</code></pre>
-
-<p>end
-```</p>
-
-<h3>Flash Types</h3>
-
-<p>以下方法可以生成flash信息：
-<code>ruby
-if @item.save
-  flash[:notice] = 'Item created.'
-  redirect_to @item
-else
-  render action: 'new'
-end
-</code>
-```html</p>
-
-<p><p id="notice">&lt;%= flash[:notice] %></p>
-<p> <strong>Name:</strong> &lt;%= @item.name %>
-</p>
-<code>
-其中erb部分可以简写为
-</code>html
-<p id="notice">&lt;%= notice %></p>
-<p id="alert">&lt;%= alert %></p>
-<code>
-你也可以自定义flash类型
-</code>ruby
-class ApplicationController &lt; ActionController::Base
-  add_flash_types :grunt, :snarl
-end</p>
-
-<h1>&hellip;</h1>
-
-<p>flash[:grunt] = &lsquo;braaains&hellip;&rsquo;</p>
-
-<h1>或者简写为</h1>
-
-<p>redirect_to @user, grunt: &lsquo;I&rsquo;m Dacer&hellip;&rsquo;
-<code>
-</code>html
-<div id="grunt">&lt;%= grunt %></div>
 ```</p>
 ]]></content>
   </entry>
