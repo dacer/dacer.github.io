@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Code School | Dacer Blog]]></title>
   <link href="http://blog.dacer.im/blog/categories/code-school/atom.xml" rel="self"/>
   <link href="http://blog.dacer.im/"/>
-  <updated>2014-02-18T13:14:37+08:00</updated>
+  <updated>2014-02-18T14:53:04+08:00</updated>
   <id>http://blog.dacer.im/</id>
   <author>
     <name><![CDATA[Dacer]]></name>
@@ -65,13 +65,70 @@ data: form.serialize(),
 <p>});
 ```</p>
 
-<h3>Utility</h3>
+<h3>Utility Methods</h3>
 
-<p>```javascript
-$(&lsquo;.class&rsquo;).find(&lsquo;p&rsquo;) //可以找到某个 .. 中的 某个 ..</p>
+<p><code>javascript
+$('.class').find('p') //可以找到某个 .. 中的 某个 ..
+$(".book-title:eq("+index+")") //可以找到 class中的第 index 项
+</code>
+<code>each</code></p>
 
-<p>$(&ldquo;.book-title:eq(&rdquo;+index+&ldquo;)&rdquo;) //可以找到 class中的第 index 项
-```</p>
+<p><code>￼javascript
+success: function(result) {
+  $.each(result, function(index, city) {...});
+}
+</code></p>
+
+<p><code>getJSON</code>专为json而简化后的ajax
+<code>javascript
+￼$.getJSON('/status', function(result) { });
+</code></p>
+
+<p><code>map</code>将一个 array 中每个数据处理之后整合出一个新的array
+```javascript
+$.map(collection, function(<item>, <index>){});</p>
+
+<p>//example
+var myNumbers = [1,2,3,4];
+var newNumbers = $.map(myNumbers, function(item, index){ return item + 1 });
+// myNumbers  &ndash;> [1,2,3,4]
+// newNumbers &ndash;> [2,3,4,5]
+<code>
+用map将json数据转化为html
+</code>
+$.map(result, function(status, i) {
+  var listItem = $(&lsquo;<li></li>&rsquo;);
+  $(&lsquo;<h3>&rsquo;+status.name+&lsquo;</h3>&rsquo;).appendTo(listItem); //用appendTo可以将 .. 插入到 listItem其中
+  $(&lsquo;<p>&rsquo;+status.status+&lsquo;</p>&rsquo;).appendTo(listItem);
+  return listItem;
+});
+//结果：
+<li>
+  <h3>Dacer</h3>
+  <p>Blog</p>
+</li>
+<code>
+map返回的array可以直接放入html中
+</code>javascript
+var statusElements = $.map(&hellip;);
+$(&lsquo;.status-list&rsquo;).html(statusElements);
+<code>``
+</code>each<code>返回的是原 array，而</code>map`返回的是 return 的值的 array</p>
+
+<h3>Detach</h3>
+
+<p>.detach() removes an element from the DOM, preserving all data and events.<br/>
+This is useful to minimize DOM insertions with multiple html elements.<br/>
+.detach() removes the list from the DOM, then it can be modified and reinserted into the status element.
+我对此的理解是detach能将一个 element 移出 DOM ，然后对它进行任何操作都不会对网页造成影响，修改完这个 element 之后再将其放回 DOM 。
+```javascript
+$(&lsquo;.status-list&rsquo;).detach()</p>
+
+<pre><code>             .html(statusElements)
+             .appendTo('.status');
+</code></pre>
+
+<p>```</p>
 ]]></content>
   </entry>
   
