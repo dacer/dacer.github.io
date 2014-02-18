@@ -4,7 +4,7 @@
   <title><![CDATA[Dacer Blog]]></title>
   <link href="http://blog.dacer.im/atom.xml" rel="self"/>
   <link href="http://blog.dacer.im/"/>
-  <updated>2014-02-18T13:14:37+08:00</updated>
+  <updated>2014-02-18T14:57:26+08:00</updated>
   <id>http://blog.dacer.im/</id>
   <author>
     <name><![CDATA[Dacer]]></name>
@@ -90,14 +90,103 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h3>Utility</h3>
+<h3>Utility Methods</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.class&#39;</span><span class="p">).</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">)</span> <span class="c1">//可以找到某个 .. 中的 某个 ..</span>
+</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s2">&quot;.book-title:eq(&quot;</span><span class="o">+</span><span class="nx">index</span><span class="o">+</span><span class="s2">&quot;)&quot;</span><span class="p">)</span> <span class="c1">//可以找到 class中的第 index 项</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>each</code></p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.class&#39;</span><span class="p">).</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">)</span> <span class="c1">//可以找到某个 .. 中的 某个 ..</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">success</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">result</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span> <span class="nx">city</span><span class="p">)</span> <span class="p">{...});</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>getJSON</code>专为json而简化后的ajax</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="err">￼</span><span class="nx">$</span><span class="p">.</span><span class="nx">getJSON</span><span class="p">(</span><span class="s1">&#39;/status&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span> <span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>map</code>将一个 array 中每个数据处理之后整合出一个新的array</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">collection</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="o">&lt;</span><span class="nx">item</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="nx">index</span><span class="o">&gt;</span><span class="p">){});</span>
 </span><span class='line'>
-</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s2">&quot;.book-title:eq(&quot;</span><span class="o">+</span><span class="nx">index</span><span class="o">+</span><span class="s2">&quot;)&quot;</span><span class="p">)</span> <span class="c1">//可以找到 class中的第 index 项</span>
+</span><span class='line'><span class="c1">//example</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">myNumbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">];</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">newNumbers</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">myNumbers</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">item</span><span class="p">,</span> <span class="nx">index</span><span class="p">){</span> <span class="k">return</span> <span class="nx">item</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">});</span>
+</span><span class='line'><span class="c1">// myNumbers  -&gt; [1,2,3,4]</span>
+</span><span class='line'><span class="c1">// newNumbers -&gt; [2,3,4,5]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>用map将json数据转化为html</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">result</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">status</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">listItem</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;&lt;li&gt;&lt;/li&gt;&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;&lt;h3&gt;&#39;</span><span class="o">+</span><span class="nx">status</span><span class="p">.</span><span class="nx">name</span><span class="o">+</span><span class="s1">&#39;&lt;/h3&gt;&#39;</span><span class="p">).</span><span class="nx">appendTo</span><span class="p">(</span><span class="nx">listItem</span><span class="p">);</span> <span class="c1">//用appendTo可以将 .. 插入到 listItem其中</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;&lt;p&gt;&#39;</span><span class="o">+</span><span class="nx">status</span><span class="p">.</span><span class="nx">status</span><span class="o">+</span><span class="s1">&#39;&lt;/p&gt;&#39;</span><span class="p">).</span><span class="nx">appendTo</span><span class="p">(</span><span class="nx">listItem</span><span class="p">);</span>
+</span><span class='line'>  <span class="k">return</span> <span class="nx">listItem</span><span class="p">;</span>
+</span><span class='line'><span class="p">});</span>
+</span><span class='line'><span class="c1">//结果：</span>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">li</span><span class="o">&gt;</span>
+</span><span class='line'>  <span class="o">&lt;</span><span class="nx">h3</span><span class="o">&gt;</span><span class="nx">Dacer</span><span class="o">&lt;</span><span class="err">/h3&gt;</span>
+</span><span class='line'>  <span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="nx">Blog</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/li&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>map返回的array可以直接放入html中</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">statusElements</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">map</span><span class="p">(...);</span>
+</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.status-list&#39;</span><span class="p">).</span><span class="nx">html</span><span class="p">(</span><span class="nx">statusElements</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>each</code>返回的是原 array，而<code>map</code>返回的是 return 的值的 array</p>
+
+<h3>Detach</h3>
+
+<p>.detach() removes an element from the DOM, preserving all data and events.<br/>
+This is useful to minimize DOM insertions with multiple html elements.<br/>
+.detach() removes the list from the DOM, then it can be modified and reinserted into the status element.
+我对此的理解是detach能将一个 element 移出 DOM ，然后对它进行任何操作都不会对网页造成影响，修改完这个 element 之后再将其放回 DOM 。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.status-list&#39;</span><span class="p">).</span><span class="nx">detach</span><span class="p">()</span>
+</span><span class='line'>                 <span class="p">.</span><span class="nx">html</span><span class="p">(</span><span class="nx">statusElements</span><span class="p">)</span>
+</span><span class='line'>                 <span class="p">.</span><span class="nx">appendTo</span><span class="p">(</span><span class="s1">&#39;.status&#39;</span><span class="p">);</span>
 </span></code></pre></td></tr></table></div></figure>
 
 ]]></content>

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Android | Dacer Blog]]></title>
   <link href="http://blog.dacer.im/blog/categories/android/atom.xml" rel="self"/>
   <link href="http://blog.dacer.im/"/>
-  <updated>2014-02-18T14:53:04+08:00</updated>
+  <updated>2014-02-18T14:57:26+08:00</updated>
   <id>http://blog.dacer.im/</id>
   <author>
     <name><![CDATA[Dacer]]></name>
@@ -120,7 +120,7 @@ canvas.drawText(num, xCoor, yCoor-bottomTriangleHeight-marginBottom, textPaint);
 
 <p>大概就是这样一个东西：</p>
 
-<p><img src="{{%20root_url%20}}/images/post/screenshot-2013-11-01-10-41-24.png" alt="Screenshot-2013-11-01-10.41.24" /></p>
+<p><img src="/images/post/screenshot-2013-11-01-10-41-24.png" alt="Screenshot-2013-11-01-10.41.24" /></p>
 
 <p>要实现的功能有：</p>
 

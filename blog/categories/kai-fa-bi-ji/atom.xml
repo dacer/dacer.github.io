@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 开发笔记 | Dacer Blog]]></title>
   <link href="http://blog.dacer.im/blog/categories/kai-fa-bi-ji/atom.xml" rel="self"/>
   <link href="http://blog.dacer.im/"/>
-  <updated>2014-02-18T14:53:04+08:00</updated>
+  <updated>2014-02-18T14:57:26+08:00</updated>
   <id>http://blog.dacer.im/</id>
   <author>
     <name><![CDATA[Dacer]]></name>
@@ -110,7 +110,7 @@
 
 <p>将Action Bar设置为透明且可和下部分重叠，先简单的放了个button试了下，效果如下：</p>
 
-<p><img src="{{%20root_url%20}}/images/post/screen-shot-2013-09-30-at-4-49-52-pm1.png" alt="Screen-Shot-2013-09-30-at-4.49.52-PM" /></p>
+<p><img src="/images/post/screen-shot-2013-09-30-at-4-49-52-pm1.png" alt="Screen-Shot-2013-09-30-at-4.49.52-PM" /></p>
 
 <p>之后用testin测试了下其他机型的适配情况，除了联想的一个奇葩机型之外都如图显示，于是意外的得出了个结论，<strong>button高度=Action Bar高度</strong>（这是歪打正着吧(╯‵□′)╯︵┻━┻）</p>
 

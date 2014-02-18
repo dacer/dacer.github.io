@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Code School | Dacer Blog]]></title>
   <link href="http://blog.dacer.im/blog/categories/code-school/atom.xml" rel="self"/>
   <link href="http://blog.dacer.im/"/>
-  <updated>2014-02-18T14:53:04+08:00</updated>
+  <updated>2014-02-18T14:57:26+08:00</updated>
   <id>http://blog.dacer.im/</id>
   <author>
     <name><![CDATA[Dacer]]></name>
@@ -73,7 +73,7 @@ $(".book-title:eq("+index+")") //可以找到 class中的第 index 项
 </code>
 <code>each</code></p>
 
-<p><code>￼javascript
+<p><code>javascript
 success: function(result) {
   $.each(result, function(index, city) {...});
 }
