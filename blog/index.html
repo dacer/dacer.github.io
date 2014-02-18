@@ -7,12 +7,19 @@
 
 <meta name="author" content="Dacer"> 
 
-<meta name="description" content="ActionController Live &amp; Turbolinks 使用ActionController::Live可以让服务器和 client 保持 1
+<meta name="description" content="Ajax Forms 1
 2
 3
 4
-#controllers/items_controller.rb
-class ItemsController &lt &hellip;"> <meta name="keywords" content="">
+5
+6
+7
+8
+9
+10
+11
+12
+$(&#39;form&#39;).on(&#39;submit&#39;, function(event) { event.preventDefault(); //阻止原按钮的行为 var form = $(this &hellip;"> <meta name="keywords" content="">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -96,6 +103,128 @@ $(document).ready(
 </header>
 
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2014/02/18/code-school-bi-ji-jquery-part2-level-3-and-4/">
+		
+			Code School笔记 - jQuery Part2 Level 3 & 4</a>
+	</h2>
+	<div class="entry-content">
+		<h2>Ajax Forms</h2>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;form&#39;</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;submit&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>  <span class="c1">//阻止原按钮的行为</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">form</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>      <span class="c1">//这样保存form为变量可以减少 DOM queries</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">(</span><span class="s1">&#39;/book&#39;</span><span class="p">,</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;POST&#39;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">data</span><span class="o">:</span> <span class="nx">form</span><span class="p">.</span><span class="nx">serialize</span><span class="p">(),</span> <span class="c1">//可以合并form中所有的 fields 作为data</span>
+</span><span class='line'>    <span class="nx">success</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">form</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span>
+</span><span class='line'>      <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#vacation&#39;</span><span class="p">).</span><span class="nx">hide</span><span class="p">().</span><span class="nx">html</span><span class="p">(</span><span class="nx">result</span><span class="p">).</span><span class="nx">fadeIn</span><span class="p">();</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>  <span class="p">});</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>With Json</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;form&#39;</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;submit&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">form</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;form&#39;</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;action&#39;</span><span class="p">),{</span>   <span class="c1">//自动从html的form中获取要post的地址</span>
+</span><span class='line'>    <span class="nx">type</span><span class="o">:</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;form&#39;</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;method&#39;</span><span class="p">),</span>   <span class="c1">//自动获取 发送方式</span>
+</span><span class='line'>    <span class="nx">contentType</span><span class="o">:</span> <span class="s1">&#39;application/json&#39;</span><span class="p">,</span>  <span class="c1">//让服务器返回 json 格式的数据</span>
+</span><span class='line'>    <span class="nx">dataType</span><span class="o">:</span> <span class="s1">&#39;json&#39;</span><span class="p">,</span>                 <span class="c1">//使发出的数据格式为 json</span>
+</span><span class='line'>    <span class="nx">data</span><span class="o">:</span> <span class="nx">form</span><span class="p">.</span><span class="nx">serialize</span><span class="p">(),</span>
+</span><span class='line'>      <span class="nx">success</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nx">form</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span>
+</span><span class='line'>        <span class="kd">var</span> <span class="nx">msg</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;&lt;p&gt;&lt;/p&gt;&quot;</span><span class="p">);</span>
+</span><span class='line'>        <span class="nx">msg</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;Destination: &quot;</span> <span class="o">+</span> <span class="nx">result</span><span class="p">.</span><span class="nx">location</span> <span class="o">+</span> <span class="s2">&quot;. &quot;</span><span class="p">);</span>
+</span><span class='line'>        <span class="nx">msg</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;Price: &quot;</span> <span class="o">+</span> <span class="nx">result</span><span class="p">.</span><span class="nx">totalPrice</span> <span class="o">+</span> <span class="s2">&quot;. &quot;</span><span class="p">);</span>
+</span><span class='line'>        <span class="nx">msg</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;Nights: &quot;</span> <span class="o">+</span> <span class="nx">result</span><span class="p">.</span><span class="nx">nights</span> <span class="o">+</span> <span class="s2">&quot;. &quot;</span><span class="p">);</span>
+</span><span class='line'>        <span class="nx">msg</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;Confirmation: &quot;</span> <span class="o">+</span> <span class="nx">result</span><span class="p">.</span><span class="nx">confirmation</span><span class="o">+</span> <span class="s2">&quot;.&quot;</span><span class="p">);</span>
+</span><span class='line'>        <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#vacation&#39;</span><span class="p">).</span><span class="nx">hide</span><span class="p">().</span><span class="nx">html</span><span class="p">(</span><span class="nx">msg</span><span class="p">).</span><span class="nx">fadeIn</span><span class="p">();</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>  <span class="p">});</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Utility</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.class&#39;</span><span class="p">).</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">)</span> <span class="c1">//可以找到某个 .. 中的 某个 ..</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s2">&quot;.book-title:eq(&quot;</span><span class="o">+</span><span class="nx">index</span><span class="o">+</span><span class="s2">&quot;)&quot;</span><span class="p">)</span> <span class="c1">//可以找到 class中的第 index 项</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-02-18T11:13:03+08:00" pubdate data-updated="true">Feb 18<span>th</span>, 2014</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/code-school/'>Code School</a>, <a class='category' href='/blog/categories/jquery/'>jQuery</a>
+
+</div>
+
+
+</div></article>
 
 
     <article class="post">
@@ -1671,145 +1800,6 @@ Desc : descending order 递减</p>
 </span><span class='line'>  <span class="kp">attr_accessor</span> <span class="ss">:title</span><span class="p">,</span> <span class="ss">:description</span>
 </span><span class='line'>  <span class="n">validates_presence_of</span> <span class="ss">:title</span>
 </span><span class='line'>  <span class="n">validates_presence_of</span> <span class="ss">:description</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-02-15T15:10:57+08:00" pubdate data-updated="true">Feb 15<span>th</span>, 2014</time></div>
-	
-
-<div class="tags">
-
-	<a class='category' href='/blog/categories/code-school/'>Code School</a>, <a class='category' href='/blog/categories/rails-4/'>Rails 4</a>
-
-</div>
-
-
-</div></article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-1/">
-		
-			Code School笔记 - Zombie Outlaws Level 1</a>
-	</h2>
-	<div class="entry-content">
-		<h2>Ruby 1.9.3, ThreadSafety and Routes</h2>
-
-<h3>Match Routes</h3>
-
-<p>有两种方式</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>post '/blog', to: 'controller#action'
-</span><span class='line'>match '/dacer', to: 'controller#action', via: :post
-</span><span class='line'>match '/im', to: 'controller#action', via: :all</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>Concern</h3>
-
-<p>用来简化route</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>concern :sociable do
-</span><span class='line'>  resources :comments
-</span><span class='line'>  resources :tags
-</span><span class='line'>end
-</span><span class='line'>
-</span><span class='line'>resources :posts, concerns: :sociable
-</span><span class='line'>resources :items, concerns: :sociable</span></code></pre></td></tr></table></div></figure>
-
-
-<p>可以加上选项</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>concern :sociable do |options|
-</span><span class='line'>  resources :comments, options
-</span><span class='line'>  resources :tags, options
-</span><span class='line'>end
-</span><span class='line'>
-</span><span class='line'>resources :msgs, concerns: :sociable
-</span><span class='line'>resources :posts, concerns: :sociable
-</span><span class='line'>resources :items do
-</span><span class='line'>  concerns :sociable, only: :create
-</span><span class='line'>end</span></code></pre></td></tr></table></div></figure>
-
-
-<p>可以单独封装起来</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1">#app/concerns/sociable.rb</span>
-</span><span class='line'><span class="k">class</span> <span class="nc">Sociable</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">call</span><span class="p">(</span><span class="n">mapper</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
-</span><span class='line'>    <span class="n">mapper</span><span class="o">.</span><span class="n">resources</span> <span class="ss">:comments</span><span class="p">,</span> <span class="n">options</span>
-</span><span class='line'>    <span class="n">mapper</span><span class="o">.</span><span class="n">resources</span> <span class="ss">:tags</span><span class="p">,</span> <span class="n">options</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1">#routes.rb</span>
-</span><span class='line'><span class="n">concern</span> <span class="ss">:sociable</span><span class="err">，</span> <span class="no">Sociable</span>
-</span><span class='line'><span class="c1">#...</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>Thread-Safety</h3>
-
-<p>In Rails 4</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="ss">MyApp</span><span class="p">:</span><span class="ss">:Application</span><span class="o">.</span><span class="n">configure</span> <span class="k">do</span>
-</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">cache_classes</span> <span class="o">=</span> <span class="kp">true</span>
-</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">eager_load</span> <span class="o">=</span> <span class="kp">true</span>
 </span><span class='line'><span class="k">end</span>
 </span></code></pre></td></tr></table></div></figure>
 

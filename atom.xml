@@ -4,7 +4,7 @@
   <title><![CDATA[Dacer Blog]]></title>
   <link href="http://blog.dacer.im/atom.xml" rel="self"/>
   <link href="http://blog.dacer.im/"/>
-  <updated>2014-02-17T21:40:13+08:00</updated>
+  <updated>2014-02-18T13:14:37+08:00</updated>
   <id>http://blog.dacer.im/</id>
   <author>
     <name><![CDATA[Dacer]]></name>
@@ -12,6 +12,96 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Code School笔记 - jQuery Part2 level 3 & 4]]></title>
+    <link href="http://blog.dacer.im/blog/2014/02/18/code-school-bi-ji-jquery-part2-level-3-and-4/"/>
+    <updated>2014-02-18T11:13:03+08:00</updated>
+    <id>http://blog.dacer.im/blog/2014/02/18/code-school-bi-ji-jquery-part2-level-3-and-4</id>
+    <content type="html"><![CDATA[<h2>Ajax Forms</h2>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;form&#39;</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;submit&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>  <span class="c1">//阻止原按钮的行为</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">form</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>      <span class="c1">//这样保存form为变量可以减少 DOM queries</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">(</span><span class="s1">&#39;/book&#39;</span><span class="p">,</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;POST&#39;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nx">data</span><span class="o">:</span> <span class="nx">form</span><span class="p">.</span><span class="nx">serialize</span><span class="p">(),</span> <span class="c1">//可以合并form中所有的 fields 作为data</span>
+</span><span class='line'>    <span class="nx">success</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nx">form</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span>
+</span><span class='line'>      <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#vacation&#39;</span><span class="p">).</span><span class="nx">hide</span><span class="p">().</span><span class="nx">html</span><span class="p">(</span><span class="nx">result</span><span class="p">).</span><span class="nx">fadeIn</span><span class="p">();</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>  <span class="p">});</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>With Json</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;form&#39;</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;submit&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">form</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;form&#39;</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;action&#39;</span><span class="p">),{</span>   <span class="c1">//自动从html的form中获取要post的地址</span>
+</span><span class='line'>    <span class="nx">type</span><span class="o">:</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;form&#39;</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;method&#39;</span><span class="p">),</span>   <span class="c1">//自动获取 发送方式</span>
+</span><span class='line'>    <span class="nx">contentType</span><span class="o">:</span> <span class="s1">&#39;application/json&#39;</span><span class="p">,</span>  <span class="c1">//让服务器返回 json 格式的数据</span>
+</span><span class='line'>    <span class="nx">dataType</span><span class="o">:</span> <span class="s1">&#39;json&#39;</span><span class="p">,</span>                 <span class="c1">//使发出的数据格式为 json</span>
+</span><span class='line'>    <span class="nx">data</span><span class="o">:</span> <span class="nx">form</span><span class="p">.</span><span class="nx">serialize</span><span class="p">(),</span>
+</span><span class='line'>      <span class="nx">success</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nx">form</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span>
+</span><span class='line'>        <span class="kd">var</span> <span class="nx">msg</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;&lt;p&gt;&lt;/p&gt;&quot;</span><span class="p">);</span>
+</span><span class='line'>        <span class="nx">msg</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;Destination: &quot;</span> <span class="o">+</span> <span class="nx">result</span><span class="p">.</span><span class="nx">location</span> <span class="o">+</span> <span class="s2">&quot;. &quot;</span><span class="p">);</span>
+</span><span class='line'>        <span class="nx">msg</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;Price: &quot;</span> <span class="o">+</span> <span class="nx">result</span><span class="p">.</span><span class="nx">totalPrice</span> <span class="o">+</span> <span class="s2">&quot;. &quot;</span><span class="p">);</span>
+</span><span class='line'>        <span class="nx">msg</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;Nights: &quot;</span> <span class="o">+</span> <span class="nx">result</span><span class="p">.</span><span class="nx">nights</span> <span class="o">+</span> <span class="s2">&quot;. &quot;</span><span class="p">);</span>
+</span><span class='line'>        <span class="nx">msg</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;Confirmation: &quot;</span> <span class="o">+</span> <span class="nx">result</span><span class="p">.</span><span class="nx">confirmation</span><span class="o">+</span> <span class="s2">&quot;.&quot;</span><span class="p">);</span>
+</span><span class='line'>        <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#vacation&#39;</span><span class="p">).</span><span class="nx">hide</span><span class="p">().</span><span class="nx">html</span><span class="p">(</span><span class="nx">msg</span><span class="p">).</span><span class="nx">fadeIn</span><span class="p">();</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>  <span class="p">});</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Utility</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.class&#39;</span><span class="p">).</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">)</span> <span class="c1">//可以找到某个 .. 中的 某个 ..</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s2">&quot;.book-title:eq(&quot;</span><span class="o">+</span><span class="nx">index</span><span class="o">+</span><span class="s2">&quot;)&quot;</span><span class="p">)</span> <span class="c1">//可以找到 class中的第 index 项</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Code School笔记 - Zombie Outlaws level 7]]></title>
@@ -2125,21 +2215,6 @@ Desc : descending order 递减</p>
     <updated>2014-01-31T20:47:17+08:00</updated>
     <id>http://blog.dacer.im/blog/2014/01/31/e5ada6e4b9a0e7ac94e8aeb0-ruby</id>
     <content type="html"><![CDATA[<p>yield</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[国产单机游戏]]></title>
-    <link href="http://blog.dacer.im/blog/2014/01/06/e59bbde4baa7e58d95e69cbae6b8b8e6888f/"/>
-    <updated>2014-01-06T00:42:41+08:00</updated>
-    <id>http://blog.dacer.im/blog/2014/01/06/e59bbde4baa7e58d95e69cbae6b8b8e6888f</id>
-    <content type="html"><![CDATA[<p>今天脑中无意间响起了幻想三国志3中游戏开始标题画面中放的“界线”，于是在脑中泛滥的一发不可收拾起来，在虾米中找出1到4代的歌听着，顺便搜了搜幻三的最近动态，发现这个系列最终还是停在了第四代，连防盗版用的服务器都关闭了，发放了官方的“离线破解补丁”。一晃这么多年过去了，这个优秀程度在我心目中不亚于仙剑的国产RPG就此迎来了终结。</p>
-
-<p>说来惭愧，当时偷偷玩着电脑游戏的我是不敢花着父母的钱去买正版游戏的，本来想洋洋洒洒的写出主角们的爱恨情愁，但发现脑海中只余当时的我懵懵懂懂玩的场景，细细想来只记得某代主角刻骨铭心的爱情，为了爱侣不惜走遍千山万水。</p>
-
-<p>打开宇峻奧汀科技（幻三开发公司）官网首页已没有了单机游戏的一席之地，</p>
-
-<p>不知道若干年后的00 10后还会不会知道有国产rpg这个东西呢</p>
 ]]></content>
   </entry>
   

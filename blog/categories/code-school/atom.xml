@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Code School | Dacer Blog]]></title>
   <link href="http://blog.dacer.im/blog/categories/code-school/atom.xml" rel="self"/>
   <link href="http://blog.dacer.im/"/>
-  <updated>2014-02-17T21:40:13+08:00</updated>
+  <updated>2014-02-18T13:14:37+08:00</updated>
   <id>http://blog.dacer.im/</id>
   <author>
     <name><![CDATA[Dacer]]></name>
@@ -12,6 +12,68 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Code School笔记 - jQuery Part2 level 3 & 4]]></title>
+    <link href="http://blog.dacer.im/blog/2014/02/18/code-school-bi-ji-jquery-part2-level-3-and-4/"/>
+    <updated>2014-02-18T11:13:03+08:00</updated>
+    <id>http://blog.dacer.im/blog/2014/02/18/code-school-bi-ji-jquery-part2-level-3-and-4</id>
+    <content type="html"><![CDATA[<h2>Ajax Forms</h2>
+
+<p>```javascript
+$(&lsquo;form&rsquo;).on(&lsquo;submit&rsquo;, function(event) {
+  event.preventDefault();  //阻止原按钮的行为
+  var form = $(this);      //这样保存form为变量可以减少 DOM queries
+  $.ajax(&lsquo;/book&rsquo;, {</p>
+
+<pre><code>type: 'POST',
+data: form.serialize(), //可以合并form中所有的 fields 作为data
+success: function(result) {
+  form.remove();
+  $('#vacation').hide().html(result).fadeIn();
+} 
+</code></pre>
+
+<p>  });
+});
+```</p>
+
+<h3>With Json</h3>
+
+<p>```javascript
+$(&lsquo;form&rsquo;).on(&lsquo;submit&rsquo;, function(e) {
+  event.preventDefault();
+  var form = $(this);
+  $.ajax($(&lsquo;form&rsquo;).attr(&lsquo;action&rsquo;),{   //自动从html的form中获取要post的地址</p>
+
+<pre><code>type: $('form').attr('method'),   //自动获取 发送方式
+contentType: 'application/json',  //让服务器返回 json 格式的数据
+dataType: 'json',                 //使发出的数据格式为 json
+data: form.serialize(),
+    success: function(result) {
+      form.remove();
+      var msg = $("&lt;p&gt;&lt;/p&gt;");
+      msg.append("Destination: " + result.location + ". ");
+      msg.append("Price: " + result.totalPrice + ". ");
+      msg.append("Nights: " + result.nights + ". ");
+      msg.append("Confirmation: " + result.confirmation+ ".");
+      $('#vacation').hide().html(msg).fadeIn();
+    }
+});
+</code></pre>
+
+<p>});
+```</p>
+
+<h3>Utility</h3>
+
+<p>```javascript
+$(&lsquo;.class&rsquo;).find(&lsquo;p&rsquo;) //可以找到某个 .. 中的 某个 ..</p>
+
+<p>$(&ldquo;.book-title:eq(&rdquo;+index+&ldquo;)&rdquo;) //可以找到 class中的第 index 项
+```</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Code School笔记 - Zombie Outlaws level 7]]></title>
@@ -579,72 +641,6 @@ ItemTest#test_doesn&rsquo;t_shorten_short_names = 0.00 s = S
 Finished tests in 0.076938s, 25.9950 tests/s, 12.9975
 assertions/s.
 2 tests, 1 assertions, 0 failures, 0 errors, 1 skips
-```</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Code School笔记 - Zombie Outlaws level 4]]></title>
-    <link href="http://blog.dacer.im/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-4/"/>
-    <updated>2014-02-15T19:10:57+08:00</updated>
-    <id>http://blog.dacer.im/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-4</id>
-    <content type="html"><![CDATA[<h2>Views &amp; Vistas</h2>
-
-<h3>Collection Form Helpers</h3>
-
-<p>Rail 4 提供了更多的helpers
-```ruby
-class Owner &lt; ActiveRecord::Base
-   has_many :items
-end
- class Item &lt; ActiveRecord::Base
-   belongs_to :owner
-end</p>
-
-<p>collection_select(:item, :owner_id, Owner.all, :id, :name)
-collection_radio_buttons(:item, :owner_id, Owner.all, :id, :name)
-collection_check_boxes(:item, :owner_id, Owner.all, :id, :name)
-```</p>
-
-<h3>Date Field</h3>
-
-<p>Rails 4 提供了新的 <code>date_field</code>
-<code>ruby
-&lt;%= f.date_field :return_date %&gt;
-</code></p>
-
-<h3>Response Type From Controller</h3>
-
-<p>默认返回json的格式
-```ruby
-def index
-   @owners = Owner.all
-   respond_to do |format|</p>
-
-<pre><code> format.html
- format.json { render json: @owners }
-</code></pre>
-
-<p>   end
-end
-<code>
-自定义json返回的格式可以用`jbuilder`或者Rails 4 中新的：
-</code>ruby</p>
-
-<h1>views/owners/index.json.ruby</h1>
-
-<p>owners_hashes = @owners.map do |owner|
-   { name: owner.name, url: owner_url(owner) }
-end
-owners_hashes.to_json</p>
-
-<h1>Output</h1>
-
-<p>[
-  {&ldquo;name&rdquo;:&ldquo;Slow-draw&rdquo;,  &ldquo;url&rdquo;:&ldquo;<a href="http://localhost:3000/owners/1">http://localhost:3000/owners/1</a>&rdquo;},
-  {&ldquo;name&rdquo;:&ldquo;Dacer&rdquo;,    &ldquo;url&rdquo;:&ldquo;<a href="http://blog.dacer.im/">http://blog.dacer.im/</a>&rdquo;},
-  {&ldquo;name&rdquo;:&ldquo;Walking Ned&rdquo;,&ldquo;url&rdquo;:&ldquo;<a href="http://localhost:3000/owners/3">http://localhost:3000/owners/3</a>&rdquo;}
-]
 ```</p>
 ]]></content>
   </entry>

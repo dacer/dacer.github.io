@@ -7,7 +7,11 @@
 
 <meta name="author" content="Dacer"> 
 
-<meta name="description" content=" DSL yield Feb 14th, 2014 Code School, Ruby "> <meta name="keywords" content="">
+<meta name="description" content="Ruby 1.9.3, ThreadSafety and Routes Match Routes 有两种方式 1
+2
+3
+post '/blog', to: 'controller#action'
+match '/dacer', to: 'controller#action', via: : &hellip;"> <meta name="keywords" content="">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -91,6 +95,145 @@ $(document).ready(
 </header>
 
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-1/">
+		
+			Code School笔记 - Zombie Outlaws Level 1</a>
+	</h2>
+	<div class="entry-content">
+		<h2>Ruby 1.9.3, ThreadSafety and Routes</h2>
+
+<h3>Match Routes</h3>
+
+<p>有两种方式</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>post '/blog', to: 'controller#action'
+</span><span class='line'>match '/dacer', to: 'controller#action', via: :post
+</span><span class='line'>match '/im', to: 'controller#action', via: :all</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Concern</h3>
+
+<p>用来简化route</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>concern :sociable do
+</span><span class='line'>  resources :comments
+</span><span class='line'>  resources :tags
+</span><span class='line'>end
+</span><span class='line'>
+</span><span class='line'>resources :posts, concerns: :sociable
+</span><span class='line'>resources :items, concerns: :sociable</span></code></pre></td></tr></table></div></figure>
+
+
+<p>可以加上选项</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>concern :sociable do |options|
+</span><span class='line'>  resources :comments, options
+</span><span class='line'>  resources :tags, options
+</span><span class='line'>end
+</span><span class='line'>
+</span><span class='line'>resources :msgs, concerns: :sociable
+</span><span class='line'>resources :posts, concerns: :sociable
+</span><span class='line'>resources :items do
+</span><span class='line'>  concerns :sociable, only: :create
+</span><span class='line'>end</span></code></pre></td></tr></table></div></figure>
+
+
+<p>可以单独封装起来</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1">#app/concerns/sociable.rb</span>
+</span><span class='line'><span class="k">class</span> <span class="nc">Sociable</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">call</span><span class="p">(</span><span class="n">mapper</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">mapper</span><span class="o">.</span><span class="n">resources</span> <span class="ss">:comments</span><span class="p">,</span> <span class="n">options</span>
+</span><span class='line'>    <span class="n">mapper</span><span class="o">.</span><span class="n">resources</span> <span class="ss">:tags</span><span class="p">,</span> <span class="n">options</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">#routes.rb</span>
+</span><span class='line'><span class="n">concern</span> <span class="ss">:sociable</span><span class="err">，</span> <span class="no">Sociable</span>
+</span><span class='line'><span class="c1">#...</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Thread-Safety</h3>
+
+<p>In Rails 4</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="ss">MyApp</span><span class="p">:</span><span class="ss">:Application</span><span class="o">.</span><span class="n">configure</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">cache_classes</span> <span class="o">=</span> <span class="kp">true</span>
+</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">eager_load</span> <span class="o">=</span> <span class="kp">true</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-02-15T15:10:57+08:00" pubdate data-updated="true">Feb 15<span>th</span>, 2014</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/code-school/'>Code School</a>, <a class='category' href='/blog/categories/rails-4/'>Rails 4</a>
+
+</div>
+
+
+</div></article>
 
 
     <article class="post">
@@ -1062,53 +1205,6 @@ $(document).ready(
 <div class="tags">
 
 	<a class='category' href='/blog/categories/code-school-xue-xi-bi-ji/'>Code School 学习笔记</a>
-
-</div>
-
-
-</div></article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2014/01/06/e59bbde4baa7e58d95e69cbae6b8b8e6888f/">
-		
-			国产单机游戏</a>
-	</h2>
-	<div class="entry-content">
-		<p>今天脑中无意间响起了幻想三国志3中游戏开始标题画面中放的“界线”，于是在脑中泛滥的一发不可收拾起来，在虾米中找出1到4代的歌听着，顺便搜了搜幻三的最近动态，发现这个系列最终还是停在了第四代，连防盗版用的服务器都关闭了，发放了官方的“离线破解补丁”。一晃这么多年过去了，这个优秀程度在我心目中不亚于仙剑的国产RPG就此迎来了终结。</p>
-
-<p>说来惭愧，当时偷偷玩着电脑游戏的我是不敢花着父母的钱去买正版游戏的，本来想洋洋洒洒的写出主角们的爱恨情愁，但发现脑海中只余当时的我懵懵懂懂玩的场景，细细想来只记得某代主角刻骨铭心的爱情，为了爱侣不惜走遍千山万水。</p>
-
-<p>打开宇峻奧汀科技（幻三开发公司）官网首页已没有了单机游戏的一席之地，</p>
-
-<p>不知道若干年后的00 10后还会不会知道有国产rpg这个东西呢</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-01-06T00:42:41+08:00" pubdate data-updated="true">Jan 6<span>th</span>, 2014</time></div>
-	
-
-<div class="tags">
-
-	<a class='category' href='/blog/categories/sui-bi/'>随笔</a>
 
 </div>
 
