@@ -4,7 +4,7 @@
   <title><![CDATA[Dacer Blog]]></title>
   <link href="http://blog.dacer.im/atom.xml" rel="self"/>
   <link href="http://blog.dacer.im/"/>
-  <updated>2014-02-18T14:57:26+08:00</updated>
+  <updated>2014-02-19T17:28:31+08:00</updated>
   <id>http://blog.dacer.im/</id>
   <author>
     <name><![CDATA[Dacer]]></name>
@@ -12,6 +12,63 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Code School笔记 - jQuery Part2 level 5]]></title>
+    <link href="http://blog.dacer.im/blog/2014/02/19/code-school-bi-ji-jquery-part2-level-5/"/>
+    <updated>2014-02-19T11:13:03+08:00</updated>
+    <id>http://blog.dacer.im/blog/2014/02/19/code-school-bi-ji-jquery-part2-level-5</id>
+    <content type="html"><![CDATA[<h2>Advanced Events</h2>
+
+<h3>Removing event handlers</h3>
+
+<p>使用<code>off(&lt;event name&gt;)</code>可以取消监听</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;button&#39;</span><span class="p">).</span><span class="nx">off</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">);</span> <span class="c1">//可以取消所有对 $(&#39;button&#39;) 的监听</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Namespacing Events</h3>
+
+<p>可以给 event 取一个后缀的别名：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;button&#39;</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;click.image&#39;</span><span class="p">,</span> <span class="nx">picture</span><span class="p">);</span>
+</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;button&#39;</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;click.details&#39;</span><span class="p">,</span> <span class="nx">status</span><span class="p">);</span>
+</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;button&#39;</span><span class="p">).</span><span class="nx">off</span><span class="p">(</span><span class="s1">&#39;click.image&#39;</span><span class="p">);</span>  <span class="c1">//仅取消对第一个的监听</span>
+</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;button&#39;</span><span class="p">).</span><span class="nx">off</span><span class="p">(</span><span class="s1">&#39;.image&#39;</span><span class="p">);</span>       <span class="c1">//取消所有后缀是.image的监听</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Triggering Events</h3>
+
+<p>可以用来模拟用户行为：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;button&#39;</span><span class="p">).</span><span class="nx">trigger</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">);</span> <span class="c1">//相当于点击了 button</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Custom Event</h3>
+
+<p>可以自定义一个 event 的名字，然后哦那个 trigger 调用</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span><span class="p">(</span><span class="o">&lt;</span><span class="nx">dom</span> <span class="nx">element</span><span class="o">&gt;</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s2">&quot;&lt;event&gt;.&lt;namespace&gt;&quot;</span><span class="p">,</span> <span class="o">&lt;</span><span class="nx">method</span><span class="o">&gt;</span><span class="p">)</span>
+</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.vacation&#39;</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;show.price&#39;</span><span class="p">,</span> <span class="nx">showPrice</span><span class="p">);</span>
+</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.vacation&#39;</span><span class="p">).</span><span class="nx">trigger</span><span class="p">(</span><span class="s1">&#39;show.price&#39;</span><span class="p">);</span>
+</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.vacation:last&#39;</span><span class="p">).</span><span class="nx">trigger</span><span class="p">(</span><span class="s1">&#39;show.price&#39;</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Code School笔记 - jQuery Part2 level 3 & 4]]></title>
@@ -2295,15 +2352,6 @@ Desc : descending order 递减</p>
     <updated>2014-02-10T14:30:46+08:00</updated>
     <id>http://blog.dacer.im/blog/2014/02/10/hello-octopress</id>
     <content type="html"><![CDATA[<p>折腾了半天终于从Wordpress转到了Octopress，要说为什么要换成这个的话，这个本来就没什么流量的blog如果在VPS一直跑着Wordpress有点浪费，正好就来折腾一下这个还是挺方便的XD</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[学习笔记- ruby]]></title>
-    <link href="http://blog.dacer.im/blog/2014/01/31/e5ada6e4b9a0e7ac94e8aeb0-ruby/"/>
-    <updated>2014-01-31T20:47:17+08:00</updated>
-    <id>http://blog.dacer.im/blog/2014/01/31/e5ada6e4b9a0e7ac94e8aeb0-ruby</id>
-    <content type="html"><![CDATA[<p>yield</p>
 ]]></content>
   </entry>
   
