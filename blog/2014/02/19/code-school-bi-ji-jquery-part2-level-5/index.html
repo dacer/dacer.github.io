@@ -142,6 +142,105 @@ $(document).ready(
 </span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.vacation:last&#39;</span><span class="p">).</span><span class="nx">trigger</span><span class="p">(</span><span class="s1">&#39;show.price&#39;</span><span class="p">);</span>
 </span></code></pre></td></tr></table></div></figure>
 
+
+<h3>jQuery Plugins</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span><span class="p">.</span><span class="nx">fn</span><span class="p">.</span><span class="nx">priceify</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Pricify Called&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">);</span> <span class="c1">//Within the plugin, ‘this’ will be the jQuery object the plugin was called on</span>
+</span><span class='line'><span class="p">};</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.vacation&#39;</span><span class="p">).</span><span class="nx">priceify</span><span class="p">();</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>然后简单的研究了一下<code>fn</code></p>
+
+<blockquote><p>In jQuery, the <code>fn</code> property is just an alias to the <code>prototype</code> property.</p></blockquote>
+
+<p>然后<code>$.fn</code>似乎就是构造出了一个所有 jQuery Object 都能使用的方法，然后这个 Object 会以 <code>this</code> 传入，不过需要注意的是调用它的有可能是多个 Object ，所以要用 <code>each</code> 来保证每个 Object 会单独的调用这个方法:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span><span class="p">.</span><span class="nx">fn</span><span class="p">.</span><span class="nx">priceify</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">this</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+</span><span class='line'>      <span class="p">...</span>
+</span><span class='line'>  <span class="p">})</span>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Plugins with Parameters</h3>
+
+<p>就是传入了一个Hash</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span><span class="p">.</span><span class="nx">fn</span><span class="p">.</span><span class="nx">priceify</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="p">...</span>
+</span><span class='line'>    <span class="kd">var</span> <span class="nx">details</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;&lt;p&gt;Book &#39;</span> <span class="o">+</span> <span class="nx">options</span><span class="p">.</span><span class="nx">days</span> <span class="o">+</span> <span class="s1">&#39; days for $&#39;</span> <span class="o">+</span>
+</span><span class='line'>                   <span class="p">(</span><span class="nx">options</span><span class="p">.</span><span class="nx">days</span> <span class="o">*</span> <span class="nx">price</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;&lt;/p&gt;&#39;</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.vacation&#39;</span><span class="p">).</span><span class="nx">priceify</span><span class="p">({</span> <span class="nx">days</span><span class="o">:</span> <span class="mi">5</span> <span class="p">});</span>  <span class="c1">//调用</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>如果想让options变成可选项，就是有一个默认值的话就先要了解 <code>$.extend</code></p>
+
+<h3>Using $.extend</h3>
+
+<p><code>$.extend</code>方法可以传入数个Hash，然后返回的值会合并相同的并且去除空的，如：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span> <span class="nx">days</span><span class="o">:</span> <span class="mi">3</span> <span class="p">},</span> <span class="p">{});</span> <span class="c1">// -&gt; { days: 3 }</span>
+</span><span class='line'><span class="nx">$</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span> <span class="nx">days</span><span class="o">:</span> <span class="mi">3</span> <span class="p">},</span> <span class="p">{</span> <span class="nx">days</span><span class="o">:</span> <span class="mi">5</span> <span class="p">});</span> <span class="c1">// -&gt; { days: 5 }</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p> <br/>
+使用<code>$.extend</code>来设置默认值的方法：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span><span class="p">.</span><span class="nx">fn</span><span class="p">.</span><span class="nx">priceify</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">this</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+</span><span class='line'>      <span class="kd">var</span> <span class="nx">settings</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span> <span class="nx">days</span><span class="o">:</span> <span class="mi">3</span> <span class="p">},</span> <span class="nx">options</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">})</span>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>还可以扩展一下：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span><span class="p">.</span><span class="nx">fn</span><span class="p">.</span><span class="nx">priceify</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">this</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+</span><span class='line'>      <span class="kd">var</span> <span class="nx">settings</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span> <span class="nx">days</span><span class="o">:</span> <span class="mi">3</span> <span class="p">},</span> <span class="nx">options</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">})</span>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure>
+
 </div>
 
 

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Code School | Dacer Blog]]></title>
   <link href="http://blog.dacer.im/blog/categories/code-school/atom.xml" rel="self"/>
   <link href="http://blog.dacer.im/"/>
-  <updated>2014-02-19T17:28:31+08:00</updated>
+  <updated>2014-02-20T12:35:01+08:00</updated>
   <id>http://blog.dacer.im/</id>
   <author>
     <name><![CDATA[Dacer]]></name>
@@ -53,6 +53,84 @@ $('.vacation').on('show.price', showPrice);
 $('.vacation').trigger('show.price');
 $('.vacation:last').trigger('show.price');
 </code></p>
+
+<h3>jQuery Plugins</h3>
+
+<p>```javascript
+$.fn.priceify = function() {</p>
+
+<pre><code>console.log('Pricify Called');
+console.log(this); //Within the plugin, ‘this’ will be the jQuery object the plugin was called on
+</code></pre>
+
+<p>};</p>
+
+<p>$(&lsquo;.vacation&rsquo;).priceify();
+<code>``
+然后简单的研究了一下</code>fn`</p>
+
+<blockquote><p>In jQuery, the <code>fn</code> property is just an alias to the <code>prototype</code> property.</p></blockquote>
+
+<p>然后<code>$.fn</code>似乎就是构造出了一个所有 jQuery Object 都能使用的方法，然后这个 Object 会以 <code>this</code> 传入，不过需要注意的是调用它的有可能是多个 Object ，所以要用 <code>each</code> 来保证每个 Object 会单独的调用这个方法:
+```javascript
+$.fn.priceify = function() {</p>
+
+<pre><code>this.each(function(){
+    ...
+})
+</code></pre>
+
+<p>};
+```</p>
+
+<h3>Plugins with Parameters</h3>
+
+<p>就是传入了一个Hash
+```javascript
+$.fn.priceify = function(options) {</p>
+
+<pre><code>...
+var details = $('&lt;p&gt;Book ' + options.days + ' days for $' +
+               (options.days * price) + '&lt;/p&gt;');
+</code></pre>
+
+<p>}
+$(&lsquo;.vacation&rsquo;).priceify({ days: 5 });  //调用
+```</p>
+
+<p>如果想让options变成可选项，就是有一个默认值的话就先要了解 <code>$.extend</code></p>
+
+<h3>Using $.extend</h3>
+
+<p><code>$.extend</code>方法可以传入数个Hash，然后返回的值会合并相同的并且去除空的，如：</p>
+
+<p><code>javascript
+$.extend({ days: 3 }, {}); // -&gt; { days: 3 }
+$.extend({ days: 3 }, { days: 5 }); // -&gt; { days: 5 }
+</code> <br/>
+使用<code>$.extend</code>来设置默认值的方法：
+```javascript
+$.fn.priceify = function(options) {</p>
+
+<pre><code>this.each(function(){
+    var settings = $.extend({ days: 3 }, options);
+})
+</code></pre>
+
+<p>};
+```</p>
+
+<p>还可以扩展一下：
+```javascript
+$.fn.priceify = function(options) {</p>
+
+<pre><code>this.each(function(){
+    var settings = $.extend({ days: 3 }, options);
+})
+</code></pre>
+
+<p>};
+```</p>
 ]]></content>
   </entry>
   
