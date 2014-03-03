@@ -7,9 +7,18 @@
 
 <meta name="author" content="Dacer"> 
 
-<meta name="description" content="ActiveRecord &amp; ActiveModel Finders 米什么好说的 1
-Post.where(author: &#39;Dacer&#39;) # returns an ActiveRecord::Relation Find_By 1
-Post.find_by(title &hellip;"> <meta name="keywords" content="">
+<meta name="description" content="Views &amp; Vistas Collection Form Helpers Rail 4 提供了更多的helpers 1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+class Owner &lt; ActiveRecord::Base has_many :items
+end class &hellip;"> <meta name="keywords" content="">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -93,6 +102,279 @@ $(document).ready(
 </header>
 
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-4/">
+		
+			Code School笔记 - Zombie Outlaws Level 4</a>
+	</h2>
+	<div class="entry-content">
+		<h2>Views &amp; Vistas</h2>
+
+<h3>Collection Form Helpers</h3>
+
+<p>Rail 4 提供了更多的helpers</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Owner</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord</span><span class="p">:</span><span class="ss">:Base</span>
+</span><span class='line'>   <span class="n">has_many</span> <span class="ss">:items</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'> <span class="k">class</span> <span class="nc">Item</span> <span class="o">&lt;</span> <span class="ss">ActiveRecord</span><span class="p">:</span><span class="ss">:Base</span>
+</span><span class='line'>   <span class="n">belongs_to</span> <span class="ss">:owner</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">collection_select</span><span class="p">(</span><span class="ss">:item</span><span class="p">,</span> <span class="ss">:owner_id</span><span class="p">,</span> <span class="no">Owner</span><span class="o">.</span><span class="n">all</span><span class="p">,</span> <span class="ss">:id</span><span class="p">,</span> <span class="ss">:name</span><span class="p">)</span>
+</span><span class='line'><span class="n">collection_radio_buttons</span><span class="p">(</span><span class="ss">:item</span><span class="p">,</span> <span class="ss">:owner_id</span><span class="p">,</span> <span class="no">Owner</span><span class="o">.</span><span class="n">all</span><span class="p">,</span> <span class="ss">:id</span><span class="p">,</span> <span class="ss">:name</span><span class="p">)</span>
+</span><span class='line'><span class="n">collection_check_boxes</span><span class="p">(</span><span class="ss">:item</span><span class="p">,</span> <span class="ss">:owner_id</span><span class="p">,</span> <span class="no">Owner</span><span class="o">.</span><span class="n">all</span><span class="p">,</span> <span class="ss">:id</span><span class="p">,</span> <span class="ss">:name</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Date Field</h3>
+
+<p>Rails 4 提供了新的 <code>date_field</code></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;%=</span> <span class="n">f</span><span class="o">.</span><span class="n">date_field</span> <span class="ss">:return_date</span> <span class="o">%&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Response Type From Controller</h3>
+
+<p>默认返回json的格式</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">index</span>
+</span><span class='line'>   <span class="vi">@owners</span> <span class="o">=</span> <span class="no">Owner</span><span class="o">.</span><span class="n">all</span>
+</span><span class='line'>   <span class="n">respond_to</span> <span class="k">do</span> <span class="o">|</span><span class="nb">format</span><span class="o">|</span>
+</span><span class='line'>     <span class="nb">format</span><span class="o">.</span><span class="n">html</span>
+</span><span class='line'>     <span class="nb">format</span><span class="o">.</span><span class="n">json</span> <span class="p">{</span> <span class="n">render</span> <span class="ss">json</span><span class="p">:</span> <span class="vi">@owners</span> <span class="p">}</span>
+</span><span class='line'>   <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>自定义json返回的格式可以用<code>jbuilder</code>或者Rails 4 中新的：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1">#views/owners/index.json.ruby</span>
+</span><span class='line'><span class="n">owners_hashes</span> <span class="o">=</span> <span class="vi">@owners</span><span class="o">.</span><span class="n">map</span> <span class="k">do</span> <span class="o">|</span><span class="n">owner</span><span class="o">|</span>
+</span><span class='line'>   <span class="p">{</span> <span class="nb">name</span><span class="p">:</span> <span class="n">owner</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="ss">url</span><span class="p">:</span> <span class="n">owner_url</span><span class="p">(</span><span class="n">owner</span><span class="p">)</span> <span class="p">}</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="n">owners_hashes</span><span class="o">.</span><span class="n">to_json</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">#Output</span>
+</span><span class='line'><span class="o">[</span>
+</span><span class='line'>  <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="ss">:&quot;Slow-draw&quot;</span><span class="p">,</span>  <span class="s2">&quot;url&quot;</span><span class="ss">:&quot;http://localhost:3000/owners/1&quot;</span><span class="p">},</span>
+</span><span class='line'>  <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="ss">:&quot;Dacer&quot;</span><span class="p">,</span>    <span class="s2">&quot;url&quot;</span><span class="ss">:&quot;http://blog.dacer.im/&quot;</span><span class="p">},</span>
+</span><span class='line'>  <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="ss">:&quot;Walking Ned&quot;</span><span class="p">,</span><span class="s2">&quot;url&quot;</span><span class="ss">:&quot;http://localhost:3000/owners/3&quot;</span><span class="p">}</span>
+</span><span class='line'><span class="o">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-02-15T20:10:57+09:00" pubdate data-updated="true">Feb 15<span>th</span>, 2014</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/code-school/'>Code School</a>, <a class='category' href='/blog/categories/rails-4/'>Rails 4</a>
+
+</div>
+
+
+</div></article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-3/">
+		
+			Code School笔记 - Zombie Outlaws Level 3</a>
+	</h2>
+	<div class="entry-content">
+		<h2>Strong Parameters and Remote Forms &amp; Filters, Session, Custom Flash Types</h2>
+
+<h3>Strong Parameters</h3>
+
+<p>在rails 4的controller中必须指定可接受的params</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">user_params</span>
+</span><span class='line'>  <span class="n">params</span><span class="o">.</span><span class="n">require</span><span class="p">(</span><span class="ss">:user</span><span class="p">)</span><span class="o">.</span><span class="n">permit</span><span class="p">(</span><span class="ss">:name</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>其中<code>rquire</code>会检查是否有参数中的key，没有则返回400错误，但并不会将这个key的值返回到<code>user_params</code>中，<code>permit</code>则会将参数中key对应的值返回<br/>
+add this line if you want to raise errors for unpermitted params:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1">#config/application.rb</span>
+</span><span class='line'><span class="n">config</span><span class="o">.</span><span class="n">action_controller</span><span class="o">.</span><span class="n">action_on_unpermitted_parameters</span> <span class="o">=</span> <span class="ss">:raise</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Authenticity Token</h3>
+
+<p>Rails 会自动在form中的value加入token来防止机器人的spam</p>
+
+<h3>Action Controller Filters/Actions</h3>
+
+<p>3中的<code>before_filter</code>变为了<code>before_action</code>,可以让Controller在部分方法call之前做出一些动作：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">PeopleController</span> <span class="o">&lt;</span> <span class="ss">ActionController</span><span class="p">:</span><span class="ss">:Base</span>
+</span><span class='line'>  <span class="n">before_action</span> <span class="ss">:set_person</span><span class="p">,</span>      <span class="ss">except</span><span class="p">:</span> <span class="o">[</span> <span class="ss">:index</span><span class="p">,</span> <span class="ss">:new</span><span class="p">,</span> <span class="ss">:create</span> <span class="o">]</span>
+</span><span class='line'>  <span class="n">before_action</span> <span class="ss">:ensure_permission</span><span class="p">,</span> <span class="ss">only</span><span class="p">:</span> <span class="o">[</span> <span class="ss">:edit</span><span class="p">,</span> <span class="ss">:update</span> <span class="o">]</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Flash Types</h3>
+
+<p>以下方法可以生成flash信息：</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">if</span> <span class="vi">@item</span><span class="o">.</span><span class="n">save</span>
+</span><span class='line'>  <span class="n">flash</span><span class="o">[</span><span class="ss">:notice</span><span class="o">]</span> <span class="o">=</span> <span class="s1">&#39;Item created.&#39;</span>
+</span><span class='line'>  <span class="n">redirect_to</span> <span class="vi">@item</span>
+</span><span class='line'><span class="k">else</span>
+</span><span class='line'>  <span class="n">render</span> <span class="ss">action</span><span class="p">:</span> <span class="s1">&#39;new&#39;</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;p</span> <span class="na">id=</span><span class="s">&quot;notice&quot;</span><span class="nt">&gt;</span><span class="err">&lt;</span>%= flash[:notice] %&gt;<span class="nt">&lt;/p&gt;</span>
+</span><span class='line'><span class="nt">&lt;p&gt;</span> <span class="nt">&lt;strong&gt;</span>Name:<span class="nt">&lt;/strong&gt;</span> <span class="err">&lt;</span>%= @item.name %&gt;
+</span><span class='line'><span class="nt">&lt;/p&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>其中erb部分可以简写为</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;p</span> <span class="na">id=</span><span class="s">&quot;notice&quot;</span><span class="nt">&gt;</span><span class="err">&lt;</span>%= notice %&gt;<span class="nt">&lt;/p&gt;</span>
+</span><span class='line'><span class="nt">&lt;p</span> <span class="na">id=</span><span class="s">&quot;alert&quot;</span><span class="nt">&gt;</span><span class="err">&lt;</span>%= alert %&gt;<span class="nt">&lt;/p&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>你也可以自定义flash类型</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">ApplicationController</span> <span class="o">&lt;</span> <span class="ss">ActionController</span><span class="p">:</span><span class="ss">:Base</span>
+</span><span class='line'>  <span class="n">add_flash_types</span> <span class="ss">:grunt</span><span class="p">,</span> <span class="ss">:snarl</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">#...</span>
+</span><span class='line'><span class="n">flash</span><span class="o">[</span><span class="ss">:grunt</span><span class="o">]</span> <span class="o">=</span> <span class="s1">&#39;braaains...&#39;</span>
+</span><span class='line'><span class="c1">#或者简写为</span>
+</span><span class='line'><span class="n">redirect_to</span> <span class="vi">@user</span><span class="p">,</span> <span class="ss">grunt</span><span class="p">:</span> <span class="s1">&#39;I&#39;</span><span class="n">m</span> <span class="no">Dacer</span><span class="o">.</span><span class="n">.</span><span class="o">.</span><span class="err">&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;grunt&quot;</span><span class="nt">&gt;</span><span class="err">&lt;</span>%= grunt %&gt;<span class="nt">&lt;/div&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-02-15T20:10:57+09:00" pubdate data-updated="true">Feb 15<span>th</span>, 2014</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/code-school/'>Code School</a>, <a class='category' href='/blog/categories/rails-4/'>Rails 4</a>
+
+</div>
+
+
+</div></article>
 
 
     <article class="post">
@@ -365,7 +647,7 @@ Desc : descending order 递减</p>
   
 
 
-<time datetime="2014-02-15T15:10:57+08:00" pubdate data-updated="true">Feb 15<span>th</span>, 2014</time></div>
+<time datetime="2014-02-15T16:10:57+09:00" pubdate data-updated="true">Feb 15<span>th</span>, 2014</time></div>
 	
 
 <div class="tags">
@@ -504,7 +786,7 @@ Desc : descending order 递减</p>
   
 
 
-<time datetime="2014-02-15T15:10:57+08:00" pubdate data-updated="true">Feb 15<span>th</span>, 2014</time></div>
+<time datetime="2014-02-15T16:10:57+09:00" pubdate data-updated="true">Feb 15<span>th</span>, 2014</time></div>
 	
 
 <div class="tags">
@@ -547,7 +829,7 @@ Desc : descending order 递减</p>
   
 
 
-<time datetime="2014-02-14T15:40:25+08:00" pubdate data-updated="true">Feb 14<span>th</span>, 2014</time></div>
+<time datetime="2014-02-14T16:40:25+09:00" pubdate data-updated="true">Feb 14<span>th</span>, 2014</time></div>
 	
 
 <div class="tags">
@@ -755,7 +1037,7 @@ Desc : descending order 递减</p>
   
 
 
-<time datetime="2014-02-14T15:40:25+08:00" pubdate data-updated="true">Feb 14<span>th</span>, 2014</time></div>
+<time datetime="2014-02-14T16:40:25+09:00" pubdate data-updated="true">Feb 14<span>th</span>, 2014</time></div>
 	
 
 <div class="tags">
@@ -884,7 +1166,7 @@ Desc : descending order 递减</p>
   
 
 
-<time datetime="2014-02-13T15:40:25+08:00" pubdate data-updated="true">Feb 13<span>th</span>, 2014</time></div>
+<time datetime="2014-02-13T16:40:25+09:00" pubdate data-updated="true">Feb 13<span>th</span>, 2014</time></div>
 	
 
 <div class="tags">
@@ -1113,7 +1395,7 @@ Desc : descending order 递减</p>
   
 
 
-<time datetime="2014-02-13T15:40:25+08:00" pubdate data-updated="true">Feb 13<span>th</span>, 2014</time></div>
+<time datetime="2014-02-13T16:40:25+09:00" pubdate data-updated="true">Feb 13<span>th</span>, 2014</time></div>
 	
 
 <div class="tags">
@@ -1166,7 +1448,7 @@ Desc : descending order 递减</p>
   
 
 
-<time datetime="2014-02-12T21:42:33+08:00" pubdate data-updated="true">Feb 12<span>th</span>, 2014</time></div>
+<time datetime="2014-02-12T22:42:33+09:00" pubdate data-updated="true">Feb 12<span>th</span>, 2014</time></div>
 	
 
 <div class="tags">
@@ -1338,113 +1620,12 @@ Desc : descending order 递减</p>
   
 
 
-<time datetime="2014-02-12T19:02:51+08:00" pubdate data-updated="true">Feb 12<span>th</span>, 2014</time></div>
+<time datetime="2014-02-12T20:02:51+09:00" pubdate data-updated="true">Feb 12<span>th</span>, 2014</time></div>
 	
 
 <div class="tags">
 
 	<a class='category' href='/blog/categories/code-school/'>Code School</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>
-
-</div>
-
-
-</div></article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2014/02/10/zen-yao-ba-windowsxia-de-txtwen-jian-zhuan-wei-utf-8/">
-		
-			怎么把windows下的txt文件转为utf-8</a>
-	</h2>
-	<div class="entry-content">
-		<p>Windows真是害人不浅- &ndash;#
-在Mac下可以</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>iconv -f gbk -t utf-8 a.txt  &gt; b.txt </span></code></pre></td></tr></table></div></figure>
-
-
-<p>批量的话</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>find *.txt -exec sh -c "iconv -f gbk -t UTF8 {} &gt; c/{}.txt" \;  </span></code></pre></td></tr></table></div></figure>
-
-
-<p>Ubuntu下可以</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>enconv *.txt</span></code></pre></td></tr></table></div></figure>
-
-
-<p>a.txt是要转换的文件，gbk是简体系统下txt默认保存编码(大概。。)</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-02-10T19:15:11+08:00" pubdate data-updated="true">Feb 10<span>th</span>, 2014</time></div>
-	
-
-<div class="tags">
-
-	<a class='category' href='/blog/categories/windows/'>Windows</a>
-
-</div>
-
-
-</div></article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2014/02/10/hello-octopress/">
-		
-			Hello Octopress</a>
-	</h2>
-	<div class="entry-content">
-		<p>折腾了半天终于从Wordpress转到了Octopress，要说为什么要换成这个的话，这个本来就没什么流量的blog如果在VPS一直跑着Wordpress有点浪费，正好就来折腾一下这个还是挺方便的XD</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-02-10T14:30:46+08:00" pubdate data-updated="true">Feb 10<span>th</span>, 2014</time></div>
-	
-
-<div class="tags">
-
-	<a class='category' href='/blog/categories/octopress/'>octopress</a>
 
 </div>
 

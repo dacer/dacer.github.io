@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Octopress | Dacer Blog]]></title>
   <link href="http://blog.dacer.im/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="http://blog.dacer.im/"/>
-  <updated>2014-02-20T12:35:01+08:00</updated>
+  <updated>2014-03-03T22:28:01+09:00</updated>
   <id>http://blog.dacer.im/</id>
   <author>
     <name><![CDATA[Dacer]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[增加了多说的评论系统]]></title>
     <link href="http://blog.dacer.im/blog/2014/02/16/zeng-jia-liao-duo-shuo-de-ping-lun-xi-tong/"/>
-    <updated>2014-02-16T18:17:00+08:00</updated>
+    <updated>2014-02-16T19:17:00+09:00</updated>
     <id>http://blog.dacer.im/blog/2014/02/16/zeng-jia-liao-duo-shuo-de-ping-lun-xi-tong</id>
     <content type="html"><![CDATA[<p>参考了</p>
 
@@ -29,7 +29,7 @@
   <entry>
     <title type="html"><![CDATA[简化Octopress发布步骤]]></title>
     <link href="http://blog.dacer.im/blog/2014/02/16/jian-hua-octopressfa-bu-bu-zou/"/>
-    <updated>2014-02-16T17:43:24+08:00</updated>
+    <updated>2014-02-16T18:43:24+09:00</updated>
     <id>http://blog.dacer.im/blog/2014/02/16/jian-hua-octopressfa-bu-bu-zou</id>
     <content type="html"><![CDATA[<p>用了一段时间 Octopress 确实挺好用的，就是发布需要两个步骤
 <code>
@@ -72,7 +72,7 @@ end
   <entry>
     <title type="html"><![CDATA[把主题微调了一下]]></title>
     <link href="http://blog.dacer.im/blog/2014/02/12/ba-zhu-ti-wei-diao-liao-yi-xia/"/>
-    <updated>2014-02-12T21:42:33+08:00</updated>
+    <updated>2014-02-12T22:42:33+09:00</updated>
     <id>http://blog.dacer.im/blog/2014/02/12/ba-zhu-ti-wei-diao-liao-yi-xia</id>
     <content type="html"><![CDATA[<p>先感谢<a href="http://github.com/macjasp/cleanpress">cleanpress</a>做出了这么简洁大方的主题，<br/>
 但就是有几小点很别扭：</p>

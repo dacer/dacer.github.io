@@ -7,7 +7,7 @@
 
 <meta name="author" content="Dacer"> 
 
-<meta name="description" content="本人写的软件标题为啥是分析呢，因为我已经把基本的流程忘的差不多了..所以要重看一遍源码梳理下，(果然边学边做的后果就是代码超乱的！！都想重写一遍了！！！) 把当时的规划图翻出来了，其实看看挺弱智的，毕竟当时的目标是能做出这个功能就行。。 整理了一半三分之一懒得整理了。。 &hellip;"> <meta name="keywords" content="">
+<meta name="description" content="很多小米用户反馈时间会错乱，之前一直以为是后台的Activity所占用的内存被清空所致，但修改后发现仍未改善，最后终于让我找到了根本原因。 使用AlarmManager定的带有WAKEUP闹钟会被某些版本的MIUI系统推迟。 我下面用浅显的语言说明一下 每个软件都可以设置某个时间点的“闹钟” &hellip;"> <meta name="keywords" content="">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -96,7 +96,121 @@ $(document).ready(
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2013/09/16/e69e81e7ae80e795aae88c84e8bf90e4bd9ce6b581e7a88be58886e69e90e58f8ae998b2e6ada2e5908ee58fb0e8a2abe69d80e696b9e6a188/">
+		<a href="/blog/2013/09/18/e68891e8a681ooe5b08fe7b1b3e7b3bbe7bb9fe4b880e4b887e4b8aaxxefbc81efbc81efbc81efbc81/">
+		
+			为什么部分小米用户在使用极简番茄时提醒会延迟</a>
+	</h2>
+	<div class="entry-content">
+		<p>很多小米用户反馈时间会错乱，之前一直以为是后台的Activity所占用的内存被清空所致，但修改后发现仍未改善，最后终于让我找到了根本原因。</p>
+
+<p>使用AlarmManager定的带有WAKEUP闹钟会被某些版本的MIUI系统推迟。</p>
+
+<p>我下面用浅显的语言说明一下</p>
+
+<p>每个软件都可以设置某个时间点的“闹钟”唤醒本程序，但是小米处于省电的考虑将每5分钟时间段内的“闹钟”集中在一起唤醒，例如启动番茄的25分钟后是12:31，但小米会强行将其改为12:35分，故程序的逻辑被彻底打断。</p>
+
+<p>此问题在将来有可能会通过系统补丁的方式修正，但不知会是何时，身为软件作者对此只能很无奈了，</p>
+
+<p>解决方案如下：</p>
+
+<ol>
+<li><p>(推荐)刷Android官方系统或者优秀的第三方CM系统可彻底解决此问题，但有可能造成使用上的略微不便（MIUI在某些方面还是有其优点的）</p></li>
+<li><p>(不推荐)使用我做的<a href="http://dacer.github.io/myapps/SimplePomodoro(MIUI">小米专用版本</a>.apk)，在未开启快速模式且开启屏幕常亮时理论上可正常使用（但仍不能确定），即不让屏幕锁定，(在番茄进行中点击时间可隐藏它，配合黑色全屏主题效果较佳)</p></li>
+</ol>
+
+
+<p>3.等待小米更新系统修改这个问题。</p>
+
+<p>以上。</p>
+
+<p>更新又一种方式: </p>
+
+<p><a href="http://bbs.zdworks.com/forum.php?mod=viewthread&amp;tid=166869">http://bbs.zdworks.com/forum.php?mod=viewthread&amp;tid=166869</a></p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-18T22:39:25+09:00" pubdate data-updated="true">Sep 18<span>th</span>, 2013</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/kai-fa-bi-ji/'>开发笔记</a>
+
+</div>
+
+
+</div></article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/09/18/e69e81e7ae80e795aae88c84buge8aeb0e5bd95/">
+		
+			极简番茄BUG记录</a>
+	</h2>
+	<div class="entry-content">
+		<p>硬伤：</p>
+
+<p>切换Google账户BUG：1.正常使用帐号并授权同步2.在网页端撤销授权3.同步后FC</p>
+
+<p>软伤：</p>
+
+<p>切换Google Task同步之后本地task不会重置</p>
+
+<p>极速模式下横屏时开启屏幕会再次被锁屏（因为重新调用了onCreate中的锁屏方法）</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-18T16:26:41+09:00" pubdate data-updated="true">Sep 18<span>th</span>, 2013</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/kai-fa-bi-ji/'>开发笔记</a>
+
+</div>
+
+
+</div></article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/09/17/e69e81e7ae80e795aae88c84e8bf90e4bd9ce6b581e7a88be58886e69e90e58f8ae998b2e6ada2e5908ee58fb0e8a2abe69d80e696b9e6a188/">
 		
 			极简番茄运作流程分析及防止后台被杀方案</a>
 	</h2>
@@ -135,7 +249,7 @@ $(document).ready(
   
 
 
-<time datetime="2013-09-16T23:12:21+08:00" pubdate data-updated="true">Sep 16<span>th</span>, 2013</time></div>
+<time datetime="2013-09-17T00:12:21+09:00" pubdate data-updated="true">Sep 17<span>th</span>, 2013</time></div>
 	
 
 <div class="tags">
@@ -250,7 +364,7 @@ return mPosition_id;
   
 
 
-<time datetime="2013-09-12T13:44:22+08:00" pubdate data-updated="true">Sep 12<span>th</span>, 2013</time></div>
+<time datetime="2013-09-12T14:44:22+09:00" pubdate data-updated="true">Sep 12<span>th</span>, 2013</time></div>
 	
 
 <div class="tags">
@@ -292,7 +406,7 @@ return mPosition_id;
   
 
 
-<time datetime="2013-08-21T18:44:47+08:00" pubdate data-updated="true">Aug 21<span>st</span>, 2013</time></div>
+<time datetime="2013-08-21T19:44:47+09:00" pubdate data-updated="true">Aug 21<span>st</span>, 2013</time></div>
 	
 
 
@@ -327,7 +441,7 @@ return mPosition_id;
   
 
 
-<time datetime="2013-08-03T22:37:15+08:00" pubdate data-updated="true">Aug 3<span>rd</span>, 2013</time></div>
+<time datetime="2013-08-03T23:37:15+09:00" pubdate data-updated="true">Aug 3<span>rd</span>, 2013</time></div>
 	
 
 
@@ -383,7 +497,7 @@ return mPosition_id;
   
 
 
-<time datetime="2013-08-02T00:22:45+08:00" pubdate data-updated="true">Aug 2<span>nd</span>, 2013</time></div>
+<time datetime="2013-08-02T01:22:45+09:00" pubdate data-updated="true">Aug 2<span>nd</span>, 2013</time></div>
 	
 
 <div class="tags">
@@ -440,7 +554,7 @@ return mPosition_id;
   
 
 
-<time datetime="2013-07-31T13:48:33+08:00" pubdate data-updated="true">Jul 31<span>st</span>, 2013</time></div>
+<time datetime="2013-07-31T14:48:33+09:00" pubdate data-updated="true">Jul 31<span>st</span>, 2013</time></div>
 	
 
 <div class="tags">
@@ -489,7 +603,7 @@ return mPosition_id;
   
 
 
-<time datetime="2013-07-31T13:17:59+08:00" pubdate data-updated="true">Jul 31<span>st</span>, 2013</time></div>
+<time datetime="2013-07-31T14:17:59+09:00" pubdate data-updated="true">Jul 31<span>st</span>, 2013</time></div>
 	
 
 <div class="tags">
@@ -534,7 +648,7 @@ return mPosition_id;
   
 
 
-<time datetime="2013-07-31T13:04:06+08:00" pubdate data-updated="true">Jul 31<span>st</span>, 2013</time></div>
+<time datetime="2013-07-31T14:04:06+09:00" pubdate data-updated="true">Jul 31<span>st</span>, 2013</time></div>
 	
 
 

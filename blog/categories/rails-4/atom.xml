@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Rails 4 | Dacer Blog]]></title>
   <link href="http://blog.dacer.im/blog/categories/rails-4/atom.xml" rel="self"/>
   <link href="http://blog.dacer.im/"/>
-  <updated>2014-02-20T12:35:01+08:00</updated>
+  <updated>2014-03-03T22:28:01+09:00</updated>
   <id>http://blog.dacer.im/</id>
   <author>
     <name><![CDATA[Dacer]]></name>
@@ -14,9 +14,53 @@
 
   
   <entry>
+    <title type="html"><![CDATA[在Rails 4中jquery的Dom变量问题]]></title>
+    <link href="http://blog.dacer.im/blog/2014/02/22/zai-rails-4zhong-jqueryde-dombian-liang-wen-ti/"/>
+    <updated>2014-02-22T13:09:49+09:00</updated>
+    <id>http://blog.dacer.im/blog/2014/02/22/zai-rails-4zhong-jqueryde-dombian-liang-wen-ti</id>
+    <content type="html"><![CDATA[<p>今天在开发的时候发现在Rails 4中
+```javascript
+var selectUploadBtn = $(&ldquo;#fileupload&rdquo;);
+var startUploadBtn = $(&ldquo;.start-upload&rdquo;);</p>
+
+<p>$(document).ready(function(){
+  selectUploadBtn.on(&ldquo;change&rdquo;, handleFiles);
+  startUploadBtn.on(&ldquo;click&rdquo;,onUploadClicked);
+});
+<code>
+是无效的，第一反应就是 Turbolinks 搞的鬼，然后使用了
+</code>javascript
+var selectUploadBtn = $(&ldquo;#fileupload&rdquo;);
+var startUploadBtn = $(&ldquo;.start-upload&rdquo;);</p>
+
+<p>function initialize() {
+  selectUploadBtn.on(&ldquo;change&rdquo;, handleFiles);
+  startUploadBtn.on(&ldquo;click&rdquo;,onUploadClicked);
+}</p>
+
+<p>$(document).ready(initialize);
+$(document).on(&lsquo;page:load&rsquo;, initialize);
+<code>
+还是没反应，然后突然发现是不是 DOM 的变量没有初始化？  
+最后
+</code>javascript
+var selectUploadBtn = $(&ldquo;#fileupload&rdquo;);
+var startUploadBtn = $(&ldquo;.start-upload&rdquo;);</p>
+
+<p>function initialize() {
+  selectUploadBtn = $(&ldquo;#fileupload&rdquo;);
+  startUploadBtn = $(&ldquo;.start-upload&rdquo;);
+  selectUploadBtn.on(&ldquo;change&rdquo;, handleFiles);
+  startUploadBtn.on(&ldquo;click&rdquo;,onUploadClicked);
+}
+终于解决了</p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Code School笔记 - Zombie Outlaws level 7]]></title>
     <link href="http://blog.dacer.im/blog/2014/02/18/code-school-bi-ji-zombie-outlaws-level-7/"/>
-    <updated>2014-02-18T11:10:57+08:00</updated>
+    <updated>2014-02-18T12:10:57+09:00</updated>
     <id>http://blog.dacer.im/blog/2014/02/18/code-school-bi-ji-zombie-outlaws-level-7</id>
     <content type="html"><![CDATA[<h2>ActionController Live &amp; Turbolinks</h2>
 
@@ -184,7 +228,7 @@ If a parent has the attribute, all children will be opted-out of Turbolinks:
   <entry>
     <title type="html"><![CDATA[Code School笔记 - Zombie Outlaws level 6]]></title>
     <link href="http://blog.dacer.im/blog/2014/02/17/code-school-bi-ji-zombie-outlaws-level-6/"/>
-    <updated>2014-02-17T11:10:57+08:00</updated>
+    <updated>2014-02-17T12:10:57+09:00</updated>
     <id>http://blog.dacer.im/blog/2014/02/17/code-school-bi-ji-zombie-outlaws-level-6</id>
     <content type="html"><![CDATA[<h2>ETags,Dalli, &amp; Cache-Digests</h2>
 
@@ -399,7 +443,7 @@ end
   <entry>
     <title type="html"><![CDATA[Code School笔记 - Zombie Outlaws level 5]]></title>
     <link href="http://blog.dacer.im/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-5/"/>
-    <updated>2014-02-15T19:10:57+08:00</updated>
+    <updated>2014-02-15T20:10:57+09:00</updated>
     <id>http://blog.dacer.im/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-5</id>
     <content type="html"><![CDATA[<h2>Test Your Mettle</h2>
 
@@ -473,7 +517,7 @@ assertions/s.
   <entry>
     <title type="html"><![CDATA[Code School笔记 - Zombie Outlaws level 4]]></title>
     <link href="http://blog.dacer.im/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-4/"/>
-    <updated>2014-02-15T19:10:57+08:00</updated>
+    <updated>2014-02-15T20:10:57+09:00</updated>
     <id>http://blog.dacer.im/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-4</id>
     <content type="html"><![CDATA[<h2>Views &amp; Vistas</h2>
 
@@ -532,92 +576,6 @@ owners_hashes.to_json</p>
   {&ldquo;name&rdquo;:&ldquo;Dacer&rdquo;,    &ldquo;url&rdquo;:&ldquo;<a href="http://blog.dacer.im/">http://blog.dacer.im/</a>&rdquo;},
   {&ldquo;name&rdquo;:&ldquo;Walking Ned&rdquo;,&ldquo;url&rdquo;:&ldquo;<a href="http://localhost:3000/owners/3">http://localhost:3000/owners/3</a>&rdquo;}
 ]
-```</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Code School笔记 - Zombie Outlaws level 3]]></title>
-    <link href="http://blog.dacer.im/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-3/"/>
-    <updated>2014-02-15T19:10:57+08:00</updated>
-    <id>http://blog.dacer.im/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-3</id>
-    <content type="html"><![CDATA[<h2>Strong Parameters and Remote Forms &amp; Filters, Session, Custom Flash Types</h2>
-
-<h3>Strong Parameters</h3>
-
-<p>在rails 4的controller中必须指定可接受的params
-```ruby</p>
-
-<pre><code>def user_params
-  params.require(:user).permit(:name)
-end
-</code></pre>
-
-<p><code>
-其中`rquire`会检查是否有参数中的key，没有则返回400错误，但并不会将这个key的值返回到`user_params`中，`permit`则会将参数中key对应的值返回  
-add this line if you want to raise errors for unpermitted params:
-</code>ruby</p>
-
-<h1>config/application.rb</h1>
-
-<p>config.action_controller.action_on_unpermitted_parameters = :raise
-```</p>
-
-<h3>Authenticity Token</h3>
-
-<p>Rails 会自动在form中的value加入token来防止机器人的spam</p>
-
-<h3>Action Controller Filters/Actions</h3>
-
-<p>3中的<code>before_filter</code>变为了<code>before_action</code>,可以让Controller在部分方法call之前做出一些动作：
-```ruby
-class PeopleController &lt; ActionController::Base</p>
-
-<pre><code>before_action :set_person,      except: [ :index, :new, :create ]
-before_action :ensure_permission, only: [ :edit, :update ]
-</code></pre>
-
-<p>end
-```</p>
-
-<h3>Flash Types</h3>
-
-<p>以下方法可以生成flash信息：
-<code>ruby
-if @item.save
-  flash[:notice] = 'Item created.'
-  redirect_to @item
-else
-  render action: 'new'
-end
-</code>
-```html</p>
-
-<p><p id="notice">&lt;%= flash[:notice] %></p>
-<p> <strong>Name:</strong> &lt;%= @item.name %>
-</p>
-<code>
-其中erb部分可以简写为
-</code>html
-<p id="notice">&lt;%= notice %></p>
-<p id="alert">&lt;%= alert %></p>
-<code>
-你也可以自定义flash类型
-</code>ruby
-class ApplicationController &lt; ActionController::Base
-  add_flash_types :grunt, :snarl
-end</p>
-
-<h1>&hellip;</h1>
-
-<p>flash[:grunt] = &lsquo;braaains&hellip;&rsquo;</p>
-
-<h1>或者简写为</h1>
-
-<p>redirect_to @user, grunt: &lsquo;I&rsquo;m Dacer&hellip;&rsquo;
-<code>
-</code>html
-<div id="grunt">&lt;%= grunt %></div>
 ```</p>
 ]]></content>
   </entry>
