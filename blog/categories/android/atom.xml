@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Android | Dacer Blog]]></title>
   <link href="http://blog.dacer.im/blog/categories/android/atom.xml" rel="self"/>
   <link href="http://blog.dacer.im/"/>
-  <updated>2014-03-03T22:48:12+09:00</updated>
+  <updated>2014-10-08T17:14:00+08:00</updated>
   <id>http://blog.dacer.im/</id>
   <author>
     <name><![CDATA[Dacer]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[AndroidCharts 开发笔记]]></title>
     <link href="http://blog.dacer.im/blog/2013/11/15/androidcharts-e5bc80e58f91e7ac94e8aeb0/"/>
-    <updated>2013-11-15T22:55:09+09:00</updated>
+    <updated>2013-11-15T21:55:09+08:00</updated>
     <id>http://blog.dacer.im/blog/2013/11/15/androidcharts-e5bc80e58f91e7ac94e8aeb0</id>
     <content type="html"><![CDATA[<p>最近在为 <a href="http://www.pomotodo.com">www.pomotodo.com</a> 做 Android版的时候其中有三个设计的非常精致的统计视图，费了很大到劲把这三个图做出来之后想了想还是开源分享出来吧，其中 LineView 还是有些繁杂的，故写了本笔记。</p>
 
@@ -62,7 +62,7 @@
   <entry>
     <title type="html"><![CDATA[怎样在canvas中的方形中央画Text]]></title>
     <link href="http://blog.dacer.im/blog/2013/11/09/e6808ee6a0b7e59ca8canvase4b8ade79a84e696b9e5bda2e4b8ade5a4aee794bbtext/"/>
-    <updated>2013-11-09T14:22:10+09:00</updated>
+    <updated>2013-11-09T13:22:10+08:00</updated>
     <id>http://blog.dacer.im/blog/2013/11/09/e6808ee6a0b7e59ca8canvase4b8ade79a84e696b9e5bda2e4b8ade5a4aee794bbtext</id>
     <content type="html"><![CDATA[<p>```java</p>
 
@@ -114,7 +114,7 @@ canvas.drawText(num, xCoor, yCoor-bottomTriangleHeight-marginBottom, textPaint);
   <entry>
     <title type="html"><![CDATA[设计一个两栏切皆可滑动的日期选择器]]></title>
     <link href="http://blog.dacer.im/blog/2013/11/01/e8aebee8aea1e4b880e4b8aae4b8a4e6a08fe58887e79a86e58fafe6bb91e58aa8e79a84e697a5e69c9fe98089e68ba9e599a8/"/>
-    <updated>2013-11-01T10:40:02+09:00</updated>
+    <updated>2013-11-01T09:40:02+08:00</updated>
     <id>http://blog.dacer.im/blog/2013/11/01/e8aebee8aea1e4b880e4b8aae4b8a4e6a08fe58887e79a86e58fafe6bb91e58aa8e79a84e697a5e69c9fe98089e68ba9e599a8</id>
     <content type="html"><![CDATA[<p>发现不记录一下开发的过程的话一出现问题很难理清楚啊(╯‵□′)╯︵┻━┻</p>
 
@@ -156,7 +156,7 @@ canvas.drawText(num, xCoor, yCoor-bottomTriangleHeight-marginBottom, textPaint);
   <entry>
     <title type="html"><![CDATA[用canvas画填充后的三角形]]></title>
     <link href="http://blog.dacer.im/blog/2013/10/29/e794a8canvase794bbe5a1abe58585e5908ee79a84e4b889e8a792e5bda2/"/>
-    <updated>2013-10-29T14:36:15+09:00</updated>
+    <updated>2013-10-29T13:36:15+08:00</updated>
     <id>http://blog.dacer.im/blog/2013/10/29/e794a8canvase794bbe5a1abe58585e5908ee79a84e4b889e8a792e5bda2</id>
     <content type="html"><![CDATA[<p>花了半天时间研究这个啊！！</p>
 
@@ -171,7 +171,7 @@ canvas.drawText(num, xCoor, yCoor-bottomTriangleHeight-marginBottom, textPaint);
   <entry>
     <title type="html"><![CDATA[设计一个绝对准时又相对省电的Android 倒计时方案]]></title>
     <link href="http://blog.dacer.im/blog/2013/10/03/e8aebee8aea1e4b880e4b8aae7bb9de5afb9e58786e697b6e58f88e79bb8e5afb9e79c81e794b5e79a84android-e58092e8aea1e697b6e696b9e6a188/"/>
-    <updated>2013-10-03T09:46:30+09:00</updated>
+    <updated>2013-10-03T08:46:30+08:00</updated>
     <id>http://blog.dacer.im/blog/2013/10/03/e8aebee8aea1e4b880e4b8aae7bb9de5afb9e58786e697b6e58f88e79bb8e5afb9e79c81e794b5e79a84android-e58092e8aea1e697b6e696b9e6a188</id>
     <content type="html"><![CDATA[<p>如果没有小米的话就不用写这个文章了。。</p>
 

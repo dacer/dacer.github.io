@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Rails 4 | Dacer Blog]]></title>
   <link href="http://blog.dacer.im/blog/categories/rails-4/atom.xml" rel="self"/>
   <link href="http://blog.dacer.im/"/>
-  <updated>2014-03-03T22:48:12+09:00</updated>
+  <updated>2014-10-08T17:14:00+08:00</updated>
   <id>http://blog.dacer.im/</id>
   <author>
     <name><![CDATA[Dacer]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[在Rails 4中jquery的Dom变量问题]]></title>
     <link href="http://blog.dacer.im/blog/2014/02/22/zai-rails-4zhong-jqueryde-dombian-liang-wen-ti/"/>
-    <updated>2014-02-22T13:09:49+09:00</updated>
+    <updated>2014-02-22T12:09:49+08:00</updated>
     <id>http://blog.dacer.im/blog/2014/02/22/zai-rails-4zhong-jqueryde-dombian-liang-wen-ti</id>
     <content type="html"><![CDATA[<p>今天在开发的时候发现在Rails 4中
 ```javascript
@@ -53,6 +53,7 @@ var startUploadBtn = $(&ldquo;.start-upload&rdquo;);</p>
   selectUploadBtn.on(&ldquo;change&rdquo;, handleFiles);
   startUploadBtn.on(&ldquo;click&rdquo;,onUploadClicked);
 }
+```
 终于解决了</p>
 ]]></content>
   </entry>
@@ -60,7 +61,7 @@ var startUploadBtn = $(&ldquo;.start-upload&rdquo;);</p>
   <entry>
     <title type="html"><![CDATA[Code School笔记 - Zombie Outlaws level 7]]></title>
     <link href="http://blog.dacer.im/blog/2014/02/18/code-school-bi-ji-zombie-outlaws-level-7/"/>
-    <updated>2014-02-18T12:10:57+09:00</updated>
+    <updated>2014-02-18T11:10:57+08:00</updated>
     <id>http://blog.dacer.im/blog/2014/02/18/code-school-bi-ji-zombie-outlaws-level-7</id>
     <content type="html"><![CDATA[<h2>ActionController Live &amp; Turbolinks</h2>
 
@@ -228,7 +229,7 @@ If a parent has the attribute, all children will be opted-out of Turbolinks:
   <entry>
     <title type="html"><![CDATA[Code School笔记 - Zombie Outlaws level 6]]></title>
     <link href="http://blog.dacer.im/blog/2014/02/17/code-school-bi-ji-zombie-outlaws-level-6/"/>
-    <updated>2014-02-17T12:10:57+09:00</updated>
+    <updated>2014-02-17T11:10:57+08:00</updated>
     <id>http://blog.dacer.im/blog/2014/02/17/code-school-bi-ji-zombie-outlaws-level-6</id>
     <content type="html"><![CDATA[<h2>ETags,Dalli, &amp; Cache-Digests</h2>
 
@@ -443,7 +444,7 @@ end
   <entry>
     <title type="html"><![CDATA[Code School笔记 - Zombie Outlaws level 5]]></title>
     <link href="http://blog.dacer.im/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-5/"/>
-    <updated>2014-02-15T20:10:57+09:00</updated>
+    <updated>2014-02-15T19:10:57+08:00</updated>
     <id>http://blog.dacer.im/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-5</id>
     <content type="html"><![CDATA[<h2>Test Your Mettle</h2>
 
@@ -517,7 +518,7 @@ assertions/s.
   <entry>
     <title type="html"><![CDATA[Code School笔记 - Zombie Outlaws level 4]]></title>
     <link href="http://blog.dacer.im/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-4/"/>
-    <updated>2014-02-15T20:10:57+09:00</updated>
+    <updated>2014-02-15T19:10:57+08:00</updated>
     <id>http://blog.dacer.im/blog/2014/02/15/code-school-bi-ji-zombie-outlaws-level-4</id>
     <content type="html"><![CDATA[<h2>Views &amp; Vistas</h2>
 

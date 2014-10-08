@@ -4,7 +4,7 @@
   <title><![CDATA[Category: jQuery | Dacer Blog]]></title>
   <link href="http://blog.dacer.im/blog/categories/jquery/atom.xml" rel="self"/>
   <link href="http://blog.dacer.im/"/>
-  <updated>2014-03-03T22:48:12+09:00</updated>
+  <updated>2014-10-08T17:14:00+08:00</updated>
   <id>http://blog.dacer.im/</id>
   <author>
     <name><![CDATA[Dacer]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Code School笔记 - jQuery Part2 level 5]]></title>
     <link href="http://blog.dacer.im/blog/2014/02/19/code-school-bi-ji-jquery-part2-level-5/"/>
-    <updated>2014-02-19T12:13:03+09:00</updated>
+    <updated>2014-02-19T11:13:03+08:00</updated>
     <id>http://blog.dacer.im/blog/2014/02/19/code-school-bi-ji-jquery-part2-level-5</id>
     <content type="html"><![CDATA[<h2>Advanced Events</h2>
 
@@ -137,7 +137,7 @@ $.fn.priceify = function(options) {</p>
   <entry>
     <title type="html"><![CDATA[Code School笔记 - jQuery Part2 level 3 & 4]]></title>
     <link href="http://blog.dacer.im/blog/2014/02/18/code-school-bi-ji-jquery-part2-level-3-and-4/"/>
-    <updated>2014-02-18T12:13:03+09:00</updated>
+    <updated>2014-02-18T11:13:03+08:00</updated>
     <id>http://blog.dacer.im/blog/2014/02/18/code-school-bi-ji-jquery-part2-level-3-and-4</id>
     <content type="html"><![CDATA[<h2>Ajax Forms</h2>
 
@@ -256,7 +256,7 @@ $(&lsquo;.status-list&rsquo;).detach()</p>
   <entry>
     <title type="html"><![CDATA[Code School笔记 - jQuery Part2 level 1 & 2]]></title>
     <link href="http://blog.dacer.im/blog/2014/02/17/code-school-bi-ji-jquery-part2-level-1-and-2/"/>
-    <updated>2014-02-17T21:10:57+09:00</updated>
+    <updated>2014-02-17T20:10:57+08:00</updated>
     <id>http://blog.dacer.im/blog/2014/02/17/code-school-bi-ji-jquery-part2-level-1-and-2</id>
     <content type="html"><![CDATA[<h3>Ajax Basics</h3>
 

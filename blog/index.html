@@ -150,7 +150,7 @@ $(document).ready(
   
 
 
-<time datetime="2014-03-03T22:06:14+09:00" pubdate data-updated="true">Mar 3<span>rd</span>, 2014</time></div>
+<time datetime="2014-03-03T21:06:14+08:00" pubdate data-updated="true">Mar 3<span>rd</span>, 2014</time></div>
 	
 
 <div class="tags">
@@ -216,18 +216,30 @@ $(document).ready(
 
 
 <p>还是没反应，然后突然发现是不是 DOM 的变量没有初始化？<br/>
-最后
-&#8220;`javascript
-var selectUploadBtn = $(&ldquo;#fileupload&rdquo;);
-var startUploadBtn = $(&ldquo;.start-upload&rdquo;);</p>
+最后</p>
 
-<p>function initialize() {
-  selectUploadBtn = $(&ldquo;#fileupload&rdquo;);
-  startUploadBtn = $(&ldquo;.start-upload&rdquo;);
-  selectUploadBtn.on(&ldquo;change&rdquo;, handleFiles);
-  startUploadBtn.on(&ldquo;click&rdquo;,onUploadClicked);
-}
-终于解决了</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">selectUploadBtn</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#fileupload&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">startUploadBtn</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;.start-upload&quot;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="kd">function</span> <span class="nx">initialize</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">selectUploadBtn</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#fileupload&quot;</span><span class="p">);</span>
+</span><span class='line'>  <span class="nx">startUploadBtn</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;.start-upload&quot;</span><span class="p">);</span>
+</span><span class='line'>  <span class="nx">selectUploadBtn</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">&quot;change&quot;</span><span class="p">,</span> <span class="nx">handleFiles</span><span class="p">);</span>
+</span><span class='line'>  <span class="nx">startUploadBtn</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">&quot;click&quot;</span><span class="p">,</span><span class="nx">onUploadClicked</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>终于解决了</p>
 
 		
 		
@@ -247,7 +259,7 @@ var startUploadBtn = $(&ldquo;.start-upload&rdquo;);</p>
   
 
 
-<time datetime="2014-02-22T13:09:49+09:00" pubdate data-updated="true">Feb 22<span>nd</span>, 2014</time></div>
+<time datetime="2014-02-22T12:09:49+08:00" pubdate data-updated="true">Feb 22<span>nd</span>, 2014</time></div>
 	
 
 <div class="tags">
@@ -435,7 +447,7 @@ var startUploadBtn = $(&ldquo;.start-upload&rdquo;);</p>
   
 
 
-<time datetime="2014-02-19T12:13:03+09:00" pubdate data-updated="true">Feb 19<span>th</span>, 2014</time></div>
+<time datetime="2014-02-19T11:13:03+08:00" pubdate data-updated="true">Feb 19<span>th</span>, 2014</time></div>
 	
 
 <div class="tags">
@@ -646,7 +658,7 @@ This is useful to minimize DOM insertions with multiple html elements.<br/>
   
 
 
-<time datetime="2014-02-18T12:13:03+09:00" pubdate data-updated="true">Feb 18<span>th</span>, 2014</time></div>
+<time datetime="2014-02-18T11:13:03+08:00" pubdate data-updated="true">Feb 18<span>th</span>, 2014</time></div>
 	
 
 <div class="tags">
@@ -913,7 +925,7 @@ This is useful to minimize DOM insertions with multiple html elements.<br/>
   
 
 
-<time datetime="2014-02-18T12:10:57+09:00" pubdate data-updated="true">Feb 18<span>th</span>, 2014</time></div>
+<time datetime="2014-02-18T11:10:57+08:00" pubdate data-updated="true">Feb 18<span>th</span>, 2014</time></div>
 	
 
 <div class="tags">
@@ -1105,7 +1117,7 @@ This is useful to minimize DOM insertions with multiple html elements.<br/>
   
 
 
-<time datetime="2014-02-17T21:10:57+09:00" pubdate data-updated="true">Feb 17<span>th</span>, 2014</time></div>
+<time datetime="2014-02-17T20:10:57+08:00" pubdate data-updated="true">Feb 17<span>th</span>, 2014</time></div>
 	
 
 <div class="tags">
@@ -1431,7 +1443,7 @@ This is useful to minimize DOM insertions with multiple html elements.<br/>
   
 
 
-<time datetime="2014-02-17T12:10:57+09:00" pubdate data-updated="true">Feb 17<span>th</span>, 2014</time></div>
+<time datetime="2014-02-17T11:10:57+08:00" pubdate data-updated="true">Feb 17<span>th</span>, 2014</time></div>
 	
 
 <div class="tags">
@@ -1476,7 +1488,7 @@ This is useful to minimize DOM insertions with multiple html elements.<br/>
   
 
 
-<time datetime="2014-02-16T19:17:00+09:00" pubdate data-updated="true">Feb 16<span>th</span>, 2014</time></div>
+<time datetime="2014-02-16T18:17:00+08:00" pubdate data-updated="true">Feb 16<span>th</span>, 2014</time></div>
 	
 
 <div class="tags">
@@ -1572,7 +1584,7 @@ This is useful to minimize DOM insertions with multiple html elements.<br/>
   
 
 
-<time datetime="2014-02-16T18:43:24+09:00" pubdate data-updated="true">Feb 16<span>th</span>, 2014</time></div>
+<time datetime="2014-02-16T17:43:24+08:00" pubdate data-updated="true">Feb 16<span>th</span>, 2014</time></div>
 	
 
 <div class="tags">
@@ -1698,7 +1710,7 @@ Verbose mode shows run time and skip status for each test</p>
   
 
 
-<time datetime="2014-02-15T20:10:57+09:00" pubdate data-updated="true">Feb 15<span>th</span>, 2014</time></div>
+<time datetime="2014-02-15T19:10:57+08:00" pubdate data-updated="true">Feb 15<span>th</span>, 2014</time></div>
 	
 
 <div class="tags">

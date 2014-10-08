@@ -3,11 +3,11 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>极简番茄运作流程分析及防止后台被杀方案  | Dacer Blog</title>
+	<title>我果然还是个风险厌恶型的人  | Dacer Blog</title>
 
 <meta name="author" content="Dacer"> 
 
-<meta name="description" content="本人写的软件标题为啥是分析呢，因为我已经把基本的流程忘的差不多了..所以要重看一遍源码梳理下，(果然边学边做的后果就是代码超乱的！！都想重写一遍了！！！) 把当时的规划图翻出来了，其实看看挺弱智的，毕竟当时的目标是能做出这个功能就行。。 整理了一半三分之一懒得整理了。。 &hellip;"> <meta name="keywords" content="">
+<meta name="description" content="经济的专业读了这么久能留在我脑子里的经济学的名词还真没几个，风险厌恶型算是一个。 依我的非常浅薄的理解来解释一下它：就是在经济活动中会非常倾向于做出风险较小的那一面行为的类型。 最近找到了个remote的工作是支付的bitcoin为每周的工资，每个周日我拿到工资后在当天就会将其卖出， &hellip;"> <meta name="keywords" content="">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -91,22 +91,30 @@ $(document).ready(
 </header>
 
 	<div id="content" class="inner"><article class="post">
-	<h2 class="title">极简番茄运作流程分析及防止后台被杀方案</h2>
-	<div class="entry-content"><p>本人写的软件标题为啥是分析呢，因为我已经把基本的流程忘的差不多了..所以要重看一遍源码梳理下，(果然边学边做的后果就是代码超乱的！！都想重写一遍了！！！)</p>
+	<h2 class="title">我果然还是个风险厌恶型的人</h2>
+	<div class="entry-content"><p>经济的专业读了这么久能留在我脑子里的经济学的名词还真没几个，风险厌恶型算是一个。</p>
 
-<p>把当时的规划图翻出来了，其实看看挺弱智的，毕竟当时的目标是能做出这个功能就行。。</p>
+<p>依我的非常浅薄的理解来解释一下它：就是在经济活动中会非常倾向于做出风险较小的那一面行为的类型。</p>
 
-<p>整理了<del>一半</del>三分之一懒得整理了。。</p>
+<p>最近找到了个remote的工作是支付的bitcoin为每周的工资，每个周日我拿到工资后在当天就会将其卖出，即使bitcoin在不断的上涨，下图为卖出的历史纪录，最上方的为今天的情况，即比上周上涨了约200元。</p>
 
-<p><img src="/images/post/screen-shot-2013-09-17-at-6-55-18-pm1.png" alt="Screen-Shot-2013-09-17-at-6.55.18-PM" /></p>
+<p><a href="/images/post/screenshot-2013-10-20-23-59-341.png">Screenshot-2013-10-20-23.59.34</a></p>
 
-<p>先说一下本次修改的目标为后台的activity被杀之后仍能正常工作</p>
+<p>看到这个记录有人可能会想，如果把第一周的bitcoin攒到现在来卖的话，不就凭空多出了近600多元吗？</p>
 
-<p>Bug出现的手动方法为进行番茄，退出为后台，长按Home键退出本activity，点击通知栏的返回，重新计时25分钟。更有可能出现的情况为：内存清理软件，系统内存不足时自动清除本软件。</p>
+<p><strong>但我是个风险厌恶型</strong></p>
 
-<p>大体思路为：番茄/休息开始时记录结束时间以及当前为番茄还是休息，用户中断或者完成时归为0，启动软件主画面时检查当前时间是否在记录时间之前，是则跳入番茄/休息运行画面，否则继续展现主画面，进入番茄/休息画面时判断是否紧接着开始，将通知栏的进行中的intent指向MainActivity</p>
+<p>好吧以上都是废话。</p>
 
-<p>这样像贴胶布一样的更新方式还看的真有点蛋疼，但是经一个外国人的feedback建议之后发现根据本文这样修改后可以无痛的横竖屏转换了XD</p>
+<p>顺便一说最近blog怎么都不怎么更新了呢？</p>
+
+<p>原因不是我变懒了也不是这个bolg的实际访问量寥寥无几（这倒是事实）</p>
+
+<p>觉得把工作中的东西拿出来分享略有些不妥，好吧其实是在忙这个工作就变懒了(╯‵□′)╯︵┻━┻</p>
+
+<p>以后有时间的话把一个很有意思的actionbar进度条拿出来开源成library也不错的感觉</p>
+
+<p>好吧这一整篇都是废话</p>
 </div>
 
 
@@ -123,12 +131,12 @@ $(document).ready(
   
 
 
-<time datetime="2013-09-17T00:12:21+09:00" pubdate data-updated="true">Sep 17<span>th</span>, 2013</time></div>
+<time datetime="2013-10-20T23:08:44+08:00" pubdate data-updated="true">Oct 20<span>th</span>, 2013</time></div>
 	
 
 <div class="tags">
 
-	<a class='category' href='/blog/categories/kai-fa-bi-ji/'>开发笔记</a>
+	<a class='category' href='/blog/categories/sui-bi/'>随笔</a>
 
 </div>
 

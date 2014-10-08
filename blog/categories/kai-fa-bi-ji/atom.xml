@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 开发笔记 | Dacer Blog]]></title>
   <link href="http://blog.dacer.im/blog/categories/kai-fa-bi-ji/atom.xml" rel="self"/>
   <link href="http://blog.dacer.im/"/>
-  <updated>2014-03-03T22:48:12+09:00</updated>
+  <updated>2014-10-08T17:14:00+08:00</updated>
   <id>http://blog.dacer.im/</id>
   <author>
     <name><![CDATA[Dacer]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[设计一个绝对准时又相对省电的Android 倒计时方案]]></title>
     <link href="http://blog.dacer.im/blog/2013/10/03/e8aebee8aea1e4b880e4b8aae7bb9de5afb9e58786e697b6e58f88e79bb8e5afb9e79c81e794b5e79a84android-e58092e8aea1e697b6e696b9e6a188/"/>
-    <updated>2013-10-03T09:46:30+09:00</updated>
+    <updated>2013-10-03T08:46:30+08:00</updated>
     <id>http://blog.dacer.im/blog/2013/10/03/e8aebee8aea1e4b880e4b8aae7bb9de5afb9e58786e697b6e58f88e79bb8e5afb9e79c81e794b5e79a84android-e58092e8aea1e697b6e696b9e6a188</id>
     <content type="html"><![CDATA[<p>如果没有小米的话就不用写这个文章了。。</p>
 
@@ -67,9 +67,9 @@
   
   <entry>
     <title type="html"><![CDATA[开新坑了，基于sinatra的中韩汇率查看网站]]></title>
-    <link href="http://blog.dacer.im/blog/2013/09/30/e5bc80e696b0e59d91e4ba86efbc8ce59fbae4ba8esinatrae79a84e4b8ade99fa9e6b187e78e87e69fa5e79c8be7bd91e7ab99/"/>
-    <updated>2013-09-30T00:15:16+09:00</updated>
-    <id>http://blog.dacer.im/blog/2013/09/30/e5bc80e696b0e59d91e4ba86efbc8ce59fbae4ba8esinatrae79a84e4b8ade99fa9e6b187e78e87e69fa5e79c8be7bd91e7ab99</id>
+    <link href="http://blog.dacer.im/blog/2013/09/29/e5bc80e696b0e59d91e4ba86efbc8ce59fbae4ba8esinatrae79a84e4b8ade99fa9e6b187e78e87e69fa5e79c8be7bd91e7ab99/"/>
+    <updated>2013-09-29T23:15:16+08:00</updated>
+    <id>http://blog.dacer.im/blog/2013/09/29/e5bc80e696b0e59d91e4ba86efbc8ce59fbae4ba8esinatrae79a84e4b8ade99fa9e6b187e78e87e69fa5e79c8be7bd91e7ab99</id>
     <content type="html"><![CDATA[<p><a href="http://huilv-idacer.rhcloud.com/">&mdash;-点击查看&mdash;&ndash;</a></p>
 
 <p>大概就是sinatra做后端进行post等行为在银联官网上读取银联汇率，前端直接显示结果。</p>
@@ -94,7 +94,7 @@
   <entry>
     <title type="html"><![CDATA[如何在Action Bar中显示一层进度条，如7x7]]></title>
     <link href="http://blog.dacer.im/blog/2013/09/28/e5a682e4bd95e59ca8action-bare4b8ade698bee7a4bae4b880e5b182e8bf9be5baa6e69da1efbc8ce5a6827x7/"/>
-    <updated>2013-09-28T23:39:27+09:00</updated>
+    <updated>2013-09-28T22:39:27+08:00</updated>
     <id>http://blog.dacer.im/blog/2013/09/28/e5a682e4bd95e59ca8action-bare4b8ade698bee7a4bae4b880e5b182e8bf9be5baa6e69da1efbc8ce5a6827x7</id>
     <content type="html"><![CDATA[<p>看到这个需求第一时间我就想到了之前很沉迷的游戏 7x7, 搜了一下果然有相关的问题，链接如下：</p>
 
@@ -146,7 +146,7 @@ public int getActionBarSize(Context context) {
   <entry>
     <title type="html"><![CDATA[为什么部分小米用户在使用极简番茄时提醒会延迟]]></title>
     <link href="http://blog.dacer.im/blog/2013/09/18/e68891e8a681ooe5b08fe7b1b3e7b3bbe7bb9fe4b880e4b887e4b8aaxxefbc81efbc81efbc81efbc81/"/>
-    <updated>2013-09-18T22:39:25+09:00</updated>
+    <updated>2013-09-18T21:39:25+08:00</updated>
     <id>http://blog.dacer.im/blog/2013/09/18/e68891e8a681ooe5b08fe7b1b3e7b3bbe7bb9fe4b880e4b887e4b8aaxxefbc81efbc81efbc81efbc81</id>
     <content type="html"><![CDATA[<p>很多小米用户反馈时间会错乱，之前一直以为是后台的Activity所占用的内存被清空所致，但修改后发现仍未改善，最后终于让我找到了根本原因。</p>
 
@@ -179,7 +179,7 @@ public int getActionBarSize(Context context) {
   <entry>
     <title type="html"><![CDATA[极简番茄BUG记录]]></title>
     <link href="http://blog.dacer.im/blog/2013/09/18/e69e81e7ae80e795aae88c84buge8aeb0e5bd95/"/>
-    <updated>2013-09-18T16:26:41+09:00</updated>
+    <updated>2013-09-18T15:26:41+08:00</updated>
     <id>http://blog.dacer.im/blog/2013/09/18/e69e81e7ae80e795aae88c84buge8aeb0e5bd95</id>
     <content type="html"><![CDATA[<p>硬伤：</p>
 
