@@ -7,8 +7,8 @@
 
 <meta name="author" content="Dacer"> 
 
-<meta name="description" content="发现不记录一下开发的过程的话一出现问题很难理清楚啊(╯‵□′)╯︵┻━┻ 大概就是这样一个东西： 要实现的功能有： 月份选择器可滑动可点击，且月份切换时周视图也随之改变为当月的1号。
-周选择器可滑动可点击，点击后通过interface将所选择的日期传递出去。 &hellip;"> <meta name="keywords" content="">
+<meta name="description" content=" 为啥google怎么ps毛玻璃都能链接被中断啊！！！！！
+这是不是向我们暗示着什么啊！！！！！！！！ Aug 21st, 2013 "> <meta name="keywords" content="">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -97,45 +97,13 @@ $(document).ready(
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2013/11/01/e8aebee8aea1e4b880e4b8aae4b8a4e6a08fe58887e79a86e58fafe6bb91e58aa8e79a84e697a5e69c9fe98089e68ba9e599a8/">
+		<a href="/blog/2013/08/21/e59090e6a7bde4b880e4b88b/">
 		
-			设计一个两栏切皆可滑动的日期选择器</a>
+			吐槽一下</a>
 	</h2>
 	<div class="entry-content">
-		<p>发现不记录一下开发的过程的话一出现问题很难理清楚啊(╯‵□′)╯︵┻━┻</p>
-
-<p>大概就是这样一个东西：</p>
-
-<p><img src="/images/post/screenshot-2013-11-01-10-41-24.png" alt="Screenshot-2013-11-01-10.41.24" /></p>
-
-<p>要实现的功能有：</p>
-
-<ul>
-<li><p>月份选择器可滑动可点击，且月份切换时周视图也随之改变为当月的1号。</p></li>
-<li><p>周选择器可滑动可点击，点击后通过interface将所选择的日期传递出去。</p></li>
-<li><p>周选择器在滑动至其他月份时使月选择器自动调整为当前月份。</p></li>
-<li><p>月份选择器可独立出来</p></li>
-</ul>
-
-
-<p>实现的方法：</p>
-
-<ul>
-<li><p>两个视图都使用viewpager+fragment来实现滑动，且在月份选择器viewpager的两侧加两个button</p></li>
-<li><p>月份选择器总数为100*12+当前的月份，这儿有一个坑就是用Calendar中的month时，它的范围是0-11的，必须要多+1，在初始化视图的时候自动设置为今天（即最后一个）</p></li>
-<li><p>月份选择器在滑动后调用周的setCurrentWeek方法，再由其内部调用setCurrentItem方法。</p></li>
-</ul>
-
-
-<p>这要解决一个问题：</p>
-
-<p>月份在变化之后带动了周的变化，但是周的变化有可能会再次带动月份的变化，就造成了逻辑的混乱。</p>
-
-<p>想到的解决办法就是只有在滑动周选择器时才会改变月份,滑动月选择器时改变的周视图不会再次去改变月份。</p>
-
-<p>但是滑动周视图后改变了月视图之后月视图也会改变周视图。。所以balablabala要反过来再改一次</p>
-
-<p>虽然挺蛋疼了但总归是解决了这个问题，还有若干个小问题就不提了</p>
+		<p>为啥google怎么<strong>ps毛玻璃</strong>都能链接被中断啊！！！！！
+这是不是向我们暗示着什么啊！！！！！！！！</p>
 
 		
 		
@@ -155,14 +123,8 @@ $(document).ready(
   
 
 
-<time datetime="2013-11-01T09:40:02+08:00" pubdate data-updated="true">Nov 1<span>st</span>, 2013</time></div>
+<time datetime="2013-08-21T18:44:47+08:00" pubdate data-updated="true">Aug 21<span>st</span>, 2013</time></div>
 	
-
-<div class="tags">
-
-	<a class='category' href='/blog/categories/android/'>Android</a>
-
-</div>
 
 
 </div></article>
@@ -171,18 +133,12 @@ $(document).ready(
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2013/10/29/e794a8canvase794bbe5a1abe58585e5908ee79a84e4b889e8a792e5bda2/">
+		<a href="/blog/2013/08/03/e6ada3e5bc8fe8bf9be585a5e5ada6e4b9a0rubyonrailse998b6e6aeb5/">
 		
-			用canvas画填充后的三角形</a>
+			正式进入学习RubyOnRails阶段</a>
 	</h2>
 	<div class="entry-content">
-		<p>花了半天时间研究这个啊！！</p>
-
-<blockquote><p><a href="http://stackoverflow.com/questions/3501126/how-to-draw-a-filled-triangle-in-android-canvas">http://stackoverflow.com/questions/3501126/how-to-draw-a-filled-triangle-in-android-canvas</a></p></blockquote>
-
-<p>这个问题中不断的moveTo，lineTo后的path用setStyle(Paint.Style.FILL)的paint是画不了一个被填充的三角的，会直接无法显示，又找了大半天的解决方法才发现这个问题的第二个就是解决方法。。</p>
-
-<p>那就是moveTo之后就一直lineTo就可以了。。。。。</p>
+		<p>Android什么先不管了- &ndash;#</p>
 
 		
 		
@@ -202,14 +158,8 @@ $(document).ready(
   
 
 
-<time datetime="2013-10-29T13:36:15+08:00" pubdate data-updated="true">Oct 29<span>th</span>, 2013</time></div>
+<time datetime="2013-08-03T22:37:15+08:00" pubdate data-updated="true">Aug 3<span>rd</span>, 2013</time></div>
 	
-
-<div class="tags">
-
-	<a class='category' href='/blog/categories/android/'>Android</a>
-
-</div>
 
 
 </div></article>
@@ -218,18 +168,33 @@ $(document).ready(
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2013/10/21/e69d8ee58588e7949fefbc8ce99d9ee5b8b8e79a84e6849fe8b0a2e682a8/">
+		<a href="/blog/2013/08/02/e585b3e4ba8ee4b8aae4babae5bc80e58f91e88085e79b88e588a9e6a8a1e5bc8f/">
 		
-			李先生，非常的感谢您</a>
+			关于个人开发者盈利模式</a>
 	</h2>
 	<div class="entry-content">
-		<p><img src="/images/post/screenshot-2013-10-21-12-48-321.png" alt="Screenshot-2013-10-21-12.48.32" /></p>
-
-<p>这是我做这个软件以来收到的第一笔Donation。</p>
-
-<p>其实我之前是完全不相信，有人在用着免费软件的时候能想着给作者一些支持，特别是我这个并不优异的软件。</p>
-
-<p>今天开始永久删去极简番茄的广告条。</p>
+		<p>不早了长话短说
+很久之前就在考虑这个盈利模式的问题了，
+最开始的想法是做出一个自己都能觉得很棒的软件（对于一个强迫症来说很不容易
+然后分享给大家使用，也给了反馈的渠道
+出人意料的是还收到了不少好评
+但同时也衍生了些不大不小的众多的意见和建议
+我也就一直在兢兢业业的改Bug，增功能，力求更完美些让更多的人满意
+当然这一切都是无偿的，我本也没想要获取点什么
+近期抱着试一试的态度添加的赞助的支付宝信息和软件内广告
+当然结果是显而易见的支付宝毫无动静
+软件内的广告藏在设置中几乎没人会细看或点击
+不想还在搜索引擎中发现求去广告的帖子
+当然看到了还是挺高兴的XD
+今日又加了个百度的广告
+还是在设置栏
+实在是不忍见到我心爱的软件贴上那块狗皮膏药。
+这个软件的更新大概就到此为止吧，
+小改动还会有大变化怕是不会再有了
+如果有人能有缘看到这个文章又对我的软件有兴趣的话
+附上一个一直有效的去广告方法，
+在最新的1.3版本中点设置最后一项再点设置最后一项有个miniGame
+超过40秒即可去广告:)</p>
 
 		
 		
@@ -249,7 +214,7 @@ $(document).ready(
   
 
 
-<time datetime="2013-10-21T12:00:30+08:00" pubdate data-updated="true">Oct 21<span>st</span>, 2013</time></div>
+<time datetime="2013-08-02T00:22:45+08:00" pubdate data-updated="true">Aug 2<span>nd</span>, 2013</time></div>
 	
 
 <div class="tags">
@@ -265,34 +230,28 @@ $(document).ready(
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2013/10/20/e68891e69e9ce784b6e8bf98e698afe4b8aae9a38ee999a9e58e8ce681b6e59e8be79a84e4baba/">
+		<a href="/blog/2013/07/31/e69e81e7ae80e795aae88c84/">
 		
-			我果然还是个风险厌恶型的人</a>
+			极简番茄</a>
 	</h2>
 	<div class="entry-content">
-		<p>经济的专业读了这么久能留在我脑子里的经济学的名词还真没几个，风险厌恶型算是一个。</p>
+		<p>自己正经做的第一款android软件，之前几个软件都太。。就无视掉吧</p>
 
-<p>依我的非常浅薄的理解来解释一下它：就是在经济活动中会非常倾向于做出风险较小的那一面行为的类型。</p>
+<p>话说为什么要做这个捏？</p>
 
-<p>最近找到了个remote的工作是支付的bitcoin为每周的工资，每个周日我拿到工资后在当天就会将其卖出，即使bitcoin在不断的上涨，下图为卖出的历史纪录，最上方的为今天的情况，即比上周上涨了约200元。</p>
+<p>因为android上所有的别的番茄计时器都太复杂太丑了！！！！！！！</p>
 
-<p><a href="/images/post/screenshot-2013-10-20-23-59-341.png">Screenshot-2013-10-20-23.59.34</a></p>
+<p>在自习室用那么丑的计时器怎么能专心看书！！！！！！！！！！！</p>
 
-<p>看到这个记录有人可能会想，如果把第一周的bitcoin攒到现在来卖的话，不就凭空多出了近600多元吗？</p>
+<p>所以制作了这个简洁有爱的工具。</p>
 
-<p><strong>但我是个风险厌恶型</strong></p>
+<p>截图的话一放占大半个屏幕就不放了＝，＝</p>
 
-<p>好吧以上都是废话。</p>
+<p>说明什么的话也好麻烦暂时不管了。。</p>
 
-<p>顺便一说最近blog怎么都不怎么更新了呢？</p>
+<p>想看的话可以在  <a href="http://dacer.github.io/myapps">dacer.github.io/myapps</a> 看</p>
 
-<p>原因不是我变懒了也不是这个bolg的实际访问量寥寥无几（这倒是事实）</p>
-
-<p>觉得把工作中的东西拿出来分享略有些不妥，好吧其实是在忙这个工作就变懒了(╯‵□′)╯︵┻━┻</p>
-
-<p>以后有时间的话把一个很有意思的actionbar进度条拿出来开源成library也不错的感觉</p>
-
-<p>好吧这一整篇都是废话</p>
+<p>这个很奇怪的类似于说明文档的东西暂时就到此～</p>
 
 		
 		
@@ -312,12 +271,12 @@ $(document).ready(
   
 
 
-<time datetime="2013-10-20T23:08:44+08:00" pubdate data-updated="true">Oct 20<span>th</span>, 2013</time></div>
+<time datetime="2013-07-31T13:48:33+08:00" pubdate data-updated="true">Jul 31<span>st</span>, 2013</time></div>
 	
 
 <div class="tags">
 
-	<a class='category' href='/blog/categories/sui-bi/'>随笔</a>
+	<a class='category' href='/blog/categories/android/'>android</a>
 
 </div>
 
@@ -328,142 +287,21 @@ $(document).ready(
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2013/10/06/e4b880e5ae9ae8a681e6b3a8e6848fe8baabe4bd93e5958aefbc81efbc81efbc81efbc81/">
+		<a href="/blog/2013/07/31/e58588e69da5e58897e4b880e4b88be68891e79baee5898de79a84e4b880e4ba9be4bd9ce59381e5a5bde4ba86/">
 		
-			一定要注意身体啊！！！！</a>
+			先来列一下我目前的一些作品好了</a>
 	</h2>
 	<div class="entry-content">
-		<p>几个月前的样子吧手腕剧痛，尤其是抓着鼠标的右手，之后换了mba又注意休息手腕之后好了很多.</p>
-
-<p>不过最近又发现后颈在每天起床之后都巨酸痛，开始来以为是破枕头的问题，刚准备攒半个月的工资买个tempur的枕头，结果发现似乎和使用电脑的坐姿有很大关系，我用笔记本都是放在桌上需要低着头用的，所以还是把钱剩下来调整坐姿试试看吧.</p>
-
-<p>一定要注意好身体啊！！我在多大就那么多毛病了啊π_π</p>
-
-<p>顺便推荐一个教正确坐姿的视频</p>
-
-<p><a href="http://www.tudou.com/programs/view/I-Dap66v2cs/?resourceId=0_06_02_99?fr=2#fullscreen">http://www.tudou.com/programs/view/I-Dap66v2cs/?resourceId=0_06_02_99?fr=2#fullscreen</a></p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-10-06T15:04:55+08:00" pubdate data-updated="true">Oct 6<span>th</span>, 2013</time></div>
-	
-
-
-</div></article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2013/10/04/e99a8fe7ac94-october-4-2013/">
-		
-			随笔 October 4, 2013</a>
-	</h2>
-	<div class="entry-content">
-		<p>一大早看到极简番茄在Google Play上多了个2星的挺不爽的</p>
-
-<p>不过看到Chrome在Google Play上有4万多个1星顿时就释然了。。</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-10-04T11:08:37+08:00" pubdate data-updated="true">Oct 4<span>th</span>, 2013</time></div>
-	
-
-<div class="tags">
-
-	<a class='category' href='/blog/categories/sui-bi/'>随笔</a>
-
-</div>
-
-
-</div></article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2013/10/03/e8aebee8aea1e4b880e4b8aae7bb9de5afb9e58786e697b6e58f88e79bb8e5afb9e79c81e794b5e79a84android-e58092e8aea1e697b6e696b9e6a188/">
-		
-			设计一个绝对准时又相对省电的Android 倒计时方案</a>
-	</h2>
-	<div class="entry-content">
-		<p>如果没有小米的话就不用写这个文章了。。</p>
-
-<p>本文是<a href="http://idacer.tk/?p=67">这个</a>和<a href="http://idacer.tk/?p=83">这个</a>的后续，欲在现今环境下打造一个绝对准时又较省电的倒计时方案。<a href="http://idacer.tk/?p=67">
-</a></p>
+		<h2>Android：</h2>
 
 <ul>
-<li><p>目标：在软件的多个界面中都能<strong>一定准确</strong>的显示倒计时，无论手机处于何种界面或状态都能<strong>准时</strong>的提示，在非小米手机中能达到<strong>几乎不耗电量。</strong></p></li>
-<li><p>概述方案：记录开始计时的时间和进行状态到本地，针对小米启动一个service进行wakelock防止其休眠，</p></li>
+<li><p><a href="http://idacer.tk/?p=17">极简番茄</a></p></li>
+<li><p><a href="http://www.mumayi.com/android-308499.html?1375247541">极简规划</a></p></li>
+<li><p><a href="http://www.mumayi.com/android-280096.html?1375247541">无声相机</a></p></li>
+<li><p><a href="http://www.mumayi.com/android-277580.html?1375247541">中韩汇率</a></p></li>
 </ul>
 
 
-<p>小米准时唤醒验证程序：</p>
-
-<p>简单的搜了下wakelock应该没被小米阉割，所以要测试的内容为：不使用wakelock下的带和不带wakeup alarmmanager 的提示情况，使用wakelock下情况。顺便记录下开机，锁屏时间。</p>
-
-<p>记录内容模拟：</p>
-
-<p>&mdash;&mdash;&mdash;&mdash;&mdash;Wakeup AlarmManager TEST&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;</p>
-
-<p>[2012/10/02 16:02:02]  System boot completed.</p>
-
-<p>[2012/10/02 16:02:02]  add a alarmManager with wakeup to 16:12:01</p>
-
-<p>[2012/10/02 16:02:02]  &lt;16:12:01>alarmManager with wakeup alarmed at 16:15:01</p>
-
-<p>[2012/10/02 19:32:22]  &mdash;Screen off&mdash;</p>
-
-<p>[2012/10/02 19:32:02]  add a alarmManager with wakeup to 19:33:01</p>
-
-<p>[2012/10/02 19:32:02]  &mdash;-WakelockService started&mdash;&ndash;</p>
-
-<p>好累啊感觉不会再爱了T_T</p>
-
-<p>update：</p>
-
-<p>测试程序搞定</p>
-
-<p><a href="https://github.com/dacer/XiaoMiTest">https://github.com/dacer/XiaoMiTest</a></p>
-
-<p>但是发了email之后都木有人愿意帮忙..是发的姿势不对嘛！！！</p>
-
-<p>update(Oct 6):</p>
-
-<p>有回复了，确认有效。</p>
-
 		
 		
 	</div>
@@ -482,12 +320,12 @@ $(document).ready(
   
 
 
-<time datetime="2013-10-03T08:46:30+08:00" pubdate data-updated="true">Oct 3<span>rd</span>, 2013</time></div>
+<time datetime="2013-07-31T13:17:59+08:00" pubdate data-updated="true">Jul 31<span>st</span>, 2013</time></div>
 	
 
 <div class="tags">
 
-	<a class='category' href='/blog/categories/android/'>Android</a>, <a class='category' href='/blog/categories/kai-fa-bi-ji/'>开发笔记</a>
+	<a class='category' href='/blog/categories/ge-ren-yuan-chuang-ruan-jian/'>个人原创软件</a>
 
 </div>
 
@@ -498,21 +336,16 @@ $(document).ready(
     <article class="post">
 	<h2 class="title">
 		
-		<a href="/blog/2013/09/30/e68891e4bb8eeclipsee8bdace588b0intellije68980e5819ae79a84e4ba8b/">
+		<a href="/blog/2013/07/31/hello-world-2/">
 		
-			我从eclipse转到IntelliJ所做的事</a>
+			Hello World</a>
 	</h2>
 	<div class="entry-content">
-		<p>早就不想用那个蜗牛速的eclipse了，于是着手准备转到Android studio开发</p>
+		<p>折腾了老半天终于把blog搞定了，</p>
 
-<p>1.鼠标悬停看javaDoc &ndash; 找到安装目录下的 bin/idea.properties ，填上下面一行</p>
+<p>先感谢一下fyvps.com提供的vps～</p>
 
-<pre><code>&lt;code&gt;auto.show.quick.doc=true&lt;/code&gt;
-</code></pre>
-
-<p>但是实际测试无用。又找到一个方法可显示，如下</p>
-
-<p>Settings &ndash;> Editor &ndash;> Show quick doc on mouse move</p>
+<p>下面开始正式的博客文章～</p>
 
 		
 		
@@ -532,160 +365,8 @@ $(document).ready(
   
 
 
-<time datetime="2013-09-30T16:17:48+08:00" pubdate data-updated="true">Sep 30<span>th</span>, 2013</time></div>
+<time datetime="2013-07-31T13:04:06+08:00" pubdate data-updated="true">Jul 31<span>st</span>, 2013</time></div>
 	
-
-<div class="tags">
-
-	<a class='category' href='/blog/categories/android/'>Android</a>
-
-</div>
-
-
-</div></article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2013/09/29/e5bc80e696b0e59d91e4ba86efbc8ce59fbae4ba8esinatrae79a84e4b8ade99fa9e6b187e78e87e69fa5e79c8be7bd91e7ab99/">
-		
-			开新坑了，基于sinatra的中韩汇率查看网站</a>
-	</h2>
-	<div class="entry-content">
-		<p><a href="http://huilv-idacer.rhcloud.com/">&mdash;-点击查看&mdash;&ndash;</a></p>
-
-<p>大概就是sinatra做后端进行post等行为在银联官网上读取银联汇率，前端直接显示结果。</p>
-
-<p>部署在了openshift上（就剩1个免费份额了好捉急！）</p>
-
-<p>显示效果嘛很明显是抄袭google now。。果然我的设计是硬伤。。</p>
-
-<p>当然这个是开源的，不过没啥意义就是了。。</p>
-
-<p>github: <a href="https://github.com/dacer/RMB2WON">https://github.com/dacer/RMB2WON</a></p>
-
-<p>todos:
-• <del>汇率计算器 触摸和输入型</del></p>
-
-<p>• FAQ</p>
-
-<p>analytic</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-09-29T23:15:16+08:00" pubdate data-updated="true">Sep 29<span>th</span>, 2013</time></div>
-	
-
-<div class="tags">
-
-	<a class='category' href='/blog/categories/ruby/'>Ruby</a>, <a class='category' href='/blog/categories/kai-fa-bi-ji/'>开发笔记</a>
-
-</div>
-
-
-</div></article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2013/09/28/e5a682e4bd95e59ca8action-bare4b8ade698bee7a4bae4b880e5b182e8bf9be5baa6e69da1efbc8ce5a6827x7/">
-		
-			如何在Action Bar中显示一层进度条，如7x7</a>
-	</h2>
-	<div class="entry-content">
-		<p>看到这个需求第一时间我就想到了之前很沉迷的游戏 7x7, 搜了一下果然有相关的问题，链接如下：</p>
-
-<p><a href="http://stackoverflow.com/questions/17173414/how-to-implement-a-dynamic-background-on-actionbar-like-7x7">http://stackoverflow.com/questions/17173414/how-to-implement-a-dynamic-background-on-actionbar-like-7x7</a></p>
-
-<p>7x7作者亲自现身说道：</p>
-
-<blockquote><p>I actually made a custom Action Bar that was transparent and added the level progress bar underneath it.</p></blockquote>
-
-<p>然后给出了这个<a href="http://developer.android.com/reference/android/R.attr.html#windowActionBarOverlay">windowActionBarOverlay</a>链接，于是开始</p>
-
-<p>尝试1：</p>
-
-<p>将Action Bar设置为透明且可和下部分重叠，先简单的放了个button试了下，效果如下：</p>
-
-<p><img src="/images/post/screen-shot-2013-09-30-at-4-49-52-pm1.png" alt="Screen-Shot-2013-09-30-at-4.49.52-PM" /></p>
-
-<p>之后用testin测试了下其他机型的适配情况，除了联想的一个奇葩机型之外都如图显示，于是意外的得出了个结论，<strong>button高度=Action Bar高度</strong>（这是歪打正着吧(╯‵□′)╯︵┻━┻）</p>
-
-<p>尝试2：</p>
-
-<p>但这样还是不太方便，于是兴冲冲的研究了半天这个<a href="https://github.com/chrisbanes/ActionBar-PullToRefresh">pull-to-refresh</a>的源码，发现它的原理是在Action Bar上覆盖了一层，这不是完全没用嘛 (╯‵□′)╯︵┻━┻</p>
-
-<p>不过发现了这个方法</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kt">int</span> <span class="nf">getActionBarSize</span><span class="o">(</span><span class="n">Context</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>  <span class="kt">int</span><span class="o">[]</span> <span class="n">attrs</span> <span class="o">=</span> <span class="o">{</span><span class="n">android</span><span class="o">.</span><span class="na">R</span><span class="o">.</span><span class="na">attr</span><span class="o">.</span><span class="na">actionBarSize</span><span class="o">};</span>
-</span><span class='line'>  <span class="n">TypedArray</span> <span class="n">values</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="na">getTheme</span><span class="o">().</span><span class="na">obtainStyledAttributes</span><span class="o">(</span><span class="n">attrs</span><span class="o">);</span>
-</span><span class='line'>  <span class="k">try</span> <span class="o">{</span>
-</span><span class='line'>    <span class="k">return</span> <span class="n">values</span><span class="o">.</span><span class="na">getDimensionPixelSize</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
-</span><span class='line'>  <span class="o">}</span> <span class="k">finally</span> <span class="o">{</span>
-</span><span class='line'>    <span class="n">values</span><span class="o">.</span><span class="na">recycle</span><span class="o">();</span>
-</span><span class='line'>  <span class="o">}</span>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>最后得出的结论就是：目前看来还是用方法一，然后写个drawable作为自定义粗的进度条<br/>
-<strong>Update</strong><br/>
-最后用的方法是，仿照actionbar做一个 custom view = =</p>
-
-		
-		
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-09-28T22:39:27+08:00" pubdate data-updated="true">Sep 28<span>th</span>, 2013</time></div>
-	
-
-<div class="tags">
-
-	<a class='category' href='/blog/categories/kai-fa-bi-ji/'>开发笔记</a>
-
-</div>
 
 
 </div></article>
@@ -695,11 +376,9 @@ $(document).ready(
         <a href="/blog/page/3/" class="prev">Prev</a>
     
     
-        <a href="/blog/page/5/" class="next">Next</a>
-    
     <div class="center"><a href="/archives">Blog Archives</a></div>
 </nav></div>
-	<footer id="footer" class="inner">Copyright &copy; 2014
+	<footer id="footer" class="inner">Copyright &copy; 2016
 
     Dacer
 

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 随笔 | Dacer Blog]]></title>
   <link href="http://blog.dacer.im/blog/categories/sui-bi/atom.xml" rel="self"/>
   <link href="http://blog.dacer.im/"/>
-  <updated>2014-10-08T17:14:00+08:00</updated>
+  <updated>2016-02-09T00:30:54+08:00</updated>
   <id>http://blog.dacer.im/</id>
   <author>
     <name><![CDATA[Dacer]]></name>
@@ -12,6 +12,47 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Blog 复活了]]></title>
+    <link href="http://blog.dacer.im/blog/2016/02/08/blog-fu-huo-liao/"/>
+    <updated>2016-02-08T23:06:58+08:00</updated>
+    <id>http://blog.dacer.im/blog/2016/02/08/blog-fu-huo-liao</id>
+    <content type="html"><![CDATA[<p>今天是 2016 年的大年初一</p>
+
+<p>这个没有人看的 blog 悄悄的复活了，</p>
+
+<p>起因就不再赘述了，总之是突然的又燃烧起了些许的斗志，</p>
+
+<p>距我上一篇文章差了接近两年的时间，</p>
+
+<p>仔细想了一想经过了这两年我好像并没有长进多少，</p>
+
+<p>只是看着之前的漏洞百出的很多文章有着满满的羞耻感。。</p>
+
+<hr />
+
+<p>人（或者只是我？。。）真的很容易被懒惰的情绪一点一点地吞噬掉</p>
+
+<p>刚开始也就玩那么一会会儿游戏，刷一会会儿微博，赖一会会儿床，</p>
+
+<p>每天就只干干本职的工作，反复咀嚼着用过一遍又一遍的知识，</p>
+
+<p>blog 挂了就挂了吧，反正也没有人看，反正我也不是搞运维的，折腾出来也没啥用</p>
+
+<p>&hellip;</p>
+
+<p>在迷迷糊糊这么久后突然间如针刺一般意识到</p>
+
+<h2><strong>我的人生就这么白白失去了两年</strong></h2>
+
+<p>清理了一下没有啥用的 code school 的笔记</p>
+
+<p>需要规划一下今年关于自身技术发展和社交方面的事情</p>
+
+<p>顺便可能的话，fix ‘找不到对象’的 issue</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[国产单机游戏]]></title>
@@ -76,37 +117,6 @@
 <p>其实我之前是完全不相信，有人在用着免费软件的时候能想着给作者一些支持，特别是我这个并不优异的软件。</p>
 
 <p>今天开始永久删去极简番茄的广告条。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[我果然还是个风险厌恶型的人]]></title>
-    <link href="http://blog.dacer.im/blog/2013/10/20/e68891e69e9ce784b6e8bf98e698afe4b8aae9a38ee999a9e58e8ce681b6e59e8be79a84e4baba/"/>
-    <updated>2013-10-20T23:08:44+08:00</updated>
-    <id>http://blog.dacer.im/blog/2013/10/20/e68891e69e9ce784b6e8bf98e698afe4b8aae9a38ee999a9e58e8ce681b6e59e8be79a84e4baba</id>
-    <content type="html"><![CDATA[<p>经济的专业读了这么久能留在我脑子里的经济学的名词还真没几个，风险厌恶型算是一个。</p>
-
-<p>依我的非常浅薄的理解来解释一下它：就是在经济活动中会非常倾向于做出风险较小的那一面行为的类型。</p>
-
-<p>最近找到了个remote的工作是支付的bitcoin为每周的工资，每个周日我拿到工资后在当天就会将其卖出，即使bitcoin在不断的上涨，下图为卖出的历史纪录，最上方的为今天的情况，即比上周上涨了约200元。</p>
-
-<p><a href="/images/post/screenshot-2013-10-20-23-59-341.png">Screenshot-2013-10-20-23.59.34</a></p>
-
-<p>看到这个记录有人可能会想，如果把第一周的bitcoin攒到现在来卖的话，不就凭空多出了近600多元吗？</p>
-
-<p><strong>但我是个风险厌恶型</strong></p>
-
-<p>好吧以上都是废话。</p>
-
-<p>顺便一说最近blog怎么都不怎么更新了呢？</p>
-
-<p>原因不是我变懒了也不是这个bolg的实际访问量寥寥无几（这倒是事实）</p>
-
-<p>觉得把工作中的东西拿出来分享略有些不妥，好吧其实是在忙这个工作就变懒了(╯‵□′)╯︵┻━┻</p>
-
-<p>以后有时间的话把一个很有意思的actionbar进度条拿出来开源成library也不错的感觉</p>
-
-<p>好吧这一整篇都是废话</p>
 ]]></content>
   </entry>
   
