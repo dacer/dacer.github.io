@@ -7,8 +7,7 @@
 
 <meta name="author" content="Dacer"> 
 
-<meta name="description" content=" 为啥google怎么ps毛玻璃都能链接被中断啊！！！！！
-这是不是向我们暗示着什么啊！！！！！！！！ Aug 21st, 2013 "> <meta name="keywords" content="">
+<meta name="description" content="在极简番茄的菜单里摆着灰色的同步google task好久了，之前曾经做了个不可编辑只可查看的版本，再往下弄发现太蛋疼了就暂缓了，这两天又心血来潮的准备填了这个坑，下面来记录一下这个制作的过程(不然我怕过两个月就看不懂代码了..) 首先先来看看Google task api的开发文档， &hellip;"> <meta name="keywords" content="">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -92,6 +91,121 @@ $(document).ready(
 </header>
 
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/09/12/android-e4bdbfe794a8google-task-apie5bc80e58f91e7ac94e8aeb0/">
+		
+			Android 使用google Task Api开发笔记</a>
+	</h2>
+	<div class="entry-content">
+		<p>在<a href="http://idacer.tk/?p=17">极简番茄</a>的菜单里摆着灰色的同步google task好久了，之前曾经做了个不可编辑只可查看的版本，再往下弄发现太蛋疼了就暂缓了，这两天又心血来潮的准备填了这个坑，下面来记录一下这个制作的过程(不然我怕过两个月就看不懂代码了..)</p>
+
+<p>首先先来看看Google task api的<a href="https://developers.google.com/google-apps/tasks/">开发文档</a>，Google提供了两种方式调用api：一种是client library，一种是发送http请求获取，我比较懒就用现成的library好了。不过竟然API一天只能5000次啊！！！我只能默默的努力减少调用了。。</p>
+
+<p>怎么在项目中加入library就不细说了，下面是本文的重点，如何同步本地sqlite数据库与google服务器中的数据库。（太过细微的地方已省略）</p>
+
+<p>我先建立了两个方法：
+<code>public void putTasksToDB(List tList){...}</code>和<code>public List getTasksFromDB(){...}</code>
+用于将Google给出的Task类存入本地数据库和从数据库读取出，也就是将Task的各个我所用到的属性一个个保存起来，这样就不用直接面对数据库了。
+因为Task中包含delete属性，而不是直接将其删除，所以对数据库的操作可抽象为2种行为：Add Task 和 Update Task，这样给下面的流程带来了很多便利</p>
+
+<h2>Refresh流程</h2>
+
+<p>这个很重要我先把它放在首位，下列图中我将本地的Task划分为Add（新增加）Update（已修改）和 未修改（图中无显示）
+第一步：
+<del>将本地数据库中Task导出至List<Task> listTaskLocal，将本地增加的Task推送至Web，同时删除本地database中对应数据（为了更新web端的identifier）</del></p>
+
+<p>发现上述方法会因为新task的identifier相同而一次性的全删掉了。。</p>
+
+<p>改为建立一个HashMap保存Task以及对应的数据库id</p>
+
+<p><img src="/images/post/2013-9-3-1.png" alt="第一步" /></p>
+
+<p>第二步：</p>
+
+<p>将Web数据库中Task导出至List<Task> listTaskWeb,根据identifier将listTaskLocal中没有的Task存入本地数据库[*为防止之前数据库中仅有本地新增的task，需更新listTaskLocal]</p>
+
+<p><img src="/images/post/2013-9-3-2.png" alt="第二步" /></p>
+
+<p>第三步：</p>
+
+<p>重新获取listTaskLocal与本地数据库同步，对比相同identifier的listTaskLocal和listTaskWeb中的update_date项,将该项时间较新的Task覆盖较旧的（即分别更新本地或web数据库）。</p>
+
+<p><img src="/images/post/2013-9-3-3.png" alt="第三步" /></p>
+
+<p>*实际使用会发现一个小Bug，在网页端删除tasklist之后同步本地的数据库不会被删除，因为这不是用delete标记过的删除行为，需要在初始化教程list的同时清空本地数据库</p>
+
+<h2>优化API调用流程</h2>
+
+<p>5000次每日真的很蛋疼啊。。只能想办法减少调用了</p>
+
+<p>简略的想法就是：1.手动刷新 2.在本地储存list ID，为防止list被用户在网页端删除，在刷新检测不到list时重新初始化list</p>
+
+<p>在经过不断的测试之后会发现task API在调用时list ID格式正确但不存在会返回404错误，格式错误时则会反馈400错误，故流程如下：</p>
+
+<p>1.在本地保存task时identifier设置为0，从web下载所得的identifier为相应的web对应值。</p>
+
+<p>2.刷新时先将本地identifier为0的Task（即仅在本地新建而未上传）上传至web端，并删除本地数据库相关数据，如上传是服务器反馈错误为404则说明用户删除了web端list，或者当新安装软件时list ID格式不正确会返回400错误，如是这两者错误则初始化web端list。</p>
+
+<p>*这步有个大坑。。在本地新的Task的时候改Task的id为0，会导致上传返回400错误，必须先set为null。果然是这个方案没有经过深思熟虑的后果╮(╯_╰)╭</p>
+
+<p>3.其实最佳方案是将待修改的tasks一并上传至web端，不过找了很久都没发现有这么个方法，如果有人知道怎么调用一次API将所有tasks上传上去请务必告诉我！</p>
+
+<p>最后结果就是本地无改动时刷新API调用为1次，每增加一个改动/增加的task后刷新API调用加一。。</p>
+
+<p>关于自定义listview和本地数据库一一对应的方法：</p>
+
+<p>在本例中我自定义了一个SimpleCursorAdapter，在它的构造函数中必须包含Cursor类型的参数来super到父类，而这个cursor则保存着显示的数据，</p>
+
+<p>使用这个方法即可提取出cursor中某一row为ArrayList，其中TaskRecorder.KEY_ID为要提取的数据在数据库中的。。那一列的名字？
+<code>private ArrayList</code><Integer> <code>getAllIdOfBox(Cursor cursor) {</code></p>
+
+<p><code>int idIndex = cursor.getColumnIndex(TaskRecorder.KEY_ID);
+ArrayList mPosition_id = new ArrayList();
+for (cursor.moveToFirst(); !(cursor.isAfterLast()); cursor.moveToNext()) {
+int tempInt = cursor.getInt(idIndex);
+Integer integer = tempInt;
+mPosition_id.add(integer);
+}
+return mPosition_id;
+}</code></p>
+
+<p>BUG!!!</p>
+
+<p>在本地有的被hidden之后会出现bug！</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-12T13:44:22+08:00" pubdate data-updated="true">Sep 12<span>th</span>, 2013</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/kai-fa-bi-ji/'>开发笔记</a>
+
+</div>
+
+
+</div></article>
 
 
     <article class="post">
