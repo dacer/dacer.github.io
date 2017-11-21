@@ -1,0 +1,161 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>开新坑了，基于sinatra的中韩汇率查看网站  | Dacer Blog</title>
+
+<meta name="author" content="Dacer"> 
+
+<meta name="description" content="&mdash;-点击查看&mdash;&ndash; 大概就是sinatra做后端进行post等行为在银联官网上读取银联汇率，前端直接显示结果。 部署在了openshift上（就剩1个免费份额了好捉急！） 显示效果嘛很明显是抄袭google now。。果然我的设计是硬伤。。 当然这个是开源的， &hellip;"> <meta name="keywords" content="">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="Dacer Blog" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.ico" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script src="/javascripts/jquery.min.js"></script>
+	<script type="text/javascript" src="/javascripts/jquery.fancybox.pack.js"></script>
+
+<script language="Javascript" type="text/javascript">
+$(document).ready(
+  function() {
+    (function($) {
+      $(".fancybox[data-content-id]").each(function() {
+        this.href = $(this).data('content-id');
+      });
+      $(".fancybox").fancybox({
+        beforeLoad: function() {
+          var el, 
+              id = $(this.element).data('title-id');
+
+          if (id) {
+            el = $('#' + id);
+
+            if (el.length) {
+              this.title = el.html();
+            }
+          }
+          if ($(this).data('content')) {
+            this.content = $(this).data('content');
+          }
+        },
+        helpers: {
+          title: {
+            type: 'inside'
+          }
+        }
+      });
+    })(jQuery);
+  }
+);
+</script>
+
+	
+</head>
+
+
+<body>
+	<header id="header" class="inner"><h1><a href="/">Dacer Blog</a></h1>
+<h4>Ruby & Android</h4>
+<nav id="main-nav"><ul>
+	<li><a href="/">Blog</a></li>
+	<li><a href="/about">About</a></li>
+	<li><a href="/archives">Archive</a></li>
+</ul>
+</nav>
+<nav id="mobile-nav">
+	<div class="alignleft menu">
+		<a class="button">Menu</a>
+		<div class="container"><ul>
+	<li><a href="/">Blog</a></li>
+	<li><a href="/about">About</a></li>
+	<li><a href="/archives">Archive</a></li>
+</ul>
+</div>
+	</div>
+	<div class="alignright search">
+		<a class="button"></a>
+		<div class="container">
+			<form action="http://google.com/search" method="get">
+				<input type="text" name="q" results="0">
+				<input type="hidden" name="q" value="site:blog.dacer.im">
+			</form>
+		</div>
+	</div>
+</nav>
+
+
+</header>
+
+	<div id="content" class="inner"><article class="post">
+	<h2 class="title">开新坑了，基于sinatra的中韩汇率查看网站</h2>
+	<div class="entry-content"><p><a href="http://huilv-idacer.rhcloud.com/">&mdash;-点击查看&mdash;&ndash;</a></p>
+
+<p>大概就是sinatra做后端进行post等行为在银联官网上读取银联汇率，前端直接显示结果。</p>
+
+<p>部署在了openshift上（就剩1个免费份额了好捉急！）</p>
+
+<p>显示效果嘛很明显是抄袭google now。。果然我的设计是硬伤。。</p>
+
+<p>当然这个是开源的，不过没啥意义就是了。。</p>
+
+<p>github: <a href="https://github.com/dacer/RMB2WON">https://github.com/dacer/RMB2WON</a></p>
+
+<p>todos:
+• <del>汇率计算器 触摸和输入型</del></p>
+
+<p>• FAQ</p>
+
+<p>analytic</p>
+</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-29T23:15:16+08:00" pubdate data-updated="true">Sep 29<span>th</span>, 2013</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/ruby/'>Ruby</a>, <a class='category' href='/blog/categories/kai-fa-bi-ji/'>开发笔记</a>
+
+</div>
+
+
+</div></article></div>
+	<footer id="footer" class="inner">Copyright &copy; 2017
+
+    Dacer
+
+<br>
+Powered by Octopress.
+</footer>
+	<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+
+
+
+
+</body>
+</html>

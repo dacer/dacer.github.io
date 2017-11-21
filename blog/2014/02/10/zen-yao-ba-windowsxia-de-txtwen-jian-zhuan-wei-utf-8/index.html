@@ -1,0 +1,166 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>怎么把windows下的txt文件转为utf-8  | Dacer Blog</title>
+
+<meta name="author" content="Dacer"> 
+
+<meta name="description" content="Windows真是害人不浅- &ndash;#
+在Mac下可以 1
+iconv -f gbk -t utf-8 a.txt &gt; b.txt 批量的话 1
+find *.txt -exec sh -c "iconv -f gbk -t UTF8 {} &gt; c/{}.txt" \; &hellip;"> <meta name="keywords" content="">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="Dacer Blog" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.ico" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script src="/javascripts/jquery.min.js"></script>
+	<script type="text/javascript" src="/javascripts/jquery.fancybox.pack.js"></script>
+
+<script language="Javascript" type="text/javascript">
+$(document).ready(
+  function() {
+    (function($) {
+      $(".fancybox[data-content-id]").each(function() {
+        this.href = $(this).data('content-id');
+      });
+      $(".fancybox").fancybox({
+        beforeLoad: function() {
+          var el, 
+              id = $(this.element).data('title-id');
+
+          if (id) {
+            el = $('#' + id);
+
+            if (el.length) {
+              this.title = el.html();
+            }
+          }
+          if ($(this).data('content')) {
+            this.content = $(this).data('content');
+          }
+        },
+        helpers: {
+          title: {
+            type: 'inside'
+          }
+        }
+      });
+    })(jQuery);
+  }
+);
+</script>
+
+	
+</head>
+
+
+<body>
+	<header id="header" class="inner"><h1><a href="/">Dacer Blog</a></h1>
+<h4>Ruby & Android</h4>
+<nav id="main-nav"><ul>
+	<li><a href="/">Blog</a></li>
+	<li><a href="/about">About</a></li>
+	<li><a href="/archives">Archive</a></li>
+</ul>
+</nav>
+<nav id="mobile-nav">
+	<div class="alignleft menu">
+		<a class="button">Menu</a>
+		<div class="container"><ul>
+	<li><a href="/">Blog</a></li>
+	<li><a href="/about">About</a></li>
+	<li><a href="/archives">Archive</a></li>
+</ul>
+</div>
+	</div>
+	<div class="alignright search">
+		<a class="button"></a>
+		<div class="container">
+			<form action="http://google.com/search" method="get">
+				<input type="text" name="q" results="0">
+				<input type="hidden" name="q" value="site:blog.dacer.im">
+			</form>
+		</div>
+	</div>
+</nav>
+
+
+</header>
+
+	<div id="content" class="inner"><article class="post">
+	<h2 class="title">怎么把windows下的txt文件转为utf-8</h2>
+	<div class="entry-content"><p>Windows真是害人不浅- &ndash;#
+在Mac下可以</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>iconv -f gbk -t utf-8 a.txt  &gt; b.txt </span></code></pre></td></tr></table></div></figure>
+
+
+<p>批量的话</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>find *.txt -exec sh -c "iconv -f gbk -t UTF8 {} &gt; c/{}.txt" \;  </span></code></pre></td></tr></table></div></figure>
+
+
+<p>Ubuntu下可以</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>enconv *.txt</span></code></pre></td></tr></table></div></figure>
+
+
+<p>a.txt是要转换的文件，gbk是简体系统下txt默认保存编码(大概。。)</p>
+</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-02-10T19:15:11+08:00" pubdate data-updated="true">Feb 10<span>th</span>, 2014</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/windows/'>Windows</a>
+
+</div>
+
+
+</div></article></div>
+	<footer id="footer" class="inner">Copyright &copy; 2017
+
+    Dacer
+
+<br>
+Powered by Octopress.
+</footer>
+	<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+
+
+
+
+</body>
+</html>

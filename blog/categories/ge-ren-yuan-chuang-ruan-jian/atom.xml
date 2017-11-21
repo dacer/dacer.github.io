@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: 个人原创软件 | Dacer Blog]]></title>
+  <link href="http://blog.dacer.im/blog/categories/ge-ren-yuan-chuang-ruan-jian/atom.xml" rel="self"/>
+  <link href="http://blog.dacer.im/"/>
+  <updated>2017-11-21T18:14:21+08:00</updated>
+  <id>http://blog.dacer.im/</id>
+  <author>
+    <name><![CDATA[Dacer]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[先来列一下我目前的一些作品好了]]></title>
+    <link href="http://blog.dacer.im/blog/2013/07/31/e58588e69da5e58897e4b880e4b88be68891e79baee5898de79a84e4b880e4ba9be4bd9ce59381e5a5bde4ba86/"/>
+    <updated>2013-07-31T13:17:59+08:00</updated>
+    <id>http://blog.dacer.im/blog/2013/07/31/e58588e69da5e58897e4b880e4b88be68891e79baee5898de79a84e4b880e4ba9be4bd9ce59381e5a5bde4ba86</id>
+    <content type="html"><![CDATA[<h2>Android：</h2>
+
+<ul>
+<li><p><a href="http://idacer.tk/?p=17">极简番茄</a></p></li>
+<li><p><a href="http://www.mumayi.com/android-308499.html?1375247541">极简规划</a></p></li>
+<li><p><a href="http://www.mumayi.com/android-280096.html?1375247541">无声相机</a></p></li>
+<li><p><a href="http://www.mumayi.com/android-277580.html?1375247541">中韩汇率</a></p></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+</feed>

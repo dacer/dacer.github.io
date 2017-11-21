@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Windows | Dacer Blog]]></title>
+  <link href="http://blog.dacer.im/blog/categories/windows/atom.xml" rel="self"/>
+  <link href="http://blog.dacer.im/"/>
+  <updated>2017-11-21T18:14:21+08:00</updated>
+  <id>http://blog.dacer.im/</id>
+  <author>
+    <name><![CDATA[Dacer]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[怎么把windows下的txt文件转为utf-8]]></title>
+    <link href="http://blog.dacer.im/blog/2014/02/10/zen-yao-ba-windowsxia-de-txtwen-jian-zhuan-wei-utf-8/"/>
+    <updated>2014-02-10T19:15:11+08:00</updated>
+    <id>http://blog.dacer.im/blog/2014/02/10/zen-yao-ba-windowsxia-de-txtwen-jian-zhuan-wei-utf-8</id>
+    <content type="html"><![CDATA[<p>Windows真是害人不浅- &ndash;#
+在Mac下可以
+<code>
+iconv -f gbk -t utf-8 a.txt  &gt; b.txt
+</code>
+批量的话
+<code>
+find *.txt -exec sh -c "iconv -f gbk -t UTF8 {} &gt; c/{}.txt" \;  
+</code>
+Ubuntu下可以
+<code>
+enconv *.txt
+</code>
+a.txt是要转换的文件，gbk是简体系统下txt默认保存编码(大概。。)</p>
+]]></content>
+  </entry>
+  
+</feed>

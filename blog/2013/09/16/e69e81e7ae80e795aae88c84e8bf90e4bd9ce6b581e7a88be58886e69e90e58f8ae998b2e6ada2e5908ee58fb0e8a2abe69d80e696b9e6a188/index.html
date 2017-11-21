@@ -1,0 +1,158 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>极简番茄运作流程分析及防止后台被杀方案  | Dacer Blog</title>
+
+<meta name="author" content="Dacer"> 
+
+<meta name="description" content="本人写的软件标题为啥是分析呢，因为我已经把基本的流程忘的差不多了..所以要重看一遍源码梳理下，(果然边学边做的后果就是代码超乱的！！都想重写一遍了！！！) 把当时的规划图翻出来了，其实看看挺弱智的，毕竟当时的目标是能做出这个功能就行。。 整理了一半三分之一懒得整理了。。 &hellip;"> <meta name="keywords" content="">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="Dacer Blog" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.ico" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script src="/javascripts/jquery.min.js"></script>
+	<script type="text/javascript" src="/javascripts/jquery.fancybox.pack.js"></script>
+
+<script language="Javascript" type="text/javascript">
+$(document).ready(
+  function() {
+    (function($) {
+      $(".fancybox[data-content-id]").each(function() {
+        this.href = $(this).data('content-id');
+      });
+      $(".fancybox").fancybox({
+        beforeLoad: function() {
+          var el, 
+              id = $(this.element).data('title-id');
+
+          if (id) {
+            el = $('#' + id);
+
+            if (el.length) {
+              this.title = el.html();
+            }
+          }
+          if ($(this).data('content')) {
+            this.content = $(this).data('content');
+          }
+        },
+        helpers: {
+          title: {
+            type: 'inside'
+          }
+        }
+      });
+    })(jQuery);
+  }
+);
+</script>
+
+	
+</head>
+
+
+<body>
+	<header id="header" class="inner"><h1><a href="/">Dacer Blog</a></h1>
+<h4>Ruby & Android</h4>
+<nav id="main-nav"><ul>
+	<li><a href="/">Blog</a></li>
+	<li><a href="/about">About</a></li>
+	<li><a href="/archives">Archive</a></li>
+</ul>
+</nav>
+<nav id="mobile-nav">
+	<div class="alignleft menu">
+		<a class="button">Menu</a>
+		<div class="container"><ul>
+	<li><a href="/">Blog</a></li>
+	<li><a href="/about">About</a></li>
+	<li><a href="/archives">Archive</a></li>
+</ul>
+</div>
+	</div>
+	<div class="alignright search">
+		<a class="button"></a>
+		<div class="container">
+			<form action="http://google.com/search" method="get">
+				<input type="text" name="q" results="0">
+				<input type="hidden" name="q" value="site:blog.dacer.im">
+			</form>
+		</div>
+	</div>
+</nav>
+
+
+</header>
+
+	<div id="content" class="inner"><article class="post">
+	<h2 class="title">极简番茄运作流程分析及防止后台被杀方案</h2>
+	<div class="entry-content"><p>本人写的软件标题为啥是分析呢，因为我已经把基本的流程忘的差不多了..所以要重看一遍源码梳理下，(果然边学边做的后果就是代码超乱的！！都想重写一遍了！！！)</p>
+
+<p>把当时的规划图翻出来了，其实看看挺弱智的，毕竟当时的目标是能做出这个功能就行。。</p>
+
+<p>整理了<del>一半</del>三分之一懒得整理了。。</p>
+
+<p><img src="/images/post/screen-shot-2013-09-17-at-6-55-18-pm1.png" alt="Screen-Shot-2013-09-17-at-6.55.18-PM" /></p>
+
+<p>先说一下本次修改的目标为后台的activity被杀之后仍能正常工作</p>
+
+<p>Bug出现的手动方法为进行番茄，退出为后台，长按Home键退出本activity，点击通知栏的返回，重新计时25分钟。更有可能出现的情况为：内存清理软件，系统内存不足时自动清除本软件。</p>
+
+<p>大体思路为：番茄/休息开始时记录结束时间以及当前为番茄还是休息，用户中断或者完成时归为0，启动软件主画面时检查当前时间是否在记录时间之前，是则跳入番茄/休息运行画面，否则继续展现主画面，进入番茄/休息画面时判断是否紧接着开始，将通知栏的进行中的intent指向MainActivity</p>
+
+<p>这样像贴胶布一样的更新方式还看的真有点蛋疼，但是经一个外国人的feedback建议之后发现根据本文这样修改后可以无痛的横竖屏转换了XD</p>
+</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-16T23:12:21+08:00" pubdate data-updated="true">Sep 16<span>th</span>, 2013</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/kai-fa-bi-ji/'>开发笔记</a>
+
+</div>
+
+
+</div></article></div>
+	<footer id="footer" class="inner">Copyright &copy; 2017
+
+    Dacer
+
+<br>
+Powered by Octopress.
+</footer>
+	<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+
+
+
+
+</body>
+</html>

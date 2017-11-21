@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: android | Dacer Blog]]></title>
+  <link href="http://blog.dacer.im/blog/categories/android/atom.xml" rel="self"/>
+  <link href="http://blog.dacer.im/"/>
+  <updated>2017-11-21T18:14:21+08:00</updated>
+  <id>http://blog.dacer.im/</id>
+  <author>
+    <name><![CDATA[Dacer]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[极简番茄]]></title>
+    <link href="http://blog.dacer.im/blog/2013/07/31/e69e81e7ae80e795aae88c84/"/>
+    <updated>2013-07-31T13:48:33+08:00</updated>
+    <id>http://blog.dacer.im/blog/2013/07/31/e69e81e7ae80e795aae88c84</id>
+    <content type="html"><![CDATA[<p>自己正经做的第一款android软件，之前几个软件都太。。就无视掉吧</p>
+
+<p>话说为什么要做这个捏？</p>
+
+<p>因为android上所有的别的番茄计时器都太复杂太丑了！！！！！！！</p>
+
+<p>在自习室用那么丑的计时器怎么能专心看书！！！！！！！！！！！</p>
+
+<p>所以制作了这个简洁有爱的工具。</p>
+
+<p>截图的话一放占大半个屏幕就不放了＝，＝</p>
+
+<p>说明什么的话也好麻烦暂时不管了。。</p>
+
+<p>想看的话可以在  <a href="http://dacer.github.io/myapps">dacer.github.io/myapps</a> 看</p>
+
+<p>这个很奇怪的类似于说明文档的东西暂时就到此～</p>
+]]></content>
+  </entry>
+  
+</feed>

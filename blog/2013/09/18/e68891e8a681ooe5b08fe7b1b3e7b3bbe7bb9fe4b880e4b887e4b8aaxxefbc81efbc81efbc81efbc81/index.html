@@ -1,0 +1,168 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>为什么部分小米用户在使用极简番茄时提醒会延迟  | Dacer Blog</title>
+
+<meta name="author" content="Dacer"> 
+
+<meta name="description" content="很多小米用户反馈时间会错乱，之前一直以为是后台的Activity所占用的内存被清空所致，但修改后发现仍未改善，最后终于让我找到了根本原因。 使用AlarmManager定的带有WAKEUP闹钟会被某些版本的MIUI系统推迟。 我下面用浅显的语言说明一下 每个软件都可以设置某个时间点的“闹钟” &hellip;"> <meta name="keywords" content="">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="Dacer Blog" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.ico" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script src="/javascripts/jquery.min.js"></script>
+	<script type="text/javascript" src="/javascripts/jquery.fancybox.pack.js"></script>
+
+<script language="Javascript" type="text/javascript">
+$(document).ready(
+  function() {
+    (function($) {
+      $(".fancybox[data-content-id]").each(function() {
+        this.href = $(this).data('content-id');
+      });
+      $(".fancybox").fancybox({
+        beforeLoad: function() {
+          var el, 
+              id = $(this.element).data('title-id');
+
+          if (id) {
+            el = $('#' + id);
+
+            if (el.length) {
+              this.title = el.html();
+            }
+          }
+          if ($(this).data('content')) {
+            this.content = $(this).data('content');
+          }
+        },
+        helpers: {
+          title: {
+            type: 'inside'
+          }
+        }
+      });
+    })(jQuery);
+  }
+);
+</script>
+
+	
+</head>
+
+
+<body>
+	<header id="header" class="inner"><h1><a href="/">Dacer Blog</a></h1>
+<h4>Ruby & Android</h4>
+<nav id="main-nav"><ul>
+	<li><a href="/">Blog</a></li>
+	<li><a href="/about">About</a></li>
+	<li><a href="/archives">Archive</a></li>
+</ul>
+</nav>
+<nav id="mobile-nav">
+	<div class="alignleft menu">
+		<a class="button">Menu</a>
+		<div class="container"><ul>
+	<li><a href="/">Blog</a></li>
+	<li><a href="/about">About</a></li>
+	<li><a href="/archives">Archive</a></li>
+</ul>
+</div>
+	</div>
+	<div class="alignright search">
+		<a class="button"></a>
+		<div class="container">
+			<form action="http://google.com/search" method="get">
+				<input type="text" name="q" results="0">
+				<input type="hidden" name="q" value="site:blog.dacer.im">
+			</form>
+		</div>
+	</div>
+</nav>
+
+
+</header>
+
+	<div id="content" class="inner"><article class="post">
+	<h2 class="title">为什么部分小米用户在使用极简番茄时提醒会延迟</h2>
+	<div class="entry-content"><p>很多小米用户反馈时间会错乱，之前一直以为是后台的Activity所占用的内存被清空所致，但修改后发现仍未改善，最后终于让我找到了根本原因。</p>
+
+<p>使用AlarmManager定的带有WAKEUP闹钟会被某些版本的MIUI系统推迟。</p>
+
+<p>我下面用浅显的语言说明一下</p>
+
+<p>每个软件都可以设置某个时间点的“闹钟”唤醒本程序，但是小米处于省电的考虑将每5分钟时间段内的“闹钟”集中在一起唤醒，例如启动番茄的25分钟后是12:31，但小米会强行将其改为12:35分，故程序的逻辑被彻底打断。</p>
+
+<p>此问题在将来有可能会通过系统补丁的方式修正，但不知会是何时，身为软件作者对此只能很无奈了，</p>
+
+<p>解决方案如下：</p>
+
+<ol>
+<li><p>(推荐)刷Android官方系统或者优秀的第三方CM系统可彻底解决此问题，但有可能造成使用上的略微不便（MIUI在某些方面还是有其优点的）</p></li>
+<li><p>(不推荐)使用我做的<a href="http://dacer.github.io/myapps/SimplePomodoro(MIUI">小米专用版本</a>.apk)，在未开启快速模式且开启屏幕常亮时理论上可正常使用（但仍不能确定），即不让屏幕锁定，(在番茄进行中点击时间可隐藏它，配合黑色全屏主题效果较佳)</p></li>
+</ol>
+
+
+<p>3.等待小米更新系统修改这个问题。</p>
+
+<p>以上。</p>
+
+<p>更新又一种方式: </p>
+
+<p><a href="http://bbs.zdworks.com/forum.php?mod=viewthread&amp;tid=166869">http://bbs.zdworks.com/forum.php?mod=viewthread&amp;tid=166869</a></p>
+</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-18T21:39:25+08:00" pubdate data-updated="true">Sep 18<span>th</span>, 2013</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/kai-fa-bi-ji/'>开发笔记</a>
+
+</div>
+
+
+</div></article></div>
+	<footer id="footer" class="inner">Copyright &copy; 2017
+
+    Dacer
+
+<br>
+Powered by Octopress.
+</footer>
+	<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+
+
+
+
+</body>
+</html>
