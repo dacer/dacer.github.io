@@ -1,98 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
 
-<!DOCTYPE HTML>
-<html>
-<head>
-	<meta charset="utf-8">
-	<title>みんなの日本語中級翻訳  | Dacer Blog</title>
+  <title><![CDATA[Category: 日本語 | Dacer Blog]]></title>
+  <link href="http://blog.dacer.im/blog/categories/ri-ben-yu/atom.xml" rel="self"/>
+  <link href="http://blog.dacer.im/"/>
+  <updated>2017-11-26T01:09:29+08:00</updated>
+  <id>http://blog.dacer.im/</id>
+  <author>
+    <name><![CDATA[Dacer]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
 
-<meta name="author" content="Dacer"> 
-
-<meta name="description" content="最近在看“みんなの日本語 中級”的时候发现其配套辅导用书里不像初级有中文翻译，网络上也很难找到，于是就自己尝试翻译吧，顺便记录在此。 此翻译部分参考了这个网站中内容，因为是用于学习的，本翻译会尽量贴近日语的表达习惯，从而避免用太过中文的说法导致的很多语法细节的丢失。 因为我还是初学者， &hellip;"> <meta name="keywords" content="">
-
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-	<link href="/atom.xml" rel="alternate" title="Dacer Blog" type="application/atom+xml">
-	<link rel="canonical" href="">
-	<link href="/favicon.ico" rel="shortcut icon">
-	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-	<script src="/javascripts/jquery.min.js"></script>
-	<script type="text/javascript" src="/javascripts/jquery.fancybox.pack.js"></script>
-
-<script language="Javascript" type="text/javascript">
-$(document).ready(
-  function() {
-    (function($) {
-      $(".fancybox[data-content-id]").each(function() {
-        this.href = $(this).data('content-id');
-      });
-      $(".fancybox").fancybox({
-        beforeLoad: function() {
-          var el, 
-              id = $(this.element).data('title-id');
-
-          if (id) {
-            el = $('#' + id);
-
-            if (el.length) {
-              this.title = el.html();
-            }
-          }
-          if ($(this).data('content')) {
-            this.content = $(this).data('content');
-          }
-        },
-        helpers: {
-          title: {
-            type: 'inside'
-          }
-        }
-      });
-    })(jQuery);
-  }
-);
-</script>
-
-	
-</head>
-
-
-<body>
-	<header id="header" class="inner"><h1><a href="/">Dacer Blog</a></h1>
-<h4>Ruby & Android</h4>
-<nav id="main-nav"><ul>
-	<li><a href="/">Blog</a></li>
-	<li><a href="/about">About</a></li>
-	<li><a href="/archives">Archive</a></li>
-</ul>
-</nav>
-<nav id="mobile-nav">
-	<div class="alignleft menu">
-		<a class="button">Menu</a>
-		<div class="container"><ul>
-	<li><a href="/">Blog</a></li>
-	<li><a href="/about">About</a></li>
-	<li><a href="/archives">Archive</a></li>
-</ul>
-</div>
-	</div>
-	<div class="alignright search">
-		<a class="button"></a>
-		<div class="container">
-			<form action="http://google.com/search" method="get">
-				<input type="text" name="q" results="0">
-				<input type="hidden" name="q" value="site:blog.dacer.im">
-			</form>
-		</div>
-	</div>
-</nav>
-
-
-</header>
-
-	<div id="content" class="inner"><article class="post">
-	<h2 class="title">みんなの日本語中級翻訳</h2>
-	<div class="entry-content"><p>最近在看“みんなの日本語 中級”的时候发现其配套辅导用书里不像初级有中文翻译，网络上也很难找到，于是就自己尝试翻译吧，顺便记录在此。</p>
+  
+  <entry>
+    <title type="html"><![CDATA[みんなの日本語中級翻訳]]></title>
+    <link href="http://blog.dacer.im/blog/2017/11/21/minnafalseri-ben-yu-zhong-ji-fan-yi/"/>
+    <updated>2017-11-21T16:49:38+08:00</updated>
+    <id>http://blog.dacer.im/blog/2017/11/21/minnafalseri-ben-yu-zhong-ji-fan-yi</id>
+    <content type="html"><![CDATA[<p>最近在看“みんなの日本語 中級”的时候发现其配套辅导用书里不像初级有中文翻译，网络上也很难找到，于是就自己尝试翻译吧，顺便记录在此。</p>
 
 <p>此翻译部分参考了<a href="http://202.39.64.154/japanese2/?cat=86382">这个网站</a>中内容，因为是用于学习的，本翻译会尽量贴近日语的表达习惯，从而避免用太过中文的说法导致的很多语法细节的丢失。</p>
 
@@ -128,7 +54,7 @@ $(document).ready(
 
 <p>答案有两种倾向，一个是因为感到幸福所以要把现在的时间暂停，这样的最幸福瞬间。还有一种是感觉要失败了的时候，如果能把自己以外的时候暂停掉，这段时间就可以考虑该怎么办比较好了，这样的（需要）避开不好的事的情况。虽然两种都是停止时间，但前者女性较多，后者男性较多</p>
 
-<p>然后，回答在迪士尼乐园的时候，吃好吃的东西的时候的人都是女性。但是不论男女（的回答）排第一位的都是&#8221;和恋人在一起的时候&#8221;，果然二十岁是恋爱的季节啊</p>
+<p>然后，回答在迪士尼乐园的时候，吃好吃的东西的时候的人都是女性。但是不论男女（的回答）排第一位的都是"和恋人在一起的时候"，果然二十岁是恋爱的季节啊</p>
 
 <h2>第四课</h2>
 
@@ -210,7 +136,7 @@ $(document).ready(
 
 <p>印度少女画的是在水中进行浮力实验的科学家，乌干达的少年画的是摆放着各种各样实验道具的房间。</p>
 
-<p>另一方面，英国的少女和日本的少年的画画就阴暗了。英国少女在上面画了一个蘑菇云，是&#8221;科学家有时制造灾难&#8221;的形象，日本少年画中科学家放任他的头发和胡子生长，是个&#8221;只考虑工作&#8221;的形象。</p>
+<p>另一方面，英国的少女和日本的少年的画画就阴暗了。英国少女在上面画了一个蘑菇云，是"科学家有时制造灾难"的形象，日本少年画中科学家放任他的头发和胡子生长，是个"只考虑工作"的形象。</p>
 
 <p>实际的调查中对科学家的印象有一个共同点就是，发展中国家有较强正向性的而发达国家有较强负面性，在非洲想要成为科学家的声音比较多但是在日本却比较少。有一种解释是，随着经济与科学技术的发展孩子们的兴趣和感兴趣的事变得多样化了，对科学的兴趣就变少了。</p>
 
@@ -288,76 +214,7 @@ $(document).ready(
 <p>铃声？啊，是发车铃啊，可能会有一点吵，但这不就是日本乘车的安全性嘛？</p>
 
 <p>嗯是的，安全性是必须的，但我觉得这不能依靠于很吵的铃声和广播。</p>
-</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
+]]></content>
+  </entry>
   
-
-
-<time datetime="2017-11-21T16:49:38+08:00" pubdate data-updated="true">Nov 21<span>st</span>, 2017</time></div>
-	
-
-<div class="tags">
-
-	<a class='category' href='/blog/categories/ri-ben-yu/'>日本語</a>
-
-</div>
-
-
-</div></article>
-
-
-<section id="comment">
-    <h2 class="title">Comments</h2>
-    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-</div>
-</section>
-</div>
-	<footer id="footer" class="inner">Copyright &copy; 2017
-
-    Dacer
-
-<br>
-Powered by Octopress.
-</footer>
-	<script src="/javascripts/slash.js"></script>
-<script src="/javascripts/jquery.fancybox.pack.js"></script>
-<script type="text/javascript">
-(function($){
-	$('.fancybox').fancybox();
-})(jQuery);
-</script> <!-- Delete or comment this line to disable Fancybox -->
-
-
-<script type="text/javascript">
-      var disqus_shortname = 'Dacer';
-      
-        
-        // var disqus_developer = 1;
-        var disqus_identifier = 'http://blog.dacer.im/blog/2017/11/21/minnafalseri-ben-yu-zhong-ji-fan-yi/';
-        var disqus_url = 'http://blog.dacer.im/blog/2017/11/21/minnafalseri-ben-yu-zhong-ji-fan-yi/';
-        var disqus_script = 'embed.js';
-      
-    (function () {
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    }());
-</script>
-
-
-
-
-
-</body>
-</html>
+</feed>
