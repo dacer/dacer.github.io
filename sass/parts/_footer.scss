@@ -3,7 +3,18 @@ footer{
 	border-top: 1px solid $color-gray05;
 	text-align: center;
 	font-size: 0.9em;
-  margin: 50px auto !important;
-  color: rgba(0, 0, 0, 0.3);
+	margin: 50px auto !important;
+	color: rgba(0, 0, 0, 0.3);
 }
-
+#disqus_thread {
+     position: relative;
+}
+#disqus_thread:after {
+     content: "";
+     display: block;
+     height: 55px;
+     width: 100%;
+     position: absolute;
+     bottom: 0;
+     background: white;
+}

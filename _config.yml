@@ -4,7 +4,7 @@
 
 url: http://blog.dacer.im
 title: Dacer Blog
-subtitle: Ruby & Android
+subtitle: 日本語 & Android
 author: Dacer
 simple_search: http://google.com/search
 description:
@@ -69,7 +69,7 @@ github_show_profile_link: true
 github_skip_forks: true
 
 # duoshuo comments
-duoshuo_comments: true
+duoshuo_comments: false
 duoshuo_short_name: Dacer
 
 # Twitter
@@ -94,8 +94,8 @@ delicious_user:
 delicious_count: 3
 
 # Disqus Comments
-disqus_short_name:
-disqus_show_comment_count: false
+disqus_short_name: Dacer
+disqus_show_comment_count: true
 
 # Google Analytics
 google_analytics_tracking_id:
